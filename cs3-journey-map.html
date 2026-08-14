@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journey Map — ESS Classroom Management</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #1a1a1a; line-height: 1.4; }
+
+/* ── HEADER ────────────────────────────────────────────────── */
+.jm-hdr { padding: 36px 32px 28px; border-bottom: 1px solid #e5e5e5; }
+.jm-collab { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #7B3FF2; margin-bottom: 10px; }
+.jm-title { font-size: clamp(22px, 3vw, 34px); font-weight: 800; color: #0f0f0f; margin-bottom: 10px; line-height: 1.15; }
+.jm-sub { font-size: 14px; color: #555; line-height: 1.65; max-width: 540px; }
+.jm-stats { display: flex; gap: 40px; margin-top: 24px; flex-wrap: wrap; }
+.jm-stat { display: flex; align-items: center; gap: 12px; }
+.jm-stat-icon { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid #ccc; display: flex; align-items: center; justify-content: center; }
+.jm-stat-icon svg { width: 18px; height: 18px; stroke: #555; fill: none; stroke-width: 1.6; stroke-linecap: round; }
+.jm-stat-val { font-size: 22px; font-weight: 800; color: #0f0f0f; line-height: 1; }
+.jm-stat-lbl { font-size: 12px; color: #444; font-weight: 600; }
+.jm-stat-sub { font-size: 11px; color: #888; }
+
+/* ── STICKY NOTE ───────────────────────────────────────────── */
+.sn { border-radius: 4px; padding: 7px 9px; font-size: 11px; line-height: 1.45; display: inline-block; margin: 3px; }
+.sn-g  { background: #c8f7d8; color: #1a5c35; }
+.sn-p  { background: #ffd6d6; color: #8b1a1a; }
+.sn-v  { background: #e5daff; color: #4a1a9e; }
+.sn-y  { background: #fff7c0; color: #6b5a00; }
+.sn-b  { background: #d4e8ff; color: #0e3a7a; }
+
+/* ── SYSTEM BADGE ──────────────────────────────────────────── */
+.sb { display: inline-block; padding: 4px 9px; border-radius: 4px; font-size: 10px; font-weight: 700; margin: 2px; color: #fff; }
+.sb-app  { background: #0f1f5c; }
+.sb-mis  { background: #b5006b; }
+.sb-sso  { background: #555; }
+.sb-data { background: #00748a; }
+.sb-not  { background: #b5006b; }
+.sb-rep  { background: #1a1a3e; }
+
+/* ── IMPACT DOTS ───────────────────────────────────────────── */
+.jm-dots { display: flex; gap: 5px; align-items: center; padding: 4px 0; }
+.dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.dot-h { background: #e63c2e; }
+.dot-m { background: #f5a623; }
+.dot-l { background: #ddd; }
+
+/* ── PHASE PILL ────────────────────────────────────────────── */
+.pill { display: inline-block; background: #0f0f0f; color: #fff; font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 20px; margin: 2px; }
+
+/* ── KEY ACTIVITY BAR ──────────────────────────────────────── */
+.ka { display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+.ka-green { background: #c8f7d8; color: #1a5c35; }
+.ka-amber { background: #ffe4b5; color: #7a4a00; }
+.ka-purple { background: #e5daff; color: #4a1a9e; }
+.ka-blue  { background: #d4e8ff; color: #0e3a7a; }
+
+/* ══════════════════════════════════════════════════════════════
+   DESKTOP TABLE  (≥ 900px)
+══════════════════════════════════════════════════════════════ */
+.jm-desktop { display: none; }
+.jm-scroll  { overflow-x: auto; -webkit-overflow-scrolling: touch; padding: 0 0 12px; }
+.jm-grid    {
+  display: grid;
+  grid-template-columns: 128px repeat(6, minmax(170px, 1fr));
+  min-width: 1150px;
+  border-left: 1px solid #e5e5e5;
+  border-top: 1px solid #e5e5e5;
+}
+.jm-cell {
+  border-right: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 10px 11px;
+  vertical-align: top;
+}
+.jm-row-lbl {
+  background: #fafafa;
+  font-size: 10px;
+  font-weight: 700;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  display: flex;
+  align-items: flex-start;
+  padding: 12px 10px;
+}
+.jm-phase-hdr {
+  background: #0f0f0f;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 12px 11px;
+}
+.jm-corner { background: #fafafa; border-right: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5; }
+.jm-snwrap { display: flex; flex-wrap: wrap; }
+
+/* teacher label divider */
+.jm-teacher-lbl {
+  grid-column: 1 / -1;
+  background: #f0f0f0;
+  padding: 7px 11px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #333;
+  border-right: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+.sub-lbl { font-size: 9px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; display: block; }
+.sub-g  { color: #1a7a40; }
+.sub-p  { color: #8b1a1a; }
+.sub-v  { color: #4a1a9e; }
+
+/* ══════════════════════════════════════════════════════════════
+   MOBILE  (< 900px)
+══════════════════════════════════════════════════════════════ */
+.jm-mobile { display: block; }
+.jm-tabs {
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  gap: 6px;
+  padding: 16px 16px 0;
+  scrollbar-width: none;
+}
+.jm-tabs::-webkit-scrollbar { display: none; }
+.jm-tab {
+  flex-shrink: 0;
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  background: #f0f0f0;
+  color: #555;
+  border: none;
+  cursor: pointer;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  transition: background .15s, color .15s;
+}
+.jm-tab.active { background: #0f0f0f; color: #fff; }
+.jm-panels { padding: 16px; }
+.jm-panel { display: none; flex-direction: column; gap: 12px; }
+.jm-panel.active { display: flex; }
+.jm-row-block { border: 1px solid #e5e5e5; border-radius: 8px; overflow: hidden; }
+.jm-row-block-lbl {
+  background: #fafafa;
+  padding: 8px 12px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #555;
+  border-bottom: 1px solid #e5e5e5;
+}
+.jm-row-block-body { padding: 10px 12px; }
+.jm-steps-wrap { display: flex; flex-wrap: wrap; }
+
+/* ══════════════════════════════════════════════════════════════
+   ZOOMED IN SECTION
+══════════════════════════════════════════════════════════════ */
+.jm-zoom { padding: 32px; border-top: 1px solid #e5e5e5; margin-top: 8px; }
+.jm-zoom-lbl { font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #888; margin-bottom: 20px; }
+.jm-zoom-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.jm-zoom-card { border: 1px solid #e5e5e5; border-radius: 10px; overflow: hidden; }
+.jm-zoom-num  { width: 28px; height: 28px; background: #7B3FF2; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; margin-bottom: 10px; }
+.jm-zoom-title { font-size: 13px; font-weight: 700; color: #0f0f0f; margin-bottom: 14px; line-height: 1.4; }
+.jm-zoom-body { padding: 18px; }
+.jm-zoom-mini-phase { background: #0f0f0f; color: #fff; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 6px 10px; border-radius: 4px; margin-bottom: 6px; display: inline-block; }
+.jm-zoom-mini-step { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 10px; }
+.jm-zoom-mini-ka { display: inline-block; padding: 3px 9px; border-radius: 4px; background: #c8f7d8; color: #1a5c35; font-size: 10px; font-weight: 700; margin-bottom: 10px; }
+.jm-zoom-note { font-size: 12px; color: #444; line-height: 1.6; }
+.jm-priority-row { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 10px; }
+.jm-pri-badge { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+.jm-pri-h { background: #ffe0e0; color: #c00; }
+.jm-pri-m { background: #fff0cc; color: #a05000; }
+.jm-pri-l { background: #e5e5e5; color: #555; }
+.jm-pri-count { font-size: 10px; color: #888; margin-left: 2px; }
+.jm-pri-text { font-size: 12px; color: #333; line-height: 1.45; }
+.jm-pri-sub { font-size: 10px; color: #888; }
+
+@media (max-width: 899px) {
+  .jm-desktop { display: none; }
+  .jm-mobile  { display: block; }
+  .jm-zoom-grid { grid-template-columns: 1fr; }
+  .jm-zoom { padding: 20px 16px; }
+  .jm-hdr { padding: 24px 16px 20px; }
+  .jm-stats { gap: 24px; }
+}
+@media (min-width: 900px) {
+  .jm-desktop { display: block; }
+  .jm-mobile  { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ──────────────────────────────────────────────── -->
+<div class="jm-hdr">
+  <div class="jm-collab">Collaboration in Action</div>
+  <h2 class="jm-title">Turning research into a shared roadmap</h2>
+  <p class="jm-sub">A collaborative workshop with product, engineering and operations to map the end-to-end teacher experience, surface pain points and co-create opportunities that shaped our backlog.</p>
+  <div class="jm-stats">
+    <div class="jm-stat">
+      <div class="jm-stat-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div>
+        <div class="jm-stat-val">12+</div>
+        <div class="jm-stat-lbl">Stakeholders</div>
+        <div class="jm-stat-sub">Product, Eng, Data &amp; Ops</div>
+      </div>
+    </div>
+    <div class="jm-stat">
+      <div class="jm-stat-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <div>
+        <div class="jm-stat-val">2</div>
+        <div class="jm-stat-lbl">Workshop Sessions</div>
+        <div class="jm-stat-sub">Remote &amp; In-person</div>
+      </div>
+    </div>
+    <div class="jm-stat">
+      <div class="jm-stat-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div>
+        <div class="jm-stat-val">30+</div>
+        <div class="jm-stat-lbl">Insights</div>
+        <div class="jm-stat-sub">Captured and prioritised</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     DESKTOP TABLE
+══════════════════════════════════════════════════════════ -->
+<div class="jm-desktop">
+<div class="jm-scroll">
+<div class="jm-grid">
+
+  <!-- Row 1: Phase headers -->
+  <div class="jm-corner"></div>
+  <div class="jm-phase-hdr">Prepare</div>
+  <div class="jm-phase-hdr">Take Register</div>
+  <div class="jm-phase-hdr">Mark Absences</div>
+  <div class="jm-phase-hdr">Manage Attendance</div>
+  <div class="jm-phase-hdr">Follow Up</div>
+  <div class="jm-phase-hdr">Reporting &amp; Analysis</div>
+
+  <!-- Row 2: Teacher Journey -->
+  <div class="jm-row-lbl">Teacher Journey</div>
+  <div class="jm-cell"><div class="jm-steps-wrap"><span class="pill">Plan the day</span><span class="pill">Review class list</span><span class="pill">Open register</span></div></div>
+  <div class="jm-cell"><div class="jm-steps-wrap"><span class="pill">Select class</span><span class="pill">Mark present</span><span class="pill">Mark late</span><span class="pill">Add absence</span></div></div>
+  <div class="jm-cell"><div class="jm-steps-wrap"><span class="pill">Add reason (code)</span><span class="pill">Add notes</span><span class="pill">Save register</span></div></div>
+  <div class="jm-cell"><div class="jm-steps-wrap"><span class="pill">Attendance summary</span><span class="pill">Resolve queries</span><span class="pill">Send notifications</span></div></div>
+  <div class="jm-cell"><div class="jm-steps-wrap"><span class="pill">Follow up absences</span><span class="pill">Communicate with parents</span><span class="pill">Record interventions</span></div></div>
+  <div class="jm-cell"><div class="jm-steps-wrap"><span class="pill">View reports</span><span class="pill">Analyse trends</span><span class="pill">Share insights</span></div></div>
+
+  <!-- Row 3: Key Activities -->
+  <div class="jm-row-lbl">Key Activities</div>
+  <div class="jm-cell"><span class="ka ka-green">Set up for success</span></div>
+  <div class="jm-cell"><span class="ka ka-green">Capture attendance</span></div>
+  <div class="jm-cell"><span class="ka ka-green">Record accurately</span></div>
+  <div class="jm-cell"><span class="ka ka-amber">Monitor &amp; act</span></div>
+  <div class="jm-cell"><span class="ka ka-purple">Engage &amp; support</span></div>
+  <div class="jm-cell"><span class="ka ka-blue">Measure impact</span></div>
+
+  <!-- Teacher section label -->
+  <div class="jm-teacher-lbl">Teacher</div>
+
+  <!-- Row 4: Goals -->
+  <div class="jm-row-lbl"><span class="sub-lbl sub-g">Goals</span></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-g">Start the day prepared</span><span class="sn sn-g">Have the right information</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-g">Take register quickly</span><span class="sn sn-g">Minimise errors</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-g">Record accurate attendance</span><span class="sn sn-g">Use the right codes</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-g">See who is absent/late</span><span class="sn sn-g">Understand patterns</span><span class="sn sn-g">Act early</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-g">Inform parents promptly</span><span class="sn sn-g">Track follow ups</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-g">Understand trends</span><span class="sn sn-g">Prove impact</span></div></div>
+
+  <!-- Row 5: Pain Points (teacher) -->
+  <div class="jm-row-lbl"><span class="sub-lbl sub-p">Pain Points</span></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-p">Outdated class information</span><span class="sn sn-p">Multiple systems</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-p">Repetitive taps</span><span class="sn sn-p">Easy to miss a student</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-p">Too many attendance codes</span><span class="sn sn-p">Unclear when to use which code</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-p">No quick attendance overview</span><span class="sn sn-p">Late patterns noticed too late</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-p">Manual parent communication</span><span class="sn sn-p">Follow up status not tracked</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-p">Limited reporting flexibility</span><span class="sn sn-p">Time-consuming to prepare reports</span></div></div>
+
+  <!-- Row 6: Needs -->
+  <div class="jm-row-lbl"><span class="sub-lbl sub-v">Needs</span></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-v">Quick access to class &amp; previous data</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-v">Fast, one-handed marking</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-v">Easier code selection</span><span class="sn sn-v">Clear guidance in context</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-v">Real-time summary</span><span class="sn sn-v">Easy to identify concerns</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-v">Automated alerts</span><span class="sn sn-v">Communication history</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-v">Customisable reports</span><span class="sn sn-v">Share with stakeholders</span></div></div>
+
+  <!-- Row 7: Insights -->
+  <div class="jm-row-lbl">Insights &amp; Observations</div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-y">Teachers spend time verifying information</span><span class="sn sn-y">Class lists not always kept up to date</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-y">7–10 mins spent taking register manually</span><span class="sn sn-y">Too many taps to mark the same status</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-y">Codes are hard to remember</span><span class="sn sn-y">Notes often entered later (if at all)</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-y">Hard to get an at-a-glance summary</span><span class="sn sn-y">Patterns not easy to spot</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-y">Parent contact takes time</span><span class="sn sn-y">No single place to track follow ups</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-y">Reports require multiple steps</span><span class="sn sn-y">Hard to export and share</span></div></div>
+
+  <!-- Row 8: Opportunities -->
+  <div class="jm-row-lbl">Opportunities</div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-b">Show updated class info on login</span><span class="sn sn-b">Quick access to key information</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-b">One-tap marking</span><span class="sn sn-b">Auto move to next student</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-b">Smart code suggestion</span><span class="sn sn-b">Inline guidance &amp; examples</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-b">Real-time attendance summary</span><span class="sn sn-b">Highlight emerging patterns</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-b">Automated notifications</span><span class="sn sn-b">Track follow ups in one place</span></div></div>
+  <div class="jm-cell"><div class="jm-snwrap"><span class="sn sn-b">Custom reports &amp; dashboards</span><span class="sn sn-b">Easy export &amp; sharing</span></div></div>
+
+  <!-- Row 9: Systems -->
+  <div class="jm-row-lbl">System / Touch Points</div>
+  <div class="jm-cell"><span class="sb sb-app">Teacher App</span><span class="sb sb-mis">MIS</span><span class="sb sb-sso">SSO</span></div>
+  <div class="jm-cell"><span class="sb sb-app">Teacher App</span></div>
+  <div class="jm-cell"><span class="sb sb-app">Teacher App</span><span class="sb sb-mis">MIS</span><span class="sb sb-data">Data</span></div>
+  <div class="jm-cell"><span class="sb sb-app">Teacher App</span><span class="sb sb-mis">MIS</span><span class="sb sb-not">Notifications</span><span class="sb sb-data">Data</span></div>
+  <div class="jm-cell"><span class="sb sb-not">Notifications</span><span class="sb sb-mis">MIS</span></div>
+  <div class="jm-cell"><span class="sb sb-mis">MIS</span><span class="sb sb-rep">Reports</span><span class="sb sb-data">Data</span></div>
+
+  <!-- Row 10: Impact -->
+  <div class="jm-row-lbl">Impact</div>
+  <div class="jm-cell"><div class="jm-dots"><span class="dot dot-h"></span><span class="dot dot-h"></span><span class="dot dot-m"></span></div></div>
+  <div class="jm-cell"><div class="jm-dots"><span class="dot dot-h"></span><span class="dot dot-h"></span><span class="dot dot-m"></span></div></div>
+  <div class="jm-cell"><div class="jm-dots"><span class="dot dot-h"></span><span class="dot dot-h"></span><span class="dot dot-m"></span></div></div>
+  <div class="jm-cell"><div class="jm-dots"><span class="dot dot-h"></span><span class="dot dot-h"></span><span class="dot dot-m"></span></div></div>
+  <div class="jm-cell"><div class="jm-dots"><span class="dot dot-h"></span><span class="dot dot-m"></span><span class="dot dot-m"></span></div></div>
+  <div class="jm-cell"><div class="jm-dots"><span class="dot dot-h"></span><span class="dot dot-m"></span><span class="dot dot-m"></span></div></div>
+
+</div><!-- /jm-grid -->
+</div><!-- /jm-scroll -->
+</div><!-- /jm-desktop -->
+
+<!-- ══════════════════════════════════════════════════════════
+     MOBILE TABS
+══════════════════════════════════════════════════════════ -->
+<div class="jm-mobile">
+  <div class="jm-tabs">
+    <button class="jm-tab active" onclick="showPhase(0)">Prepare</button>
+    <button class="jm-tab" onclick="showPhase(1)">Take Register</button>
+    <button class="jm-tab" onclick="showPhase(2)">Mark Absences</button>
+    <button class="jm-tab" onclick="showPhase(3)">Manage Attendance</button>
+    <button class="jm-tab" onclick="showPhase(4)">Follow Up</button>
+    <button class="jm-tab" onclick="showPhase(5)">Reporting</button>
+  </div>
+  <div class="jm-panels">
+
+    <!-- Phase 0: Prepare -->
+    <div class="jm-panel active">
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Teacher Journey</div><div class="jm-row-block-body jm-steps-wrap"><span class="pill">Plan the day</span><span class="pill">Review class list</span><span class="pill">Open register</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Key Activity</div><div class="jm-row-block-body"><span class="ka ka-green">Set up for success</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Goals</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-g">Start the day prepared</span><span class="sn sn-g">Have the right information</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Pain Points</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-p">Outdated class information</span><span class="sn sn-p">Multiple systems</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Needs</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-v">Quick access to class &amp; previous data</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Insights</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-y">Teachers spend time verifying information</span><span class="sn sn-y">Class lists not always kept up to date</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Opportunities</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-b">Show updated class info on login</span><span class="sn sn-b">Quick access to key information</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Systems</div><div class="jm-row-block-body"><span class="sb sb-app">Teacher App</span><span class="sb sb-mis">MIS</span><span class="sb sb-sso">SSO</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Impact</div><div class="jm-row-block-body"><div class="jm-dots"><span class="dot dot-h"></span><span class="dot dot-h"></span><span class="dot dot-m"></span></div></div></div>
+    </div>
+
+    <!-- Phase 1: Take Register -->
+    <div class="jm-panel">
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Teacher Journey</div><div class="jm-row-block-body jm-steps-wrap"><span class="pill">Select class</span><span class="pill">Mark present</span><span class="pill">Mark late</span><span class="pill">Add absence</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Key Activity</div><div class="jm-row-block-body"><span class="ka ka-green">Capture attendance</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Goals</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-g">Take register quickly</span><span class="sn sn-g">Minimise errors</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Pain Points</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-p">Repetitive taps</span><span class="sn sn-p">Easy to miss a student</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Needs</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-v">Fast, one-handed marking</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Insights</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-y">7–10 mins spent taking register manually</span><span class="sn sn-y">Too many taps to mark the same status</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Opportunities</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-b">One-tap marking</span><span class="sn sn-b">Auto move to next student</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Systems</div><div class="jm-row-block-body"><span class="sb sb-app">Teacher App</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Impact</div><div class="jm-row-block-body"><div class="jm-dots"><span class="dot dot-h"></span><span class="dot dot-h"></span><span class="dot dot-m"></span></div></div></div>
+    </div>
+
+    <!-- Phase 2: Mark Absences -->
+    <div class="jm-panel">
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Teacher Journey</div><div class="jm-row-block-body jm-steps-wrap"><span class="pill">Add reason (code)</span><span class="pill">Add notes</span><span class="pill">Save register</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Key Activity</div><div class="jm-row-block-body"><span class="ka ka-green">Record accurately</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Goals</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-g">Record accurate attendance</span><span class="sn sn-g">Use the right codes</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Pain Points</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-p">Too many attendance codes</span><span class="sn sn-p">Unclear when to use which code</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Needs</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-v">Easier code selection</span><span class="sn sn-v">Clear guidance in context</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Insights</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-y">Codes are hard to remember</span><span class="sn sn-y">Notes often entered later (if at all)</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Opportunities</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-b">Smart code suggestion</span><span class="sn sn-b">Inline guidance &amp; examples</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Systems</div><div class="jm-row-block-body"><span class="sb sb-app">Teacher App</span><span class="sb sb-mis">MIS</span><span class="sb sb-data">Data</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Impact</div><div class="jm-row-block-body"><div class="jm-dots"><span class="dot dot-h"></span><span class="dot dot-h"></span><span class="dot dot-m"></span></div></div></div>
+    </div>
+
+    <!-- Phase 3: Manage Attendance -->
+    <div class="jm-panel">
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Teacher Journey</div><div class="jm-row-block-body jm-steps-wrap"><span class="pill">Attendance summary</span><span class="pill">Resolve queries</span><span class="pill">Send notifications</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Key Activity</div><div class="jm-row-block-body"><span class="ka ka-amber">Monitor &amp; act</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Goals</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-g">See who is absent/late</span><span class="sn sn-g">Understand patterns</span><span class="sn sn-g">Act early</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Pain Points</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-p">No quick attendance overview</span><span class="sn sn-p">Late patterns noticed too late</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Needs</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-v">Real-time summary</span><span class="sn sn-v">Easy to identify concerns</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Insights</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-y">Hard to get an at-a-glance summary</span><span class="sn sn-y">Patterns not easy to spot</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Opportunities</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-b">Real-time attendance summary</span><span class="sn sn-b">Highlight emerging patterns</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Systems</div><div class="jm-row-block-body"><span class="sb sb-app">Teacher App</span><span class="sb sb-mis">MIS</span><span class="sb sb-not">Notifications</span><span class="sb sb-data">Data</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Impact</div><div class="jm-row-block-body"><div class="jm-dots"><span class="dot dot-h"></span><span class="dot dot-h"></span><span class="dot dot-m"></span></div></div></div>
+    </div>
+
+    <!-- Phase 4: Follow Up -->
+    <div class="jm-panel">
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Teacher Journey</div><div class="jm-row-block-body jm-steps-wrap"><span class="pill">Follow up absences</span><span class="pill">Communicate with parents</span><span class="pill">Record interventions</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Key Activity</div><div class="jm-row-block-body"><span class="ka ka-purple">Engage &amp; support</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Goals</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-g">Inform parents promptly</span><span class="sn sn-g">Track follow ups</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Pain Points</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-p">Manual parent communication</span><span class="sn sn-p">Follow up status not tracked</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Needs</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-v">Automated alerts</span><span class="sn sn-v">Communication history</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Insights</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-y">Parent contact takes time</span><span class="sn sn-y">No single place to track follow ups</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Opportunities</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-b">Automated notifications</span><span class="sn sn-b">Track follow ups in one place</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Systems</div><div class="jm-row-block-body"><span class="sb sb-not">Notifications</span><span class="sb sb-mis">MIS</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Impact</div><div class="jm-row-block-body"><div class="jm-dots"><span class="dot dot-h"></span><span class="dot dot-m"></span><span class="dot dot-m"></span></div></div></div>
+    </div>
+
+    <!-- Phase 5: Reporting -->
+    <div class="jm-panel">
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Teacher Journey</div><div class="jm-row-block-body jm-steps-wrap"><span class="pill">View reports</span><span class="pill">Analyse trends</span><span class="pill">Share insights</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Key Activity</div><div class="jm-row-block-body"><span class="ka ka-blue">Measure impact</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Goals</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-g">Understand trends</span><span class="sn sn-g">Prove impact</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Pain Points</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-p">Limited reporting flexibility</span><span class="sn sn-p">Time-consuming to prepare reports</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Needs</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-v">Customisable reports</span><span class="sn sn-v">Share with stakeholders</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Insights</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-y">Reports require multiple steps</span><span class="sn sn-y">Hard to export and share</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Opportunities</div><div class="jm-row-block-body jm-snwrap"><span class="sn sn-b">Custom reports &amp; dashboards</span><span class="sn sn-b">Easy export &amp; sharing</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Systems</div><div class="jm-row-block-body"><span class="sb sb-mis">MIS</span><span class="sb sb-rep">Reports</span><span class="sb sb-data">Data</span></div></div>
+      <div class="jm-row-block"><div class="jm-row-block-lbl">Impact</div><div class="jm-row-block-body"><div class="jm-dots"><span class="dot dot-h"></span><span class="dot dot-m"></span><span class="dot dot-m"></span></div></div></div>
+    </div>
+
+  </div><!-- /jm-panels -->
+</div><!-- /jm-mobile -->
+
+<!-- ══════════════════════════════════════════════════════════
+     ZOOMED IN: TURNING INSIGHT INTO ACTION
+══════════════════════════════════════════════════════════ -->
+<div class="jm-zoom">
+  <div class="jm-zoom-lbl">Zoomed in: Turning insight into action</div>
+  <div class="jm-zoom-grid">
+
+    <div class="jm-zoom-card">
+      <div style="background:#f7f7f7; padding:14px 18px; border-bottom:1px solid #e5e5e5;">
+        <div class="jm-zoom-num">1</div>
+        <div class="jm-zoom-title">Recurring pain points</div>
+        <div><span class="jm-zoom-mini-phase">Take Register</span></div>
+        <div class="jm-zoom-mini-step" style="margin-top:6px;"><span class="pill" style="font-size:9px;">Select class</span><span class="pill" style="font-size:9px;">Mark present</span><span class="pill" style="font-size:9px;">Mark late</span><span class="pill" style="font-size:9px;">Add absence</span></div>
+        <div><span class="jm-zoom-mini-ka">Capture attendance</span></div>
+      </div>
+      <div class="jm-zoom-body">
+        <div style="display:flex; gap:8px; margin-bottom:10px; flex-wrap:wrap;"><span class="sn sn-y" style="font-size:10px;">7–10 mins spent taking register manually</span><span class="sn sn-y" style="font-size:10px;">Too many taps to mark the same status</span></div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;"><span class="sn sn-p" style="font-size:10px;">Repetitive taps</span><span class="sn sn-p" style="font-size:10px;">Easy to miss a student</span></div>
+        <p class="jm-zoom-note" style="margin-top:12px;">Time-consuming process with high cognitive load leads to errors and incomplete data. Drove solutions like one-tap marking, auto-advance and inline student search.</p>
+      </div>
+    </div>
+
+    <div class="jm-zoom-card">
+      <div style="background:#f7f7f7; padding:14px 18px; border-bottom:1px solid #e5e5e5;">
+        <div class="jm-zoom-num">2</div>
+        <div class="jm-zoom-title">Opportunities prioritised with product + engineering</div>
+        <div><span class="jm-zoom-mini-phase">Manage Attendance</span></div>
+        <div class="jm-zoom-mini-step" style="margin-top:6px;"><span class="pill" style="font-size:9px;">Attendance summary</span><span class="pill" style="font-size:9px;">Resolve queries</span><span class="pill" style="font-size:9px;">Send notifications</span></div>
+        <div><span class="jm-zoom-mini-ka" style="background:#ffe4b5; color:#7a4a00;">Monitor &amp; act</span></div>
+      </div>
+      <div class="jm-zoom-body">
+        <div style="display:flex; gap:8px; margin-bottom:10px; flex-wrap:wrap;"><span class="sn sn-y" style="font-size:10px;">Hard to get an at-a-glance summary</span><span class="sn sn-y" style="font-size:10px;">Patterns not easy to spot</span></div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;"><span class="sn sn-b" style="font-size:10px;">Real-time attendance summary</span><span class="sn sn-b" style="font-size:10px;">Highlight emerging patterns</span></div>
+        <p class="jm-zoom-note" style="margin-top:12px;">High impact opportunities that informed our MVP scope and technical planning. Built in collaboration with engineering to ensure feasibility and scale.</p>
+      </div>
+    </div>
+
+    <div class="jm-zoom-card">
+      <div style="background:#f7f7f7; padding:14px 18px; border-bottom:1px solid #e5e5e5;">
+        <div class="jm-zoom-num">3</div>
+        <div class="jm-zoom-title">Insights translated into the delivery backlog</div>
+      </div>
+      <div class="jm-zoom-body">
+        <div class="jm-priority-row"><div class="jm-pri-badge jm-pri-h">H</div><div><div class="jm-pri-text">One-tap present marking<br><span class="jm-pri-sub">Next sprint</span></div></div></div>
+        <div class="jm-priority-row"><div class="jm-pri-badge jm-pri-h">H</div><div><div class="jm-pri-text">Auto-advance to next student<br><span class="jm-pri-sub">Next sprint</span></div></div></div>
+        <div class="jm-priority-row"><div class="jm-pri-badge jm-pri-h">H</div><div><div class="jm-pri-text">Real-time attendance summary<br><span class="jm-pri-sub">Next sprint</span></div></div></div>
+        <div class="jm-priority-row"><div class="jm-pri-badge jm-pri-m">M</div><div><div class="jm-pri-text">Smart code suggestion<br><span class="jm-pri-sub">Next 2 sprints</span></div></div></div>
+        <div class="jm-priority-row"><div class="jm-pri-badge jm-pri-m">M</div><div><div class="jm-pri-text">Parent notifications<br><span class="jm-pri-sub">Next 2 sprints</span></div></div></div>
+        <div class="jm-priority-row"><div class="jm-pri-badge jm-pri-m">M</div><div><div class="jm-pri-text">Follow up tracking<br><span class="jm-pri-sub">Next 2 sprints</span></div></div></div>
+        <div class="jm-priority-row"><div class="jm-pri-badge jm-pri-l">L</div><div><div class="jm-pri-text">Customisable reports<br><span class="jm-pri-sub">Future backlog</span></div></div></div>
+        <div class="jm-priority-row"><div class="jm-pri-badge jm-pri-l">L</div><div><div class="jm-pri-text">Advanced analytics<br><span class="jm-pri-sub">Future backlog</span></div></div></div>
+        <p class="jm-zoom-note" style="margin-top:8px;">A shared backlog that everyone understood and signed up to. Clear priorities, ownership and outcomes.</p>
+      </div>
+    </div>
+
+  </div><!-- /jm-zoom-grid -->
+</div><!-- /jm-zoom -->
+
+<script>
+function showPhase(idx) {
+  document.querySelectorAll('.jm-tab').forEach((t, i) => t.classList.toggle('active', i === idx));
+  document.querySelectorAll('.jm-panel').forEach((p, i) => p.classList.toggle('active', i === idx));
+}
+</script>
+</body>
+</html>

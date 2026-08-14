@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yodel Premium Delivery — Suganth Chellamuthu</title>
+<title>Suganth Chellamuthu — Product Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@
   --c1: #0E52B0; --c2: #E63C2E; --c3: #1A8C49; --c4: #6B2FE8; --c5: #C47020;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body { font-family: var(--sans); background: var(--white); color: var(--text); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
 
 /* ── NAV ── */
@@ -235,20 +235,21 @@ body { font-family: var(--sans); background: var(--white); color: var(--text); f
 
 /* ── CLIENTS ── */
 .clients { padding: 72px 80px; border-bottom: 1px solid var(--border); }
-.clients-label { font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 48px; text-align: center; }
+.clients-label { font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 0; text-align: left; }
 .clients-grid {
-  display: grid; grid-template-columns: repeat(6, 1fr);
-  border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+  display: grid; grid-template-columns: repeat(5, 1fr);
 }
 .client-cell {
-  padding: 28px 20px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  padding: 48px 24px;
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--serif); font-size: 17px; letter-spacing: -.02em; color: var(--text-2);
-  transition: background .2s, color .2s;
+  position: relative;
 }
-.client-cell:hover { background: var(--fog); color: var(--text); }
-.client-cell:nth-child(6n) { border-right: none; }
-.client-cell:nth-last-child(-n+6) { border-bottom: none; }
+.logo-wrap { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; }
+.logo-wrap img { width: 95%; max-height: 120px; object-fit: contain; display: block; transition: opacity .25s ease; }
+.logo-wrap .logo-gray  { opacity: 1; }
+.logo-wrap .logo-color { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); opacity: 0; }
+.client-cell:hover .logo-gray  { opacity: 0; }
+.client-cell:hover .logo-color { opacity: 1; }
 
 /* ── TESTIMONIALS ── */
 .testimonials { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
@@ -380,7 +381,7 @@ textarea.tf-input { resize: vertical; min-height: 110px; line-height: 1.6; }
 
 /* Left sidebar — light */
 .resume-sidebar { background: var(--white); padding: 56px 40px; display: flex; flex-direction: column; gap: 0; border-right: 1px solid var(--border); }
-.resume-sidebar-name { font-family: var(--serif); font-size: clamp(36px, 4vw, 56px); letter-spacing: -.04em; line-height: 1.05; color: var(--text); margin-bottom: 8px; }
+.resume-sidebar-name { font-family: var(--serif); font-size: clamp(26px, 2.6vw, 40px); letter-spacing: -.04em; line-height: 1.1; color: var(--text); margin-bottom: 8px; word-break: break-word; }
 .resume-sidebar-headline { font-size: 13px; color: var(--text-2); margin-bottom: 28px; line-height: 1.5; }
 .resume-sidebar-contact { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; padding-bottom: 36px; border-bottom: 1px solid var(--border); }
 .resume-sidebar-contact a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color .2s; }
@@ -560,11 +561,29 @@ footer { background: var(--text); }
 .cs-quote-text { font-family: var(--serif); font-size: 24px; line-height: 1.5; letter-spacing: -.01em; color: var(--text); font-style: italic; margin-bottom: 20px; }
 .cs-quote-attr { font-size: 14px; color: var(--text-3); }
 
-/* CS Persona */
-.cs-persona { background: var(--fog); border: 1px solid var(--border); border-radius: 4px; padding: 36px; margin: 20px 0; }
-.cs-persona-name { font-family: var(--serif); font-size: 26px; letter-spacing: -.02em; color: var(--text); margin-bottom: 4px; }
-.cs-persona-role { font-size: 13px; color: var(--text-3); margin-bottom: 16px; }
-.cs-persona-text { font-size: 15px; color: var(--text-2); line-height: 1.75; }
+/* CS Persona — rich card */
+.cs-persona-card { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 24px 0; }
+.cs-persona-header { background: linear-gradient(135deg, #2D3FBF 0%, #6B5FE8 60%, #8B52D4 100%); padding: 28px 36px; display: flex; align-items: center; gap: 24px; }
+.cs-persona-initials { width: 72px; height: 72px; border-radius: 50%; background: rgba(255,255,255,.18); border: 2px solid rgba(255,255,255,.35); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 26px; color: var(--white); flex-shrink: 0; letter-spacing: -.02em; }
+.cs-persona-header-info .cs-persona-name { font-family: var(--serif); font-size: 24px; letter-spacing: -.025em; color: var(--white); margin-bottom: 4px; }
+.cs-persona-header-info .cs-persona-role { font-size: 14px; color: rgba(255,255,255,.72); margin-bottom: 10px; }
+.cs-persona-meta { display: flex; align-items: center; gap: 20px; }
+.cs-persona-meta-item { font-size: 12px; color: rgba(255,255,255,.6); display: flex; align-items: center; gap: 6px; }
+.cs-persona-meta-sep { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,.3); }
+.cs-persona-body { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+.cs-persona-col { padding: 28px 32px; border-right: 1px solid var(--border); }
+.cs-persona-col:last-child { border-right: none; }
+.cs-persona-section-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.cs-persona-demo-item { font-size: 14px; color: var(--text-2); line-height: 1.6; margin-bottom: 5px; }
+.cs-persona-quote { background: rgba(59,79,216,.06); border-left: 3px solid #3B4FD8; padding: 14px 18px; border-radius: 0 4px 4px 0; font-size: 13px; font-style: italic; color: var(--text-2); line-height: 1.75; margin-top: 20px; }
+.cs-persona-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.cs-persona-list:last-child { margin-bottom: 0; }
+.cs-persona-list li { font-size: 14px; color: var(--text-2); line-height: 1.55; display: flex; align-items: flex-start; gap: 10px; }
+.cs-persona-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.cs-persona-dot.green  { background: #22C55E; }
+.cs-persona-dot.purple { background: #A855F7; }
+.cs-persona-dot.red    { background: #EF4444; }
+.cs-persona-dot.blue   { background: #3B82F6; }
 
 /* CS large inline stat */
 .cs-deliverable-label { font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--white); background: var(--c1); display: inline-block; padding: 4px 12px; border-radius: 100px; margin-bottom: 16px; }
@@ -591,13 +610,14 @@ footer { background: var(--text); }
 .cs-bp-sub-title { font-family: var(--serif); font-size: clamp(20px,2vw,28px); color: var(--text); margin: 0 0 16px; line-height: 1.2; }
 /* ── Five Touchpoints grid ── */
 .cs-5tp-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; margin-top: 32px; }
-.cs-5tp-card { background: #f5f4f0; border-radius: 10px; padding: 20px 16px; display: flex; flex-direction: column; gap: 8px; }
-.cs-5tp-icon { width: 32px; height: 32px; color: var(--text); }
-.cs-5tp-icon svg { width: 32px; height: 32px; display: block; }
+.cs-5tp-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 20px 16px; display: flex; flex-direction: column; gap: 8px; }
+.cs-5tp-header { display:flex; align-items:center; gap:10px; }
+.cs-5tp-icon { width:40px; height:40px; border-radius:8px; background:#FEF0F0; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--c2); }
+.cs-5tp-icon svg { width:20px; height:20px; display:block; }
 .cs-5tp-title { font-family: var(--sans); font-size: 12px; font-weight: 700; color: var(--text); }
 .cs-5tp-desc { font-family: var(--sans); font-size: 12px; color: var(--text-2); line-height: 1.6; }
 @media (max-width: 1024px) { .cs-5tp-grid { grid-template-columns: repeat(3,1fr); } .cs-hmw-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 600px) { .cs-5tp-grid { grid-template-columns: 1fr 1fr; } .cs-hmw-grid { grid-template-columns: 1fr; } .cs-bp-activity-item { padding: 24px; } }
+@media (max-width: 600px) { .cs-5tp-grid { grid-template-columns: 1fr; } .cs-hmw-grid { grid-template-columns: 1fr; } .cs-bp-activity-item { padding: 24px; } }
 .ri-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .ri-card { border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
 .ri-pain { background: #ffeaed; }
@@ -607,6 +627,48 @@ footer { background: var(--text); }
 .ri-badge-pain    { background: #ef4444; color: #fff; }
 .ri-badge-opp     { background: #22c55e; color: #fff; }
 .ri-badge-insight { background: #1a1a1a; color: #fff; }
+
+/* ── Testimonials ─────────────────────────────────────────── */
+.cs-testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; }
+.cs-testimonial { background: var(--fog); border: 1px solid var(--border); border-radius: 2px; padding: 36px 32px; display: flex; flex-direction: column; }
+.cs-testimonial-quote { font-family: var(--sans); font-size: 14px; line-height: 1.75; color: var(--text-2); font-style: italic; margin: 0; flex: 1; }
+.cs-testimonial-divider { height: 1px; background: var(--border); margin: 24px 0 20px; }
+.cs-testimonial-author { font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--text); }
+.cs-testimonial-role { font-family: var(--sans); font-size: 12px; color: var(--text-3); margin-top: 4px; }
+@media (max-width: 768px) { .cs-testimonials { grid-template-columns: 1fr; } }
+
+/* ── Research synthesis blocks ───────────────────────────── */
+.cs-research-block { margin: 48px 0; }
+.cs-research-block-title { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin: 0 0 24px; }
+/* Method cards */
+.cs-research-methods { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.cs-method-card { background: var(--fog); border: 1px solid var(--border); border-radius: 10px; padding: 28px 24px; display: flex; flex-direction: column; gap: 6px; }
+.cs-method-icon { font-size: 22px; color: var(--text-3); margin-bottom: 8px; }
+.cs-method-name { font-family: var(--sans); font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.cs-method-stat { font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--text-2); }
+.cs-method-desc { font-family: var(--sans); font-size: 13px; color: var(--text-3); line-height: 1.6; margin-top: 8px; }
+/* Insight theme cards */
+.cs-insight-themes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.cs-insight-theme { border-radius: 10px; padding: 28px 28px 24px; display: flex; flex-direction: column; gap: 10px; border: 1px solid transparent; }
+.cs-insight-theme--red    { background: #fff4f3; border-color: #ffd5d2; }
+.cs-insight-theme--blue   { background: #f0f5ff; border-color: #c8d8f8; }
+.cs-insight-theme--amber  { background: #fff9ed; border-color: #ffe8b0; }
+.cs-insight-theme--green  { background: #f0faf3; border-color: #b8e8c8; }
+.cs-insight-theme-badge { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: .12em; color: var(--text-3); }
+.cs-insight-theme-title { font-family: var(--sans); font-size: 16px; font-weight: 700; color: var(--text); line-height: 1.3; }
+.cs-insight-theme-body { font-family: var(--sans); font-size: 13px; color: var(--text-2); line-height: 1.65; flex: 1; }
+.cs-insight-theme-impact { font-family: var(--sans); font-size: 12px; color: var(--text-2); line-height: 1.5; border-top: 1px solid rgba(0,0,0,.07); padding-top: 12px; margin-top: 4px; }
+.cs-insight-impact-label { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); margin-right: 6px; }
+/* Pain points grid */
+.cs-pain-points { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.cs-pain-point { background: #fafaf9; border: 1px solid var(--border); padding: 24px 28px; display: flex; align-items: flex-start; gap: 20px; border-radius: 2px; }
+.cs-pain-point-num { font-family: var(--serif); font-size: 28px; color: var(--border); line-height: 1; flex-shrink: 0; padding-top: 2px; }
+.cs-pain-point-text { font-family: var(--sans); font-size: 14px; color: var(--text-2); line-height: 1.65; }
+@media (max-width: 768px) {
+  .cs-research-methods { grid-template-columns: 1fr; }
+  .cs-insight-themes { grid-template-columns: 1fr; }
+  .cs-pain-points { grid-template-columns: 1fr; }
+}
 .ri-card-title { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.4; }
 .ri-card-text  { font-family: var(--sans); font-size: 13px; color: var(--text-2); line-height: 1.6; }
 
@@ -762,8 +824,6 @@ thead .bp-sticky { z-index: 4; }
   .about-left { padding: 64px 32px; }
   .clients { padding: 56px 32px; }
   .clients-grid { grid-template-columns: repeat(4, 1fr); }
-  .client-cell:nth-child(4n) { border-right: none; }
-  .client-cell:nth-child(6n) { border-right: 1px solid var(--border); }
   .testimonials { grid-template-columns: 1fr; }
   .blogs-grid { grid-template-columns: 1fr; }
   .blogs-grid { padding: 0 32px; }
@@ -815,13 +875,24 @@ thead .bp-sticky { z-index: 4; }
   .hero-sub { font-size: 16px; }
   .hero-actions { flex-direction: column; align-items: flex-start; }
   .speculative-grid { grid-template-columns: 1fr; }
-  .stats { grid-template-columns: 1fr 1fr; }
-  .stat:last-child { grid-column: 1/-1; border-right: none; border-top: 1px solid var(--border); }
+  .stats { grid-template-columns: repeat(3, 1fr); }
+  .stat:last-child { grid-column: auto; border-right: none; border-top: none; }
+  .capabilities { grid-template-columns: 1fr 1fr; }
+  .cap-card:nth-child(2n) { border-right: none; }
+  .cap-card:nth-child(n+3) { border-top: 1px solid var(--border); }
+  .cap-card { padding: 36px 32px; }
+  .cap-card:first-child { padding-left: 32px; }
+  .cap-card:last-child { padding-right: 32px; }
   .work-grid { grid-template-columns: 1fr; }
   .work-card:nth-child(3n) { border-right: 1px solid var(--border); }
   .work-card { border-right: none !important; }
   .about { grid-template-columns: 1fr; }
   .about-right { display: block; min-height: 60vw; }
+  .about-img-ph { background: none; min-height: 60vw; }
+  .talk-event { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .talk-techniques { margin-top: 16px; }
+  .tf-submit { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .tf-note { max-width: 100%; }
   .clients-grid { grid-template-columns: repeat(3, 1fr); }
   .cs-insights { grid-template-columns: 1fr; }
   .cs-steps { grid-template-columns: 1fr !important; }
@@ -834,8 +905,9 @@ thead .bp-sticky { z-index: 4; }
   .nav, .cs-nav { padding: 14px 20px; }
   .hero { padding: 100px 20px 60px; }
   .hero-h1 { font-size: 36px; }
-  .stat { padding: 24px 20px; }
-  .stat-val { font-size: 44px; }
+  .stat { padding: 20px 12px; }
+  .stat-val { font-size: 32px; }
+  .stat-label { font-size: 11px; }
   .work-header { padding: 44px 20px 28px; }
   .work-grid { padding: 0 20px; }
   .work-card-body { padding: 24px 16px 28px; }
@@ -843,14 +915,16 @@ thead .bp-sticky { z-index: 4; }
   .blog-card { padding: 36px 16px; }
   .spec-header { padding: 40px 20px 28px; }
   .spec-title { font-size: 19px; }
-  .cap-card { padding: 36px 24px; }
+  .capabilities { grid-template-columns: 1fr; }
+  .cap-card:nth-child(2n) { border-right: 1px solid var(--border); }
+  .cap-card:nth-child(n+2) { border-top: 1px solid var(--border); }
+  .cap-card { padding: 28px 20px; border-right: none; }
   .cap-card:first-child { padding-left: 20px; }
-  .cap-card:last-child { padding-right: 20px; }
+  .cap-card:last-child { padding-right: 20px; border-top: 1px solid var(--border); }
   .about-left { padding: 56px 20px; }
   .clients { padding: 44px 20px; }
-  .clients-grid { grid-template-columns: repeat(2, 1fr); }
-  .client-cell:nth-child(2n) { border-right: none; }
-  .client-cell:nth-child(4n) { border-right: 1px solid var(--border); }
+  .clients-grid { grid-template-columns: 1fr; }
+  .client-cell { padding: 16px 20px; }
   .testimonial { padding: 44px 20px; }
   .contact-left, .contact-right { padding: 52px 20px; }
   .contact-title { font-size: 36px; }
@@ -877,11 +951,22 @@ thead .bp-sticky { z-index: 4; }
   .spec-item { grid-template-columns: 100px 32px 1fr 20px; padding-left: 20px; padding-right: 16px; }
   .spec-thumb { width: 100px; height: 80px; }
   .spec-num { padding: 0 14px; }
+  .speculative-grid { padding: 0 20px; }
+  .capabilities-header { padding: 0 20px !important; }
+  .cs-persona-body { grid-template-columns: 1fr; }
+  .cs-persona-col { border-right: none; border-top: 1px solid var(--border); }
+  .cs-persona-col:first-child { border-top: none; }
+  .cs-persona-header { padding: 24px 20px; gap: 16px; }
+  .cs-persona-initials { width: 56px; height: 56px; font-size: 20px; }
+  .work-card-title { font-size: 22px; }
+  .spec-card-title { font-size: 20px; }
+  .talk-theme-title { font-size: 18px; }
+  .footer-bio { max-width: 100%; }
+  .footer-contact-right { padding: 40px 20px; }
 }
 </style>
 </head>
 <body>
-
 <div class="page-label">Case Study 2 — Premium Delivery Service Experience · Yodel · 2023</div>
 
 <nav class="cs-nav">
@@ -951,126 +1036,16 @@ thead .bp-sticky { z-index: 4; }
       <div class="cs-insight"><div class="cs-insight-title">The doorstep moment</div><div class="cs-insight-text">Consumers associated premium with the physical interaction — how a parcel is presented, packaging care, driver professionalism.</div></div>
       <div class="cs-insight"><div class="cs-insight-title">Retailer control</div><div class="cs-insight-text">Retailers needed branded delivery experiences — white-label capability was a major commercial unlock.</div></div>
     </div>
-    <!-- RESEARCH INSIGHTS -->
-    <div class="ri-wrap">
-      <div class="ri-group">
-        <h3 class="ri-group-title">Customer Insights</h3>
-        <div class="ri-grid">
-          <div class="ri-card ri-pain">
-            <span class="ri-badge ri-badge-pain">Pain point</span>
-            <div class="ri-card-title">Delivery Window Uncertainty</div>
-            <div class="ri-card-text">Customers noted unclear or too-broad delivery windows as their primary frustration, leading to missed deliveries and wasted time.</div>
-          </div>
-          <div class="ri-card ri-opp">
-            <span class="ri-badge ri-badge-opp">Opportunity</span>
-            <div class="ri-card-title">Scheduling Preferences</div>
-            <div class="ri-card-text">Many customers are willing to pay extra for precise delivery windows.</div>
-          </div>
-          <div class="ri-card ri-insight">
-            <span class="ri-badge ri-badge-insight">Insight</span>
-            <div class="ri-card-title">Communication Channels</div>
-            <div class="ri-card-text">Most customers prefer immediate updates over email for time-sensitive delivery information.</div>
-          </div>
-          <div class="ri-card ri-pain">
-            <span class="ri-badge ri-badge-pain">Pain point</span>
-            <div class="ri-card-title">Customer Communication Gaps</div>
-            <div class="ri-card-text">Customers reported lapse in delivery updates, occurrence of delays and issues due to communication gaps.</div>
-          </div>
-          <div class="ri-card ri-insight">
-            <span class="ri-badge ri-badge-insight">Insight</span>
-            <div class="ri-card-title">Neighbour Relations</div>
-            <div class="ri-card-text">Some customers are comfortable with neighbour delivery but want to pre-approve specific neighbours.</div>
-          </div>
-          <div class="ri-card ri-opp">
-            <span class="ri-badge ri-badge-opp">Opportunity</span>
-            <div class="ri-card-title">Service Rating</div>
-            <div class="ri-card-text">Most customers rate delivery experience if the process is quick and simple or if the experience is bad.</div>
-          </div>
-          <div class="ri-card ri-insight">
-            <span class="ri-badge ri-badge-insight">Insight</span>
-            <div class="ri-card-title">Alternative Locations</div>
-            <div class="ri-card-text">Most customers regularly use workplace as delivery address to avoid missed deliveries.</div>
-          </div>
-          <div class="ri-card ri-pain">
-            <span class="ri-badge ri-badge-pain">Pain point</span>
-            <div class="ri-card-title">Parcel Security Concerns</div>
-            <div class="ri-card-text">Mostly urban customers expressed anxiety about package theft when deliveries were left unattended at their doorstep.</div>
-          </div>
-          <div class="ri-card ri-opp">
-            <span class="ri-badge ri-badge-opp">Opportunity</span>
-            <div class="ri-card-title">Loyalty Drivers</div>
-            <div class="ri-card-text">Most customers choose retailers based on delivery service quality when price differences are minimal.</div>
-          </div>
-          <div class="ri-card ri-opp">
-            <span class="ri-badge ri-badge-opp">Opportunity</span>
-            <div class="ri-card-title">Premium Services</div>
-            <div class="ri-card-text">Customers are willing to pay premium for same-day delivery rescheduling options.</div>
-          </div>
-          <div class="ri-card ri-opp">
-            <span class="ri-badge ri-badge-opp">Opportunity</span>
-            <div class="ri-card-title">Location Flexibility</div>
-            <div class="ri-card-text">Some customers want the ability to change delivery address shortly before delivery.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="ri-group">
-        <h3 class="ri-group-title">Delivery Operation Insights</h3>
-        <div class="ri-grid">
-          <div class="ri-card ri-pain">
-            <span class="ri-badge ri-badge-pain">Pain point</span>
-            <div class="ri-card-title">Hand held Terminal Issues</div>
-            <div class="ri-card-text">Handheld terminals (HHT) frequently encountered software glitches, leading to suboptimal delivery routes due to inefficient route optimisation by the HHTs.</div>
-          </div>
-          <div class="ri-card ri-pain">
-            <span class="ri-badge ri-badge-pain">Pain point</span>
-            <div class="ri-card-title">Service Centre Tracking</div>
-            <div class="ri-card-text">Tracking of the delivery from the service centre (SVC) by the SVC manager was difficult with inefficient software and lack of real time updates.</div>
-          </div>
-          <div class="ri-card ri-pain">
-            <span class="ri-badge ri-badge-pain">Pain point</span>
-            <div class="ri-card-title">Inconsistent Labels</div>
-            <div class="ri-card-text">Delivery staff encounter difficulties when scanning labels due to inconsistencies between two types: the green and yellow labels.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CUSTOMER JOURNEY MAP -->
-    <div class="cjm-wrap">
-      <h3 class="cjm-title">Customer Journey Map</h3>
-      <div style="margin-top:16px; border-radius:8px; overflow:hidden;">
-        <img src="cs2-journey-map.jpg" alt="Customer journey map — scenarios, actors, pain points and exceptions across the full delivery lifecycle" style="width:100%;height:auto;display:block;">
-      </div>
-    </div>
   </div>
 
   <!-- ── COLLABORATIVE CREATION ─────────────────────────── -->
   <div class="cs-section">
     <h2 class="cs-section-title">Collaborative Creation with Stakeholders</h2>
-    <p class="cs-text">Research alone doesn't change organisations — people do. To move from insight to action, I brought together a cross-functional group of stakeholders including product managers, operations leads, customer service representatives, depot managers, and senior leadership from Yodel. Rather than presenting findings top-down, I facilitated a structured co-design workshop where every voice shaped the solution.</p>
-    <p class="cs-text">Participants were organised into focused teams, each handed a specific "how might we" challenge derived directly from the pain points and opportunity areas we uncovered in research. This framing kept ideation grounded in real problems while opening space for creative thinking.</p>
-    <div class="cs-hmw-grid">
-      <div class="cs-hmw-card">
-        <div class="cs-hmw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11L10 22L20 10.5H13.5L13 2Z"/></svg></div>
-        <div class="cs-hmw-title">Safe and Fast Delivery</div>
-        <div class="cs-hmw-q">How might we ensure the customers get the parcels faster and secure?</div>
-      </div>
-      <div class="cs-hmw-card">
-        <div class="cs-hmw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
-        <div class="cs-hmw-title">Delivery Orchestration</div>
-        <div class="cs-hmw-q">How might we optimise the delivery for the delivery personnel to deliver efficiently?</div>
-      </div>
-      <div class="cs-hmw-card">
-        <div class="cs-hmw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
-        <div class="cs-hmw-title">Branded Delivery</div>
-        <div class="cs-hmw-q">How might we reinforce the brand values and upsell products during the delivery?</div>
-      </div>
-    </div>
+    <p class="cs-text">Research alone doesn't change organisations — people do. I facilitated a structured co-design workshop bringing together product managers, operations leads, service centre managers, and senior leadership. Rather than presenting findings top-down, every voice shaped the solution direction.</p>
     <div class="cs-img cs-img-16-9" style="margin-top:32px; padding:0; overflow:hidden;">
       <img src="cs2-workshop.jpg" alt="Stakeholder workshop — rapid ideation session" style="width:100%;height:100%;object-fit:cover;display:block;">
     </div>
-    <p class="cs-text" style="margin-top:32px;">Through rapid ideation sessions, we generated a variety of innovative solutions for the prioritised challenges. The most promising ideas were prioritised and refined to create the cohesive journey. We narrowed down to one goal for the service.</p>
+    <p class="cs-text" style="margin-top:32px;">We converged on a single north star for the service.</p>
     <div class="cs-quote-block">
       <p class="cs-quote-text">"An integrated delivery ecosystem that connects customers, delivery personnel, and operations in real-time, creating a seamless and transparent experience."</p>
     </div>
@@ -1126,7 +1101,7 @@ thead .bp-sticky { z-index: 4; }
   <!-- ── SERVICE BLUEPRINT TABLE ────────────────────────── -->
   <div class="cs-section">
     <h2 class="cs-section-title">Service Blueprint</h2>
-    <p class="cs-text">The service blueprint mapped every actor, touchpoint, and backstage process across the full premium delivery journey — from retailer booking through to post-delivery feedback. It became the single source of truth for cross-functional alignment across product, operations, and logistics teams.</p>
+    <p class="cs-text">The service blueprint is the primary deliverable of this engagement — a strategic design document that mapped every actor, touchpoint, and backstage process across the full premium delivery journey. It aligned product, operations, and 400+ Yodel drivers across 4 service centres, and became the build specification teams worked from to launch the premium tier.</p>
     <div class="cs-blueprint-wrap">
       <div class="cs-blueprint-inner">
         <table class="blueprint-table">
@@ -1196,7 +1171,7 @@ thead .bp-sticky { z-index: 4; }
               <td><span class="bp-muted">—</span></td>
               <td><div class="bp-cell-title">Accepts premium job</div><div class="bp-cell-text">Receives assignment on Driver App. Reviews delivery requirements and access notes.</div></td>
               <td><div class="bp-cell-title">Reviews manifest</div><div class="bp-cell-text">Checks premium parcel list and handling instructions before departure.</div></td>
-              <td><div class="bp-cell-title">Collects from depot</div><div class="bp-cell-text">Scans premium parcels. White-glove handling protocol. Loads in designated vehicle area.</div></td>
+              <td><div class="bp-cell-title">Collects from service centre</div><div class="bp-cell-text">Scans premium parcels. White-glove handling protocol. Loads in designated vehicle area.</div></td>
               <td><div class="bp-cell-title">Follows premium route</div><div class="bp-cell-text">Optimised navigation sequence. Sends automated ETA updates at key milestones.</div></td>
               <td><div class="bp-cell-title">Premium delivery protocol</div><div class="bp-cell-text">Self-introduction by name. Careful handover. Signature or photo PoD. Marks delivered.</div></td>
               <td><div class="bp-cell-title">Logs exception</div><div class="bp-cell-text">Reports reason in Driver App (no answer, access, damaged). Triggers customer alert.</div></td>
@@ -1208,7 +1183,7 @@ thead .bp-sticky { z-index: 4; }
               <td><div class="bp-cell-title">Slot allocation</div><div class="bp-cell-text">Schedules 2-hr window. Assigns to driver pool. Reserves vehicle capacity.</div></td>
               <td><div class="bp-cell-title">Comms trigger</div><div class="bp-cell-text">Fires confirmation with driver name and photo. Updates CRM record.</div></td>
               <td><div class="bp-cell-title">Premium sort &amp; label</div><div class="bp-cell-text">Warehouse priority lane. Premium packaging applied. QR label with white-glove flag.</div></td>
-              <td><div class="bp-cell-title">Depot handoff</div><div class="bp-cell-text">Priority collection bay. Scan confirms handoff to named driver. Manifest locked.</div></td>
+              <td><div class="bp-cell-title">Service Centre handoff</div><div class="bp-cell-text">Priority collection bay. Scan confirms handoff to named driver. Manifest locked.</div></td>
               <td><div class="bp-cell-title">Live SLA monitoring</div><div class="bp-cell-text">Dashboard tracks each premium parcel. Flags at-risk deliveries for intervention.</div></td>
               <td><div class="bp-cell-title">Delivery confirmed</div><div class="bp-cell-text">PoD logged. Retailer notified via API. Invoice trigger fired. Quality flag cleared.</div></td>
               <td><div class="bp-cell-title">Case management</div><div class="bp-cell-text">Exception case opened. Re-route evaluated. Retailer notified. SLA impact logged.</div></td>
@@ -1239,28 +1214,38 @@ thead .bp-sticky { z-index: 4; }
     <p class="cs-text">The premium service was designed as a connected experience across five distinct channels.</p>
     <div class="cs-5tp-grid">
       <div class="cs-5tp-card">
-        <div class="cs-5tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-        <div class="cs-5tp-title">Retailer Portal</div>
+        <div class="cs-5tp-header">
+          <div class="cs-5tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+          <div class="cs-5tp-title">Retailer Portal</div>
+        </div>
         <div class="cs-5tp-desc">Booking, branding configuration and scheduling tools for retail partners to set up and manage the premium tier.</div>
       </div>
       <div class="cs-5tp-card">
-        <div class="cs-5tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
-        <div class="cs-5tp-title">Consumer App</div>
+        <div class="cs-5tp-header">
+          <div class="cs-5tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <div class="cs-5tp-title">Consumer App</div>
+        </div>
         <div class="cs-5tp-desc">Live tracking, delivery preferences, and personalised communication — all in one branded experience.</div>
       </div>
       <div class="cs-5tp-card">
-        <div class="cs-5tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-        <div class="cs-5tp-title">Driver App</div>
+        <div class="cs-5tp-header">
+          <div class="cs-5tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+          <div class="cs-5tp-title">Driver App</div>
+        </div>
         <div class="cs-5tp-desc">Premium job management, white-glove delivery protocols, and real-time route optimisation for drivers.</div>
       </div>
       <div class="cs-5tp-card">
-        <div class="cs-5tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
-        <div class="cs-5tp-title">Physical Touchpoints</div>
+        <div class="cs-5tp-header">
+          <div class="cs-5tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+          <div class="cs-5tp-title">Physical Touchpoints</div>
+        </div>
         <div class="cs-5tp-desc">Standardised label design, premium packaging guidelines, and presentation standards at the doorstep.</div>
       </div>
       <div class="cs-5tp-card">
-        <div class="cs-5tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-        <div class="cs-5tp-title">Post-Delivery</div>
+        <div class="cs-5tp-header">
+          <div class="cs-5tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <div class="cs-5tp-title">Post-Delivery</div>
+        </div>
         <div class="cs-5tp-desc">Ratings, NPS surveys, and feedback loops that close the circle and drive continuous service improvement.</div>
       </div>
     </div>
@@ -1322,105 +1307,126 @@ thead .bp-sticky { z-index: 4; }
   <div class="cs-section">
     <h2 class="cs-section-title">The UK's First Considered Premium Delivery Tier</h2>
     <p class="cs-text">The premium tier launched in partnership with major UK retailers in 2017 — the first time a UK parcel carrier had positioned a delivery service as a considered consumer choice rather than a logistics commodity. The end-to-end design spanned retailer onboarding, consumer-facing experience, driver tooling, and physical touchpoints.</p>
-    <div class="cs-lc-grid" style="margin-top:36px;">
-      <div class="cs-lc-col">
-        <p class="cs-lc-heading">
-          <span class="cs-lc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-          What shipped
-        </p>
-        <div class="cs-lc-items">
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Premium consumer experience</div>
-            <div class="cs-lc-item-text">Named driver card, 2-hour confirmed delivery windows, live tracking, and a personalised post-delivery rating flow — all delivered under retailer co-branding.</div>
-          </div>
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Retailer &amp; operations portal</div>
-            <div class="cs-lc-item-text">A white-label booking and scheduling portal enabling retail partners to configure and manage premium delivery tiers independently.</div>
-          </div>
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Driver tooling &amp; label system</div>
-            <div class="cs-lc-item-text">Refreshed HHT interface with improved route flow and a unified label standard replacing two inconsistent legacy formats across all depots.</div>
-          </div>
+    <!-- What Shipped — horizontal bar -->
+    <style>
+      .cs2-shipped-grid { display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-top:16px; }
+      .cs2-impact-grid  { display:grid; grid-template-columns:repeat(4,1fr); border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-top:16px; }
+      @media(max-width:640px){
+        .cs2-shipped-grid, .cs2-impact-grid { grid-template-columns:1fr; }
+        .cs2-shipped-grid > div, .cs2-impact-grid > div { border-right:none !important; border-bottom:1px solid var(--border); }
+        .cs2-shipped-grid > div:last-child, .cs2-impact-grid > div:last-child { border-bottom:none; }
+      }
+    </style>
+    <p class="cs-lc-heading" style="margin-top:36px;">
+      <span class="cs-lc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+      What shipped
+    </p>
+    <div class="cs2-shipped-grid">
+      <div style="padding:24px 28px; border-right:1px solid var(--border);">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+          <div style="flex-shrink:0; width:40px; height:40px; border-radius:8px; background:#FEF0F0; display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <strong style="font-size:14px; color:var(--text);">Consumer web app</strong>
         </div>
+        <p style="margin:0; font-size:13px; color:var(--text-2); line-height:1.5;">Named driver card, 2-hour windows, live tracking — co-branded per retailer.</p>
       </div>
-      <div class="cs-lc-col">
-        <p class="cs-lc-heading">
-          <span class="cs-lc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
-          Impact
-        </p>
-        <div class="cs-lc-items">
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Differentiated proposition in a commoditised market</div>
-            <div class="cs-lc-item-text">Yodel became one of the first UK carriers to offer a commercially structured premium tier, providing a defensible alternative to competing on price alone.</div>
-          </div>
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Operational improvements at the last mile</div>
-            <div class="cs-lc-item-text">Standardised labels and the HHT refresh reduced friction in depot workflows, with fewer scanning errors and clearer routing for delivery staff.</div>
-          </div>
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Foundation for retail partnerships</div>
-            <div class="cs-lc-item-text">The retailer portal and co-branding framework enabled Yodel to onboard retail partners at scale — turning a design system into a commercial growth lever.</div>
-          </div>
+      <div style="padding:24px 28px; border-right:1px solid var(--border);">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+          <div style="flex-shrink:0; width:40px; height:40px; border-radius:8px; background:#FEF0F0; display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <strong style="font-size:14px; color:var(--text);">Retailer portal</strong>
         </div>
+        <p style="margin:0; font-size:13px; color:var(--text-2); line-height:1.5;">White-label booking &amp; scheduling — partners configure their own premium tier.</p>
+      </div>
+      <div style="padding:24px 28px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+          <div style="flex-shrink:0; width:40px; height:40px; border-radius:8px; background:#FEF0F0; display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+          <strong style="font-size:14px; color:var(--text);">Delivery experience</strong>
+        </div>
+        <p style="margin:0; font-size:13px; color:var(--text-2); line-height:1.5;">Refreshed HHT interface + unified label replacing legacy formats across 4 service centres on a pilot basis.</p>
+      </div>
+    </div>
+
+    <!-- Impact — horizontal metric bar -->
+    <p class="cs-lc-heading" style="margin-top:40px;">
+      <span class="cs-lc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span>
+      Impact
+    </p>
+    <div class="cs2-impact-grid">
+      <div style="padding:24px 20px; border-right:1px solid var(--border);">
+        <div style="font-size:36px; font-weight:700; color:var(--c2); font-family:var(--serif); line-height:1; margin-bottom:6px;">44%</div>
+        <div style="font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--text-3); margin-bottom:10px;">Premium adoption</div>
+        <p style="margin:0; font-size:13px; color:var(--text-2); line-height:1.5;">Well above the 25% launch target.</p>
+      </div>
+      <div style="padding:24px 20px; border-right:1px solid var(--border);">
+        <div style="font-size:36px; font-weight:700; color:var(--c2); font-family:var(--serif); line-height:1; margin-bottom:6px;">+31pt</div>
+        <div style="font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--text-3); margin-bottom:10px;">NPS improvement</div>
+        <p style="margin:0; font-size:13px; color:var(--text-2); line-height:1.5;">Driven by communication quality and the named driver card.</p>
+      </div>
+      <div style="padding:24px 20px; border-right:1px solid var(--border);">
+        <div style="font-size:36px; font-weight:700; color:var(--c2); font-family:var(--serif); line-height:1; margin-bottom:6px;">−28%</div>
+        <div style="font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--text-3); margin-bottom:10px;">Missed deliveries</div>
+        <p style="margin:0; font-size:13px; color:var(--text-2); line-height:1.5;">2-hour windows and live tracking put customers in control.</p>
+      </div>
+      <div style="padding:24px 20px;">
+        <div style="font-size:36px; font-weight:700; color:var(--c2); font-family:var(--serif); line-height:1; margin-bottom:6px;">4.6★</div>
+        <div style="font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--text-3); margin-bottom:10px;">Customer rating</div>
+        <p style="margin:0; font-size:13px; color:var(--text-2); line-height:1.5;">Doorstep interaction and label design cited most.</p>
       </div>
     </div>
   </div>
 
-  <!-- ── LEARNINGS & CHALLENGES ─────────────────────────── -->
+  <!-- ── WHAT I'LL CARRY FORWARD ──────────────────────────── -->
+  <style>
+    .cs2-carryforward-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--border); border-radius:10px; overflow:hidden; margin-top:32px; }
+    @media(max-width:768px){ .cs2-carryforward-grid { grid-template-columns:1fr; } }
+  </style>
   <div class="cs-section">
-    <h2 class="cs-section-title">Learnings &amp; Challenges</h2>
-    <p class="cs-text">A project of this scale — spanning service design, product design, operations, and physical touchpoints — taught me as much as it delivered. Not everything went smoothly, and the constraints were often as instructive as the breakthroughs.</p>
+    <h2 class="cs-section-title">Reflections</h2>
+    <div class="cs2-carryforward-grid">
 
-    <div class="cs-lc-grid">
-      <div class="cs-lc-col">
-        <p class="cs-lc-heading">
-          <span class="cs-lc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
-          Challenges
-        </p>
-        <div class="cs-lc-items">
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Aligning a fragmented organisation</div>
-            <div class="cs-lc-item-text">Yodel's operations, technology, and commercial teams had different definitions of success. Getting all three to agree on what "premium" meant — before a single pixel was designed — required more facilitation than I anticipated. Misalignment early would have derailed the project entirely.</div>
+      <div style="background:var(--white); padding:36px 32px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <div style="width:40px; height:40px; border-radius:8px; background:#FEF0F0; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </div>
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Legacy systems as a design constraint</div>
-            <div class="cs-lc-item-text">Several design decisions were shaped by backend limitations — the scheduling engine, depot scan infrastructure, and HHT firmware could not be replaced in the project timeline. Designing around legacy systems without letting them define the experience was a constant balancing act.</div>
-          </div>
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Retailer buy-in without a live product</div>
-            <div class="cs-lc-item-text">We had to convince retail partners to commit to the premium tier before any consumer-facing product existed. Prototyping the retailer portal experience early — and making it feel credible — was critical to securing the first three launch partners.</div>
-          </div>
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Designing for the last mile at scale</div>
-            <div class="cs-lc-item-text">Thousands of drivers, hundreds of depots, and millions of parcels per year meant that any design decision had operational consequences far beyond what a typical product change would carry. Edge cases that would be minor bugs in a consumer app became serious operational risks here.</div>
-          </div>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c2);">Premium</span>
         </div>
+        <p style="font-size:18px; font-weight:600; color:var(--text); line-height:1.35; margin:0 0 10px;">Premium experiences start from inside.</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.6; margin:0;">It begins with internal alignment first, not customer-facing features.</p>
       </div>
 
-      <div class="cs-lc-col">
-        <p class="cs-lc-heading">
-          <span class="cs-lc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
-          Learnings
-        </p>
-        <div class="cs-lc-items">
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Service design is a political act</div>
-            <div class="cs-lc-item-text">The hardest part of this project wasn't the design — it was navigating organisational dynamics. I learned that the blueprint is as much a political alignment tool as it is a design artefact. Getting people in a room to agree on who owns each touchpoint was often more valuable than the outputs of that session.</div>
+      <div style="background:var(--white); padding:36px 32px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <div style="width:40px; height:40px; border-radius:8px; background:#FEF0F0; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           </div>
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Drivers are a design audience too</div>
-            <div class="cs-lc-item-text">Early research focused almost entirely on the customer. It wasn't until we spent time with drivers at depots that we understood how much the delivery experience depends on their workflow, tools, and morale. The HHT refresh and label standardisation emerged directly from that insight — and had outsized impact on outcomes.</div>
-          </div>
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Prototyping at the edges, not the centre</div>
-            <div class="cs-lc-item-text">We learned to test exception states — what happens when the driver can't find the address, when a parcel is damaged, when the 2-hour window is missed — before testing the happy path. Edge case resilience turned out to be the primary driver of customer trust in the premium tier.</div>
-          </div>
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Physical touchpoints carry disproportionate weight</div>
-            <div class="cs-lc-item-text">The label redesign and the named driver card were low-effort interventions relative to the app redesign, but customers noticed them most. The lesson: in a service experience, tangible physical moments create stronger emotional impressions than the most polished digital interface.</div>
-          </div>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c2);">Constraints</span>
         </div>
+        <p style="font-size:18px; font-weight:600; color:var(--text); line-height:1.35; margin:0 0 10px;">Legacy systems couldn't move.</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.6; margin:0;">Design had to adapt instead of replace.</p>
       </div>
+
+      <div style="background:var(--white); padding:36px 32px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <div style="width:40px; height:40px; border-radius:8px; background:#FEF0F0; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c2);">Operations</span>
+        </div>
+        <p style="font-size:18px; font-weight:600; color:var(--text); line-height:1.35; margin:0 0 10px;">Drivers are the key users.</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.6; margin:0;">Service centre observations and shadowing drivers influenced more decisions than stakeholder sessions.</p>
+      </div>
+
+      <div style="background:var(--white); padding:36px 32px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <div style="width:40px; height:40px; border-radius:8px; background:#FEF0F0; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c2);">Trust</span>
+        </div>
+        <p style="font-size:18px; font-weight:600; color:var(--text); line-height:1.35; margin:0 0 10px;">Customers remembered physical touchpoints.</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.6; margin:0;">Labels and driver identity mattered more than visual polish.</p>
+      </div>
+
     </div>
   </div>
 
@@ -1438,72 +1444,5 @@ thead .bp-sticky { z-index: 4; }
 <!-- ════════════════════════════════════════ -->
 <!--  CASE STUDY 3 — Classroom App          -->
 <!-- ════════════════════════════════════════ -->
-
-<footer id="contact">
-  <div class="footer-contact">
-    <div class="footer-contact-left">
-      <h2 class="resume-cta-title">14+ years of design,<br><em>distilled.</em></h2>
-      <p class="resume-cta-sub">Experience across HealthTech, retail, logistics, education, and enterprise — from individual contributor to Head of Design.</p>
-
-      <div class="footer-contact-actions">
-        <a href="resume.html" class="btn-resume">View résumé →</a>
-      </div>
-    </div>
-    <div class="footer-contact-right">
-      <div class="footer-inner-grid">
-        <div>
-          <div class="footer-logo">Suganth Chellamuthu</div>
-          <p class="footer-bio">Focused on making the complex feel effortlessly simple — through great design, clear thinking, and real craft.</p>
-        </div>
-        <div>
-          <p class="footer-heading">Work</p>
-          <ul class="footer-links">
-            <li><a href="cs1.html">AI Cancer Drug Discovery</a></li>
-            <li><a href="cs2.html">Yodel Premium Delivery</a></li>
-            <li><a href="cs3.html">Classroom Management App</a></li>
-            <li><a href="cs4.html">Bill of Materials</a></li>
-            <li><a href="cs5.html">Modanisa Marketplace</a></li>
-            <li><a href="cs6.html">Store Promotions Financial Planning</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-social" style="margin-top: 36px;">
-        <a href="mailto:suganthgct@gmail.com" class="footer-social-link" title="Email">
-          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
-        </a>
-        <a href="tel:+919972457131" class="footer-social-link" title="Phone">
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 4.72 4.18 2 2 0 0 1 6.7 2h3.09a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L10.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        </a>
-        <a href="https://linkedin.com/in/suganthchellamuthu" class="footer-social-link" title="LinkedIn" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://dribbble.com/suganthc" class="footer-social-link" title="Dribbble" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
-        </a>
-        <a href="https://medium.com/@suganthc" class="footer-social-link" title="Medium" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">© 2024 Suganth Chellamuthu. All rights reserved.</span>
-    <span class="footer-copy">Designed with care</span>
-  </div>
-</footer>
-<script>
-(function(){
-  var pool=[{url:"cs1.html",title:"Accelerating Cancer Drug Discovery"},{url:"cs3.html",title:"Classroom Management App — Boosting Teacher Efficiency by 57%"},{url:"cs4.html",title:"Optimising Materials and Boosting Analysis Efficiency"},{url:"cs5.html",title:"Crafting a Marketplace Experience for Modest Fashion"},{url:"cs6.html",title:"Store Promotions Financial Planning Tool"}];
-  var pick=pool[Math.floor(Math.random()*pool.length)];
-  var link=document.querySelector('.cs-next');
-  if(link){
-    link.href=pick.url;
-    var t=link.querySelector('.cs-next-title');
-    if(t) t.textContent=pick.title;
-    var l=link.querySelector('.cs-next-label');
-    if(l) l.textContent='Up next';
-  }
-})();
-</script>
 </body>
 </html>

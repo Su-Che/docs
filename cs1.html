@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Cancer Drug Discovery — Suganth Chellamuthu</title>
+<title>Suganth Chellamuthu — Product Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@
   --c1: #0E52B0; --c2: #E63C2E; --c3: #1A8C49; --c4: #6B2FE8; --c5: #C47020;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body { font-family: var(--sans); background: var(--white); color: var(--text); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
 
 /* ── NAV ── */
@@ -235,20 +235,21 @@ body { font-family: var(--sans); background: var(--white); color: var(--text); f
 
 /* ── CLIENTS ── */
 .clients { padding: 72px 80px; border-bottom: 1px solid var(--border); }
-.clients-label { font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 48px; text-align: center; }
+.clients-label { font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 0; text-align: left; }
 .clients-grid {
-  display: grid; grid-template-columns: repeat(6, 1fr);
-  border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+  display: grid; grid-template-columns: repeat(5, 1fr);
 }
 .client-cell {
-  padding: 28px 20px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  padding: 48px 24px;
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--serif); font-size: 17px; letter-spacing: -.02em; color: var(--text-2);
-  transition: background .2s, color .2s;
+  position: relative;
 }
-.client-cell:hover { background: var(--fog); color: var(--text); }
-.client-cell:nth-child(6n) { border-right: none; }
-.client-cell:nth-last-child(-n+6) { border-bottom: none; }
+.logo-wrap { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; }
+.logo-wrap img { width: 95%; max-height: 120px; object-fit: contain; display: block; transition: opacity .25s ease; }
+.logo-wrap .logo-gray  { opacity: 1; }
+.logo-wrap .logo-color { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); opacity: 0; }
+.client-cell:hover .logo-gray  { opacity: 0; }
+.client-cell:hover .logo-color { opacity: 1; }
 
 /* ── TESTIMONIALS ── */
 .testimonials { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
@@ -380,7 +381,7 @@ textarea.tf-input { resize: vertical; min-height: 110px; line-height: 1.6; }
 
 /* Left sidebar — light */
 .resume-sidebar { background: var(--white); padding: 56px 40px; display: flex; flex-direction: column; gap: 0; border-right: 1px solid var(--border); }
-.resume-sidebar-name { font-family: var(--serif); font-size: clamp(36px, 4vw, 56px); letter-spacing: -.04em; line-height: 1.05; color: var(--text); margin-bottom: 8px; }
+.resume-sidebar-name { font-family: var(--serif); font-size: clamp(26px, 2.6vw, 40px); letter-spacing: -.04em; line-height: 1.1; color: var(--text); margin-bottom: 8px; word-break: break-word; }
 .resume-sidebar-headline { font-size: 13px; color: var(--text-2); margin-bottom: 28px; line-height: 1.5; }
 .resume-sidebar-contact { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; padding-bottom: 36px; border-bottom: 1px solid var(--border); }
 .resume-sidebar-contact a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color .2s; }
@@ -560,11 +561,29 @@ footer { background: var(--text); }
 .cs-quote-text { font-family: var(--serif); font-size: 24px; line-height: 1.5; letter-spacing: -.01em; color: var(--text); font-style: italic; margin-bottom: 20px; }
 .cs-quote-attr { font-size: 14px; color: var(--text-3); }
 
-/* CS Persona */
-.cs-persona { background: var(--fog); border: 1px solid var(--border); border-radius: 4px; padding: 36px; margin: 20px 0; }
-.cs-persona-name { font-family: var(--serif); font-size: 26px; letter-spacing: -.02em; color: var(--text); margin-bottom: 4px; }
-.cs-persona-role { font-size: 13px; color: var(--text-3); margin-bottom: 16px; }
-.cs-persona-text { font-size: 15px; color: var(--text-2); line-height: 1.75; }
+/* CS Persona — rich card */
+.cs-persona-card { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 24px 0; }
+.cs-persona-header { background: linear-gradient(135deg, #2D3FBF 0%, #6B5FE8 60%, #8B52D4 100%); padding: 28px 36px; display: flex; align-items: center; gap: 24px; }
+.cs-persona-initials { width: 72px; height: 72px; border-radius: 50%; background: rgba(255,255,255,.18); border: 2px solid rgba(255,255,255,.35); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 26px; color: var(--white); flex-shrink: 0; letter-spacing: -.02em; }
+.cs-persona-header-info .cs-persona-name { font-family: var(--serif); font-size: 24px; letter-spacing: -.025em; color: var(--white); margin-bottom: 4px; }
+.cs-persona-header-info .cs-persona-role { font-size: 14px; color: rgba(255,255,255,.72); margin-bottom: 10px; }
+.cs-persona-meta { display: flex; align-items: center; gap: 20px; }
+.cs-persona-meta-item { font-size: 12px; color: rgba(255,255,255,.6); display: flex; align-items: center; gap: 6px; }
+.cs-persona-meta-sep { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,.3); }
+.cs-persona-body { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+.cs-persona-col { padding: 28px 32px; border-right: 1px solid var(--border); }
+.cs-persona-col:last-child { border-right: none; }
+.cs-persona-section-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.cs-persona-demo-item { font-size: 14px; color: var(--text-2); line-height: 1.6; margin-bottom: 5px; }
+.cs-persona-quote { background: rgba(59,79,216,.06); border-left: 3px solid #3B4FD8; padding: 14px 18px; border-radius: 0 4px 4px 0; font-size: 13px; font-style: italic; color: var(--text-2); line-height: 1.75; margin-top: 20px; }
+.cs-persona-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.cs-persona-list:last-child { margin-bottom: 0; }
+.cs-persona-list li { font-size: 14px; color: var(--text-2); line-height: 1.55; display: flex; align-items: flex-start; gap: 10px; }
+.cs-persona-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.cs-persona-dot.green  { background: #22C55E; }
+.cs-persona-dot.purple { background: #A855F7; }
+.cs-persona-dot.red    { background: #EF4444; }
+.cs-persona-dot.blue   { background: #3B82F6; }
 
 /* CS large inline stat */
 .cs-deliverable-label { font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--white); background: var(--c1); display: inline-block; padding: 4px 12px; border-radius: 100px; margin-bottom: 16px; }
@@ -591,13 +610,14 @@ footer { background: var(--text); }
 .cs-bp-sub-title { font-family: var(--serif); font-size: clamp(20px,2vw,28px); color: var(--text); margin: 0 0 16px; line-height: 1.2; }
 /* ── Five Touchpoints grid ── */
 .cs-5tp-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; margin-top: 32px; }
-.cs-5tp-card { background: #f5f4f0; border-radius: 10px; padding: 20px 16px; display: flex; flex-direction: column; gap: 8px; }
-.cs-5tp-icon { width: 32px; height: 32px; color: var(--text); }
-.cs-5tp-icon svg { width: 32px; height: 32px; display: block; }
+.cs-5tp-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 20px 16px; display: flex; flex-direction: column; gap: 8px; }
+.cs-5tp-header { display:flex; align-items:center; gap:10px; }
+.cs-5tp-icon { width:40px; height:40px; border-radius:8px; background:#FEF0F0; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--c2); }
+.cs-5tp-icon svg { width:20px; height:20px; display:block; }
 .cs-5tp-title { font-family: var(--sans); font-size: 12px; font-weight: 700; color: var(--text); }
 .cs-5tp-desc { font-family: var(--sans); font-size: 12px; color: var(--text-2); line-height: 1.6; }
 @media (max-width: 1024px) { .cs-5tp-grid { grid-template-columns: repeat(3,1fr); } .cs-hmw-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 600px) { .cs-5tp-grid { grid-template-columns: 1fr 1fr; } .cs-hmw-grid { grid-template-columns: 1fr; } .cs-bp-activity-item { padding: 24px; } }
+@media (max-width: 600px) { .cs-5tp-grid { grid-template-columns: 1fr; } .cs-hmw-grid { grid-template-columns: 1fr; } .cs-bp-activity-item { padding: 24px; } }
 .ri-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .ri-card { border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
 .ri-pain { background: #ffeaed; }
@@ -607,6 +627,48 @@ footer { background: var(--text); }
 .ri-badge-pain    { background: #ef4444; color: #fff; }
 .ri-badge-opp     { background: #22c55e; color: #fff; }
 .ri-badge-insight { background: #1a1a1a; color: #fff; }
+
+/* ── Testimonials ─────────────────────────────────────────── */
+.cs-testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; }
+.cs-testimonial { background: var(--fog); border: 1px solid var(--border); border-radius: 2px; padding: 36px 32px; display: flex; flex-direction: column; }
+.cs-testimonial-quote { font-family: var(--sans); font-size: 14px; line-height: 1.75; color: var(--text-2); font-style: italic; margin: 0; flex: 1; }
+.cs-testimonial-divider { height: 1px; background: var(--border); margin: 24px 0 20px; }
+.cs-testimonial-author { font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--text); }
+.cs-testimonial-role { font-family: var(--sans); font-size: 12px; color: var(--text-3); margin-top: 4px; }
+@media (max-width: 768px) { .cs-testimonials { grid-template-columns: 1fr; } }
+
+/* ── Research synthesis blocks ───────────────────────────── */
+.cs-research-block { margin: 48px 0; }
+.cs-research-block-title { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin: 0 0 24px; }
+/* Method cards */
+.cs-research-methods { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.cs-method-card { background: var(--fog); border: 1px solid var(--border); border-radius: 10px; padding: 28px 24px; display: flex; flex-direction: column; gap: 6px; }
+.cs-method-icon { font-size: 22px; color: var(--text-3); margin-bottom: 8px; }
+.cs-method-name { font-family: var(--sans); font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.cs-method-stat { font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--text-2); }
+.cs-method-desc { font-family: var(--sans); font-size: 13px; color: var(--text-3); line-height: 1.6; margin-top: 8px; }
+/* Insight theme cards */
+.cs-insight-themes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.cs-insight-theme { border-radius: 10px; padding: 28px 28px 24px; display: flex; flex-direction: column; gap: 10px; border: 1px solid transparent; }
+.cs-insight-theme--red    { background: #fff4f3; border-color: #ffd5d2; }
+.cs-insight-theme--blue   { background: #f0f5ff; border-color: #c8d8f8; }
+.cs-insight-theme--amber  { background: #fff9ed; border-color: #ffe8b0; }
+.cs-insight-theme--green  { background: #f0faf3; border-color: #b8e8c8; }
+.cs-insight-theme-badge { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: .12em; color: var(--text-3); }
+.cs-insight-theme-title { font-family: var(--sans); font-size: 16px; font-weight: 700; color: var(--text); line-height: 1.3; }
+.cs-insight-theme-body { font-family: var(--sans); font-size: 13px; color: var(--text-2); line-height: 1.65; flex: 1; }
+.cs-insight-theme-impact { font-family: var(--sans); font-size: 12px; color: var(--text-2); line-height: 1.5; border-top: 1px solid rgba(0,0,0,.07); padding-top: 12px; margin-top: 4px; }
+.cs-insight-impact-label { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); margin-right: 6px; }
+/* Pain points grid */
+.cs-pain-points { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.cs-pain-point { background: #fafaf9; border: 1px solid var(--border); padding: 24px 28px; display: flex; align-items: flex-start; gap: 20px; border-radius: 2px; }
+.cs-pain-point-num { font-family: var(--serif); font-size: 28px; color: var(--border); line-height: 1; flex-shrink: 0; padding-top: 2px; }
+.cs-pain-point-text { font-family: var(--sans); font-size: 14px; color: var(--text-2); line-height: 1.65; }
+@media (max-width: 768px) {
+  .cs-research-methods { grid-template-columns: 1fr; }
+  .cs-insight-themes { grid-template-columns: 1fr; }
+  .cs-pain-points { grid-template-columns: 1fr; }
+}
 .ri-card-title { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.4; }
 .ri-card-text  { font-family: var(--sans); font-size: 13px; color: var(--text-2); line-height: 1.6; }
 
@@ -762,8 +824,6 @@ thead .bp-sticky { z-index: 4; }
   .about-left { padding: 64px 32px; }
   .clients { padding: 56px 32px; }
   .clients-grid { grid-template-columns: repeat(4, 1fr); }
-  .client-cell:nth-child(4n) { border-right: none; }
-  .client-cell:nth-child(6n) { border-right: 1px solid var(--border); }
   .testimonials { grid-template-columns: 1fr; }
   .blogs-grid { grid-template-columns: 1fr; }
   .blogs-grid { padding: 0 32px; }
@@ -815,13 +875,24 @@ thead .bp-sticky { z-index: 4; }
   .hero-sub { font-size: 16px; }
   .hero-actions { flex-direction: column; align-items: flex-start; }
   .speculative-grid { grid-template-columns: 1fr; }
-  .stats { grid-template-columns: 1fr 1fr; }
-  .stat:last-child { grid-column: 1/-1; border-right: none; border-top: 1px solid var(--border); }
+  .stats { grid-template-columns: repeat(3, 1fr); }
+  .stat:last-child { grid-column: auto; border-right: none; border-top: none; }
+  .capabilities { grid-template-columns: 1fr 1fr; }
+  .cap-card:nth-child(2n) { border-right: none; }
+  .cap-card:nth-child(n+3) { border-top: 1px solid var(--border); }
+  .cap-card { padding: 36px 32px; }
+  .cap-card:first-child { padding-left: 32px; }
+  .cap-card:last-child { padding-right: 32px; }
   .work-grid { grid-template-columns: 1fr; }
   .work-card:nth-child(3n) { border-right: 1px solid var(--border); }
   .work-card { border-right: none !important; }
   .about { grid-template-columns: 1fr; }
   .about-right { display: block; min-height: 60vw; }
+  .about-img-ph { background: none; min-height: 60vw; }
+  .talk-event { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .talk-techniques { margin-top: 16px; }
+  .tf-submit { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .tf-note { max-width: 100%; }
   .clients-grid { grid-template-columns: repeat(3, 1fr); }
   .cs-insights { grid-template-columns: 1fr; }
   .cs-steps { grid-template-columns: 1fr !important; }
@@ -834,8 +905,9 @@ thead .bp-sticky { z-index: 4; }
   .nav, .cs-nav { padding: 14px 20px; }
   .hero { padding: 100px 20px 60px; }
   .hero-h1 { font-size: 36px; }
-  .stat { padding: 24px 20px; }
-  .stat-val { font-size: 44px; }
+  .stat { padding: 20px 12px; }
+  .stat-val { font-size: 32px; }
+  .stat-label { font-size: 11px; }
   .work-header { padding: 44px 20px 28px; }
   .work-grid { padding: 0 20px; }
   .work-card-body { padding: 24px 16px 28px; }
@@ -843,14 +915,16 @@ thead .bp-sticky { z-index: 4; }
   .blog-card { padding: 36px 16px; }
   .spec-header { padding: 40px 20px 28px; }
   .spec-title { font-size: 19px; }
-  .cap-card { padding: 36px 24px; }
+  .capabilities { grid-template-columns: 1fr; }
+  .cap-card:nth-child(2n) { border-right: 1px solid var(--border); }
+  .cap-card:nth-child(n+2) { border-top: 1px solid var(--border); }
+  .cap-card { padding: 28px 20px; border-right: none; }
   .cap-card:first-child { padding-left: 20px; }
-  .cap-card:last-child { padding-right: 20px; }
+  .cap-card:last-child { padding-right: 20px; border-top: 1px solid var(--border); }
   .about-left { padding: 56px 20px; }
   .clients { padding: 44px 20px; }
-  .clients-grid { grid-template-columns: repeat(2, 1fr); }
-  .client-cell:nth-child(2n) { border-right: none; }
-  .client-cell:nth-child(4n) { border-right: 1px solid var(--border); }
+  .clients-grid { grid-template-columns: 1fr; }
+  .client-cell { padding: 16px 20px; }
   .testimonial { padding: 44px 20px; }
   .contact-left, .contact-right { padding: 52px 20px; }
   .contact-title { font-size: 36px; }
@@ -877,11 +951,22 @@ thead .bp-sticky { z-index: 4; }
   .spec-item { grid-template-columns: 100px 32px 1fr 20px; padding-left: 20px; padding-right: 16px; }
   .spec-thumb { width: 100px; height: 80px; }
   .spec-num { padding: 0 14px; }
+  .speculative-grid { padding: 0 20px; }
+  .capabilities-header { padding: 0 20px !important; }
+  .cs-persona-body { grid-template-columns: 1fr; }
+  .cs-persona-col { border-right: none; border-top: 1px solid var(--border); }
+  .cs-persona-col:first-child { border-top: none; }
+  .cs-persona-header { padding: 24px 20px; gap: 16px; }
+  .cs-persona-initials { width: 56px; height: 56px; font-size: 20px; }
+  .work-card-title { font-size: 22px; }
+  .spec-card-title { font-size: 20px; }
+  .talk-theme-title { font-size: 18px; }
+  .footer-bio { max-width: 100%; }
+  .footer-contact-right { padding: 40px 20px; }
 }
 </style>
 </head>
 <body>
-
 <div class="page-label">Case Study 1 — AI Cancer Drug Discovery · Pfizer · 2024</div>
 
 <nav class="cs-nav">
@@ -913,11 +998,9 @@ thead .bp-sticky { z-index: 4; }
   </div>
 </div>
 
-<div class="cs-cover">
-  <video class="cs-cover-video" autoplay muted loop playsinline>
-    <source src="cs1-hero.mp4" type="video/mp4">
-    <div class="cs-cover-fill" style="background:#060F1F; color:#0A2550;">AI</div>
-  </video>
+<div class="cs-cover" style="background:#f5f6f8; height:auto; max-height:none; padding: 80px 80px 0; display:grid; grid-template-columns: 1fr auto; align-items: center; gap: 48px;">
+  <img src="cs1-hero.png" alt="Research Assistant — multi-device overview" style="width:100%; height:auto; display:block;">
+  <img src="cs1-mobile.png" alt="Research Assistant — mobile screen" style="height:420px; width:auto; display:block; align-self:center;">
 </div>
 
 <div class="cs-metrics" style="grid-template-columns: repeat(4, 1fr);">
@@ -930,80 +1013,147 @@ thead .bp-sticky { z-index: 4; }
 <div class="cs-body">
 
   <div class="cs-section">
-    <h2 class="cs-section-title">The Research Problem Worth Solving</h2>
-    <p class="cs-text">Pfizer's oncology research team processes thousands of research papers, clinical trial datasets, and biomarker datasets simultaneously. The existing workflow required researchers to manually cross-reference multiple databases, often spending days finding patterns that could accelerate drug candidate identification.</p>
-    <p class="cs-text">The goal: design an AI assistant interface that lets researchers ask complex questions in natural language and receive structured, visualised insights — dramatically compressing the time from question to discovery.</p>
-    <div class="cs-img cs-img-16-9">[ AI research interface — overview screen ]</div>
-  </div>
-
-  <div class="cs-section">
-    <h2 class="cs-section-title">Bridging the Gap Between Raw Data and Actionable Insight</h2>
-    <p class="cs-text">The research team had access to vast amounts of data but lacked a unified interface to query it intelligently. Discovery sessions with the team surfaced four core friction points:</p>
-    <div class="cs-insights">
-      <div class="cs-insight">
-        <div class="cs-insight-title">Data fragmentation</div>
-        <div class="cs-insight-text">Researchers switching between 6+ tools to cross-reference data, losing context and time with every transition.</div>
-      </div>
-      <div class="cs-insight">
-        <div class="cs-insight-title">High cognitive load</div>
-        <div class="cs-insight-text">Complex datasets presented in raw tabular form — no visual hierarchy or guided interpretation to reduce the mental burden.</div>
-      </div>
-      <div class="cs-insight">
-        <div class="cs-insight-title">Slow iteration cycles</div>
-        <div class="cs-insight-text">Hypothesis testing took days. Researchers needed results in minutes to stay in flow state and maintain scientific momentum.</div>
-      </div>
-      <div class="cs-insight">
-        <div class="cs-insight-title">Trust in AI outputs</div>
-        <div class="cs-insight-text">Scientists needed transparent reasoning behind AI suggestions — black-box responses were unacceptable in a clinical context.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="cs-section">
-    <h2 class="cs-section-title">Understanding How Scientists Actually Think</h2>
-    <p class="cs-text">I conducted 24 in-depth interviews with oncology researchers, data scientists, and clinical trial managers across three continents. The research revealed distinct mental models around how scientists form hypotheses and expect data to respond.</p>
-    <div class="cs-quote">
-      <p class="cs-quote-text">"I don't want to learn a new query language. I want to ask the data a question the way I'd ask a colleague."</p>
-      <p class="cs-quote-attr">— Senior Research Scientist, Pfizer Oncology</p>
-    </div>
-    <p class="cs-text">Researchers spent 40% of their time on data retrieval, not analysis — an enormous opportunity for AI to intervene. Visualisations were static exports; scientists wanted live, exploratory charts they could interrogate in real time. And AI recommendations without provenance were immediately dismissed — citation trails were non-negotiable.</p>
-    <div class="cs-img cs-img-16-9">[ Research synthesis — affinity map and insight themes ]</div>
-  </div>
-
-  <div class="cs-section">
-    <h2 class="cs-section-title">Two Researchers, Two Very Different Needs</h2>
-    <div class="cs-persona">
-      <div class="cs-persona-name">Dr. Priya Nair</div>
-      <div class="cs-persona-role">Senior Oncology Researcher — 15 years experience, hypothesis-driven</div>
-      <p class="cs-persona-text">Wants to test specific hypotheses quickly against large datasets. Values accuracy and source transparency above all. Frustrated by interfaces that require IT support to operate. Her primary question: "What does the data say about this drug-target combination?"</p>
-    </div>
-    <div class="cs-persona">
-      <div class="cs-persona-name">Marcus Heide</div>
-      <div class="cs-persona-role">Computational Biology Lead — data-first, exploration-focused</div>
-      <p class="cs-persona-text">Explores datasets without a fixed hypothesis, looking for unexpected patterns. Needs powerful filtering, custom visualisation types, and the ability to export findings. His primary question: "What patterns exist in this dataset that I haven't thought to look for?"</p>
+    <h2 class="cs-section-title">The Problem Worth Solving</h2>
+    <p class="cs-text">Pfizer's oncology researchers were drowning in data they couldn't query intelligently. Cross-referencing 15+ databases manually, spending 40% of their time on retrieval rather than analysis, and waiting days for insights that should take minutes. The opportunity was clear: eliminate the gap between question and discovery.</p>
+    <div style="background: var(--fog); border-left: 3px solid var(--c1); border-radius: 0 6px 6px 0; padding: 24px 28px; margin-top: 24px;">
+      <p style="font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--c1); margin-bottom: 10px;">Project Goal</p>
+      <p style="font-family: var(--serif); font-size: clamp(18px, 1.6vw, 22px); line-height: 1.55; letter-spacing: -.02em; color: var(--text);">Design an AI assistant interface that lets researchers ask complex questions in natural language and receive structured, visualised insights — dramatically compressing the time from question to discovery.</p>
     </div>
   </div>
 
   <div class="cs-section">
     <h2 class="cs-section-title">From Question to Insight in Seconds</h2>
     <p class="cs-text">The core interaction model: researchers type a question in plain English. The AI parses intent, queries the relevant datasets, and returns a visualised insight panel — with source citations, confidence indicators, and suggested follow-up queries.</p>
-    <div class="cs-img cs-img-16-9">[ Prompt interface — question entry with AI reasoning display ]</div>
-    <p class="cs-text">Three core surfaces were designed: the Prompt Interface (question entry + AI reasoning display), the Visualisation Canvas (interactive charts, network graphs, heatmaps), and the Insight Library (saved queries and collaborative annotations).</p>
-    <div class="cs-img-2col">
-      <div class="cs-img">[ Visualisation canvas — interactive network graph ]</div>
-      <div class="cs-img">[ Insight library — saved queries and annotations ]</div>
-    </div>
-    <p class="cs-text">AI transparency was not a nice-to-have for expert users — it was the product. Without interpretable reasoning, the tool would have been rejected regardless of its accuracy. Every AI response shows its sources, confidence levels, and the datasets it queried.</p>
+    <figure style="margin:40px 0;">
+      <img src="cs1-overview.png" alt="Research Assistant — desktop overview screen" style="width:100%; border-radius:10px; border:1px solid var(--border); display:block;">
+      <figcaption style="font-family:var(--sans); font-size:12px; color:var(--text-3); margin-top:12px; text-align:center;">The home screen — researchers select a focus area and enter a query in natural language.</figcaption>
+    </figure>
+    <figure style="margin:40px 0;">
+      <img src="cs1-interaction.png" alt="Research Assistant — natural language query returning a grouped bar chart for Gefitinib resistance scores" style="width:100%; border-radius:10px; border:1px solid var(--border); display:block;">
+      <figcaption style="font-family:var(--sans); font-size:12px; color:var(--text-3); margin-top:12px; text-align:center;">A researcher queries resistance scores for Gefitinib across alteration types — the AI returns a structured, interactive chart in seconds.</figcaption>
+    </figure>
+    <p class="cs-text">AI transparency was not a nice-to-have for expert users — it was the product. Every AI response shows its sources, confidence levels, and the datasets it queried. Without interpretable reasoning, the tool would have been rejected regardless of its accuracy.</p>
   </div>
 
   <div class="cs-section">
-    <h2 class="cs-section-title">From Stakeholder Alignment to Validated Prototype</h2>
-    <div class="cs-steps" style="grid-template-columns: repeat(5,1fr);">
-      <div class="cs-step"><div class="cs-step-num">01</div><div class="cs-step-title">Discovery</div><div class="cs-step-text">Stakeholder interviews, workflow shadowing, competitor audit</div></div>
-      <div class="cs-step"><div class="cs-step-num">02</div><div class="cs-step-title">Research</div><div class="cs-step-text">24 in-depth interviews, task analysis, mental model mapping</div></div>
-      <div class="cs-step"><div class="cs-step-num">03</div><div class="cs-step-title">Ideation</div><div class="cs-step-text">Design sprints, sketching sessions, concept testing</div></div>
-      <div class="cs-step"><div class="cs-step-num">04</div><div class="cs-step-title">Design</div><div class="cs-step-text">Wireframes, high-fidelity UI, interactive prototypes</div></div>
-      <div class="cs-step"><div class="cs-step-num">05</div><div class="cs-step-title">Validate</div><div class="cs-step-text">Usability testing, A/B testing, stakeholder sign-off</div></div>
+    <h2 class="cs-section-title">What the Research Revealed</h2>
+    <div class="cs-quote">
+      <p class="cs-quote-text">"I don't want to learn a new query language. I want to ask the data a question the way I'd ask a colleague."</p>
+      <p class="cs-quote-attr">— Senior Research Scientist, Pfizer Oncology</p>
+    </div>
+    <p class="cs-text">I conducted 24 in-depth interviews with oncology researchers, data scientists, and clinical trial managers across three continents — plus shadowing sessions and a 2-week structured user test with 35 team members. Four themes consistently surfaced:</p>
+    <div class="cs-insight-themes" style="margin-top:32px;">
+      <div class="cs-insight-theme cs-insight-theme--red">
+        <div class="cs-insight-theme-badge">01</div>
+        <div class="cs-insight-theme-title">Discovery Timeline Bottleneck</div>
+        <div class="cs-insight-theme-body">3–6 months consumed in literature review alone — before a single hypothesis is tested.</div>
+        <div class="cs-insight-theme-impact">
+          <span class="cs-insight-impact-label">Impact</span>
+          Delay in life-saving cancer treatments reaching patients.
+        </div>
+      </div>
+      <div class="cs-insight-theme cs-insight-theme--blue">
+        <div class="cs-insight-theme-badge">02</div>
+        <div class="cs-insight-theme-title">Information Fragmentation Crisis</div>
+        <div class="cs-insight-theme-body">Scientists navigating 15+ disconnected databases daily with no unified query layer.</div>
+        <div class="cs-insight-theme-impact">
+          <span class="cs-insight-impact-label">Impact</span>
+          Critical compound-target relationships are routinely missed.
+        </div>
+      </div>
+      <div class="cs-insight-theme cs-insight-theme--amber">
+        <div class="cs-insight-theme-badge">03</div>
+        <div class="cs-insight-theme-title">Research Duplication Issue</div>
+        <div class="cs-insight-theme-body">Teams unknowingly duplicating efforts across siloed labs and institutions.</div>
+        <div class="cs-insight-theme-impact">
+          <span class="cs-insight-impact-label">Impact</span>
+          Wasted resources that could fund entirely new research directions.
+        </div>
+      </div>
+      <div class="cs-insight-theme cs-insight-theme--green">
+        <div class="cs-insight-theme-badge">04</div>
+        <div class="cs-insight-theme-title">Visualisation Gap</div>
+        <div class="cs-insight-theme-body">90% of research presentations require manual chart and diagram creation from scratch.</div>
+        <div class="cs-insight-theme-impact">
+          <span class="cs-insight-impact-label">Impact</span>
+          Automated generation of research visualisations remains entirely absent.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @media(max-width:640px){
+      .cs3-decision-row { flex-direction:column !important; gap:10px !important; }
+      .cs3-decision-num { margin-top:0 !important; }
+      .cs3-decision-cards { flex-direction:column !important; }
+    }
+  </style>
+  <div class="cs-section">
+    <h2 class="cs-section-title">From Concepts to Decisions</h2>
+    <p class="cs-text">Three interaction decisions that shaped the core experience.</p>
+    <div style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-top:28px;">
+
+      <div style="padding:32px 36px; background:var(--white);">
+        <div class="cs3-decision-row" style="display:flex; gap:20px; align-items:flex-start;">
+          <div class="cs3-decision-num" style="flex-shrink:0; width:36px; height:36px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; font-size:16px; margin-top:2px;">01</div>
+          <div>
+            <h3 style="font-size:17px; font-weight:600; color:var(--text); margin:0 0 6px;">Search interface vs structured query builder</h3>
+            <p style="font-size:13px; color:var(--text-2); line-height:1.6; margin:0 0 12px;">Researchers wanted to ask questions using domain language rather than learn another system. Natural language removed the friction of query construction entirely.</p>
+            <div class="cs3-decision-cards" style="display:flex; gap:12px;">
+              <div style="flex:1; background:var(--fog); border-radius:6px; padding:12px 14px; border-left:3px solid #ccc;">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--text-3); margin-bottom:4px;">Explored</div>
+                <div style="font-size:13px; color:var(--text-2);">Filters, query-builder, conversational input</div>
+              </div>
+              <div style="flex:1; background:#EBF2FF; border-radius:6px; padding:12px 14px; border-left:3px solid var(--c1);">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--c1); margin-bottom:4px;">Selected</div>
+                <div style="font-size:13px; color:var(--text-2);">Natural-language input</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:32px 36px; background:var(--white); border-top:1px solid var(--border);">
+        <div class="cs3-decision-row" style="display:flex; gap:20px; align-items:flex-start;">
+          <div class="cs3-decision-num" style="flex-shrink:0; width:36px; height:36px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; font-size:16px; margin-top:2px;">02</div>
+          <div>
+            <h3 style="font-size:17px; font-weight:600; color:var(--text); margin:0 0 6px;">Answer first vs evidence first</h3>
+            <p style="font-size:13px; color:var(--text-2); line-height:1.6; margin:0 0 12px;">Expert users needed to interrogate the reasoning before trusting the result. Surfacing sources, confidence, and queried datasets made the AI's logic visible and auditable.</p>
+            <div class="cs3-decision-cards" style="display:flex; gap:12px;">
+              <div style="flex:1; background:var(--fog); border-radius:6px; padding:12px 14px; border-left:3px solid #ccc;">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--text-3); margin-bottom:4px;">Explored</div>
+                <div style="font-size:13px; color:var(--text-2);">Clean AI-generated answer / answer with expandable evidence</div>
+              </div>
+              <div style="flex:1; background:#EBF2FF; border-radius:6px; padding:12px 14px; border-left:3px solid var(--c1);">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--c1); margin-bottom:4px;">Selected</div>
+                <div style="font-size:13px; color:var(--text-2);">Sources + confidence + queried datasets</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:32px 36px; background:var(--white); border-top:1px solid var(--border);">
+        <div class="cs3-decision-row" style="display:flex; gap:20px; align-items:flex-start;">
+          <div class="cs3-decision-num" style="flex-shrink:0; width:36px; height:36px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; font-size:16px; margin-top:2px;">03</div>
+          <div>
+            <h3 style="font-size:17px; font-weight:600; color:var(--text); margin:0 0 6px;">Static answer vs exploratory result</h3>
+            <p style="font-size:13px; color:var(--text-2); line-height:1.6; margin:0 0 12px;">Researchers rarely stop after the first answer — one finding creates the next question. An exploratory model with interactive visualisations and suggested follow-ups matched how scientists actually think.</p>
+            <div class="cs3-decision-cards" style="display:flex; gap:12px;">
+              <div style="flex:1; background:var(--fog); border-radius:6px; padding:12px 14px; border-left:3px solid #ccc;">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--text-3); margin-bottom:4px;">Explored</div>
+                <div style="font-size:13px; color:var(--text-2);">Generated summary / interactive visualisation + suggested follow-ups</div>
+              </div>
+              <div style="flex:1; background:#EBF2FF; border-radius:6px; padding:12px 14px; border-left:3px solid var(--c1);">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--c1); margin-bottom:4px;">Selected</div>
+                <div style="font-size:13px; color:var(--text-2);">Exploratory model</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -1016,7 +1166,71 @@ thead .bp-sticky { z-index: 4; }
       <div class="cs-insight"><div class="cs-insight-title">92% user satisfaction</div><div class="cs-insight-text">Post-pilot survey. The natural language interface was consistently cited as the standout feature.</div></div>
       <div class="cs-insight"><div class="cs-insight-title">3× research throughput</div><div class="cs-insight-text">Teams could explore 3× as many drug-target hypotheses per week compared to the legacy workflow.</div></div>
     </div>
-    <p class="cs-text">The biggest design lesson from this project: designing for domain experts requires deep humility. AI transparency is not a nice-to-have — it is the product. Without interpretable reasoning, the tool would have been rejected regardless of its accuracy.</p>
+    <div class="cs-testimonials">
+      <div class="cs-testimonial">
+        <p class="cs-testimonial-quote">"The rapid generation of these visualizations is truly remarkable. Previously, creating such insightful representations would have consumed two to three weeks of dedicated effort within my research workflow. However, with the assistance of this resource, I am now able to obtain these visualizations in under a minute, representing a significant acceleration of my research process."</p>
+        <div class="cs-testimonial-divider"></div>
+        <div class="cs-testimonial-author">Dr. Mika Chan*</div>
+        <div class="cs-testimonial-role">Senior Computational Biologist</div>
+      </div>
+      <div class="cs-testimonial">
+        <p class="cs-testimonial-quote">"I am highly impressed with the capabilities of Research Assistant. Its potential is evident, and I envision it being particularly valuable for my team, especially those members whose expertise lies in data analysis rather than software development. The intuitive nature of the platform could empower them to conduct more sophisticated analyses without requiring advanced programming skills."</p>
+        <div class="cs-testimonial-divider"></div>
+        <div class="cs-testimonial-author">Dr. Michael Rodriguez*</div>
+        <div class="cs-testimonial-role">Director, Computational Biology</div>
+      </div>
+      <div class="cs-testimonial">
+        <p class="cs-testimonial-quote">"The speed with which RA generates document summaries is truly impressive. This capability significantly accelerates my document creation process, enabling me to produce materials in mere minutes that previously required several days of manual effort. This represents a substantial improvement in efficiency, particularly given the monthly volume of documents I generate."</p>
+        <div class="cs-testimonial-divider"></div>
+        <div class="cs-testimonial-author">Dr. Lizzie Watson*</div>
+        <div class="cs-testimonial-role">Research Team Lead</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── WHAT I'LL TAKE FORWARD ──────────────────────────── -->
+  <style>
+    .cs1-takeforward-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--border); border-radius:10px; overflow:hidden; margin-top:32px; }
+    @media(max-width:768px){ .cs1-takeforward-grid { grid-template-columns:1fr; } }
+  </style>
+  <div class="cs-section">
+    <h2 class="cs-section-title">Reflections</h2>
+    <div class="cs1-takeforward-grid">
+
+      <div style="background:var(--white); padding:36px 32px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <div style="width:40px; height:40px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c1);">User Diversity</span>
+        </div>
+        <p style="font-size:18px; font-weight:600; color:var(--text); line-height:1.35; margin:0 0 10px;">Expert UX isn't necessarily complex UX.</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.6; margin:0;">Designing for scientists with radically different technical fluency taught me that domain sophistication doesn't mean users want sophisticated interfaces.</p>
+      </div>
+
+      <div style="background:var(--white); padding:36px 32px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <div style="width:40px; height:40px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c1);">AI Trust</span>
+        </div>
+        <p style="font-size:18px; font-weight:600; color:var(--text); line-height:1.35; margin:0 0 10px;">Explainability is part of the interaction model.</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.6; margin:0;">Building trust in AI-generated research outputs showed me that transparency isn't something added after the answer — it's woven into how the answer is given.</p>
+      </div>
+
+      <div style="background:var(--white); padding:36px 32px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <div style="width:40px; height:40px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c1);">Data Communication</span>
+        </div>
+        <p style="font-size:18px; font-weight:600; color:var(--text); line-height:1.35; margin:0 0 10px;">Visualisation is part of the reasoning.</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.6; margin:0;">Turning complex datasets into understandable research outputs showed that the right representation helps researchers interpret relationships, not just consume an answer.</p>
+      </div>
+
+    </div>
   </div>
 
 </div><!-- /cs-body -->
@@ -1033,72 +1247,5 @@ thead .bp-sticky { z-index: 4; }
 <!-- ════════════════════════════════════════ -->
 <!--  CASE STUDY 2 — Yodel Premium Delivery  -->
 <!-- ════════════════════════════════════════ -->
-
-<footer id="contact">
-  <div class="footer-contact">
-    <div class="footer-contact-left">
-      <h2 class="resume-cta-title">14+ years of design,<br><em>distilled.</em></h2>
-      <p class="resume-cta-sub">Experience across HealthTech, retail, logistics, education, and enterprise — from individual contributor to Head of Design.</p>
-
-      <div class="footer-contact-actions">
-        <a href="resume.html" class="btn-resume">View résumé →</a>
-      </div>
-    </div>
-    <div class="footer-contact-right">
-      <div class="footer-inner-grid">
-        <div>
-          <div class="footer-logo">Suganth Chellamuthu</div>
-          <p class="footer-bio">Focused on making the complex feel effortlessly simple — through great design, clear thinking, and real craft.</p>
-        </div>
-        <div>
-          <p class="footer-heading">Work</p>
-          <ul class="footer-links">
-            <li><a href="cs1.html">AI Cancer Drug Discovery</a></li>
-            <li><a href="cs2.html">Yodel Premium Delivery</a></li>
-            <li><a href="cs3.html">Classroom Management App</a></li>
-            <li><a href="cs4.html">Bill of Materials</a></li>
-            <li><a href="cs5.html">Modanisa Marketplace</a></li>
-            <li><a href="cs6.html">Store Promotions Financial Planning</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-social" style="margin-top: 36px;">
-        <a href="mailto:suganthgct@gmail.com" class="footer-social-link" title="Email">
-          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
-        </a>
-        <a href="tel:+919972457131" class="footer-social-link" title="Phone">
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 4.72 4.18 2 2 0 0 1 6.7 2h3.09a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L10.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        </a>
-        <a href="https://linkedin.com/in/suganthchellamuthu" class="footer-social-link" title="LinkedIn" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://dribbble.com/suganthc" class="footer-social-link" title="Dribbble" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
-        </a>
-        <a href="https://medium.com/@suganthc" class="footer-social-link" title="Medium" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">© 2024 Suganth Chellamuthu. All rights reserved.</span>
-    <span class="footer-copy">Designed with care</span>
-  </div>
-</footer>
-<script>
-(function(){
-  var pool=[{url:"cs2.html",title:"Designing a Premium Delivery Service Experience"},{url:"cs3.html",title:"Classroom Management App — Boosting Teacher Efficiency by 57%"},{url:"cs4.html",title:"Optimising Materials and Boosting Analysis Efficiency"},{url:"cs5.html",title:"Crafting a Marketplace Experience for Modest Fashion"},{url:"cs6.html",title:"Store Promotions Financial Planning Tool"}];
-  var pick=pool[Math.floor(Math.random()*pool.length)];
-  var link=document.querySelector('.cs-next');
-  if(link){
-    link.href=pick.url;
-    var t=link.querySelector('.cs-next-title');
-    if(t) t.textContent=pick.title;
-    var l=link.querySelector('.cs-next-label');
-    if(l) l.textContent='Up next';
-  }
-})();
-</script>
 </body>
 </html>

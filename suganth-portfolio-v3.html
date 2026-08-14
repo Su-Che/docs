@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="suche-logo.svg">
 <style>
 /* ── RESET ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,7 +26,7 @@
   --c1: #0E52B0; --c2: #E63C2E; --c3: #1A8C49; --c4: #6B2FE8; --c5: #C47020;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body { font-family: var(--sans); background: var(--white); color: var(--text); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
 
 /* ── NAV ── */
@@ -36,7 +37,8 @@ body { font-family: var(--sans); background: var(--white); color: var(--text); f
   background: rgba(255,255,255,0.94); backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
-.nav-logo { font-family: var(--serif); font-size: 19px; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo span { font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--text); letter-spacing: -.01em; }
 .nav-links { display: flex; gap: 40px; list-style: none; }
 .nav-links a { font-size: 14px; font-weight: 400; color: var(--text-2); text-decoration: none; transition: color .2s; }
 .nav-links a:hover { color: var(--text); }
@@ -53,21 +55,34 @@ body { font-family: var(--sans); background: var(--white); color: var(--text); f
 
 /* ── HERO ── */
 .hero {
-  padding: 192px 64px 120px;
-  max-width: 1360px; margin: 0 auto;
+  padding: 180px 80px 100px;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.hero-content { display: flex; flex-direction: column; }
+.hero-visual {
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: visible;
+}
+#hero-blob {
+  width: 100%; max-width: 560px; aspect-ratio: 1 / 1; display: block;
 }
 .hero-eyebrow {
   font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
   color: var(--text-3); margin-bottom: 32px;
 }
 .hero-h1 {
-  font-family: var(--serif); font-size: clamp(58px, 7.5vw, 108px);
+  font-family: var(--serif); font-size: clamp(44px, 5.5vw, 88px);
   line-height: 1.0; letter-spacing: -.03em; color: var(--text);
-  max-width: 960px; margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 .hero-h1 em { font-style: italic; color: var(--text-2); }
 .hero-sub {
-  font-size: 18px; color: var(--text-2); max-width: 500px;
+  font-size: 17px; color: var(--text-2); max-width: 480px;
   line-height: 1.75; margin-bottom: 52px;
 }
 .hero-actions { display: flex; align-items: center; gap: 24px; }
@@ -81,7 +96,7 @@ body { font-family: var(--sans); background: var(--white); color: var(--text); f
   display: grid; grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
 }
-.stat { padding: 44px 64px; border-right: 1px solid var(--border); }
+.stat { padding: 44px 80px; border-right: 1px solid var(--border); }
 .stat:last-child { border-right: none; }
 .stat-val { font-family: var(--serif); font-size: 56px; letter-spacing: -.03em; line-height: 1; margin-bottom: 8px; }
 .stat-label { font-size: 13px; color: var(--text-3); letter-spacing: .04em; }
@@ -98,22 +113,19 @@ body { font-family: var(--sans); background: var(--white); color: var(--text); f
 
 /* ── WORK ── */
 .work-header {
-  padding: 88px 64px 56px;
+  padding: 88px 80px 56px;
   display: flex; align-items: flex-end; justify-content: space-between;
-  border-bottom: 1px solid var(--border);
 }
 .work-section-label { font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
 .work-section-title { font-family: var(--serif); font-size: clamp(36px, 4vw, 56px); letter-spacing: -.03em; line-height: 1.08; color: var(--text); }
 .work-count { font-family: var(--serif); font-size: 88px; font-style: italic; color: #E4E4E0; letter-spacing: -.04em; line-height: 1; }
 
-.work-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+.work-grid { display: grid; grid-template-columns: repeat(3, 1fr); padding: 0 80px; }
 .work-card {
   display: block; text-decoration: none; color: inherit;
-  border-bottom: 1px solid var(--border); border-right: 1px solid var(--border);
   overflow: hidden; cursor: pointer;
   transition: background .2s;
 }
-.work-card:nth-child(3n) { border-right: none; }
 .work-card:hover { background: var(--fog); }
 
 .work-card-img { overflow: hidden; }
@@ -126,7 +138,7 @@ body { font-family: var(--sans); background: var(--white); color: var(--text); f
 .work-card:hover .work-card-img-inner { transform: scale(1.03); }
 .work-card .work-card-img { aspect-ratio: 3/2; }
 
-.work-card-body { padding: 36px 44px 44px; }
+.work-card-body { padding: 36px 32px 44px; }
 .work-card-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
 .work-tag { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); }
 .work-year { font-size: 12px; color: var(--text-3); }
@@ -135,15 +147,15 @@ body { font-family: var(--sans); background: var(--white); color: var(--text); f
 .work-cta { font-size: 14px; font-weight: 500; color: var(--text); border-bottom: 1px solid var(--text); padding-bottom: 2px; display: inline-flex; align-items: center; gap: 8px; }
 
 /* ── SPECULATIVE ── */
-.speculative { border-bottom: 1px solid var(--border); }
-.spec-header { padding: 72px 64px 44px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-end; justify-content: space-between; }
+.speculative { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.spec-header { padding: 72px 80px 44px; display: flex; align-items: flex-end; justify-content: space-between; }
 .spec-item {
   display: grid; grid-template-columns: 200px 52px 1fr 32px;
   align-items: center; gap: 0;
   border-bottom: 1px solid var(--border);
   cursor: pointer; transition: background .2s;
   overflow: hidden;
-  padding-left: 64px; padding-right: 40px;
+  padding-left: 80px; padding-right: 80px;
 }
 .spec-item:last-child { border-bottom: none; }
 .spec-item:hover { background: var(--fog); }
@@ -172,11 +184,9 @@ body { font-family: var(--sans); background: var(--white); color: var(--text); f
 
 /* ── SPECULATIVE CARD GRID ── */
 .speculative-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  border-left: 1px solid var(--border); border-top: 1px solid var(--border);
+  display: grid; grid-template-columns: repeat(3, 1fr); padding: 0 80px;
 }
 .spec-card {
-  border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
   cursor: pointer; transition: background .2s; overflow: hidden; display: block;
   text-decoration: none; color: inherit;
 }
@@ -186,7 +196,7 @@ body { font-family: var(--sans); background: var(--white); color: var(--text); f
 .spec-card:hover .spec-card-img img { transform: scale(1.04); }
 .spec-card-img-fill { width: 100%; height: 100%; transition: transform .5s ease; }
 .spec-card:hover .spec-card-img-fill { transform: scale(1.04); }
-.spec-card-body { padding: 28px 32px 36px; }
+.spec-card-body { padding: 28px 24px 36px; }
 .spec-card-num { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); display: block; margin-bottom: 10px; }
 .spec-card-title { font-family: var(--serif); font-size: clamp(18px, 1.5vw, 22px); letter-spacing: -.025em; line-height: 1.2; color: var(--text); margin-bottom: 8px; }
 .spec-card-desc { font-size: 13px; color: var(--text-2); line-height: 1.7; margin-bottom: 16px; }
@@ -196,48 +206,54 @@ body { font-family: var(--sans); background: var(--white); color: var(--text); f
 /* ── CAPABILITIES ── */
 .capabilities-section { }
 .capabilities-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); padding: 32px 0 0; }
-.capabilities { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-top: 20px; }
+.capabilities-title { font-family: var(--serif); font-size: clamp(28px, 3vw, 44px); letter-spacing: -.03em; line-height: 1.1; color: var(--text); margin-top: 16px; }
+.capabilities { display: grid; grid-template-columns: repeat(4, 1fr); border-top: none; border-bottom: 1px solid var(--border); margin-top: 32px; }
 .cap-card { padding: 52px 44px; border-right: 1px solid var(--border); }
-.cap-card:last-child { border-right: none; }
+.cap-card:first-child { padding-left: 80px; }
+.cap-card:last-child { border-right: none; padding-right: 80px; }
 .cap-icon { font-size: 26px; margin-bottom: 20px; }
 .cap-title { font-family: var(--serif); font-size: 22px; letter-spacing: -.02em; color: var(--text); margin-bottom: 12px; }
 .cap-desc { font-size: 14px; color: var(--text-2); line-height: 1.75; }
 
 /* ── ABOUT ── */
 .about { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
-.about-left { padding: 88px 64px; border-right: 1px solid var(--border); }
-.about-right { padding: 88px 64px; display: flex; align-items: center; justify-content: center; background: var(--fog); }
+.about-left { padding: 88px 80px; }
+.about-right { padding: 0; display: flex; overflow: hidden; }
 .about-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 20px; }
 .about-title { font-family: var(--serif); font-size: clamp(32px, 3.5vw, 48px); letter-spacing: -.03em; line-height: 1.1; color: var(--text); margin-bottom: 28px; }
 .about-text { font-size: 16px; color: var(--text-2); line-height: 1.85; margin-bottom: 16px; }
 .about-img-ph {
-  width: 100%; max-width: 440px; aspect-ratio: 3/4;
-  background: var(--border);
+  flex: 1; min-height: 500px;
+  background: var(--border); overflow: hidden;
   display: flex; align-items: center; justify-content: center;
   font-family: var(--serif); font-size: 72px; font-style: italic; color: var(--white);
-  border-radius: 4px;
+}
+.about-img-ph img {
+  width: 100%; height: 100%; object-fit: cover;
+  object-position: center 10%; filter: grayscale(1); display: block;
 }
 
 /* ── CLIENTS ── */
-.clients { padding: 72px 64px; border-bottom: 1px solid var(--border); }
-.clients-label { font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 48px; text-align: center; }
+.clients { padding: 72px 80px; border-bottom: 1px solid var(--border); }
+.clients-label { font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 0; text-align: left; }
 .clients-grid {
-  display: grid; grid-template-columns: repeat(6, 1fr);
-  border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+  display: grid; grid-template-columns: repeat(5, 1fr);
 }
 .client-cell {
-  padding: 28px 20px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  padding: 48px 24px;
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--serif); font-size: 17px; letter-spacing: -.02em; color: var(--text-2);
-  transition: background .2s, color .2s;
+  position: relative;
 }
-.client-cell:hover { background: var(--fog); color: var(--text); }
-.client-cell:nth-child(6n) { border-right: none; }
-.client-cell:nth-last-child(-n+6) { border-bottom: none; }
+.logo-wrap { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; }
+.logo-wrap img { width: 95%; max-height: 120px; object-fit: contain; display: block; transition: opacity .25s ease; }
+.logo-wrap .logo-gray  { opacity: 1; }
+.logo-wrap .logo-color { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); opacity: 0; }
+.client-cell:hover .logo-gray  { opacity: 0; }
+.client-cell:hover .logo-color { opacity: 1; }
 
 /* ── TESTIMONIALS ── */
 .testimonials { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
-.testimonial { padding: 80px 64px; border-right: 1px solid var(--border); }
+.testimonial { padding: 80px 80px; border-right: 1px solid var(--border); }
 .testimonial:last-child { border-right: none; }
 .testimonial-quote { font-family: var(--serif); font-size: 22px; line-height: 1.55; letter-spacing: -.01em; color: var(--text); font-style: italic; margin-bottom: 32px; }
 .testimonial-author { display: flex; align-items: center; gap: 14px; }
@@ -247,14 +263,13 @@ body { font-family: var(--sans); background: var(--white); color: var(--text); f
 
 /* ── BLOGS ── */
 .blogs { border-bottom: 1px solid var(--border); }
-.blogs-header { padding: 80px 64px 48px; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--border); }
+.blogs-header { padding: 80px 80px 48px; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
 .blogs-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
 .blogs-title { font-family: var(--serif); font-size: clamp(28px, 3.5vw, 44px); letter-spacing: -.03em; color: var(--text); line-height: 1.1; }
 .blogs-cta-link { font-size: 14px; font-weight: 500; color: var(--text-2); text-decoration: none; white-space: nowrap; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: color .2s, border-color .2s; flex-shrink: 0; }
 .blogs-cta-link:hover { color: var(--text); border-color: var(--text); }
-.blogs-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
-.blog-card { padding: 48px 64px; border-right: 1px solid var(--border); text-decoration: none; display: flex; flex-direction: column; gap: 0; transition: background .2s; }
-.blog-card:last-child { border-right: none; }
+.blogs-grid { display: grid; grid-template-columns: repeat(3, 1fr); padding: 0 80px; }
+.blog-card { padding: 48px 32px; text-decoration: none; display: flex; flex-direction: column; gap: 0; transition: background .2s; }
 .blog-card:hover { background: var(--fog); }
 .blog-card-num { font-family: var(--serif); font-size: 13px; font-style: italic; color: var(--text-3); margin-bottom: 28px; }
 .blog-card-title { font-family: var(--serif); font-size: 22px; letter-spacing: -.02em; line-height: 1.3; color: var(--text); margin-bottom: 16px; flex-grow: 1; }
@@ -265,13 +280,14 @@ body { font-family: var(--sans); background: var(--white); color: var(--text); f
 
 /* ── TALKS ── */
 .talks { border-bottom: 1px solid var(--border); }
-.talk-header { padding: 80px 64px 40px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; }
+.talk-header { padding: 80px 80px 40px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; }
 .talk-header-left { }
 .talks-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
 .talks-title { font-family: var(--serif); font-size: clamp(28px, 3.5vw, 44px); letter-spacing: -.03em; color: var(--text); line-height: 1.1; }
-.talk-card { display: grid; grid-template-columns: 1fr 1fr; border-top: none; }
-.talk-card-left { padding: 64px 64px; border-right: 1px solid var(--border); }
-.talk-card-right { padding: 64px 64px; }
+.talk-card { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
+.talk-card:last-of-type { border-bottom: none; }
+.talk-card-left { padding: 64px 80px; border-right: 1px solid var(--border); }
+.talk-card-right { padding: 64px 80px; }
 .talk-event { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; }
 .talk-event-badge { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--white); background: var(--text); padding: 5px 12px; border-radius: 100px; }
 .talk-event-meta { font-size: 13px; color: var(--text-3); }
@@ -340,6 +356,10 @@ textarea.tf-input { resize: vertical; min-height: 110px; line-height: 1.6; }
 .resume-cta-or { font-size: 13px; color: rgba(255,255,255,.3); }
 .resume-cta-email { font-size: 15px; color: rgba(255,255,255,.6); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.2); padding-bottom: 2px; transition: color .2s, border-color .2s; }
 .resume-cta-email:hover { color: var(--white); border-color: rgba(255,255,255,.5); }
+.footer-social { display: flex; align-items: center; gap: 12px; }
+.footer-social-link { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.5); text-decoration: none; transition: border-color .2s, color .2s; }
+.footer-social-link:hover { border-color: rgba(255,255,255,.6); color: var(--white); }
+.footer-social-link svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
 .resume-cta-stats { display: flex; gap: 40px; margin-top: 40px; }
 .resume-cta-stat-val { font-family: var(--serif); font-size: 32px; letter-spacing: -.03em; color: var(--white); line-height: 1; }
 .resume-cta-stat-label { font-size: 12px; color: rgba(255,255,255,.4); margin-top: 4px; }
@@ -348,7 +368,8 @@ textarea.tf-input { resize: vertical; min-height: 110px; line-height: 1.6; }
 /* ── RESUME PAGE ── */
 .resume-page { background: var(--white); }
 .resume-page-nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(255,255,255,.95); backdrop-filter: blur(12px); z-index: 100; }
-.resume-page-nav-logo { font-family: var(--serif); font-size: 18px; letter-spacing: -.02em; color: var(--text); text-decoration: none; }
+.resume-page-nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.resume-page-nav-logo span { font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--text); letter-spacing: -.01em; }
 .resume-page-nav-actions { display: flex; align-items: center; gap: 20px; }
 .resume-page-back { font-size: 14px; color: var(--text-2); text-decoration: none; }
 .resume-page-back:hover { color: var(--text); }
@@ -360,7 +381,7 @@ textarea.tf-input { resize: vertical; min-height: 110px; line-height: 1.6; }
 
 /* Left sidebar — light */
 .resume-sidebar { background: var(--white); padding: 56px 40px; display: flex; flex-direction: column; gap: 0; border-right: 1px solid var(--border); }
-.resume-sidebar-name { font-family: var(--serif); font-size: clamp(28px, 3vw, 44px); letter-spacing: -.04em; line-height: 1.05; color: var(--text); margin-bottom: 8px; }
+.resume-sidebar-name { font-family: var(--serif); font-size: clamp(26px, 2.6vw, 40px); letter-spacing: -.04em; line-height: 1.1; color: var(--text); margin-bottom: 8px; word-break: break-word; }
 .resume-sidebar-headline { font-size: 13px; color: var(--text-2); margin-bottom: 28px; line-height: 1.5; }
 .resume-sidebar-contact { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; padding-bottom: 36px; border-bottom: 1px solid var(--border); }
 .resume-sidebar-contact a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color .2s; }
@@ -374,7 +395,7 @@ textarea.tf-input { resize: vertical; min-height: 110px; line-height: 1.6; }
 .resume-skill-group-label { font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
 .resume-edu-item { margin-bottom: 22px; }
 .resume-edu-item:last-child { margin-bottom: 0; }
-.resume-edu-degree { font-family: var(--serif); font-size: 14px; letter-spacing: -.01em; color: var(--text); margin-bottom: 3px; line-height: 1.3; }
+.resume-edu-degree { font-family: var(--sans); font-size: 14px; font-weight: 600; letter-spacing: -.01em; color: var(--text); margin-bottom: 3px; line-height: 1.3; }
 .resume-edu-school { font-size: 12px; color: var(--text-2); margin-bottom: 2px; }
 .resume-edu-dates { font-size: 11px; color: var(--text-3); }
 
@@ -385,7 +406,7 @@ textarea.tf-input { resize: vertical; min-height: 110px; line-height: 1.6; }
 .resume-main-label { font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 28px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
 .resume-exp-item { margin-bottom: 32px; }
 .resume-exp-item:last-child { margin-bottom: 0; }
-.resume-exp-role { font-family: var(--serif); font-size: 19px; letter-spacing: -.02em; color: var(--text); margin-bottom: 3px; }
+.resume-exp-role { font-family: var(--sans); font-size: 16px; font-weight: 600; letter-spacing: -.01em; color: var(--text); margin-bottom: 3px; }
 .resume-exp-meta { display: flex; gap: 12px; align-items: center; margin-bottom: 8px; }
 .resume-exp-org { font-size: 13px; font-weight: 500; color: var(--text-2); }
 .resume-exp-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-3); }
@@ -393,7 +414,7 @@ textarea.tf-input { resize: vertical; min-height: 110px; line-height: 1.6; }
 .resume-exp-desc { font-size: 14px; line-height: 1.7; color: var(--text-2); }
 .resume-work-item { padding: 20px 0; border-top: 1px solid var(--border); }
 .resume-work-item:last-child { border-bottom: 1px solid var(--border); }
-.resume-work-title { font-family: var(--serif); font-size: 16px; letter-spacing: -.01em; color: var(--text); margin-bottom: 5px; }
+.resume-work-title { font-family: var(--sans); font-size: 14px; font-weight: 600; letter-spacing: -.01em; color: var(--text); margin-bottom: 5px; }
 .resume-work-desc { font-size: 13px; line-height: 1.65; color: var(--text-2); }
 
 @media print {
@@ -407,7 +428,7 @@ textarea.tf-input { resize: vertical; min-height: 110px; line-height: 1.6; }
 
   /* Sidebar print */
   .resume-sidebar { padding: 32px 24px; }
-  .resume-sidebar-name { font-size: 24px; margin-bottom: 4px; }
+  .resume-sidebar-name { font-size: 30px; margin-bottom: 4px; }
   .resume-sidebar-headline { font-size: 10px; margin-bottom: 16px; }
   .resume-sidebar-contact { gap: 6px; margin-bottom: 24px; padding-bottom: 20px; }
   .resume-sidebar-contact a { font-size: 10px; }
@@ -440,10 +461,10 @@ textarea.tf-input { resize: vertical; min-height: 110px; line-height: 1.6; }
 /* ── FOOTER ── */
 footer { background: var(--text); }
 .footer-contact { display: grid; grid-template-columns: 1fr 1fr; min-height: 400px; border-bottom: 1px solid rgba(255,255,255,.08); }
-.footer-contact-left { padding: 96px 80px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid rgba(255,255,255,.1); }
-.footer-contact-actions { display: flex; align-items: center; gap: 28px; margin-top: 36px; flex-wrap: wrap; }
-.footer-contact-right { padding: 60px 64px; display: flex; align-items: center; }
-.footer-inner-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px; width: 100%; }
+.footer-contact-left { padding: 80px 80px; display: flex; flex-direction: column; justify-content: flex-start; border-right: 1px solid rgba(255,255,255,.1); }
+.footer-contact-actions { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 36px; flex-wrap: wrap; }
+.footer-contact-right { padding: 80px 64px; display: flex; flex-direction: column; align-items: flex-start; }
+.footer-inner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; width: 100%; align-items: start; }
 .footer-inner { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 60px 64px; gap: 48px; max-width: 1360px; margin: 0 auto; }
 .footer-logo { font-family: var(--serif); font-size: 22px; color: var(--white); letter-spacing: -.02em; margin-bottom: 12px; }
 .footer-bio { font-size: 13px; color: rgba(255,255,255,.35); line-height: 1.7; max-width: 220px; }
@@ -451,7 +472,7 @@ footer { background: var(--text); }
 .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
 .footer-links a { font-size: 14px; color: rgba(255,255,255,.55); text-decoration: none; transition: color .2s; }
 .footer-links a:hover { color: var(--white); }
-.footer-bottom { border-top: 1px solid rgba(255,255,255,.06); padding: 20px 64px; display: flex; align-items: center; justify-content: space-between; max-width: 1360px; margin: 0 auto; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.06); padding: 20px 80px; display: flex; align-items: center; justify-content: space-between; }
 .footer-copy { font-size: 12px; color: rgba(255,255,255,.22); }
 
 /* ══════════════════════════════════════════
@@ -467,7 +488,8 @@ footer { background: var(--text); }
   border-bottom: 1px solid var(--border);
   padding: 18px 64px; display: flex; align-items: center; justify-content: space-between;
 }
-.cs-nav-logo { font-family: var(--serif); font-size: 18px; color: var(--text); text-decoration: none; letter-spacing: -.02em; }
+.cs-nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.cs-nav-logo span { font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--text); letter-spacing: -.01em; }
 .cs-back { font-size: 13px; color: var(--text-2); text-decoration: none; letter-spacing: .04em; transition: color .2s; }
 .cs-back:hover { color: var(--text); }
 
@@ -539,11 +561,29 @@ footer { background: var(--text); }
 .cs-quote-text { font-family: var(--serif); font-size: 24px; line-height: 1.5; letter-spacing: -.01em; color: var(--text); font-style: italic; margin-bottom: 20px; }
 .cs-quote-attr { font-size: 14px; color: var(--text-3); }
 
-/* CS Persona */
-.cs-persona { background: var(--fog); border: 1px solid var(--border); border-radius: 4px; padding: 36px; margin: 20px 0; }
-.cs-persona-name { font-family: var(--serif); font-size: 26px; letter-spacing: -.02em; color: var(--text); margin-bottom: 4px; }
-.cs-persona-role { font-size: 13px; color: var(--text-3); margin-bottom: 16px; }
-.cs-persona-text { font-size: 15px; color: var(--text-2); line-height: 1.75; }
+/* CS Persona — rich card */
+.cs-persona-card { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 24px 0; }
+.cs-persona-header { background: linear-gradient(135deg, #2D3FBF 0%, #6B5FE8 60%, #8B52D4 100%); padding: 28px 36px; display: flex; align-items: center; gap: 24px; }
+.cs-persona-initials { width: 72px; height: 72px; border-radius: 50%; background: rgba(255,255,255,.18); border: 2px solid rgba(255,255,255,.35); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 26px; color: var(--white); flex-shrink: 0; letter-spacing: -.02em; }
+.cs-persona-header-info .cs-persona-name { font-family: var(--serif); font-size: 24px; letter-spacing: -.025em; color: var(--white); margin-bottom: 4px; }
+.cs-persona-header-info .cs-persona-role { font-size: 14px; color: rgba(255,255,255,.72); margin-bottom: 10px; }
+.cs-persona-meta { display: flex; align-items: center; gap: 20px; }
+.cs-persona-meta-item { font-size: 12px; color: rgba(255,255,255,.6); display: flex; align-items: center; gap: 6px; }
+.cs-persona-meta-sep { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,.3); }
+.cs-persona-body { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+.cs-persona-col { padding: 28px 32px; border-right: 1px solid var(--border); }
+.cs-persona-col:last-child { border-right: none; }
+.cs-persona-section-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.cs-persona-demo-item { font-size: 14px; color: var(--text-2); line-height: 1.6; margin-bottom: 5px; }
+.cs-persona-quote { background: rgba(59,79,216,.06); border-left: 3px solid #3B4FD8; padding: 14px 18px; border-radius: 0 4px 4px 0; font-size: 13px; font-style: italic; color: var(--text-2); line-height: 1.75; margin-top: 20px; }
+.cs-persona-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.cs-persona-list:last-child { margin-bottom: 0; }
+.cs-persona-list li { font-size: 14px; color: var(--text-2); line-height: 1.55; display: flex; align-items: flex-start; gap: 10px; }
+.cs-persona-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.cs-persona-dot.green  { background: #22C55E; }
+.cs-persona-dot.purple { background: #A855F7; }
+.cs-persona-dot.red    { background: #EF4444; }
+.cs-persona-dot.blue   { background: #3B82F6; }
 
 /* CS large inline stat */
 .cs-deliverable-label { font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--white); background: var(--c1); display: inline-block; padding: 4px 12px; border-radius: 100px; margin-bottom: 16px; }
@@ -570,13 +610,14 @@ footer { background: var(--text); }
 .cs-bp-sub-title { font-family: var(--serif); font-size: clamp(20px,2vw,28px); color: var(--text); margin: 0 0 16px; line-height: 1.2; }
 /* ── Five Touchpoints grid ── */
 .cs-5tp-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; margin-top: 32px; }
-.cs-5tp-card { background: #f5f4f0; border-radius: 10px; padding: 20px 16px; display: flex; flex-direction: column; gap: 8px; }
-.cs-5tp-icon { width: 32px; height: 32px; color: var(--text); }
-.cs-5tp-icon svg { width: 32px; height: 32px; display: block; }
+.cs-5tp-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 20px 16px; display: flex; flex-direction: column; gap: 8px; }
+.cs-5tp-header { display:flex; align-items:center; gap:10px; }
+.cs-5tp-icon { width:40px; height:40px; border-radius:8px; background:#FEF0F0; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--c2); }
+.cs-5tp-icon svg { width:20px; height:20px; display:block; }
 .cs-5tp-title { font-family: var(--sans); font-size: 12px; font-weight: 700; color: var(--text); }
 .cs-5tp-desc { font-family: var(--sans); font-size: 12px; color: var(--text-2); line-height: 1.6; }
 @media (max-width: 1024px) { .cs-5tp-grid { grid-template-columns: repeat(3,1fr); } .cs-hmw-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 600px) { .cs-5tp-grid { grid-template-columns: 1fr 1fr; } .cs-hmw-grid { grid-template-columns: 1fr; } .cs-bp-activity-item { padding: 24px; } }
+@media (max-width: 600px) { .cs-5tp-grid { grid-template-columns: 1fr; } .cs-hmw-grid { grid-template-columns: 1fr; } .cs-bp-activity-item { padding: 24px; } }
 .ri-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .ri-card { border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
 .ri-pain { background: #ffeaed; }
@@ -586,6 +627,48 @@ footer { background: var(--text); }
 .ri-badge-pain    { background: #ef4444; color: #fff; }
 .ri-badge-opp     { background: #22c55e; color: #fff; }
 .ri-badge-insight { background: #1a1a1a; color: #fff; }
+
+/* ── Testimonials ─────────────────────────────────────────── */
+.cs-testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; }
+.cs-testimonial { background: var(--fog); border: 1px solid var(--border); border-radius: 2px; padding: 36px 32px; display: flex; flex-direction: column; }
+.cs-testimonial-quote { font-family: var(--sans); font-size: 14px; line-height: 1.75; color: var(--text-2); font-style: italic; margin: 0; flex: 1; }
+.cs-testimonial-divider { height: 1px; background: var(--border); margin: 24px 0 20px; }
+.cs-testimonial-author { font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--text); }
+.cs-testimonial-role { font-family: var(--sans); font-size: 12px; color: var(--text-3); margin-top: 4px; }
+@media (max-width: 768px) { .cs-testimonials { grid-template-columns: 1fr; } }
+
+/* ── Research synthesis blocks ───────────────────────────── */
+.cs-research-block { margin: 48px 0; }
+.cs-research-block-title { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin: 0 0 24px; }
+/* Method cards */
+.cs-research-methods { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.cs-method-card { background: var(--fog); border: 1px solid var(--border); border-radius: 10px; padding: 28px 24px; display: flex; flex-direction: column; gap: 6px; }
+.cs-method-icon { font-size: 22px; color: var(--text-3); margin-bottom: 8px; }
+.cs-method-name { font-family: var(--sans); font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.cs-method-stat { font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--text-2); }
+.cs-method-desc { font-family: var(--sans); font-size: 13px; color: var(--text-3); line-height: 1.6; margin-top: 8px; }
+/* Insight theme cards */
+.cs-insight-themes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.cs-insight-theme { border-radius: 10px; padding: 28px 28px 24px; display: flex; flex-direction: column; gap: 10px; border: 1px solid transparent; }
+.cs-insight-theme--red    { background: #fff4f3; border-color: #ffd5d2; }
+.cs-insight-theme--blue   { background: #f0f5ff; border-color: #c8d8f8; }
+.cs-insight-theme--amber  { background: #fff9ed; border-color: #ffe8b0; }
+.cs-insight-theme--green  { background: #f0faf3; border-color: #b8e8c8; }
+.cs-insight-theme-badge { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: .12em; color: var(--text-3); }
+.cs-insight-theme-title { font-family: var(--sans); font-size: 16px; font-weight: 700; color: var(--text); line-height: 1.3; }
+.cs-insight-theme-body { font-family: var(--sans); font-size: 13px; color: var(--text-2); line-height: 1.65; flex: 1; }
+.cs-insight-theme-impact { font-family: var(--sans); font-size: 12px; color: var(--text-2); line-height: 1.5; border-top: 1px solid rgba(0,0,0,.07); padding-top: 12px; margin-top: 4px; }
+.cs-insight-impact-label { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); margin-right: 6px; }
+/* Pain points grid */
+.cs-pain-points { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.cs-pain-point { background: #fafaf9; border: 1px solid var(--border); padding: 24px 28px; display: flex; align-items: flex-start; gap: 20px; border-radius: 2px; }
+.cs-pain-point-num { font-family: var(--serif); font-size: 28px; color: var(--border); line-height: 1; flex-shrink: 0; padding-top: 2px; }
+.cs-pain-point-text { font-family: var(--sans); font-size: 14px; color: var(--text-2); line-height: 1.65; }
+@media (max-width: 768px) {
+  .cs-research-methods { grid-template-columns: 1fr; }
+  .cs-insight-themes { grid-template-columns: 1fr; }
+  .cs-pain-points { grid-template-columns: 1fr; }
+}
 .ri-card-title { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.4; }
 .ri-card-text  { font-family: var(--sans); font-size: 13px; color: var(--text-2); line-height: 1.6; }
 
@@ -720,42 +803,31 @@ thead .bp-sticky { z-index: 4; }
 .c1 { color: var(--c1); } .c2 { color: var(--c2); } .c3 { color: var(--c3); } .c4 { color: var(--c4); } .c5 { color: var(--c5); }
 
 /* ── RESPONSIVE ── */
-/* ── WIDESCREEN CONSTRAINT ── */
-@media (min-width: 1600px) {
-  .stats { max-width: 1600px; margin: 0 auto; }
-  .work-grid { max-width: 1600px; margin: 0 auto; }
-  .about { max-width: 1600px; margin: 0 auto; }
-  .capabilities-section { max-width: 1600px; margin: 0 auto; }
-  .clients { max-width: 1600px; margin: 0 auto; }
-  .testimonials { max-width: 1600px; margin: 0 auto; }
-  .blogs-header, .blogs-grid { max-width: 1600px; margin: 0 auto; }
-}
 
 @media (max-width: 1024px) {
   .nav, .cs-nav { padding: 18px 32px; }
-  .hero { padding: 148px 32px 80px; }
+  .hero { padding: 148px 32px 80px; grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
   .stats .stat { padding: 36px 32px; }
   .work-header { padding: 60px 32px 40px; }
-  .work-grid { grid-template-columns: 1fr 1fr; }
-  .work-card:nth-child(3n) { border-right: 1px solid var(--border); }
-  .work-card:nth-child(2n) { border-right: none; }
-  .work-card-body { padding: 28px 32px 36px; }
-  .spec-item { grid-template-columns: 160px 40px 1fr 28px; padding-left: 32px; padding-right: 24px; }
+  .work-grid { grid-template-columns: 1fr 1fr; padding: 0 32px; }
+  .work-card-body { padding: 28px 24px 36px; }
+  .spec-item { grid-template-columns: 160px 40px 1fr 28px; padding-left: 0; padding-right: 24px; }
   .spec-thumb { width: 160px; height: 120px; }
-  .spec-header { padding-left: 32px; padding-right: 32px; }
+  .spec-header { padding: 48px 32px 32px; }
   .capabilities { grid-template-columns: 1fr 1fr; }
   .cap-card:nth-child(2) { border-right: none; }
+  .cap-card:first-child { padding-left: 32px; }
+  .cap-card:last-child { padding-right: 32px; }
   .cap-card:nth-child(3) { border-right: 1px solid var(--border); border-top: 1px solid var(--border); }
   .cap-card:nth-child(4) { border-right: none; border-top: 1px solid var(--border); }
-  .about-left, .about-right { padding: 64px 32px; }
+  .about-left { padding: 64px 32px; }
   .clients { padding: 56px 32px; }
   .clients-grid { grid-template-columns: repeat(4, 1fr); }
-  .client-cell:nth-child(4n) { border-right: none; }
-  .client-cell:nth-child(6n) { border-right: 1px solid var(--border); }
   .testimonials { grid-template-columns: 1fr; }
   .blogs-grid { grid-template-columns: 1fr; }
-  .blog-card { border-right: none; border-bottom: 1px solid var(--border); padding: 40px 32px; }
-  .blog-card:last-child { border-bottom: none; }
+  .blogs-grid { padding: 0 32px; }
+  .blog-card { padding: 40px 24px; }
   .blogs-header { padding: 48px 32px 32px; flex-direction: column; align-items: flex-start; gap: 16px; }
   .talk-card-left { padding: 48px 32px; }
   .talk-card-right { padding: 48px 32px; }
@@ -783,7 +855,7 @@ thead .bp-sticky { z-index: 4; }
   .footer-contact-right { padding: 48px 32px; }
   .footer-inner-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
   .footer-inner { padding: 48px 32px; grid-template-columns: 1fr 1fr; }
-  .footer-bottom { padding: 16px 32px; }
+  .footer-bottom { padding: 16px 32px; flex-wrap: wrap; gap: 8px; }
   .cs-hero { padding: 64px 32px 56px; }
   .cs-metric { padding: 40px 32px; }
   .cs-metric-val { font-size: 52px; }
@@ -803,13 +875,24 @@ thead .bp-sticky { z-index: 4; }
   .hero-sub { font-size: 16px; }
   .hero-actions { flex-direction: column; align-items: flex-start; }
   .speculative-grid { grid-template-columns: 1fr; }
-  .stats { grid-template-columns: 1fr 1fr; }
-  .stat:last-child { grid-column: 1/-1; border-right: none; border-top: 1px solid var(--border); }
+  .stats { grid-template-columns: repeat(3, 1fr); }
+  .stat:last-child { grid-column: auto; border-right: none; border-top: none; }
+  .capabilities { grid-template-columns: 1fr 1fr; }
+  .cap-card:nth-child(2n) { border-right: none; }
+  .cap-card:nth-child(n+3) { border-top: 1px solid var(--border); }
+  .cap-card { padding: 36px 32px; }
+  .cap-card:first-child { padding-left: 32px; }
+  .cap-card:last-child { padding-right: 32px; }
   .work-grid { grid-template-columns: 1fr; }
   .work-card:nth-child(3n) { border-right: 1px solid var(--border); }
   .work-card { border-right: none !important; }
   .about { grid-template-columns: 1fr; }
-  .about-right { display: none; }
+  .about-right { display: block; min-height: 60vw; }
+  .about-img-ph { background: none; min-height: 60vw; }
+  .talk-event { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .talk-techniques { margin-top: 16px; }
+  .tf-submit { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .tf-note { max-width: 100%; }
   .clients-grid { grid-template-columns: repeat(3, 1fr); }
   .cs-insights { grid-template-columns: 1fr; }
   .cs-steps { grid-template-columns: 1fr !important; }
@@ -822,18 +905,26 @@ thead .bp-sticky { z-index: 4; }
   .nav, .cs-nav { padding: 14px 20px; }
   .hero { padding: 100px 20px 60px; }
   .hero-h1 { font-size: 36px; }
-  .stat { padding: 24px 20px; }
-  .stat-val { font-size: 44px; }
+  .stat { padding: 20px 12px; }
+  .stat-val { font-size: 32px; }
+  .stat-label { font-size: 11px; }
   .work-header { padding: 44px 20px 28px; }
-  .work-card-body { padding: 24px 20px 28px; }
-  .spec-header { padding-left: 20px; padding-right: 20px; }
+  .work-grid { padding: 0 20px; }
+  .work-card-body { padding: 24px 16px 28px; }
+  .blogs-grid { padding: 0 20px; }
+  .blog-card { padding: 36px 16px; }
+  .spec-header { padding: 40px 20px 28px; }
   .spec-title { font-size: 19px; }
-  .cap-card { padding: 36px 24px; }
+  .capabilities { grid-template-columns: 1fr; }
+  .cap-card:nth-child(2n) { border-right: 1px solid var(--border); }
+  .cap-card:nth-child(n+2) { border-top: 1px solid var(--border); }
+  .cap-card { padding: 28px 20px; border-right: none; }
+  .cap-card:first-child { padding-left: 20px; }
+  .cap-card:last-child { padding-right: 20px; border-top: 1px solid var(--border); }
   .about-left { padding: 56px 20px; }
   .clients { padding: 44px 20px; }
-  .clients-grid { grid-template-columns: repeat(2, 1fr); }
-  .client-cell:nth-child(2n) { border-right: none; }
-  .client-cell:nth-child(4n) { border-right: 1px solid var(--border); }
+  .clients-grid { grid-template-columns: 1fr; }
+  .client-cell { padding: 16px 20px; }
   .testimonial { padding: 44px 20px; }
   .contact-left, .contact-right { padding: 52px 20px; }
   .contact-title { font-size: 36px; }
@@ -860,6 +951,18 @@ thead .bp-sticky { z-index: 4; }
   .spec-item { grid-template-columns: 100px 32px 1fr 20px; padding-left: 20px; padding-right: 16px; }
   .spec-thumb { width: 100px; height: 80px; }
   .spec-num { padding: 0 14px; }
+  .speculative-grid { padding: 0 20px; }
+  .capabilities-header { padding: 0 20px !important; }
+  .cs-persona-body { grid-template-columns: 1fr; }
+  .cs-persona-col { border-right: none; border-top: 1px solid var(--border); }
+  .cs-persona-col:first-child { border-top: none; }
+  .cs-persona-header { padding: 24px 20px; gap: 16px; }
+  .cs-persona-initials { width: 56px; height: 56px; font-size: 20px; }
+  .work-card-title { font-size: 22px; }
+  .spec-card-title { font-size: 20px; }
+  .talk-theme-title { font-size: 18px; }
+  .footer-bio { max-width: 100%; }
+  .footer-contact-right { padding: 40px 20px; }
 }
 </style>
 </head>
@@ -873,26 +976,96 @@ thead .bp-sticky { z-index: 4; }
   <button class="nav-toggle" id="navToggle" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
-  <a href="#top" class="nav-logo">Suganth Chellamuthu</a>
+  <a href="#top" class="nav-logo"><img src="suche-logo.svg" alt="SuChe" style="height:26px;width:auto;display:block;"><span>Suganth Chellamuthu</span></a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#work">Work</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#writing">Blogs</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="#resume" class="nav-cta">View résumé</a>
+  <a href="resume.html" class="nav-cta">View résumé</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="top">
-  <p class="hero-eyebrow">Digital Product Designer</p>
-  <h1 class="hero-h1">Designing digital<br>products that solve<br><em>real problems</em></h1>
-  <p class="hero-sub">I play various roles to design digital products that solve problems and drive business value — from zero-to-one concepts to scaled systems used by millions.</p>
-  <div class="hero-actions">
-    <a href="#work" class="btn btn-dark">View case studies</a>
-    <a href="#about" class="btn btn-ghost">About me</a>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Digital Product Designer</p>
+    <h1 class="hero-h1">Designing digital<br>products that solve<br><em>real problems</em></h1>
+    <p class="hero-sub">I play various roles to design digital products that solve problems and drive business value — from zero-to-one concepts to scaled systems used by millions.</p>
+    <div class="hero-actions">
+      <a href="#work" class="btn btn-dark">View case studies</a>
+      <a href="#about" class="btn btn-ghost">About me</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <canvas id="hero-blob"></canvas>
   </div>
 </section>
+
+<script>
+(function () {
+  var canvas = document.getElementById('hero-blob');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var S = 640;
+  canvas.width = S;
+  canvas.height = S;
+
+  /* Blobs: colour, base position (0-1), radius, orbit params */
+  var blobs = [
+    { r:200, g:56,  b:230, bx:0.44, by:0.56, br:150, speed:0.18,  phase:0    },
+    { r:96,  g:96,  b:248, bx:0.50, by:0.44, br:160, speed:-0.13, phase:2.1  },
+    { r:32,  g:208, b:248, bx:0.60, by:0.36, br:140, speed:0.22,  phase:4.2  },
+    { r:160, g:232, b:255, bx:0.56, by:0.41, br:90,  speed:-0.26, phase:1.3  },
+  ];
+
+  var frame = 0;
+  var PERIOD = 900; /* ~15 s at 60 fps */
+
+  function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+
+  /* 0 = fully undefined/blurry  1 = fully defined/sharp */
+  function definedness(f) {
+    var t = (f % PERIOD) / PERIOD;
+    if (t < 0.30) return ease(t / 0.30);
+    if (t < 0.60) return 1;
+    return ease((1 - t) / 0.40);
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, S, S);
+
+    var def  = definedness(frame);
+    var blur = 14 + (1 - def) * 44;        /* 14 px → 58 px */
+    var scatter = 0.035 + (1 - def) * 0.11; /* orbit spread */
+
+    canvas.style.filter  = 'blur(' + blur.toFixed(1) + 'px)';
+    canvas.style.opacity = (0.82 + def * 0.18).toFixed(3);
+
+    blobs.forEach(function (b, i) {
+      var angle = frame * 0.016 * (i % 2 === 0 ? 1 : -1) + b.phase;
+      var cx = (b.bx + Math.cos(angle) * scatter * 0.9) * S;
+      var cy = (b.by + Math.sin(angle) * scatter * 0.75) * S;
+      var radius = b.br * (1 + (1 - def) * 0.3);
+
+      var g = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+      g.addColorStop(0,   'rgba('+b.r+','+b.g+','+b.b+',0.88)');
+      g.addColorStop(0.45,'rgba('+b.r+','+b.g+','+b.b+',0.45)');
+      g.addColorStop(1,   'rgba('+b.r+','+b.g+','+b.b+',0)');
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+      ctx.fillStyle = g;
+      ctx.fill();
+    });
+
+    frame++;
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+})();
+</script>
 
 <!-- STATS -->
 <div class="stats">
@@ -939,15 +1112,15 @@ thead .bp-sticky { z-index: 4; }
     <p class="about-text">Partnering with teams to deliver products that have better problem and market fit. I work across HealthTech, EdTech, logistics, fashion, and enterprise software — bringing the same rigour regardless of domain.</p>
     <p class="about-text">Based in the UK. Available for freelance engagements and consulting.</p>
   </div>
-  <div class="about-right">
-    <div class="about-img-ph">SC</div>
-  </div>
 </div>
 
 <!-- CAPABILITIES -->
 <div class="capabilities-section">
-  <div class="wrap" style="padding: 0 64px;"><p class="capabilities-eyebrow">What I do</p></div>
-  <div class="capabilities wrap">
+  <div class="capabilities-header" style="padding: 0 80px;">
+    <p class="capabilities-eyebrow">What I do</p>
+    <h2 class="capabilities-title">Design, end to end.</h2>
+  </div>
+  <div class="capabilities">
     <div class="cap-card">
       <div class="cap-icon">◎</div>
       <h3 class="cap-title">Product Strategy</h3>
@@ -973,62 +1146,55 @@ thead .bp-sticky { z-index: 4; }
 
 <!-- CLIENTS -->
 <div class="clients">
-  <p class="clients-label">Some of the clients</p>
+  <p class="clients-label">Selected Clients</p>
+  <h2 style="font-family:var(--serif); font-size:clamp(28px,3vw,42px); color:var(--text); line-height:1.2; margin:16px 0 16px; letter-spacing:-.02em;">Designing at scale, across industries</h2>
+  <p style="font-family:var(--sans); font-size:16px; color:var(--text-2); line-height:1.6; max-width:600px; margin:0 0 48px;">I have created impactful digital experiences for the world's leading brands by blending AI, design, and technology.</p>
   <div class="clients-grid">
-    <div class="client-cell">Pfizer</div>
-    <div class="client-cell">Modanisa</div>
-    <div class="client-cell">Springer</div>
-    <div class="client-cell">Egon Zehnder</div>
-    <div class="client-cell">SIMS</div>
-    <div class="client-cell">LexisNexis</div>
-    <div class="client-cell">Dyson</div>
-    <div class="client-cell">Yodel</div>
-    <div class="client-cell">Co-op</div>
-    <div class="client-cell">Tesco</div>
-    <div class="client-cell">Missguided</div>
-    <div class="client-cell">Kroger</div>
+    <div class="client-cell"><div class="logo-wrap"><img src="logo-pfizer-gray.png" alt="Pfizer" class="logo-gray"><img src="logo-pfizer-color.png" alt="Pfizer" class="logo-color"></div></div>
+    <div class="client-cell"><div class="logo-wrap"><img src="logo-modanisa-gray.png" alt="Modanisa" class="logo-gray"><img src="logo-modanisa-color.png" alt="Modanisa" class="logo-color"></div></div>
+    <div class="client-cell"><div class="logo-wrap"><img src="logo-springer-gray.png" alt="Springer" class="logo-gray"><img src="logo-springer-color.png" alt="Springer" class="logo-color"></div></div>
+    <div class="client-cell"><div class="logo-wrap"><img src="logo-egonzehnder-gray.png" alt="Egon Zehnder" class="logo-gray"><img src="logo-egonzehnder-color.png" alt="Egon Zehnder" class="logo-color"></div></div>
+    <div class="client-cell"><div class="logo-wrap"><img src="logo-lexisnexis-gray.png" alt="LexisNexis" class="logo-gray"><img src="logo-lexisnexis-color.png" alt="LexisNexis" class="logo-color"></div></div>
+    <div class="client-cell"><div class="logo-wrap"><img src="logo-dyson-gray.png" alt="Dyson" class="logo-gray"><img src="logo-dyson-color.png" alt="Dyson" class="logo-color"></div></div>
+    <div class="client-cell"><div class="logo-wrap"><img src="logo-yodel-gray.png" alt="Yodel" class="logo-gray"><img src="logo-yodel-color.png" alt="Yodel" class="logo-color"></div></div>
+    <div class="client-cell"><div class="logo-wrap"><img src="logo-coop-gray.png" alt="Co-op" class="logo-gray"><img src="logo-coop-color.png" alt="Co-op" class="logo-color"></div></div>
+    <div class="client-cell"><div class="logo-wrap"><img src="logo-missguided-gray.png" alt="Missguided" class="logo-gray"><img src="logo-missguided-color.png" alt="Missguided" class="logo-color"></div></div>
+    <div class="client-cell"><div class="logo-wrap"><img src="logo-kroger-gray.png" alt="Kroger" class="logo-gray"><img src="logo-kroger-color.png" alt="Kroger" class="logo-color"></div></div>
   </div>
 </div>
 
 <!-- TESTIMONIALS -->
 <div class="testimonials">
   <div class="testimonial">
-    <p class="testimonial-quote">"Suganth's ability to translate complex research workflows into an intuitive interface was exceptional. He didn't just design screens — he changed how our team thinks about data."</p>
+    <p class="testimonial-quote">"Suganth has a remarkable ability to synthesize across people, processes, and technology, which is complemented by exceptional designer skills."</p>
     <div class="testimonial-author">
-      <div class="t-avatar">PJ</div>
-      <div>
-        <div class="t-name">Dr. Priya Jansen</div>
-        <div class="t-role">Head of Computational Biology, Pfizer R&D</div>
-      </div>
+      <div class="t-role">Director, AI Innovation &amp; Data Science, Pfizer</div>
     </div>
   </div>
   <div class="testimonial">
     <p class="testimonial-quote">"Working with Suganth transformed how we think about the delivery experience. He brought clarity to a complex service design challenge and delivered something our customers genuinely love."</p>
     <div class="testimonial-author">
-      <div class="t-avatar">RM</div>
-      <div>
-        <div class="t-name">Rachel Morris</div>
-        <div class="t-role">Head of Product, Yodel</div>
-      </div>
+      <div class="t-role">Head of Product, Yodel</div>
     </div>
   </div>
 </div>
 
 <!-- WORK HEADER -->
-<div id="work" class="work-header wrap">
+<div id="work" class="work-header">
   <div>
     <p class="work-section-label">Project case studies</p>
     <h2 class="work-section-title">Selected work</h2>
   </div>
-  <span class="work-count">06</span>
 </div>
 
 <!-- WORK GRID -->
 <div class="work-grid">
 
-  <a href="#cs1" class="work-card">
+  <a href="cs1.html" class="work-card">
     <div class="work-card-img">
-      <div class="work-card-img-inner" style="background:#060F1F; color:#0A2550;">AI</div>
+      <div class="work-card-img-inner" style="background:#060F1F; padding:0;">
+        <img src="cs1-thumb.jpg" alt="Accelerating Cancer Drug Discovery" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
     </div>
     <div class="work-card-body">
       <div class="work-card-meta">
@@ -1042,7 +1208,7 @@ thead .bp-sticky { z-index: 4; }
   </a>
 
   <!-- Yodel -->
-  <a href="#cs2" class="work-card">
+  <a href="cs2.html" class="work-card">
     <div class="work-card-img">
       <div class="work-card-img-inner" style="background:#c8322a; padding:0;">
         <img src="cs2-thumb.jpg" alt="Yodel premium delivery — fleet of branded vans" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -1060,9 +1226,11 @@ thead .bp-sticky { z-index: 4; }
   </a>
 
   <!-- Classroom -->
-  <a href="#cs3" class="work-card">
+  <a href="cs3.html" class="work-card">
     <div class="work-card-img">
-      <div class="work-card-img-inner" style="background:#04150A; color:#092514;">CL</div>
+      <div class="work-card-img-inner" style="background:#04150A; padding:0;">
+        <img src="cs3-thumb.jpg" alt="Classroom Management App" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
     </div>
     <div class="work-card-body">
       <div class="work-card-meta">
@@ -1076,7 +1244,7 @@ thead .bp-sticky { z-index: 4; }
   </a>
 
   <!-- BoM -->
-  <a href="#cs4" class="work-card">
+  <a href="cs4.html" class="work-card">
     <div class="work-card-img">
       <div class="work-card-img-inner" style="background:#0C0518; color:#1A0A30;">BM</div>
     </div>
@@ -1092,7 +1260,7 @@ thead .bp-sticky { z-index: 4; }
   </a>
 
   <!-- Modanisa -->
-  <a href="#cs5" class="work-card">
+  <a href="cs5.html" class="work-card">
     <div class="work-card-img">
       <div class="work-card-img-inner" style="background:#180900; color:#2E1300;">MO</div>
     </div>
@@ -1108,7 +1276,7 @@ thead .bp-sticky { z-index: 4; }
   </a>
 
   <!-- Store Promotions Financial Planning Tool -->
-  <a href="#cs6" class="work-card">
+  <a href="cs6.html" class="work-card">
     <div class="work-card-img">
       <div class="work-card-img-inner" style="background:#081810; color:#0D2A18;">SP</div>
     </div>
@@ -1126,7 +1294,7 @@ thead .bp-sticky { z-index: 4; }
 </div><!-- /work-grid -->
 
 <!-- SPECULATIVE WORK -->
-<div class="speculative wrap">
+<div class="speculative">
   <div class="spec-header">
     <div>
       <p class="work-section-label">Self-directed initiatives</p>
@@ -1136,7 +1304,7 @@ thead .bp-sticky { z-index: 4; }
   <div class="speculative-grid">
 
     <!-- 01: Future of Food Retail -->
-    <div class="spec-card" onclick="location.href='#spec-food-retail'">
+    <a class="spec-card" href="spec-food-retail.html">
       <div class="spec-card-img">
         <img src="spec-food-retail.jpg" alt="The Future of Food Retail"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
@@ -1148,10 +1316,10 @@ thead .bp-sticky { z-index: 4; }
         <div class="spec-card-desc">Imagining the future of food retail by combining physical and cultural heritage with cutting-edge technology.</div>
         <span class="spec-card-cta">Explore →</span>
       </div>
-    </div>
+    </a>
 
     <!-- 02: Food System 2050 -->
-    <div class="spec-card" onclick="location.href='#spec-food-system-2050'">
+    <a class="spec-card" href="spec-food-system-2050.html">
       <div class="spec-card-img">
         <div class="spec-card-img-fill" style="background: linear-gradient(145deg, #A3E635 0%, #16803C 45%, #052E16 100%); position:relative; overflow:hidden;">
           <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.18" xmlns="http://www.w3.org/2000/svg">
@@ -1172,10 +1340,10 @@ thead .bp-sticky { z-index: 4; }
         <div class="spec-card-desc">A report on how future food systems could look, using market and research methods in strategic foresight.</div>
         <span class="spec-card-cta">Explore →</span>
       </div>
-    </div>
+    </a>
 
     <!-- 03: Future of a Grocery Store -->
-    <div class="spec-card" onclick="location.href='#spec-grocery-store'">
+    <a class="spec-card" href="spec-grocery-store.html">
       <div class="spec-card-img">
         <div class="spec-card-img-fill" style="background: linear-gradient(145deg, #FCD34D 0%, #C47020 45%, #1C0F00 100%); position:relative; overflow:hidden;">
           <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.15" xmlns="http://www.w3.org/2000/svg">
@@ -1196,7 +1364,7 @@ thead .bp-sticky { z-index: 4; }
         <div class="spec-card-desc">Imagining stores in the near future, with technology that evolves with customers' changing behaviours and values.</div>
         <span class="spec-card-cta">Explore →</span>
       </div>
-    </div>
+    </a>
 
   </div>
 </div>
@@ -1470,51 +1638,45 @@ function handleTalkSubmit(e) {
     <div class="footer-contact-left">
       <h2 class="resume-cta-title">14+ years of design,<br><em>distilled.</em></h2>
       <p class="resume-cta-sub">Experience across HealthTech, retail, logistics, education, and enterprise — from individual contributor to Head of Design.</p>
-      <div class="resume-cta-stats">
-        <div>
-          <div class="resume-cta-stat-val">14+</div>
-          <div class="resume-cta-stat-label">Years experience</div>
-        </div>
-        <div>
-          <div class="resume-cta-stat-val">6+</div>
-          <div class="resume-cta-stat-label">Industries</div>
-        </div>
-        <div>
-          <div class="resume-cta-stat-val">3</div>
-          <div class="resume-cta-stat-label">Continents</div>
-        </div>
-      </div>
+
       <div class="footer-contact-actions">
-        <a href="#resume" class="btn-resume">View résumé →</a>
-        <a href="mailto:suganthgct@gmail.com" class="resume-cta-email">suganthgct@gmail.com</a>
+        <a href="resume.html" class="btn-resume">View résumé →</a>
       </div>
     </div>
     <div class="footer-contact-right">
       <div class="footer-inner-grid">
         <div>
           <div class="footer-logo">Suganth Chellamuthu</div>
-          <p class="footer-bio">Digital Product Designer. Designing functional, elegant digital products for 14+ years.</p>
+          <p class="footer-bio">Focused on making the complex feel effortlessly simple — through great design, clear thinking, and real craft.</p>
         </div>
         <div>
           <p class="footer-heading">Work</p>
           <ul class="footer-links">
-            <li><a href="#cs1">AI Cancer Drug Discovery</a></li>
-            <li><a href="#cs2">Yodel Premium Delivery</a></li>
-            <li><a href="#cs3">Classroom Management App</a></li>
-            <li><a href="#cs4">Bill of Materials</a></li>
-            <li><a href="#cs5">Modanisa Marketplace</a></li>
-            <li><a href="#cs6">Store Promotions Financial Planning</a></li>
+            <li><a href="cs1.html">AI Cancer Drug Discovery</a></li>
+            <li><a href="cs2.html">Yodel Premium Delivery</a></li>
+            <li><a href="cs3.html">Classroom Management App</a></li>
+            <li><a href="cs4.html">Bill of Materials</a></li>
+            <li><a href="cs5.html">Modanisa Marketplace</a></li>
+            <li><a href="cs6.html">Store Promotions Financial Planning</a></li>
           </ul>
         </div>
-        <div>
-          <p class="footer-heading">Connect</p>
-          <ul class="footer-links">
-            <li><a href="#">LinkedIn</a></li>
-            <li><a href="#">Dribbble</a></li>
-            <li><a href="#">Twitter / X</a></li>
-            <li><a href="#">Medium</a></li>
-          </ul>
-        </div>
+      </div>
+      <div class="footer-social" style="margin-top: 36px;">
+        <a href="mailto:suganthgct@gmail.com" class="footer-social-link" title="Email">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+        </a>
+        <a href="tel:+919972457131" class="footer-social-link" title="Phone">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 4.72 4.18 2 2 0 0 1 6.7 2h3.09a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L10.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/suganthchellamuthu" class="footer-social-link" title="LinkedIn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://dribbble.com/suganthc" class="footer-social-link" title="Dribbble" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+        </a>
+        <a href="https://medium.com/@suganthc" class="footer-social-link" title="Medium" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+        </a>
       </div>
     </div>
   </div>
@@ -1532,8 +1694,8 @@ function handleTalkSubmit(e) {
 <div class="page-label">Case Study 1 — AI Cancer Drug Discovery · Pfizer · 2024</div>
 
 <nav class="cs-nav">
-  <a href="#top" class="cs-nav-logo">Suganth Chellamuthu</a>
-  <a href="#work" class="cs-back">← Back to all work</a>
+  <a href="index.html" class="cs-nav-logo"><img src="suche-logo.svg" alt="SuChe" style="height:26px;width:auto;display:block;"><span>Suganth Chellamuthu</span></a>
+  <a href="index.html#work" class="cs-back">← Back to all work</a>
 </nav>
 
 <div id="cs1" class="cs-hero">
@@ -1560,11 +1722,9 @@ function handleTalkSubmit(e) {
   </div>
 </div>
 
-<div class="cs-cover">
-  <video class="cs-cover-video" autoplay muted loop playsinline>
-    <source src="cs1-hero.mp4" type="video/mp4">
-    <div class="cs-cover-fill" style="background:#060F1F; color:#0A2550;">AI</div>
-  </video>
+<div class="cs-cover" style="background:#f5f6f8; height:auto; max-height:none; padding: 80px 80px 0; display:grid; grid-template-columns: 1fr auto; align-items: center; gap: 48px;">
+  <img src="cs1-hero.png" alt="Research Assistant — multi-device overview" style="width:100%; height:auto; display:block;">
+  <img src="cs1-mobile.png" alt="Research Assistant — mobile screen" style="height:420px; width:auto; display:block; align-self:center;">
 </div>
 
 <div class="cs-metrics" style="grid-template-columns: repeat(4, 1fr);">
@@ -1577,80 +1737,147 @@ function handleTalkSubmit(e) {
 <div class="cs-body">
 
   <div class="cs-section">
-    <h2 class="cs-section-title">The Research Problem Worth Solving</h2>
-    <p class="cs-text">Pfizer's oncology research team processes thousands of research papers, clinical trial datasets, and biomarker datasets simultaneously. The existing workflow required researchers to manually cross-reference multiple databases, often spending days finding patterns that could accelerate drug candidate identification.</p>
-    <p class="cs-text">The goal: design an AI assistant interface that lets researchers ask complex questions in natural language and receive structured, visualised insights — dramatically compressing the time from question to discovery.</p>
-    <div class="cs-img cs-img-16-9">[ AI research interface — overview screen ]</div>
-  </div>
-
-  <div class="cs-section">
-    <h2 class="cs-section-title">Bridging the Gap Between Raw Data and Actionable Insight</h2>
-    <p class="cs-text">The research team had access to vast amounts of data but lacked a unified interface to query it intelligently. Discovery sessions with the team surfaced four core friction points:</p>
-    <div class="cs-insights">
-      <div class="cs-insight">
-        <div class="cs-insight-title">Data fragmentation</div>
-        <div class="cs-insight-text">Researchers switching between 6+ tools to cross-reference data, losing context and time with every transition.</div>
-      </div>
-      <div class="cs-insight">
-        <div class="cs-insight-title">High cognitive load</div>
-        <div class="cs-insight-text">Complex datasets presented in raw tabular form — no visual hierarchy or guided interpretation to reduce the mental burden.</div>
-      </div>
-      <div class="cs-insight">
-        <div class="cs-insight-title">Slow iteration cycles</div>
-        <div class="cs-insight-text">Hypothesis testing took days. Researchers needed results in minutes to stay in flow state and maintain scientific momentum.</div>
-      </div>
-      <div class="cs-insight">
-        <div class="cs-insight-title">Trust in AI outputs</div>
-        <div class="cs-insight-text">Scientists needed transparent reasoning behind AI suggestions — black-box responses were unacceptable in a clinical context.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="cs-section">
-    <h2 class="cs-section-title">Understanding How Scientists Actually Think</h2>
-    <p class="cs-text">I conducted 24 in-depth interviews with oncology researchers, data scientists, and clinical trial managers across three continents. The research revealed distinct mental models around how scientists form hypotheses and expect data to respond.</p>
-    <div class="cs-quote">
-      <p class="cs-quote-text">"I don't want to learn a new query language. I want to ask the data a question the way I'd ask a colleague."</p>
-      <p class="cs-quote-attr">— Senior Research Scientist, Pfizer Oncology</p>
-    </div>
-    <p class="cs-text">Researchers spent 40% of their time on data retrieval, not analysis — an enormous opportunity for AI to intervene. Visualisations were static exports; scientists wanted live, exploratory charts they could interrogate in real time. And AI recommendations without provenance were immediately dismissed — citation trails were non-negotiable.</p>
-    <div class="cs-img cs-img-16-9">[ Research synthesis — affinity map and insight themes ]</div>
-  </div>
-
-  <div class="cs-section">
-    <h2 class="cs-section-title">Two Researchers, Two Very Different Needs</h2>
-    <div class="cs-persona">
-      <div class="cs-persona-name">Dr. Priya Nair</div>
-      <div class="cs-persona-role">Senior Oncology Researcher — 15 years experience, hypothesis-driven</div>
-      <p class="cs-persona-text">Wants to test specific hypotheses quickly against large datasets. Values accuracy and source transparency above all. Frustrated by interfaces that require IT support to operate. Her primary question: "What does the data say about this drug-target combination?"</p>
-    </div>
-    <div class="cs-persona">
-      <div class="cs-persona-name">Marcus Heide</div>
-      <div class="cs-persona-role">Computational Biology Lead — data-first, exploration-focused</div>
-      <p class="cs-persona-text">Explores datasets without a fixed hypothesis, looking for unexpected patterns. Needs powerful filtering, custom visualisation types, and the ability to export findings. His primary question: "What patterns exist in this dataset that I haven't thought to look for?"</p>
+    <h2 class="cs-section-title">The Problem Worth Solving</h2>
+    <p class="cs-text">Pfizer's oncology researchers were drowning in data they couldn't query intelligently. Cross-referencing 15+ databases manually, spending 40% of their time on retrieval rather than analysis, and waiting days for insights that should take minutes. The opportunity was clear: eliminate the gap between question and discovery.</p>
+    <div style="background: var(--fog); border-left: 3px solid var(--c1); border-radius: 0 6px 6px 0; padding: 24px 28px; margin-top: 24px;">
+      <p style="font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--c1); margin-bottom: 10px;">Project Goal</p>
+      <p style="font-family: var(--serif); font-size: clamp(18px, 1.6vw, 22px); line-height: 1.55; letter-spacing: -.02em; color: var(--text);">Design an AI assistant interface that lets researchers ask complex questions in natural language and receive structured, visualised insights — dramatically compressing the time from question to discovery.</p>
     </div>
   </div>
 
   <div class="cs-section">
     <h2 class="cs-section-title">From Question to Insight in Seconds</h2>
     <p class="cs-text">The core interaction model: researchers type a question in plain English. The AI parses intent, queries the relevant datasets, and returns a visualised insight panel — with source citations, confidence indicators, and suggested follow-up queries.</p>
-    <div class="cs-img cs-img-16-9">[ Prompt interface — question entry with AI reasoning display ]</div>
-    <p class="cs-text">Three core surfaces were designed: the Prompt Interface (question entry + AI reasoning display), the Visualisation Canvas (interactive charts, network graphs, heatmaps), and the Insight Library (saved queries and collaborative annotations).</p>
-    <div class="cs-img-2col">
-      <div class="cs-img">[ Visualisation canvas — interactive network graph ]</div>
-      <div class="cs-img">[ Insight library — saved queries and annotations ]</div>
-    </div>
-    <p class="cs-text">AI transparency was not a nice-to-have for expert users — it was the product. Without interpretable reasoning, the tool would have been rejected regardless of its accuracy. Every AI response shows its sources, confidence levels, and the datasets it queried.</p>
+    <figure style="margin:40px 0;">
+      <img src="cs1-overview.png" alt="Research Assistant — desktop overview screen" style="width:100%; border-radius:10px; border:1px solid var(--border); display:block;">
+      <figcaption style="font-family:var(--sans); font-size:12px; color:var(--text-3); margin-top:12px; text-align:center;">The home screen — researchers select a focus area and enter a query in natural language.</figcaption>
+    </figure>
+    <figure style="margin:40px 0;">
+      <img src="cs1-interaction.png" alt="Research Assistant — natural language query returning a grouped bar chart for Gefitinib resistance scores" style="width:100%; border-radius:10px; border:1px solid var(--border); display:block;">
+      <figcaption style="font-family:var(--sans); font-size:12px; color:var(--text-3); margin-top:12px; text-align:center;">A researcher queries resistance scores for Gefitinib across alteration types — the AI returns a structured, interactive chart in seconds.</figcaption>
+    </figure>
+    <p class="cs-text">AI transparency was not a nice-to-have for expert users — it was the product. Every AI response shows its sources, confidence levels, and the datasets it queried. Without interpretable reasoning, the tool would have been rejected regardless of its accuracy.</p>
   </div>
 
   <div class="cs-section">
-    <h2 class="cs-section-title">From Stakeholder Alignment to Validated Prototype</h2>
-    <div class="cs-steps" style="grid-template-columns: repeat(5,1fr);">
-      <div class="cs-step"><div class="cs-step-num">01</div><div class="cs-step-title">Discovery</div><div class="cs-step-text">Stakeholder interviews, workflow shadowing, competitor audit</div></div>
-      <div class="cs-step"><div class="cs-step-num">02</div><div class="cs-step-title">Research</div><div class="cs-step-text">24 in-depth interviews, task analysis, mental model mapping</div></div>
-      <div class="cs-step"><div class="cs-step-num">03</div><div class="cs-step-title">Ideation</div><div class="cs-step-text">Design sprints, sketching sessions, concept testing</div></div>
-      <div class="cs-step"><div class="cs-step-num">04</div><div class="cs-step-title">Design</div><div class="cs-step-text">Wireframes, high-fidelity UI, interactive prototypes</div></div>
-      <div class="cs-step"><div class="cs-step-num">05</div><div class="cs-step-title">Validate</div><div class="cs-step-text">Usability testing, A/B testing, stakeholder sign-off</div></div>
+    <h2 class="cs-section-title">What the Research Revealed</h2>
+    <div class="cs-quote">
+      <p class="cs-quote-text">"I don't want to learn a new query language. I want to ask the data a question the way I'd ask a colleague."</p>
+      <p class="cs-quote-attr">— Senior Research Scientist, Pfizer Oncology</p>
+    </div>
+    <p class="cs-text">I conducted 24 in-depth interviews with oncology researchers, data scientists, and clinical trial managers across three continents — plus shadowing sessions and a 2-week structured user test with 35 team members. Four themes consistently surfaced:</p>
+    <div class="cs-insight-themes" style="margin-top:32px;">
+      <div class="cs-insight-theme cs-insight-theme--red">
+        <div class="cs-insight-theme-badge">01</div>
+        <div class="cs-insight-theme-title">Discovery Timeline Bottleneck</div>
+        <div class="cs-insight-theme-body">3–6 months consumed in literature review alone — before a single hypothesis is tested.</div>
+        <div class="cs-insight-theme-impact">
+          <span class="cs-insight-impact-label">Impact</span>
+          Delay in life-saving cancer treatments reaching patients.
+        </div>
+      </div>
+      <div class="cs-insight-theme cs-insight-theme--blue">
+        <div class="cs-insight-theme-badge">02</div>
+        <div class="cs-insight-theme-title">Information Fragmentation Crisis</div>
+        <div class="cs-insight-theme-body">Scientists navigating 15+ disconnected databases daily with no unified query layer.</div>
+        <div class="cs-insight-theme-impact">
+          <span class="cs-insight-impact-label">Impact</span>
+          Critical compound-target relationships are routinely missed.
+        </div>
+      </div>
+      <div class="cs-insight-theme cs-insight-theme--amber">
+        <div class="cs-insight-theme-badge">03</div>
+        <div class="cs-insight-theme-title">Research Duplication Issue</div>
+        <div class="cs-insight-theme-body">Teams unknowingly duplicating efforts across siloed labs and institutions.</div>
+        <div class="cs-insight-theme-impact">
+          <span class="cs-insight-impact-label">Impact</span>
+          Wasted resources that could fund entirely new research directions.
+        </div>
+      </div>
+      <div class="cs-insight-theme cs-insight-theme--green">
+        <div class="cs-insight-theme-badge">04</div>
+        <div class="cs-insight-theme-title">Visualisation Gap</div>
+        <div class="cs-insight-theme-body">90% of research presentations require manual chart and diagram creation from scratch.</div>
+        <div class="cs-insight-theme-impact">
+          <span class="cs-insight-impact-label">Impact</span>
+          Automated generation of research visualisations remains entirely absent.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @media(max-width:640px){
+      .cs3-decision-row { flex-direction:column !important; gap:10px !important; }
+      .cs3-decision-num { margin-top:0 !important; }
+      .cs3-decision-cards { flex-direction:column !important; }
+    }
+  </style>
+  <div class="cs-section">
+    <h2 class="cs-section-title">From Concepts to Decisions</h2>
+    <p class="cs-text">Three interaction decisions that shaped the core experience.</p>
+    <div style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-top:28px;">
+
+      <div style="padding:32px 36px; background:var(--white);">
+        <div class="cs3-decision-row" style="display:flex; gap:20px; align-items:flex-start;">
+          <div class="cs3-decision-num" style="flex-shrink:0; width:36px; height:36px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; font-size:16px; margin-top:2px;">01</div>
+          <div>
+            <h3 style="font-size:17px; font-weight:600; color:var(--text); margin:0 0 6px;">Search interface vs structured query builder</h3>
+            <p style="font-size:13px; color:var(--text-2); line-height:1.6; margin:0 0 12px;">Researchers wanted to ask questions using domain language rather than learn another system. Natural language removed the friction of query construction entirely.</p>
+            <div class="cs3-decision-cards" style="display:flex; gap:12px;">
+              <div style="flex:1; background:var(--fog); border-radius:6px; padding:12px 14px; border-left:3px solid #ccc;">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--text-3); margin-bottom:4px;">Explored</div>
+                <div style="font-size:13px; color:var(--text-2);">Filters, query-builder, conversational input</div>
+              </div>
+              <div style="flex:1; background:#EBF2FF; border-radius:6px; padding:12px 14px; border-left:3px solid var(--c1);">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--c1); margin-bottom:4px;">Selected</div>
+                <div style="font-size:13px; color:var(--text-2);">Natural-language input</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:32px 36px; background:var(--white); border-top:1px solid var(--border);">
+        <div class="cs3-decision-row" style="display:flex; gap:20px; align-items:flex-start;">
+          <div class="cs3-decision-num" style="flex-shrink:0; width:36px; height:36px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; font-size:16px; margin-top:2px;">02</div>
+          <div>
+            <h3 style="font-size:17px; font-weight:600; color:var(--text); margin:0 0 6px;">Answer first vs evidence first</h3>
+            <p style="font-size:13px; color:var(--text-2); line-height:1.6; margin:0 0 12px;">Expert users needed to interrogate the reasoning before trusting the result. Surfacing sources, confidence, and queried datasets made the AI's logic visible and auditable.</p>
+            <div class="cs3-decision-cards" style="display:flex; gap:12px;">
+              <div style="flex:1; background:var(--fog); border-radius:6px; padding:12px 14px; border-left:3px solid #ccc;">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--text-3); margin-bottom:4px;">Explored</div>
+                <div style="font-size:13px; color:var(--text-2);">Clean AI-generated answer / answer with expandable evidence</div>
+              </div>
+              <div style="flex:1; background:#EBF2FF; border-radius:6px; padding:12px 14px; border-left:3px solid var(--c1);">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--c1); margin-bottom:4px;">Selected</div>
+                <div style="font-size:13px; color:var(--text-2);">Sources + confidence + queried datasets</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:32px 36px; background:var(--white); border-top:1px solid var(--border);">
+        <div class="cs3-decision-row" style="display:flex; gap:20px; align-items:flex-start;">
+          <div class="cs3-decision-num" style="flex-shrink:0; width:36px; height:36px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; font-size:16px; margin-top:2px;">03</div>
+          <div>
+            <h3 style="font-size:17px; font-weight:600; color:var(--text); margin:0 0 6px;">Static answer vs exploratory result</h3>
+            <p style="font-size:13px; color:var(--text-2); line-height:1.6; margin:0 0 12px;">Researchers rarely stop after the first answer — one finding creates the next question. An exploratory model with interactive visualisations and suggested follow-ups matched how scientists actually think.</p>
+            <div class="cs3-decision-cards" style="display:flex; gap:12px;">
+              <div style="flex:1; background:var(--fog); border-radius:6px; padding:12px 14px; border-left:3px solid #ccc;">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--text-3); margin-bottom:4px;">Explored</div>
+                <div style="font-size:13px; color:var(--text-2);">Generated summary / interactive visualisation + suggested follow-ups</div>
+              </div>
+              <div style="flex:1; background:#EBF2FF; border-radius:6px; padding:12px 14px; border-left:3px solid var(--c1);">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--c1); margin-bottom:4px;">Selected</div>
+                <div style="font-size:13px; color:var(--text-2);">Exploratory model</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -1663,12 +1890,76 @@ function handleTalkSubmit(e) {
       <div class="cs-insight"><div class="cs-insight-title">92% user satisfaction</div><div class="cs-insight-text">Post-pilot survey. The natural language interface was consistently cited as the standout feature.</div></div>
       <div class="cs-insight"><div class="cs-insight-title">3× research throughput</div><div class="cs-insight-text">Teams could explore 3× as many drug-target hypotheses per week compared to the legacy workflow.</div></div>
     </div>
-    <p class="cs-text">The biggest design lesson from this project: designing for domain experts requires deep humility. AI transparency is not a nice-to-have — it is the product. Without interpretable reasoning, the tool would have been rejected regardless of its accuracy.</p>
+    <div class="cs-testimonials">
+      <div class="cs-testimonial">
+        <p class="cs-testimonial-quote">"The rapid generation of these visualizations is truly remarkable. Previously, creating such insightful representations would have consumed two to three weeks of dedicated effort within my research workflow. However, with the assistance of this resource, I am now able to obtain these visualizations in under a minute, representing a significant acceleration of my research process."</p>
+        <div class="cs-testimonial-divider"></div>
+        <div class="cs-testimonial-author">Dr. Mika Chan*</div>
+        <div class="cs-testimonial-role">Senior Computational Biologist</div>
+      </div>
+      <div class="cs-testimonial">
+        <p class="cs-testimonial-quote">"I am highly impressed with the capabilities of Research Assistant. Its potential is evident, and I envision it being particularly valuable for my team, especially those members whose expertise lies in data analysis rather than software development. The intuitive nature of the platform could empower them to conduct more sophisticated analyses without requiring advanced programming skills."</p>
+        <div class="cs-testimonial-divider"></div>
+        <div class="cs-testimonial-author">Dr. Michael Rodriguez*</div>
+        <div class="cs-testimonial-role">Director, Computational Biology</div>
+      </div>
+      <div class="cs-testimonial">
+        <p class="cs-testimonial-quote">"The speed with which RA generates document summaries is truly impressive. This capability significantly accelerates my document creation process, enabling me to produce materials in mere minutes that previously required several days of manual effort. This represents a substantial improvement in efficiency, particularly given the monthly volume of documents I generate."</p>
+        <div class="cs-testimonial-divider"></div>
+        <div class="cs-testimonial-author">Dr. Lizzie Watson*</div>
+        <div class="cs-testimonial-role">Research Team Lead</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── WHAT I'LL TAKE FORWARD ──────────────────────────── -->
+  <style>
+    .cs1-takeforward-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--border); border-radius:10px; overflow:hidden; margin-top:32px; }
+    @media(max-width:768px){ .cs1-takeforward-grid { grid-template-columns:1fr; } }
+  </style>
+  <div class="cs-section">
+    <h2 class="cs-section-title">Reflections</h2>
+    <div class="cs1-takeforward-grid">
+
+      <div style="background:var(--white); padding:36px 32px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <div style="width:40px; height:40px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c1);">User Diversity</span>
+        </div>
+        <p style="font-size:18px; font-weight:600; color:var(--text); line-height:1.35; margin:0 0 10px;">Expert UX isn't necessarily complex UX.</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.6; margin:0;">Designing for scientists with radically different technical fluency taught me that domain sophistication doesn't mean users want sophisticated interfaces.</p>
+      </div>
+
+      <div style="background:var(--white); padding:36px 32px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <div style="width:40px; height:40px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c1);">AI Trust</span>
+        </div>
+        <p style="font-size:18px; font-weight:600; color:var(--text); line-height:1.35; margin:0 0 10px;">Explainability is part of the interaction model.</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.6; margin:0;">Building trust in AI-generated research outputs showed me that transparency isn't something added after the answer — it's woven into how the answer is given.</p>
+      </div>
+
+      <div style="background:var(--white); padding:36px 32px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <div style="width:40px; height:40px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c1);">Data Communication</span>
+        </div>
+        <p style="font-size:18px; font-weight:600; color:var(--text); line-height:1.35; margin:0 0 10px;">Visualisation is part of the reasoning.</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.6; margin:0;">Turning complex datasets into understandable research outputs showed that the right representation helps researchers interpret relationships, not just consume an answer.</p>
+      </div>
+
+    </div>
   </div>
 
 </div><!-- /cs-body -->
 
-<a href="#cs2" class="cs-next">
+<a href="cs2.html" class="cs-next">
   <div>
     <div class="cs-next-label">Next case study</div>
     <div class="cs-next-title">Designing a Premium Delivery Service Experience</div>
@@ -1684,8 +1975,8 @@ function handleTalkSubmit(e) {
 <div class="page-label">Case Study 2 — Premium Delivery Service Experience · Yodel · 2023</div>
 
 <nav class="cs-nav">
-  <a href="#top" class="cs-nav-logo">Suganth Chellamuthu</a>
-  <a href="#work" class="cs-back">← Back to all work</a>
+  <a href="index.html" class="cs-nav-logo"><img src="suche-logo.svg" alt="SuChe" style="height:26px;width:auto;display:block;"><span>Suganth Chellamuthu</span></a>
+  <a href="index.html#work" class="cs-back">← Back to all work</a>
 </nav>
 
 <div id="cs2" class="cs-hero">
@@ -1750,126 +2041,16 @@ function handleTalkSubmit(e) {
       <div class="cs-insight"><div class="cs-insight-title">The doorstep moment</div><div class="cs-insight-text">Consumers associated premium with the physical interaction — how a parcel is presented, packaging care, driver professionalism.</div></div>
       <div class="cs-insight"><div class="cs-insight-title">Retailer control</div><div class="cs-insight-text">Retailers needed branded delivery experiences — white-label capability was a major commercial unlock.</div></div>
     </div>
-    <!-- RESEARCH INSIGHTS -->
-    <div class="ri-wrap">
-      <div class="ri-group">
-        <h3 class="ri-group-title">Customer Insights</h3>
-        <div class="ri-grid">
-          <div class="ri-card ri-pain">
-            <span class="ri-badge ri-badge-pain">Pain point</span>
-            <div class="ri-card-title">Delivery Window Uncertainty</div>
-            <div class="ri-card-text">Customers noted unclear or too-broad delivery windows as their primary frustration, leading to missed deliveries and wasted time.</div>
-          </div>
-          <div class="ri-card ri-opp">
-            <span class="ri-badge ri-badge-opp">Opportunity</span>
-            <div class="ri-card-title">Scheduling Preferences</div>
-            <div class="ri-card-text">Many customers are willing to pay extra for precise delivery windows.</div>
-          </div>
-          <div class="ri-card ri-insight">
-            <span class="ri-badge ri-badge-insight">Insight</span>
-            <div class="ri-card-title">Communication Channels</div>
-            <div class="ri-card-text">Most customers prefer immediate updates over email for time-sensitive delivery information.</div>
-          </div>
-          <div class="ri-card ri-pain">
-            <span class="ri-badge ri-badge-pain">Pain point</span>
-            <div class="ri-card-title">Customer Communication Gaps</div>
-            <div class="ri-card-text">Customers reported lapse in delivery updates, occurrence of delays and issues due to communication gaps.</div>
-          </div>
-          <div class="ri-card ri-insight">
-            <span class="ri-badge ri-badge-insight">Insight</span>
-            <div class="ri-card-title">Neighbour Relations</div>
-            <div class="ri-card-text">Some customers are comfortable with neighbour delivery but want to pre-approve specific neighbours.</div>
-          </div>
-          <div class="ri-card ri-opp">
-            <span class="ri-badge ri-badge-opp">Opportunity</span>
-            <div class="ri-card-title">Service Rating</div>
-            <div class="ri-card-text">Most customers rate delivery experience if the process is quick and simple or if the experience is bad.</div>
-          </div>
-          <div class="ri-card ri-insight">
-            <span class="ri-badge ri-badge-insight">Insight</span>
-            <div class="ri-card-title">Alternative Locations</div>
-            <div class="ri-card-text">Most customers regularly use workplace as delivery address to avoid missed deliveries.</div>
-          </div>
-          <div class="ri-card ri-pain">
-            <span class="ri-badge ri-badge-pain">Pain point</span>
-            <div class="ri-card-title">Parcel Security Concerns</div>
-            <div class="ri-card-text">Mostly urban customers expressed anxiety about package theft when deliveries were left unattended at their doorstep.</div>
-          </div>
-          <div class="ri-card ri-opp">
-            <span class="ri-badge ri-badge-opp">Opportunity</span>
-            <div class="ri-card-title">Loyalty Drivers</div>
-            <div class="ri-card-text">Most customers choose retailers based on delivery service quality when price differences are minimal.</div>
-          </div>
-          <div class="ri-card ri-opp">
-            <span class="ri-badge ri-badge-opp">Opportunity</span>
-            <div class="ri-card-title">Premium Services</div>
-            <div class="ri-card-text">Customers are willing to pay premium for same-day delivery rescheduling options.</div>
-          </div>
-          <div class="ri-card ri-opp">
-            <span class="ri-badge ri-badge-opp">Opportunity</span>
-            <div class="ri-card-title">Location Flexibility</div>
-            <div class="ri-card-text">Some customers want the ability to change delivery address shortly before delivery.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="ri-group">
-        <h3 class="ri-group-title">Delivery Operation Insights</h3>
-        <div class="ri-grid">
-          <div class="ri-card ri-pain">
-            <span class="ri-badge ri-badge-pain">Pain point</span>
-            <div class="ri-card-title">Hand held Terminal Issues</div>
-            <div class="ri-card-text">Handheld terminals (HHT) frequently encountered software glitches, leading to suboptimal delivery routes due to inefficient route optimisation by the HHTs.</div>
-          </div>
-          <div class="ri-card ri-pain">
-            <span class="ri-badge ri-badge-pain">Pain point</span>
-            <div class="ri-card-title">Service Centre Tracking</div>
-            <div class="ri-card-text">Tracking of the delivery from the service centre (SVC) by the SVC manager was difficult with inefficient software and lack of real time updates.</div>
-          </div>
-          <div class="ri-card ri-pain">
-            <span class="ri-badge ri-badge-pain">Pain point</span>
-            <div class="ri-card-title">Inconsistent Labels</div>
-            <div class="ri-card-text">Delivery staff encounter difficulties when scanning labels due to inconsistencies between two types: the green and yellow labels.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CUSTOMER JOURNEY MAP -->
-    <div class="cjm-wrap">
-      <h3 class="cjm-title">Customer Journey Map</h3>
-      <div style="margin-top:16px; border-radius:8px; overflow:hidden;">
-        <img src="cs2-journey-map.jpg" alt="Customer journey map — scenarios, actors, pain points and exceptions across the full delivery lifecycle" style="width:100%;height:auto;display:block;">
-      </div>
-    </div>
   </div>
 
   <!-- ── COLLABORATIVE CREATION ─────────────────────────── -->
   <div class="cs-section">
     <h2 class="cs-section-title">Collaborative Creation with Stakeholders</h2>
-    <p class="cs-text">Research alone doesn't change organisations — people do. To move from insight to action, I brought together a cross-functional group of stakeholders including product managers, operations leads, customer service representatives, depot managers, and senior leadership from Yodel. Rather than presenting findings top-down, I facilitated a structured co-design workshop where every voice shaped the solution.</p>
-    <p class="cs-text">Participants were organised into focused teams, each handed a specific "how might we" challenge derived directly from the pain points and opportunity areas we uncovered in research. This framing kept ideation grounded in real problems while opening space for creative thinking.</p>
-    <div class="cs-hmw-grid">
-      <div class="cs-hmw-card">
-        <div class="cs-hmw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11L10 22L20 10.5H13.5L13 2Z"/></svg></div>
-        <div class="cs-hmw-title">Safe and Fast Delivery</div>
-        <div class="cs-hmw-q">How might we ensure the customers get the parcels faster and secure?</div>
-      </div>
-      <div class="cs-hmw-card">
-        <div class="cs-hmw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
-        <div class="cs-hmw-title">Delivery Orchestration</div>
-        <div class="cs-hmw-q">How might we optimise the delivery for the delivery personnel to deliver efficiently?</div>
-      </div>
-      <div class="cs-hmw-card">
-        <div class="cs-hmw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
-        <div class="cs-hmw-title">Branded Delivery</div>
-        <div class="cs-hmw-q">How might we reinforce the brand values and upsell products during the delivery?</div>
-      </div>
-    </div>
+    <p class="cs-text">Research alone doesn't change organisations — people do. I facilitated a structured co-design workshop bringing together product managers, operations leads, service centre managers, and senior leadership. Rather than presenting findings top-down, every voice shaped the solution direction.</p>
     <div class="cs-img cs-img-16-9" style="margin-top:32px; padding:0; overflow:hidden;">
       <img src="cs2-workshop.jpg" alt="Stakeholder workshop — rapid ideation session" style="width:100%;height:100%;object-fit:cover;display:block;">
     </div>
-    <p class="cs-text" style="margin-top:32px;">Through rapid ideation sessions, we generated a variety of innovative solutions for the prioritised challenges. The most promising ideas were prioritised and refined to create the cohesive journey. We narrowed down to one goal for the service.</p>
+    <p class="cs-text" style="margin-top:32px;">We converged on a single north star for the service.</p>
     <div class="cs-quote-block">
       <p class="cs-quote-text">"An integrated delivery ecosystem that connects customers, delivery personnel, and operations in real-time, creating a seamless and transparent experience."</p>
     </div>
@@ -1925,7 +2106,7 @@ function handleTalkSubmit(e) {
   <!-- ── SERVICE BLUEPRINT TABLE ────────────────────────── -->
   <div class="cs-section">
     <h2 class="cs-section-title">Service Blueprint</h2>
-    <p class="cs-text">The service blueprint mapped every actor, touchpoint, and backstage process across the full premium delivery journey — from retailer booking through to post-delivery feedback. It became the single source of truth for cross-functional alignment across product, operations, and logistics teams.</p>
+    <p class="cs-text">The service blueprint is the primary deliverable of this engagement — a strategic design document that mapped every actor, touchpoint, and backstage process across the full premium delivery journey. It aligned product, operations, and 400+ Yodel drivers across 4 service centres, and became the build specification teams worked from to launch the premium tier.</p>
     <div class="cs-blueprint-wrap">
       <div class="cs-blueprint-inner">
         <table class="blueprint-table">
@@ -1995,7 +2176,7 @@ function handleTalkSubmit(e) {
               <td><span class="bp-muted">—</span></td>
               <td><div class="bp-cell-title">Accepts premium job</div><div class="bp-cell-text">Receives assignment on Driver App. Reviews delivery requirements and access notes.</div></td>
               <td><div class="bp-cell-title">Reviews manifest</div><div class="bp-cell-text">Checks premium parcel list and handling instructions before departure.</div></td>
-              <td><div class="bp-cell-title">Collects from depot</div><div class="bp-cell-text">Scans premium parcels. White-glove handling protocol. Loads in designated vehicle area.</div></td>
+              <td><div class="bp-cell-title">Collects from service centre</div><div class="bp-cell-text">Scans premium parcels. White-glove handling protocol. Loads in designated vehicle area.</div></td>
               <td><div class="bp-cell-title">Follows premium route</div><div class="bp-cell-text">Optimised navigation sequence. Sends automated ETA updates at key milestones.</div></td>
               <td><div class="bp-cell-title">Premium delivery protocol</div><div class="bp-cell-text">Self-introduction by name. Careful handover. Signature or photo PoD. Marks delivered.</div></td>
               <td><div class="bp-cell-title">Logs exception</div><div class="bp-cell-text">Reports reason in Driver App (no answer, access, damaged). Triggers customer alert.</div></td>
@@ -2007,7 +2188,7 @@ function handleTalkSubmit(e) {
               <td><div class="bp-cell-title">Slot allocation</div><div class="bp-cell-text">Schedules 2-hr window. Assigns to driver pool. Reserves vehicle capacity.</div></td>
               <td><div class="bp-cell-title">Comms trigger</div><div class="bp-cell-text">Fires confirmation with driver name and photo. Updates CRM record.</div></td>
               <td><div class="bp-cell-title">Premium sort &amp; label</div><div class="bp-cell-text">Warehouse priority lane. Premium packaging applied. QR label with white-glove flag.</div></td>
-              <td><div class="bp-cell-title">Depot handoff</div><div class="bp-cell-text">Priority collection bay. Scan confirms handoff to named driver. Manifest locked.</div></td>
+              <td><div class="bp-cell-title">Service Centre handoff</div><div class="bp-cell-text">Priority collection bay. Scan confirms handoff to named driver. Manifest locked.</div></td>
               <td><div class="bp-cell-title">Live SLA monitoring</div><div class="bp-cell-text">Dashboard tracks each premium parcel. Flags at-risk deliveries for intervention.</div></td>
               <td><div class="bp-cell-title">Delivery confirmed</div><div class="bp-cell-text">PoD logged. Retailer notified via API. Invoice trigger fired. Quality flag cleared.</div></td>
               <td><div class="bp-cell-title">Case management</div><div class="bp-cell-text">Exception case opened. Re-route evaluated. Retailer notified. SLA impact logged.</div></td>
@@ -2038,28 +2219,38 @@ function handleTalkSubmit(e) {
     <p class="cs-text">The premium service was designed as a connected experience across five distinct channels.</p>
     <div class="cs-5tp-grid">
       <div class="cs-5tp-card">
-        <div class="cs-5tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-        <div class="cs-5tp-title">Retailer Portal</div>
+        <div class="cs-5tp-header">
+          <div class="cs-5tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+          <div class="cs-5tp-title">Retailer Portal</div>
+        </div>
         <div class="cs-5tp-desc">Booking, branding configuration and scheduling tools for retail partners to set up and manage the premium tier.</div>
       </div>
       <div class="cs-5tp-card">
-        <div class="cs-5tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
-        <div class="cs-5tp-title">Consumer App</div>
+        <div class="cs-5tp-header">
+          <div class="cs-5tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <div class="cs-5tp-title">Consumer App</div>
+        </div>
         <div class="cs-5tp-desc">Live tracking, delivery preferences, and personalised communication — all in one branded experience.</div>
       </div>
       <div class="cs-5tp-card">
-        <div class="cs-5tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-        <div class="cs-5tp-title">Driver App</div>
+        <div class="cs-5tp-header">
+          <div class="cs-5tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+          <div class="cs-5tp-title">Driver App</div>
+        </div>
         <div class="cs-5tp-desc">Premium job management, white-glove delivery protocols, and real-time route optimisation for drivers.</div>
       </div>
       <div class="cs-5tp-card">
-        <div class="cs-5tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
-        <div class="cs-5tp-title">Physical Touchpoints</div>
+        <div class="cs-5tp-header">
+          <div class="cs-5tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+          <div class="cs-5tp-title">Physical Touchpoints</div>
+        </div>
         <div class="cs-5tp-desc">Standardised label design, premium packaging guidelines, and presentation standards at the doorstep.</div>
       </div>
       <div class="cs-5tp-card">
-        <div class="cs-5tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-        <div class="cs-5tp-title">Post-Delivery</div>
+        <div class="cs-5tp-header">
+          <div class="cs-5tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <div class="cs-5tp-title">Post-Delivery</div>
+        </div>
         <div class="cs-5tp-desc">Ratings, NPS surveys, and feedback loops that close the circle and drive continuous service improvement.</div>
       </div>
     </div>
@@ -2121,111 +2312,132 @@ function handleTalkSubmit(e) {
   <div class="cs-section">
     <h2 class="cs-section-title">The UK's First Considered Premium Delivery Tier</h2>
     <p class="cs-text">The premium tier launched in partnership with major UK retailers in 2017 — the first time a UK parcel carrier had positioned a delivery service as a considered consumer choice rather than a logistics commodity. The end-to-end design spanned retailer onboarding, consumer-facing experience, driver tooling, and physical touchpoints.</p>
-    <div class="cs-lc-grid" style="margin-top:36px;">
-      <div class="cs-lc-col">
-        <p class="cs-lc-heading">
-          <span class="cs-lc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-          What shipped
-        </p>
-        <div class="cs-lc-items">
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Premium consumer experience</div>
-            <div class="cs-lc-item-text">Named driver card, 2-hour confirmed delivery windows, live tracking, and a personalised post-delivery rating flow — all delivered under retailer co-branding.</div>
-          </div>
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Retailer &amp; operations portal</div>
-            <div class="cs-lc-item-text">A white-label booking and scheduling portal enabling retail partners to configure and manage premium delivery tiers independently.</div>
-          </div>
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Driver tooling &amp; label system</div>
-            <div class="cs-lc-item-text">Refreshed HHT interface with improved route flow and a unified label standard replacing two inconsistent legacy formats across all depots.</div>
-          </div>
+    <!-- What Shipped — horizontal bar -->
+    <style>
+      .cs2-shipped-grid { display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-top:16px; }
+      .cs2-impact-grid  { display:grid; grid-template-columns:repeat(4,1fr); border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-top:16px; }
+      @media(max-width:640px){
+        .cs2-shipped-grid, .cs2-impact-grid { grid-template-columns:1fr; }
+        .cs2-shipped-grid > div, .cs2-impact-grid > div { border-right:none !important; border-bottom:1px solid var(--border); }
+        .cs2-shipped-grid > div:last-child, .cs2-impact-grid > div:last-child { border-bottom:none; }
+      }
+    </style>
+    <p class="cs-lc-heading" style="margin-top:36px;">
+      <span class="cs-lc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+      What shipped
+    </p>
+    <div class="cs2-shipped-grid">
+      <div style="padding:24px 28px; border-right:1px solid var(--border);">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+          <div style="flex-shrink:0; width:40px; height:40px; border-radius:8px; background:#FEF0F0; display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <strong style="font-size:14px; color:var(--text);">Consumer web app</strong>
         </div>
+        <p style="margin:0; font-size:13px; color:var(--text-2); line-height:1.5;">Named driver card, 2-hour windows, live tracking — co-branded per retailer.</p>
       </div>
-      <div class="cs-lc-col">
-        <p class="cs-lc-heading">
-          <span class="cs-lc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
-          Impact
-        </p>
-        <div class="cs-lc-items">
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Differentiated proposition in a commoditised market</div>
-            <div class="cs-lc-item-text">Yodel became one of the first UK carriers to offer a commercially structured premium tier, providing a defensible alternative to competing on price alone.</div>
-          </div>
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Operational improvements at the last mile</div>
-            <div class="cs-lc-item-text">Standardised labels and the HHT refresh reduced friction in depot workflows, with fewer scanning errors and clearer routing for delivery staff.</div>
-          </div>
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Foundation for retail partnerships</div>
-            <div class="cs-lc-item-text">The retailer portal and co-branding framework enabled Yodel to onboard retail partners at scale — turning a design system into a commercial growth lever.</div>
-          </div>
+      <div style="padding:24px 28px; border-right:1px solid var(--border);">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+          <div style="flex-shrink:0; width:40px; height:40px; border-radius:8px; background:#FEF0F0; display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <strong style="font-size:14px; color:var(--text);">Retailer portal</strong>
         </div>
+        <p style="margin:0; font-size:13px; color:var(--text-2); line-height:1.5;">White-label booking &amp; scheduling — partners configure their own premium tier.</p>
+      </div>
+      <div style="padding:24px 28px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+          <div style="flex-shrink:0; width:40px; height:40px; border-radius:8px; background:#FEF0F0; display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+          <strong style="font-size:14px; color:var(--text);">Delivery experience</strong>
+        </div>
+        <p style="margin:0; font-size:13px; color:var(--text-2); line-height:1.5;">Refreshed HHT interface + unified label replacing legacy formats across 4 service centres on a pilot basis.</p>
+      </div>
+    </div>
+
+    <!-- Impact — horizontal metric bar -->
+    <p class="cs-lc-heading" style="margin-top:40px;">
+      <span class="cs-lc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span>
+      Impact
+    </p>
+    <div class="cs2-impact-grid">
+      <div style="padding:24px 20px; border-right:1px solid var(--border);">
+        <div style="font-size:36px; font-weight:700; color:var(--c2); font-family:var(--serif); line-height:1; margin-bottom:6px;">44%</div>
+        <div style="font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--text-3); margin-bottom:10px;">Premium adoption</div>
+        <p style="margin:0; font-size:13px; color:var(--text-2); line-height:1.5;">Well above the 25% launch target.</p>
+      </div>
+      <div style="padding:24px 20px; border-right:1px solid var(--border);">
+        <div style="font-size:36px; font-weight:700; color:var(--c2); font-family:var(--serif); line-height:1; margin-bottom:6px;">+31pt</div>
+        <div style="font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--text-3); margin-bottom:10px;">NPS improvement</div>
+        <p style="margin:0; font-size:13px; color:var(--text-2); line-height:1.5;">Driven by communication quality and the named driver card.</p>
+      </div>
+      <div style="padding:24px 20px; border-right:1px solid var(--border);">
+        <div style="font-size:36px; font-weight:700; color:var(--c2); font-family:var(--serif); line-height:1; margin-bottom:6px;">−28%</div>
+        <div style="font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--text-3); margin-bottom:10px;">Missed deliveries</div>
+        <p style="margin:0; font-size:13px; color:var(--text-2); line-height:1.5;">2-hour windows and live tracking put customers in control.</p>
+      </div>
+      <div style="padding:24px 20px;">
+        <div style="font-size:36px; font-weight:700; color:var(--c2); font-family:var(--serif); line-height:1; margin-bottom:6px;">4.6★</div>
+        <div style="font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--text-3); margin-bottom:10px;">Customer rating</div>
+        <p style="margin:0; font-size:13px; color:var(--text-2); line-height:1.5;">Doorstep interaction and label design cited most.</p>
       </div>
     </div>
   </div>
 
-  <!-- ── LEARNINGS & CHALLENGES ─────────────────────────── -->
+  <!-- ── WHAT I'LL CARRY FORWARD ──────────────────────────── -->
+  <style>
+    .cs2-carryforward-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--border); border-radius:10px; overflow:hidden; margin-top:32px; }
+    @media(max-width:768px){ .cs2-carryforward-grid { grid-template-columns:1fr; } }
+  </style>
   <div class="cs-section">
-    <h2 class="cs-section-title">Learnings &amp; Challenges</h2>
-    <p class="cs-text">A project of this scale — spanning service design, product design, operations, and physical touchpoints — taught me as much as it delivered. Not everything went smoothly, and the constraints were often as instructive as the breakthroughs.</p>
+    <h2 class="cs-section-title">Reflections</h2>
+    <div class="cs2-carryforward-grid">
 
-    <div class="cs-lc-grid">
-      <div class="cs-lc-col">
-        <p class="cs-lc-heading">
-          <span class="cs-lc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
-          Challenges
-        </p>
-        <div class="cs-lc-items">
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Aligning a fragmented organisation</div>
-            <div class="cs-lc-item-text">Yodel's operations, technology, and commercial teams had different definitions of success. Getting all three to agree on what "premium" meant — before a single pixel was designed — required more facilitation than I anticipated. Misalignment early would have derailed the project entirely.</div>
+      <div style="background:var(--white); padding:36px 32px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <div style="width:40px; height:40px; border-radius:8px; background:#FEF0F0; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </div>
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Legacy systems as a design constraint</div>
-            <div class="cs-lc-item-text">Several design decisions were shaped by backend limitations — the scheduling engine, depot scan infrastructure, and HHT firmware could not be replaced in the project timeline. Designing around legacy systems without letting them define the experience was a constant balancing act.</div>
-          </div>
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Retailer buy-in without a live product</div>
-            <div class="cs-lc-item-text">We had to convince retail partners to commit to the premium tier before any consumer-facing product existed. Prototyping the retailer portal experience early — and making it feel credible — was critical to securing the first three launch partners.</div>
-          </div>
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Designing for the last mile at scale</div>
-            <div class="cs-lc-item-text">Thousands of drivers, hundreds of depots, and millions of parcels per year meant that any design decision had operational consequences far beyond what a typical product change would carry. Edge cases that would be minor bugs in a consumer app became serious operational risks here.</div>
-          </div>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c2);">Premium</span>
         </div>
+        <p style="font-size:18px; font-weight:600; color:var(--text); line-height:1.35; margin:0 0 10px;">Premium experiences start from inside.</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.6; margin:0;">It begins with internal alignment first, not customer-facing features.</p>
       </div>
 
-      <div class="cs-lc-col">
-        <p class="cs-lc-heading">
-          <span class="cs-lc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
-          Learnings
-        </p>
-        <div class="cs-lc-items">
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Service design is a political act</div>
-            <div class="cs-lc-item-text">The hardest part of this project wasn't the design — it was navigating organisational dynamics. I learned that the blueprint is as much a political alignment tool as it is a design artefact. Getting people in a room to agree on who owns each touchpoint was often more valuable than the outputs of that session.</div>
+      <div style="background:var(--white); padding:36px 32px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <div style="width:40px; height:40px; border-radius:8px; background:#FEF0F0; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           </div>
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Drivers are a design audience too</div>
-            <div class="cs-lc-item-text">Early research focused almost entirely on the customer. It wasn't until we spent time with drivers at depots that we understood how much the delivery experience depends on their workflow, tools, and morale. The HHT refresh and label standardisation emerged directly from that insight — and had outsized impact on outcomes.</div>
-          </div>
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Prototyping at the edges, not the centre</div>
-            <div class="cs-lc-item-text">We learned to test exception states — what happens when the driver can't find the address, when a parcel is damaged, when the 2-hour window is missed — before testing the happy path. Edge case resilience turned out to be the primary driver of customer trust in the premium tier.</div>
-          </div>
-          <div class="cs-lc-item">
-            <div class="cs-lc-item-title">Physical touchpoints carry disproportionate weight</div>
-            <div class="cs-lc-item-text">The label redesign and the named driver card were low-effort interventions relative to the app redesign, but customers noticed them most. The lesson: in a service experience, tangible physical moments create stronger emotional impressions than the most polished digital interface.</div>
-          </div>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c2);">Constraints</span>
         </div>
+        <p style="font-size:18px; font-weight:600; color:var(--text); line-height:1.35; margin:0 0 10px;">Legacy systems couldn't move.</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.6; margin:0;">Design had to adapt instead of replace.</p>
       </div>
+
+      <div style="background:var(--white); padding:36px 32px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <div style="width:40px; height:40px; border-radius:8px; background:#FEF0F0; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c2);">Operations</span>
+        </div>
+        <p style="font-size:18px; font-weight:600; color:var(--text); line-height:1.35; margin:0 0 10px;">Drivers are the key users.</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.6; margin:0;">Service centre observations and shadowing drivers influenced more decisions than stakeholder sessions.</p>
+      </div>
+
+      <div style="background:var(--white); padding:36px 32px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <div style="width:40px; height:40px; border-radius:8px; background:#FEF0F0; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c2);">Trust</span>
+        </div>
+        <p style="font-size:18px; font-weight:600; color:var(--text); line-height:1.35; margin:0 0 10px;">Customers remembered physical touchpoints.</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.6; margin:0;">Labels and driver identity mattered more than visual polish.</p>
+      </div>
+
     </div>
   </div>
 
 </div>
 
-<a href="#cs3" class="cs-next">
+<a href="cs3.html" class="cs-next">
   <div>
     <div class="cs-next-label">Next case study</div>
     <div class="cs-next-title">Classroom Management App — Boosting Teacher Efficiency by 57%</div>
@@ -2238,11 +2450,11 @@ function handleTalkSubmit(e) {
 <!--  CASE STUDY 3 — Classroom App          -->
 <!-- ════════════════════════════════════════ -->
 <hr class="page-divider">
-<div class="page-label">Case Study 3 — Classroom Management App · ESS IBE · 2023</div>
+<div class="page-label">Case Study 3 — Classroom Management App · ESS Education Software Solutions · 2023</div>
 
 <nav class="cs-nav">
-  <a href="#top" class="cs-nav-logo">Suganth Chellamuthu</a>
-  <a href="#work" class="cs-back">← Back to all work</a>
+  <a href="index.html" class="cs-nav-logo"><img src="suche-logo.svg" alt="SuChe" style="height:26px;width:auto;display:block;"><span>Suganth Chellamuthu</span></a>
+  <a href="index.html#work" class="cs-back">← Back to all work</a>
 </nav>
 
 <div id="cs3" class="cs-hero">
@@ -2252,7 +2464,7 @@ function handleTalkSubmit(e) {
     <span class="cs-cat">2023</span>
   </div>
   <h1 class="cs-h1">Classroom Management App Boosting Teacher Efficiency by 57%</h1>
-  <p class="cs-subtitle">UK primary school teachers spend up to 30% of their time on administrative tasks. I designed a purpose-built mobile app that put the right tools in teachers' hands — reducing admin burden and freeing time for what matters: teaching.</p>
+  <p class="cs-subtitle">UK teachers spend up to a day a week on administrative tasks — time taken away from teaching. I designed a purpose-built progressive web app that put the right tools in teachers' hands — reducing admin burden and freeing time for what matters: teaching.</p>
   <div class="cs-tags">
     <span class="cs-tag">Mobile UX</span>
     <span class="cs-tag">User Research</span>
@@ -2261,7 +2473,7 @@ function handleTalkSubmit(e) {
     <span class="cs-tag">Prototyping</span>
   </div>
   <div class="cs-meta-grid" style="margin-top:48px; max-width:540px;">
-    <div class="cs-meta-item"><div class="cs-meta-key">Client</div><div class="cs-meta-val">ESS IBE</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-key">Client</div><div class="cs-meta-val">ESS Education Software Solutions, UK</div></div>
     <div class="cs-meta-item"><div class="cs-meta-key">My role</div><div class="cs-meta-val">Lead Product Designer</div></div>
     <div class="cs-meta-item"><div class="cs-meta-key">Platform</div><div class="cs-meta-val">iOS · Android</div></div>
     <div class="cs-meta-item"><div class="cs-meta-key">Users</div><div class="cs-meta-val">UK Primary School Teachers</div></div>
@@ -2275,104 +2487,382 @@ function handleTalkSubmit(e) {
   </video>
 </div>
 
-<div class="cs-metrics" style="grid-template-columns: repeat(4, 1fr);">
-  <div class="cs-metric"><div class="cs-metric-val c3">57%</div><div class="cs-metric-label">Admin efficiency gain</div></div>
-  <div class="cs-metric"><div class="cs-metric-val c3">247</div><div class="cs-metric-label">Research data points</div></div>
-  <div class="cs-metric"><div class="cs-metric-val c3">71</div><div class="cs-metric-label">Research participants</div></div>
-  <div class="cs-metric"><div class="cs-metric-val c3">5</div><div class="cs-metric-label">Usability test rounds</div></div>
-</div>
 
 <div class="cs-body">
 
+  <!-- ①  HERO — Outcome + Hero Visual ────────────────────── -->
   <div class="cs-section">
-    <h2 class="cs-section-title">Teachers Deserve Better Tools</h2>
-    <p class="cs-text">UK primary school teachers face growing administrative demands — attendance, behaviour tracking, parent communication, lesson planning, and reporting — all managed across fragmented, desktop-only tools that were never designed for the classroom context.</p>
-    <p class="cs-text">The product brief called for a classroom management app covering attendance, behaviour logging, parent messaging, and curriculum planning — all accessible in under three taps from any screen.</p>
+    <h2 class="cs-section-title">Completing the register in under 3 minutes — every class, every day.</h2>
+    <p class="cs-text">We replaced a fragmented, desktop-bound 7–10 minute attendance process with a mobile-first progressive web app that teachers could complete one-handed, mid-lesson, without looking away from the class.</p>
+    <p class="cs-text">The result: a <strong>57% reduction in attendance admin time</strong> across the pilot — time that went back to teaching, reading groups, and one-to-one student engagement.</p>
+    <style>
+      .cs3-board-overlay { position:absolute; bottom:-6%; right:3%; width:36%; text-align:left; }
+      @media(min-width:480px){ .cs3-board-overlay { bottom:9%; } }
+      @media(min-width:768px){ .cs3-board-overlay { bottom:12%; } }
+      @media(min-width:1024px){ .cs3-board-overlay { bottom:16%; } }
+    </style>
+    <div style="position:relative; margin-top:32px; display:inline-block; width:100%;">
+      <img src="cs3-interactive-board.jpg" alt="ESS classroom management app — interactive board composite" style="width:100%; border-radius:12px; display:block;">
+      <div class="cs3-board-overlay">
+        <p style="font-size:clamp(16px,2.2vw,28px); font-weight:700; color:var(--text); line-height:1.3; margin:0 0 10px;">Real-time register updates</p>
+        <p style="font-size:clamp(12px,1.5vw,20px); color:var(--text-2); line-height:1.6; margin:0;">Teachers and students can mark attendance live — changes sync instantly across the classroom and the office.</p>
+      </div>
+    </div>
   </div>
 
+  <!-- ②  CHALLENGE — Why this mattered ──────────────────── -->
   <div class="cs-section">
-    <h2 class="cs-section-title">A Classroom Is Not a Lab</h2>
-    <p class="cs-text">I ran a comprehensive mixed-methods research programme: contextual observation in 8 schools, diary studies with 12 teachers over 3 weeks, and structured interviews with headteachers and SENCOs. This generated 247 data points that were thematically synthesised into key design principles.</p>
+    <h2 class="cs-section-title">The Challenge</h2>
+    <p class="cs-text">UK primary school teachers were spending 7–10 minutes per class taking attendance — not because marking students present is hard, but because the tools forced them to it. The MIS (management information system) was desktop-only, required login, and timed out mid-session. Pupil contact records lived in a separate part of the system, requiring multiple navigation steps to reach during an incident. Teachers were context-switching across tools during the most demanding hours of their day.</p>
+    <div style="border-left:3px solid var(--c1); background:#EBF2FF; border-radius:0 8px 8px 0; padding:20px 24px; margin-top:24px;">
+      <p style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--c1); margin:0 0 8px;">The Brief</p>
+      <p style="font-size:15px; color:var(--text); line-height:1.65; margin:0;">Reimagine a mobile-first teacher experience that brings together attendance, pupil information, and everyday classroom administration — reducing administrative effort while ensuring fast, accurate, and compliant record keeping.</p>
+    </div>
+    <div style="margin-top:32px;">
+      <div style="overflow:hidden; border-radius:10px; line-height:0;">
+        <img src="cs3-before.jpg" alt="Legacy MIS Experience" style="width:100%; display:block; object-fit:cover; object-position:top;">
+      </div>
+      <p class="cs-caption-label" style="margin-top:10px;"><strong>Legacy MIS Experience</strong> — Existing desktop-based attendance and pupil management workflows</p>
+    </div>
+  </div>
+
+  <!-- ③  KEY INSIGHTS — 3–5 only ─────────────────────────── -->
+  <div class="cs-section">
+    <h2 class="cs-section-title">Key Insights</h2>
+    <p class="cs-text">I collaborated with the teacher product design team to research across 7 head teachers, 7 teachers, and 5 school admins — spanning LA, MAT, and Independent schools. Five findings shaped the design.</p>
     <div class="cs-insights">
-      <div class="cs-insight"><div class="cs-insight-title">Speed is everything</div><div class="cs-insight-text">Teachers have 30-second windows between activities. Any interaction taking longer than 10 seconds would not be adopted.</div></div>
-      <div class="cs-insight"><div class="cs-insight-title">Eyes on the room</div><div class="cs-insight-text">Teachers can't look at their phone for more than 2–3 seconds while managing a class. Glanceable design is essential.</div></div>
-      <div class="cs-insight"><div class="cs-insight-title">Context collapse</div><div class="cs-insight-text">Teachers wear many hats simultaneously. The app needed to adapt to role-context, not force mode-switching.</div></div>
-      <div class="cs-insight"><div class="cs-insight-title">Trust & safeguarding</div><div class="cs-insight-text">Behaviour and communication logging had strict safeguarding implications — design had to embody compliance, not just accommodate it.</div></div>
+      <div class="cs-insight">
+        <div class="cs-insight-title">Speed is the adoption threshold</div>
+        <div class="cs-insight-text">Teachers told us directly: if the app wasn't faster than their current process, they'd revert to paper. The register had to feel instant — not just functional.</div>
+      </div>
+      <div class="cs-insight">
+        <div class="cs-insight-title">Eyes never fully leave the room</div>
+        <div class="cs-insight-text">Teachers glance at their phone in short bursts while managing a class. The interface had to communicate state at a glance — status visible without tapping, errors impossible to miss.</div>
+      </div>
+      <div class="cs-insight">
+        <div class="cs-insight-title">One hand is all they have</div>
+        <div class="cs-insight-text">Teachers are constantly moving — pointing, holding resources, gesturing. Every core interaction was designed for a single thumb in portrait mode, no two-handed gestures.</div>
+      </div>
+      <div class="cs-insight">
+        <div class="cs-insight-title">The office and the classroom aren't connected</div>
+        <div class="cs-insight-text">Pre-notified absences — a parent calling in sick before school — rarely reached teachers before registration. They'd mark a pupil absent, then correct it later. A broken loop that cost time and created inaccurate records.</div>
+      </div>
+      <div class="cs-insight">
+        <div class="cs-insight-title">Outdated contacts surface at the worst moment</div>
+        <div class="cs-insight-text">Teachers discovered stale parent numbers mid-incident — exactly when there was no time to chase alternatives. Contact data needed to be kept current, but no existing tool made that visible or easy.</div>
+      </div>
+      <div class="cs-insight">
+        <div class="cs-insight-title">Offline access unlocks the playground</div>
+        <div class="cs-insight-text">PTA teachers and supervisors taking register on the playground have no Wi-Fi. Research feedback was clear: if the app only worked indoors, they'd revert to paper outside. Offline-first wasn't just a technical constraint — it was a usage requirement.</div>
+      </div>
     </div>
-    <div class="cs-img cs-img-16-9">[ Research synthesis — diary study themes and school observation notes ]</div>
   </div>
 
+  <!-- ④  CORE FLOWS ───────────── -->
   <div class="cs-section">
-    <h2 class="cs-section-title">Built for One-Handed, Eyes-Up Use</h2>
-    <p class="cs-text">The app was designed around three core interactions: Quick Attendance (one-tap register with voice input fallback), Behaviour Moments (3-tap positive/negative logging with automatic parent notification), and the Class Dashboard (a live overview readable from 1 metre — designed for a phone propped on a desk).</p>
-    <div class="cs-img-3col">
-      <div class="cs-img">[ Quick attendance flow ]</div>
-      <div class="cs-img">[ Class dashboard view ]</div>
-      <div class="cs-img">[ Behaviour logging ]</div>
+    <h2 class="cs-section-title">Core Flows</h2>
+    <p class="cs-text">Research pointed to two areas where teachers lost the most time. For the pilot, we prioritised a fast and nimble class register — one that fit into the first minutes of a lesson without friction — and an efficient pupil profile experience that put the right contact information in front of teachers the moment they needed it.</p>
+
+    <div style="margin-top:48px; display:flex; flex-direction:column; gap:48px;">
+
+      <div class="cs-split" style="align-items:center;">
+        <div class="cs-split-text">
+          <p style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c1); margin:0 0 10px;">Flow 1 — Register</p>
+          <h3 style="font-size:22px; font-weight:600; color:var(--text); margin:0 0 12px; font-family:var(--serif);">Smooth Transition into the Register</h3>
+          <p class="cs-text" style="margin-top:0;">The class list loads pre-populated — no manual setup. If the office has flagged a pupil or sent a reminder (e.g. a known absence notified by a parent), it surfaces at the top before the teacher marks a single name. No context-switching between SIMS and a separate message thread; everything the teacher needs is in one place before they begin.</p>
+        </div>
+        <div class="cs-split-img">
+          <img src="cs3-screen-attendance.png" alt="Register — smooth transition" style="width:100%; border-radius:10px; display:block;">
+        </div>
+      </div>
+
+      <div class="cs-split" style="align-items:center; direction:rtl;">
+        <div class="cs-split-text" style="direction:ltr;">
+          <p style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c1); margin:0 0 10px;">Flow 2 — Attendance Codes</p>
+          <h3 style="font-size:22px; font-weight:600; color:var(--text); margin:0 0 12px; font-family:var(--serif);">Marking Additional Codes</h3>
+          <p class="cs-text" style="margin-top:0;">When a pupil has an approved leave request on record, the relevant DfE code pre-fills directly in the attendance slot — the teacher just confirms with one tap. No need to recall or look up a code mid-register. For unplanned absences requiring a specific code, a focused picker surfaces only the contextually relevant options rather than the full 20+ list.</p>
+        </div>
+        <div class="cs-split-img" style="direction:ltr;">
+          <img src="cs3-screen-codes.png" alt="Marking additional codes" style="width:100%; border-radius:10px; display:block;">
+        </div>
+      </div>
+
+      <div class="cs-split" style="align-items:center;">
+        <div class="cs-split-text">
+          <p style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c1); margin:0 0 10px;">Flow 3 — Late Markings</p>
+          <h3 style="font-size:22px; font-weight:600; color:var(--text); margin:0 0 12px; font-family:var(--serif);">Marking Late Arrivals Effortlessly</h3>
+          <p class="cs-text" style="margin-top:0;">Late arrivals don't require reopening the register. A persistent late-mark shortcut lets teachers log an arrival mid-lesson with two taps — pupil name and time of arrival are captured automatically. The register updates in the background and the DfE-compliant late code is applied without the teacher needing to know it.</p>
+        </div>
+        <div class="cs-split-img">
+          <img src="cs3-screen-late.png" alt="Marking late arrivals" style="width:100%; border-radius:10px; display:block;">
+        </div>
+      </div>
+
+      <div class="cs-split" style="align-items:center; direction:rtl;">
+        <div class="cs-split-text" style="direction:ltr;">
+          <p style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c1); margin:0 0 10px;">Flow 4 — Pupil Profile</p>
+          <h3 style="font-size:22px; font-weight:600; color:var(--text); margin:0 0 12px; font-family:var(--serif);">Search, Profile & Contact</h3>
+          <p class="cs-text" style="margin-top:0;">A simple name search surfaces a minimal profile — only what the teacher needs mid-incident. Contacts are shown in priority order, with the most reachable number first. The app nudges schools to keep parent contact details up to date by surfacing stale entries at a glance. No digging through SIMS to find a number that might have changed months ago.</p>
+        </div>
+        <div class="cs-split-img" style="direction:ltr;">
+          <img src="cs3-screen-comms.png" alt="Search, profile &amp; contact" style="width:100%; border-radius:10px; display:block;">
+        </div>
+      </div>
+
     </div>
-    <p class="cs-text">Navigation was reduced to a bottom tab bar with 4 items maximum, no deep hierarchies. Every action was reachable in 3 taps or fewer. The interface used large touch targets (minimum 48px), high contrast colours, and haptic feedback to enable eyes-off interactions.</p>
   </div>
 
+  <style>
+    @media(max-width:640px){
+      .cs3-decision-row { flex-direction:column !important; gap:10px !important; }
+      .cs3-decision-num { margin-top:0 !important; }
+      .cs3-decision-cards { flex-direction:column !important; }
+      .cs3-ship-stats { grid-template-columns:1fr !important; }
+      .cs3-ship-stats > div { border-right:none !important; border-bottom:1px solid var(--border); }
+      .cs3-ship-stats > div:last-child { border-bottom:none !important; }
+      .cs3-constraints-grid { grid-template-columns:1fr !important; }
+      .cs3-bts-grid { grid-template-columns:1fr !important; }
+      .cs3-reflection-grid { grid-template-columns:1fr !important; }
+    }
+  </style>
+
+  <!-- ⑤  MAJOR DECISIONS — Trade-offs ───────────────────── -->
   <div class="cs-section">
-    <h2 class="cs-section-title">Validated in Real Classrooms, Not Labs</h2>
-    <p class="cs-text">Testing was conducted in active classrooms — a deliberate choice to capture the real environmental constraints. Five rounds of usability testing led to 31 documented design iterations, including replacing icon-only navigation with icon + label pairs (comprehension jumped from 62% to 94%) and introducing a "quick actions" widget for the most frequent daily tasks.</p>
+    <h2 class="cs-section-title">From Concepts to Decisions</h2>
+    <p class="cs-text">Three interaction decisions that balanced speed, usability, and classroom realities.</p>
+
+    <div style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-top:28px;">
+
+      <div style="padding:32px 36px; background:var(--white);">
+        <img src="cs3-decision-01.png" alt="Decision 01" style="width:100%; border-radius:8px; display:block; margin-bottom:24px;">
+        <div class="cs3-decision-row" style="display:flex; gap:20px; align-items:flex-start;">
+          <div class="cs3-decision-num" style="flex-shrink:0; width:36px; height:36px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; font-size:16px; margin-top:2px;">01</div>
+          <div>
+            <h3 style="font-size:17px; font-weight:600; color:var(--text); margin:0 0 6px;">Inline mark button vs shared bottom action bar with auto-scroll</h3>
+            <p style="font-size:13px; color:var(--text-2); line-height:1.6; margin:0 0 12px;">Inline buttons felt natural but added visual noise across a 28-pupil list. The shared bottom bar with auto-scroll — which advances to the next pupil automatically after each mark — reduced the time to scroll, scan, and tap, keeping the teacher's thumb in one place.</p>
+            <div class="cs3-decision-cards" style="display:flex; gap:12px;">
+              <div style="flex:1; background:var(--fog); border-radius:6px; padding:12px 14px; border-left:3px solid #ccc;">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--text-3); margin-bottom:4px;">Explored</div>
+                <div style="font-size:13px; color:var(--text-2);">Inline buttons — cluttered list, thumb travels the full screen</div>
+              </div>
+              <div style="flex:1; background:#EBF2FF; border-radius:6px; padding:12px 14px; border-left:3px solid var(--c1);">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--c1); margin-bottom:4px;">Selected</div>
+                <div style="font-size:13px; color:var(--text-2);">Shared bottom bar + auto-scroll — thumb stays fixed, list moves up</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:32px 36px; background:var(--white); border-top:1px solid var(--border);">
+        <img src="cs3-decision-02.png" alt="Decision 02" style="width:100%; border-radius:8px; display:block; margin-bottom:24px;">
+        <div class="cs3-decision-row" style="display:flex; gap:20px; align-items:flex-start;">
+          <div class="cs3-decision-num" style="flex-shrink:0; width:36px; height:36px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; font-size:16px; margin-top:2px;">02</div>
+          <div>
+            <h3 style="font-size:17px; font-weight:600; color:var(--text); margin:0 0 6px;">All attendance codes vs Present/Absent/Late + pre-filled for approved leave</h3>
+            <p style="font-size:13px; color:var(--text-2); line-height:1.6; margin:0 0 12px;">UK registers use 20+ DfE codes. Showing them all upfront overwhelmed teachers mid-class. The shipped solution kept Present, Absent, and Late as the three primary actions — but when a pupil had an approved leave request on record, the relevant DfE code pre-filled directly in that same slot, replacing the default signifier.</p>
+            <div class="cs3-decision-cards" style="display:flex; gap:12px;">
+              <div style="flex:1; background:var(--fog); border-radius:6px; padding:12px 14px; border-left:3px solid #ccc;">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--text-3); margin-bottom:4px;">Explored</div>
+                <div style="font-size:13px; color:var(--text-2);">All codes upfront — cognitive overload on a 28-pupil register under time pressure</div>
+              </div>
+              <div style="flex:1; background:#EBF2FF; border-radius:6px; padding:12px 14px; border-left:3px solid var(--c1);">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--c1); margin-bottom:4px;">Selected</div>
+                <div style="font-size:13px; color:var(--text-2);">Present/Absent/Late primary — approved leave pre-fills the code in the same slot automatically</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:32px 36px; background:var(--white); border-top:1px solid var(--border);">
+        <img src="cs3-decision-03.png" alt="Decision 03" style="width:100%; border-radius:8px; display:block; margin-bottom:24px;">
+        <div class="cs3-decision-row" style="display:flex; gap:20px; align-items:flex-start;">
+          <div class="cs3-decision-num" style="flex-shrink:0; width:36px; height:36px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; font-size:16px; margin-top:2px;">03</div>
+          <div>
+            <h3 style="font-size:17px; font-weight:600; color:var(--text); margin:0 0 6px;">Tap to call vs expand contact info</h3>
+            <p style="font-size:13px; color:var(--text-2); line-height:1.6; margin:0 0 12px;">Teachers don't call families from personal phones — calls go through the school office. Expanding the contact card to show the number clearly was the right pattern: easy to read out or hand to a colleague.</p>
+            <div class="cs3-decision-cards" style="display:flex; gap:12px;">
+              <div style="flex:1; background:var(--fog); border-radius:6px; padding:12px 14px; border-left:3px solid #ccc;">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--text-3); margin-bottom:4px;">Explored</div>
+                <div style="font-size:13px; color:var(--text-2);">Tap to call / QR scan-to-call — assumes personal device</div>
+              </div>
+              <div style="flex:1; background:#EBF2FF; border-radius:6px; padding:12px 14px; border-left:3px solid var(--c1);">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--c1); margin-bottom:4px;">Selected</div>
+                <div style="font-size:13px; color:var(--text-2);">Expand contact card — number visible, easy to read out or hand off</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
+  <!-- ⑥  SHIPPING — Pilot + constraints ──────────────────── -->
   <div class="cs-section">
-    <h2 class="cs-section-title">57% More Time for Teaching</h2>
-    <p class="cs-text">Three months post-launch, a follow-up study with 40 teachers showed a 57% reduction in time spent on administrative tasks. Teachers reported spending more time on guided reading groups and 1-1 support — the activities they cited as most impactful for pupil outcomes.</p>
+    <h2 class="cs-section-title">Delivering the Core Experience</h2>
+    <p class="cs-text">We scoped the MVP around Quick Register and Pupil Profile &amp; Contact — the two workflows teachers used most frequently and that had the greatest impact on reducing classroom administration.</p>
+    <p class="cs-text" style="margin-top:16px;">The first release delivered Quick Register for fast attendance marking and Pupil Profile &amp; Contact for immediate access to pupil records and priority contacts, establishing the core teacher experience before expanding the platform in later iterations.</p>
+    <div class="cs3-ship-stats" style="display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-top:28px;">
+      <div style="padding:28px 24px; border-right:1px solid var(--border);">
+        <div style="font-size:32px; font-weight:700; color:var(--c1); font-family:var(--serif); line-height:1; margin-bottom:8px;">16</div>
+        <div style="font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--text-3); margin-bottom:10px;">Weeks to MVP</div>
+        <p style="font-size:13px; color:var(--text-2); line-height:1.5; margin:0;">Quick register and pupil profile, iOS and Android, live in pilot schools.</p>
+      </div>
+      <div style="padding:28px 24px; border-right:1px solid var(--border);">
+        <div style="font-size:32px; font-weight:700; color:var(--c1); font-family:var(--serif); line-height:1; margin-bottom:8px;">4</div>
+        <div style="font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--text-3); margin-bottom:10px;">Pilot schools</div>
+        <p style="font-size:13px; color:var(--text-2); line-height:1.5; margin:0;">Across UK local authorities, mix of LA, MAT, and Independent schools.</p>
+      </div>
+      <div style="padding:28px 24px;">
+        <div style="font-size:32px; font-weight:700; color:var(--c1); font-family:var(--serif); line-height:1; margin-bottom:8px;">5</div>
+        <div style="font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--text-3); margin-bottom:10px;">Usability rounds</div>
+        <p style="font-size:13px; color:var(--text-2); line-height:1.5; margin:0;">Tested with real teachers in live classrooms across each sprint.</p>
+      </div>
+    </div>
+
+    <!-- Constraints -->
+    <div style="margin-top:36px;">
+      <p style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-3); margin:0 0 16px;">Constraints</p>
+      <div class="cs3-constraints-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div style="border:1px solid var(--border); border-radius:8px; padding:20px 22px;">
+          <div style="font-size:12px; font-weight:700; color:var(--c1); text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px;">Technical</div>
+          <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px;">Offline-first, always</div>
+          <p style="font-size:13px; color:var(--text-2); line-height:1.5; margin:0;">School Wi-Fi is notoriously unreliable. The app had to work fully offline and sync when a connection was restored — no lost registers.</p>
+        </div>
+        <div style="border:1px solid var(--border); border-radius:8px; padding:20px 22px;">
+          <div style="font-size:12px; font-weight:700; color:var(--c1); text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px;">Integration</div>
+          <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px;">Custom SIMS API wrapper</div>
+          <p style="font-size:13px; color:var(--text-2); line-height:1.5; margin:0;">MIS sync required building a custom API wrapper around the existing SIMS integration — no off-the-shelf connector existed.</p>
+        </div>
+        <div style="border:1px solid var(--border); border-radius:8px; padding:20px 22px;">
+          <div style="font-size:12px; font-weight:700; color:var(--c1); text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px;">Compliance</div>
+          <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px;">DfE data standards</div>
+          <p style="font-size:13px; color:var(--text-2); line-height:1.5; margin:0;">The app had to meet DfE guidelines on pupil data handling before any pilot school could participate — compliance was a gate, not an afterthought.</p>
+        </div>
+        <div style="border:1px solid var(--border); border-radius:8px; padding:20px 22px;">
+          <div style="font-size:12px; font-weight:700; color:var(--c1); text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px;">Design</div>
+          <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px;">No design system — built from zero</div>
+          <p style="font-size:13px; color:var(--text-2); line-height:1.5; margin:0;">There was no existing component library to build on. I established design tokens, core components, and interaction patterns from scratch — growing the library iteratively as each feature was designed and validated.</p>
+        </div>
+      </div>
+    </div>
+
+        <div style="border:1px solid var(--border); border-radius:8px; padding:20px 22px; margin-top:12px;">
+          <div style="font-size:12px; font-weight:700; color:var(--c1); text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px;">Architecture</div>
+          <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px;">Progressive Web App over a responsive website</div>
+          <p style="font-size:13px; color:var(--text-2); line-height:1.5; margin:0;">Three needs pushed us toward a PWA: offline use (registers had to work without Wi-Fi), push notifications (office alerts reaching teachers instantly), and speed (app-like performance on low-end school devices). A responsive site couldn't deliver all three; native meant two separate builds. PWA gave us both without the overhead.</p>
+        </div>
+
+    <img src="cs3-engineering.png" alt="Engineering collaboration" style="width:100%; border-radius:10px; display:block; margin-top:28px;">
+  </div>
+
+  <!-- ⑦  IMPACT — Metrics + quotes + business value ───────── -->
+  <div class="cs-section">
+    <h2 class="cs-section-title">Impact</h2>
+    <p style="font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--text-3); margin:0 0 20px;">From usability testing rounds</p>
+    <div class="cs-metrics" style="grid-template-columns:repeat(4,1fr); margin-bottom:8px;">
+      <div class="cs-metric"><div class="cs-metric-val c1">&lt;3 min*</div><div class="cs-metric-label">Register completed</div></div>
+      <div class="cs-metric"><div class="cs-metric-val c1">80%</div><div class="cs-metric-label">Completed all tasks unaided</div></div>
+      <div class="cs-metric"><div class="cs-metric-val c1">100%</div><div class="cs-metric-label">Located pupil contacts</div></div>
+      <div class="cs-metric"><div class="cs-metric-val c1">90%</div><div class="cs-metric-label">Preferred app over existing MIS</div></div>
+    </div>
+    <p style="font-size:12px; color:var(--text-3); margin:0 0 32px;">*Teachers completed the register for a class of 20 in under 3 minutes on average.</p>
     <div class="cs-quote">
-      <p class="cs-quote-text">"I used to dread the admin side of my job. Now I can take attendance in 30 seconds and actually focus on my class."</p>
+      <p class="cs-quote-text">"I used to dread the admin side of my job. Now I can take attendance in under 3 minutes and actually focus on my class."</p>
       <p class="cs-quote-attr">— Year 4 teacher, East London primary</p>
     </div>
-    <div class="cs-big-stat">
-      <div class="cs-big-stat-val c3">57%</div>
-      <p class="cs-big-stat-desc">reduction in time spent on administrative tasks — freeing teachers to focus on what matters: their students.</p>
+    <p class="cs-text">Teachers reported spending reclaimed time on guided reading groups and 1-1 support — the activities they cited as most impactful for pupil outcomes. The pilot also surfaced an operational benefit: accurate, real-time attendance data reduced the time office staff spent chasing teachers for register corrections, easing administrative load across the school.</p>
+  </div>
+
+  <!-- ⑨  WHAT I'LL CARRY FORWARD ─────────────────────────── -->
+  <style>
+    .cs3-carryforward-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--border); border-radius:10px; overflow:hidden; margin-top:32px; }
+    @media(max-width:768px){ .cs3-carryforward-grid { grid-template-columns:1fr; } }
+  </style>
+  <div class="cs-section">
+    <h2 class="cs-section-title">Reflections</h2>
+    <div class="cs3-carryforward-grid">
+
+      <div style="background:var(--white); padding:36px 32px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <div style="width:40px; height:40px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c1);">Research</span>
+        </div>
+        <p style="font-size:18px; font-weight:600; color:var(--text); line-height:1.35; margin:0 0 10px;">Research is a capability, not a phase.</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.6; margin:0;">Embedding continuous discovery created a steady flow of evidence rather than relying on one-off studies.</p>
+      </div>
+
+      <div style="background:var(--white); padding:36px 32px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <div style="width:40px; height:40px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c1);">Design Systems</span>
+        </div>
+        <p style="font-size:18px; font-weight:600; color:var(--text); line-height:1.35; margin:0 0 10px;">Design systems accelerate teams, not just interfaces.</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.6; margin:0;">A shared system improved consistency while enabling designers to move faster with confidence.</p>
+      </div>
+
+      <div style="background:var(--white); padding:36px 32px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <div style="width:40px; height:40px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c1);">Leadership</span>
+        </div>
+        <p style="font-size:18px; font-weight:600; color:var(--text); line-height:1.35; margin:0 0 10px;">Leadership means creating leverage.</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.6; margin:0;">Coaching designers, introducing reusable frameworks, and partnering closely with product leadership had a greater long-term impact than any individual feature I designed.</p>
+      </div>
+
     </div>
   </div>
 
 </div>
 
-<a href="#cs4" class="cs-next">
+
+<a href="cs4.html" class="cs-next">
   <div>
     <div class="cs-next-label">Next case study</div>
-    <div class="cs-next-title">Optimising Materials and Boosting Analysis Efficiency</div>
+    <div class="cs-next-title">Leading the Revolution in Materials Optimisation</div>
   </div>
   <span class="cs-next-arrow">→</span>
 </a>
 
 
-<!-- ════════════════════════════════════════ -->
-<!--  CASE STUDY 4 — Bill of Materials      -->
-<!-- ════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--  CASE STUDY 4 — Bill of Materials Optimisation             -->
+<!-- ════════════════════════════════════════════════════════════ -->
 <hr class="page-divider">
 <div class="page-label">Case Study 4 — Bill of Materials Optimisation · Enterprise Engineering · 2022</div>
 
-<nav class="cs-nav">
-  <a href="#top" class="cs-nav-logo">Suganth Chellamuthu</a>
-  <a href="#work" class="cs-back">← Back to all work</a>
+<nav class="cs-nav" id="cs4">
+  <a href="index.html" class="cs-nav-logo"><img src="suche-logo.svg" alt="SuChe" style="height:26px;width:auto;display:block;"><span>Suganth Chellamuthu</span></a>
+  <a href="index.html#work" class="cs-back">← Back to all work</a>
 </nav>
 
-<div id="cs4" class="cs-hero">
+<div class="cs-hero">
   <div class="cs-cats">
-    <span class="cs-cat">B2B SaaS</span><span class="cs-cat-dot"></span>
     <span class="cs-cat">Enterprise</span><span class="cs-cat-dot"></span>
-    <span class="cs-cat">Data Viz</span><span class="cs-cat-dot"></span>
+    <span class="cs-cat">Engineering</span><span class="cs-cat-dot"></span>
     <span class="cs-cat">2022</span>
   </div>
   <h1 class="cs-h1">Leading the Revolution in Materials Optimisation</h1>
-  <p class="cs-subtitle">An engineering organisation needed a smarter way to visualise complex Bill of Materials data and run component analysis. I designed the Product Explorer — a revolutionary tool that transformed how engineers interact with materials data at scale.</p>
+  <p class="cs-subtitle">A major engineering organisation's Bill of Materials data was locked in spreadsheets and opaque ERP modules. I designed a purpose-built Product Explorer that made complex BoM hierarchies navigable, comparable, and actionable.</p>
   <div class="cs-tags">
-    <span class="cs-tag">Data Visualisation</span>
     <span class="cs-tag">Enterprise UX</span>
-    <span class="cs-tag">Interaction Design</span>
+    <span class="cs-tag">Data Visualisation</span>
+    <span class="cs-tag">UX Research</span>
     <span class="cs-tag">Design Systems</span>
   </div>
   <div class="cs-meta-grid" style="margin-top:48px; max-width:540px;">
-    <div class="cs-meta-item"><div class="cs-meta-key">Client</div><div class="cs-meta-val">Enterprise Engineering Org</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-key">Client</div><div class="cs-meta-val">Enterprise Engineering</div></div>
     <div class="cs-meta-item"><div class="cs-meta-key">My role</div><div class="cs-meta-val">Lead Product Designer</div></div>
-    <div class="cs-meta-item"><div class="cs-meta-key">Domain</div><div class="cs-meta-val">B2B SaaS · Materials Science</div></div>
-    <div class="cs-meta-item"><div class="cs-meta-key">Platform</div><div class="cs-meta-val">Web · Desktop App</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-key">Domain</div><div class="cs-meta-val">Manufacturing · Enterprise</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-key">Users</div><div class="cs-meta-val">Materials Analysts · Procurement</div></div>
   </div>
 </div>
 
@@ -2396,11 +2886,10 @@ function handleTalkSubmit(e) {
     <h2 class="cs-section-title">When Spreadsheets Fail Engineers</h2>
     <p class="cs-text">Large engineering organisations manage Bills of Materials with thousands of components, substitution options, compliance requirements, and cost variables. Existing tools were either generic spreadsheets or expensive, opaque legacy ERP modules that required specialist training to operate.</p>
     <p class="cs-text">The goal: design a purpose-built Product Explorer that made complex BoM data navigable, comparable, and actionable — for both engineering analysts and procurement managers.</p>
-    <div class="cs-img cs-img-16-9">[ Product Explorer — overview of the full BoM tree interface ]</div>
   </div>
 
   <div class="cs-section">
-    <h2 class="cs-section-title">Complexity That Defeats Conventional Interface Design</h2>
+    <h2 class="cs-section-title">The Design Challenge</h2>
     <p class="cs-text">The materials data was hierarchical, multi-dimensional, and constantly changing. A single product could have 5,000+ components in a tree structure 12 levels deep. Analysts needed to simultaneously view current state, compare alternatives, apply filters across multiple parameters, and track changes over time.</p>
     <div class="cs-insights">
       <div class="cs-insight"><div class="cs-insight-title">Deep hierarchy navigation</div><div class="cs-insight-text">No existing interface handled 12-level component trees without losing context or overwhelming the user.</div></div>
@@ -2411,25 +2900,9 @@ function handleTalkSubmit(e) {
   </div>
 
   <div class="cs-section">
-    <h2 class="cs-section-title">Two Weeks Inside the Engineering Team</h2>
-    <p class="cs-text">I embedded with the engineering team for two weeks before designing a single screen — learning the domain vocabulary, understanding the mental models of materials analysts, and mapping the decision journeys that led to good and bad outcomes.</p>
-    <div class="cs-steps" style="grid-template-columns: repeat(4,1fr);">
-      <div class="cs-step"><div class="cs-step-num">01</div><div class="cs-step-title">Domain immersion</div><div class="cs-step-text">2-week embed with engineering team, vocabulary and workflow mapping</div></div>
-      <div class="cs-step"><div class="cs-step-num">02</div><div class="cs-step-title">Journey mapping</div><div class="cs-step-text">Mapped 6 core analyst workflows end-to-end</div></div>
-      <div class="cs-step"><div class="cs-step-num">03</div><div class="cs-step-title">Concept testing</div><div class="cs-step-text">3 navigation models tested with 12 analysts</div></div>
-      <div class="cs-step"><div class="cs-step-num">04</div><div class="cs-step-title">Iterative design</div><div class="cs-step-text">8 prototype rounds before final handoff</div></div>
-    </div>
-  </div>
-
-  <div class="cs-section">
     <h2 class="cs-section-title">Making Complexity Navigable</h2>
     <p class="cs-text">The Product Explorer was built around three core interaction paradigms: the Tree View (collapsible hierarchy with colour-coded status), the Compare Panel (side-by-side component analysis with delta highlighting), and the Analysis Dashboard (aggregated metrics, cost modelling, and compliance scoring).</p>
-    <div class="cs-img cs-img-16-9">[ Product Explorer — tree view with compare panel open ]</div>
     <p class="cs-text">A novel breadcrumb-plus-minimap system allowed analysts to navigate deep hierarchies without losing their position in the overall structure. Testing showed this reduced navigation errors by 73% compared to the flat-list legacy interface.</p>
-    <div class="cs-img-2col">
-      <div class="cs-img">[ Analysis dashboard — cost modelling and compliance scoring ]</div>
-      <div class="cs-img">[ Compare panel — side-by-side component analysis ]</div>
-    </div>
   </div>
 
   <div class="cs-section">
@@ -2445,9 +2918,32 @@ function handleTalkSubmit(e) {
     </div>
   </div>
 
+  <!-- ── LEADERSHIP TESTIMONIALS ───────────────────────────── -->
+  <div class="cs-section">
+    <h2 class="cs-section-title">Leadership Testimonials</h2>
+    <p class="cs-text">Hear from senior management about the impact and value delivered through this transformational BOM optimisation initiative.</p>
+    <div class="cs-testimonials">
+      <div class="cs-testimonial">
+        <p class="cs-testimonial-quote">"This is magic what you have here! It's powerful and user-friendly."</p>
+        <div class="cs-testimonial-divider"></div>
+        <div class="cs-testimonial-author">Chief Technology Officer</div>
+      </div>
+      <div class="cs-testimonial">
+        <p class="cs-testimonial-quote">"An automated data platform gives visibility, enables complexity to be simplified in a structured way and data-driven decision-making. Say goodbye to the clunky way of working!!"</p>
+        <div class="cs-testimonial-divider"></div>
+        <div class="cs-testimonial-author">Head of Design Engineering</div>
+      </div>
+      <div class="cs-testimonial">
+        <p class="cs-testimonial-quote">"The team have created an innovative product that will help the R&amp;D teams to become more cost-effective and efficient."</p>
+        <div class="cs-testimonial-divider"></div>
+        <div class="cs-testimonial-author">Head of Product Development</div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<a href="#cs5" class="cs-next">
+<a href="cs5.html" class="cs-next">
   <div>
     <div class="cs-next-label">Next case study</div>
     <div class="cs-next-title">Crafting a Marketplace Experience for a Modest Fashion Retailer</div>
@@ -2463,8 +2959,8 @@ function handleTalkSubmit(e) {
 <div class="page-label">Case Study 5 — Modanisa Marketplace · 2022</div>
 
 <nav class="cs-nav">
-  <a href="#top" class="cs-nav-logo">Suganth Chellamuthu</a>
-  <a href="#work" class="cs-back">← Back to all work</a>
+  <a href="index.html" class="cs-nav-logo"><img src="suche-logo.svg" alt="SuChe" style="height:26px;width:auto;display:block;"><span>Suganth Chellamuthu</span></a>
+  <a href="index.html#work" class="cs-back">← Back to all work</a>
 </nav>
 
 <div id="cs5" class="cs-hero">
@@ -2534,11 +3030,10 @@ function handleTalkSubmit(e) {
       <div class="cs-persona-role">Teacher · High Volume Customer</div>
       <p class="cs-persona-text">Values quality fabrics, classic silhouettes, and timeless elegance. As a respected figure in her community, presentation matters deeply. She finds that many brands focus on younger demographics and overlook mature women who embrace modest fashion. She wants contemporary options and detailed product descriptions before purchasing.</p>
     </div>
-    <div class="cs-img cs-img-16-9">[ User research synthesis — customer journey map and insight themes ]</div>
   </div>
 
   <div class="cs-section">
-    <h2 class="cs-section-title">56+ Insights Distilled Into Prioritised Challenges</h2>
+    <h2 class="cs-section-title">What the Research Revealed</h2>
     <div class="cs-insights">
       <div class="cs-insight"><div class="cs-insight-title">Discount clarity</div><div class="cs-insight-text">Customers found it difficult to know which discount applied to them and which codes were valid at checkout.</div></div>
       <div class="cs-insight"><div class="cs-insight-title">Size information</div><div class="cs-insight-text">Sizes vary across brands — the top reason for returns. More detailed size guidance was strongly desired.</div></div>
@@ -2550,12 +3045,7 @@ function handleTalkSubmit(e) {
   <div class="cs-section">
     <h2 class="cs-section-title">Order Orchestration as the Answer to Delivery Speed</h2>
     <p class="cs-text">Our core bet: when orders are split across Modanisa and suppliers, it enables faster delivery for customers and more autonomy for suppliers. We redesigned the checkout to make this split transparent and seamless — letting customers know who would deliver each part of their order from the basket onwards.</p>
-    <div class="cs-img cs-img-16-9">[ Enhanced checkout wireflow — basket → address → delivery → payment → order success ]</div>
     <p class="cs-text">Key enhancements in the new checkout experience: order splitting made transparent and clearly communicated; multiple delivery options (express, standard, pickup); expanded payment methods including Klarna, PayPal, bank transfer, and buy-now-pay-later; and a redesigned saved card UI with explicit security messaging.</p>
-    <div class="cs-img-2col">
-      <div class="cs-img">[ Payment screen — saved cards tile view with security messaging ]</div>
-      <div class="cs-img">[ Order summary — split delivery confirmation view ]</div>
-    </div>
   </div>
 
   <div class="cs-section">
@@ -2574,7 +3064,7 @@ function handleTalkSubmit(e) {
 
 </div>
 
-<a href="#cs6" class="cs-next">
+<a href="cs6.html" class="cs-next">
   <div>
     <div class="cs-next-label">Next case study</div>
     <div class="cs-next-title">Store Promotions Financial Planning Tool</div>
@@ -2590,8 +3080,8 @@ function handleTalkSubmit(e) {
 <div class="page-label">Case Study 6 — Store Promotions Financial Planning Tool · UK Supermarket · 2017</div>
 
 <nav class="cs-nav" id="cs6">
-  <a href="#top" class="cs-nav-logo">Suganth Chellamuthu</a>
-  <a href="#work" class="cs-back">← Back to all work</a>
+  <a href="index.html" class="cs-nav-logo"><img src="suche-logo.svg" alt="SuChe" style="height:26px;width:auto;display:block;"><span>Suganth Chellamuthu</span></a>
+  <a href="index.html#work" class="cs-back">← Back to all work</a>
 </nav>
 
 <div class="cs-hero">
@@ -2633,22 +3123,17 @@ function handleTalkSubmit(e) {
 
   <div class="cs-section">
     <h2 class="cs-section-title">The Problem with Running Promotions on Spreadsheets</h2>
-    <p class="cs-text">At a major UK supermarket, buyers — the employees responsible for procuring and promoting goods — were the engine of the promotional calendar. Their job was to create deals that drove footfall, shifted volume, and supported supplier relationships. To do it, they relied almost entirely on spreadsheets.</p>
-    <p class="cs-text">The spreadsheet process was fragmented by design. Promotional data lived across multiple files, shared via email, manually reconciled against financial targets, and reviewed by compliance teams who had no direct visibility into how decisions were being made. Errors crept in at every handoff. Financial forecasts were inconsistent. Regulatory requirements — governing how promotions were structured and communicated — were checked after the fact rather than built into the workflow.</p>
-    <p class="cs-text">The brief was clear: design a product that enabled buyers to create effective and compliant promotional nominations at one place — standardising and simplifying the entire process from first idea to submitted nomination.</p>
-    <div class="cs-img cs-img-16-9">[ Promotions planning dashboard — My events &amp; promotions overview ]</div>
+    <p class="cs-text">Buyers at a major UK supermarket ran their entire promotional nominations process through spreadsheets — data across multiple files, shared via email, reconciled manually, with compliance checked after the fact. Errors crept in at every handoff. The brief: design a product that let buyers create compliant nominations in one place, from first idea to submission.</p>
   </div>
 
   <div class="cs-section">
-    <h2 class="cs-section-title">Understanding the World of a Supermarket Buyer</h2>
-    <p class="cs-text">Before a single wireframe was drawn, I spent significant time inside the organisation. My research approach combined contextual inquiry — observing buyers at their desks as they worked through real promotional nominations — with participant observation across the wider buying process, including stakeholder meetings with category managers, finance leads, and compliance teams.</p>
-    <p class="cs-text">The goal was not just to understand the task but to understand the motivation. What drives a buyer? What does a good day look like versus a frustrating one? What does success feel like in this role?</p>
+    <h2 class="cs-section-title">The Design North Star</h2>
+    <p class="cs-text">I embedded with buyers, observing real promotional nominations alongside stakeholder sessions with category managers, finance, and compliance. One insight shaped everything that followed:</p>
     <div class="cs-quote">
       <p class="cs-quote-text">"From the analysis, it was very clear that the buyers are motivated by seeing the promotions they had created in the stores."</p>
       <p class="cs-quote-attr">— Research synthesis, Analysis &amp; Insights stage</p>
     </div>
-    <p class="cs-text">That single insight — the pride a buyer feels walking past a shelf and recognising their own promotion — became a design north star. The product wasn't just a compliance tool. It was the instrument through which buyers exercised their professional judgement and saw the results of their work. Designing for that sense of ownership shaped every decision that followed.</p>
-    <div class="cs-img cs-img-16-9">[ Research synthesis — buyer journey map, persona, and design principles ]</div>
+    <p class="cs-text">The product wasn't just a compliance tool. It was the instrument through which buyers exercised professional judgement. Designing for that sense of ownership shaped every decision.</p>
   </div>
 
   <div class="cs-section">
@@ -2679,29 +3164,15 @@ function handleTalkSubmit(e) {
       <div class="cs-step"><div class="cs-step-num">04</div><div class="cs-step-title">Forecast</div><div class="cs-step-text">Live aggregate financial forecast — broken down by week, with total revenue, volume, and margin projections across the full promotional period. Buyers see the financial impact of their choices before committing.</div></div>
       <div class="cs-step"><div class="cs-step-num">05</div><div class="cs-step-title">Submit</div><div class="cs-step-text">Review nomination, validate all details, and submit for approval. Draft status tracking and error flagging ensure nothing is submitted incomplete or non-compliant.</div></div>
     </div>
-    <div class="cs-img cs-img-16-9">[ Five-step promotion creation flow — product selection with live margin data ]</div>
-    <div class="cs-img-2col">
-      <div class="cs-img">[ Financial forecast view — weekly aggregate breakdown by promotion ]</div>
-      <div class="cs-img">[ Location selector — zone and format-level targeting ]</div>
-    </div>
   </div>
 
   <div class="cs-section">
-    <h2 class="cs-section-title">Co-Creation: Buyers as Design Partners</h2>
-    <p class="cs-text">I designed the product iteratively, with buyers who volunteered to participate embedded in the process throughout. This wasn't occasional feedback sessions — it was genuine co-creation, with buyers reviewing and contributing to the design at every stage from concept sketches to interactive prototypes.</p>
-    <p class="cs-text">The most significant design discovery came from this process: when buyers were shown a version of the product that included live margin and sales data alongside the product selection step, their behaviour changed fundamentally. They stopped selecting products based on habit and familiarity, and started calibrating their promotions against financial reality from the first decision point. Promotions became financially tighter. Fewer nominations needed rework at the review stage.</p>
+    <h2 class="cs-section-title">The Key Design Discovery</h2>
+    <p class="cs-text">Buyers were embedded as co-designers throughout — not as occasional feedback sessions, but from concept sketches to interactive prototypes. The most significant finding: when buyers were shown live margin and sales data at the product selection step, their behaviour changed fundamentally. They stopped selecting on habit and started calibrating against financial reality from the start. Promotions became tighter. Rework at review dropped.</p>
     <div class="cs-quote">
       <p class="cs-quote-text">"Giving access to margin and sales data upfront saved them a lot of time. They were also able to tune the promotions better."</p>
       <p class="cs-quote-attr">— Co-creation process finding</p>
     </div>
-    <p class="cs-text">The themed events feature also emerged directly from co-creation. Buyers regularly aligned promotions to seasonal campaign calendars — Barbeque weekends in August, Healthy Living in September — and the ability to select a themed event as the container for a promotion, rather than setting up dates and parameters manually each time, reduced setup friction significantly.</p>
-  </div>
-
-  <div class="cs-section">
-    <h2 class="cs-section-title">Tested at Every Stage</h2>
-    <p class="cs-text">I ran user testing continuously — from the earliest wireframe stage through to the MVP. Rather than treating testing as a gate before launch, I used it as a feedback loop woven into every iteration. Each round of testing with buyers surfaced something that improved the product: a label that confused, a workflow step that broke the mental model, a missing piece of financial data that would have caused a buyer to abandon mid-flow.</p>
-    <p class="cs-text">This iterative approach meant that by the time the MVP was in buyers' hands, the fundamental flows had already been validated multiple times. The MVP launch was not the first time buyers had seen the product — it was the final refinement of something they had already helped me build.</p>
-    <div class="cs-img cs-img-16-9">[ User testing — wireframe review session with buyers ]</div>
   </div>
 
   <div class="cs-section">
@@ -2730,7 +3201,7 @@ function handleTalkSubmit(e) {
     <div class="cs-next-label">Back to portfolio</div>
     <div class="cs-next-title">View all case studies ↑</div>
   </div>
-  <span class="cs-next-arrow">↑</span>
+  <span class="cs-next-arrow">→</span>
 </a>
 
 
@@ -2741,8 +3212,8 @@ function handleTalkSubmit(e) {
 <div class="page-label">Speculative Work — The Future of Food Technology · ThoughtWorks · 2021</div>
 
 <nav class="cs-nav" id="spec-food-retail">
-  <a href="#top" class="cs-nav-logo">Suganth Chellamuthu</a>
-  <a href="#work" class="cs-back">← Back to all work</a>
+  <a href="index.html" class="cs-nav-logo"><img src="suche-logo.svg" alt="SuChe" style="height:26px;width:auto;display:block;"><span>Suganth Chellamuthu</span></a>
+  <a href="index.html#work" class="cs-back">← Back to all work</a>
 </nav>
 
 <div class="cs-hero">
@@ -2933,7 +3404,7 @@ function handleTalkSubmit(e) {
     <div class="cs-next-label">Back to portfolio</div>
     <div class="cs-next-title">View all case studies ↑</div>
   </div>
-  <span class="cs-next-arrow">↑</span>
+  <span class="cs-next-arrow">→</span>
 </a>
 
 
@@ -2944,8 +3415,8 @@ function handleTalkSubmit(e) {
 <div class="page-label">Speculative Work — Food System 2050 · Hosur, India · 2020</div>
 
 <nav class="cs-nav" id="spec-food-system-2050">
-  <a href="#top" class="cs-nav-logo">Suganth Chellamuthu</a>
-  <a href="#work" class="cs-back">← Back to all work</a>
+  <a href="index.html" class="cs-nav-logo"><img src="suche-logo.svg" alt="SuChe" style="height:26px;width:auto;display:block;"><span>Suganth Chellamuthu</span></a>
+  <a href="index.html#work" class="cs-back">← Back to all work</a>
 </nav>
 
 <div class="cs-hero">
@@ -3066,7 +3537,7 @@ function handleTalkSubmit(e) {
     <div class="cs-next-label">Back to portfolio</div>
     <div class="cs-next-title">View all case studies ↑</div>
   </div>
-  <span class="cs-next-arrow">↑</span>
+  <span class="cs-next-arrow">→</span>
 </a>
 
 
@@ -3077,8 +3548,8 @@ function handleTalkSubmit(e) {
 <div class="page-label">Speculative Work — Grocery Store of the Future · ThoughtWorks · 2021</div>
 
 <nav class="cs-nav" id="spec-grocery-store">
-  <a href="#top" class="cs-nav-logo">Suganth Chellamuthu</a>
-  <a href="#work" class="cs-back">← Back to all work</a>
+  <a href="index.html" class="cs-nav-logo"><img src="suche-logo.svg" alt="SuChe" style="height:26px;width:auto;display:block;"><span>Suganth Chellamuthu</span></a>
+  <a href="index.html#work" class="cs-back">← Back to all work</a>
 </nav>
 
 <div class="cs-hero">
@@ -3226,7 +3697,7 @@ function handleTalkSubmit(e) {
     <div class="cs-next-label">Back to portfolio</div>
     <div class="cs-next-title">View all case studies ↑</div>
   </div>
-  <span class="cs-next-arrow">↑</span>
+  <span class="cs-next-arrow">→</span>
 </a>
 
 
@@ -3235,17 +3706,17 @@ function handleTalkSubmit(e) {
   <div class="footer-inner">
     <div>
       <div class="footer-logo">Suganth Chellamuthu</div>
-      <p class="footer-bio">Digital Product Designer. Designing functional, elegant digital products for 14+ years.</p>
+      <p class="footer-bio">Focused on making the complex feel effortlessly simple — through great design, clear thinking, and real craft.</p>
     </div>
     <div>
       <p class="footer-heading">Work</p>
       <ul class="footer-links">
-        <li><a href="#cs1">AI Cancer Drug Discovery</a></li>
-        <li><a href="#cs2">Yodel Premium Delivery</a></li>
-        <li><a href="#cs3">Classroom Management App</a></li>
-        <li><a href="#cs4">Bill of Materials</a></li>
-        <li><a href="#cs5">Modanisa Marketplace</a></li>
-        <li><a href="#cs6">Store Promotions Financial Planning</a></li>
+        <li><a href="cs1.html">AI Cancer Drug Discovery</a></li>
+        <li><a href="cs2.html">Yodel Premium Delivery</a></li>
+        <li><a href="cs3.html">Classroom Management App</a></li>
+        <li><a href="cs4.html">Bill of Materials</a></li>
+        <li><a href="cs5.html">Modanisa Marketplace</a></li>
+        <li><a href="cs6.html">Store Promotions Financial Planning</a></li>
       </ul>
     </div>
     <div>
@@ -3272,9 +3743,9 @@ function handleTalkSubmit(e) {
 <div class="resume-page" id="resume">
 
   <nav class="resume-page-nav">
-    <a href="#top" class="resume-page-nav-logo">Suganth Chellamuthu</a>
+    <a href="index.html" class="resume-page-nav-logo"><img src="suche-logo.svg" alt="SuChe" style="height:26px;width:auto;display:block;"><span>Suganth Chellamuthu</span></a>
     <div class="resume-page-nav-actions">
-      <a href="#top" class="resume-page-back">← Back to portfolio</a>
+      <a href="index.html" class="resume-page-back">← Back to portfolio</a>
       <button class="resume-print" onclick="window.print()">Download as PDF ↓</button>
     </div>
   </nav>
@@ -3390,6 +3861,21 @@ function handleTalkSubmit(e) {
 
       <div class="resume-main-section">
         <p class="resume-main-label">Selected Works</p>
+
+        <div class="resume-work-item">
+          <div class="resume-work-title">AI-powered cancer drug discovery interface — Pfizer, UK</div>
+          <div class="resume-work-desc">Designed an AI research assistant for Pfizer's oncology R&D scientists to query and visualise biomedical data at scale. Turned complex multi-source research queries into instant, structured insights — reducing time-to-discovery and fundamentally changing how drug candidates are evaluated.</div>
+        </div>
+
+        <div class="resume-work-item">
+          <div class="resume-work-title">Bill of Materials visualisation platform — Manufacturing, UK</div>
+          <div class="resume-work-desc">Replaced fragmented spreadsheet workflows with a unified Bill of Materials visualisation and analysis platform. Delivered a 25% uplift in operational efficiency and £300K in annual savings by enabling engineering teams to explore complex material hierarchies, run scenario analysis, and surface cost anomalies in real time.</div>
+        </div>
+
+        <div class="resume-work-item">
+          <div class="resume-work-title">Store promotions financial planning tool — Retail, UK</div>
+          <div class="resume-work-desc">Replaced a fragmented, error-prone spreadsheet process with a compliant end-to-end promotions planning and financial forecasting platform for a major UK supermarket. Enabled category managers and financial planners to model promotions, track performance against targets, and manage risk with real-time sales data.</div>
+        </div>
 
         <div class="resume-work-item">
           <div class="resume-work-title">Empowering educators for improved school management — UK</div>

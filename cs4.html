@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bill of Materials — Suganth Chellamuthu</title>
+<title>Suganth Chellamuthu — Product Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@
   --c1: #0E52B0; --c2: #E63C2E; --c3: #1A8C49; --c4: #6B2FE8; --c5: #C47020;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body { font-family: var(--sans); background: var(--white); color: var(--text); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
 
 /* ── NAV ── */
@@ -235,20 +235,21 @@ body { font-family: var(--sans); background: var(--white); color: var(--text); f
 
 /* ── CLIENTS ── */
 .clients { padding: 72px 80px; border-bottom: 1px solid var(--border); }
-.clients-label { font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 48px; text-align: center; }
+.clients-label { font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 0; text-align: left; }
 .clients-grid {
-  display: grid; grid-template-columns: repeat(6, 1fr);
-  border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+  display: grid; grid-template-columns: repeat(5, 1fr);
 }
 .client-cell {
-  padding: 28px 20px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  padding: 48px 24px;
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--serif); font-size: 17px; letter-spacing: -.02em; color: var(--text-2);
-  transition: background .2s, color .2s;
+  position: relative;
 }
-.client-cell:hover { background: var(--fog); color: var(--text); }
-.client-cell:nth-child(6n) { border-right: none; }
-.client-cell:nth-last-child(-n+6) { border-bottom: none; }
+.logo-wrap { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; }
+.logo-wrap img { width: 95%; max-height: 120px; object-fit: contain; display: block; transition: opacity .25s ease; }
+.logo-wrap .logo-gray  { opacity: 1; }
+.logo-wrap .logo-color { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); opacity: 0; }
+.client-cell:hover .logo-gray  { opacity: 0; }
+.client-cell:hover .logo-color { opacity: 1; }
 
 /* ── TESTIMONIALS ── */
 .testimonials { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
@@ -380,7 +381,7 @@ textarea.tf-input { resize: vertical; min-height: 110px; line-height: 1.6; }
 
 /* Left sidebar — light */
 .resume-sidebar { background: var(--white); padding: 56px 40px; display: flex; flex-direction: column; gap: 0; border-right: 1px solid var(--border); }
-.resume-sidebar-name { font-family: var(--serif); font-size: clamp(36px, 4vw, 56px); letter-spacing: -.04em; line-height: 1.05; color: var(--text); margin-bottom: 8px; }
+.resume-sidebar-name { font-family: var(--serif); font-size: clamp(26px, 2.6vw, 40px); letter-spacing: -.04em; line-height: 1.1; color: var(--text); margin-bottom: 8px; word-break: break-word; }
 .resume-sidebar-headline { font-size: 13px; color: var(--text-2); margin-bottom: 28px; line-height: 1.5; }
 .resume-sidebar-contact { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; padding-bottom: 36px; border-bottom: 1px solid var(--border); }
 .resume-sidebar-contact a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color .2s; }
@@ -560,11 +561,29 @@ footer { background: var(--text); }
 .cs-quote-text { font-family: var(--serif); font-size: 24px; line-height: 1.5; letter-spacing: -.01em; color: var(--text); font-style: italic; margin-bottom: 20px; }
 .cs-quote-attr { font-size: 14px; color: var(--text-3); }
 
-/* CS Persona */
-.cs-persona { background: var(--fog); border: 1px solid var(--border); border-radius: 4px; padding: 36px; margin: 20px 0; }
-.cs-persona-name { font-family: var(--serif); font-size: 26px; letter-spacing: -.02em; color: var(--text); margin-bottom: 4px; }
-.cs-persona-role { font-size: 13px; color: var(--text-3); margin-bottom: 16px; }
-.cs-persona-text { font-size: 15px; color: var(--text-2); line-height: 1.75; }
+/* CS Persona — rich card */
+.cs-persona-card { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 24px 0; }
+.cs-persona-header { background: linear-gradient(135deg, #2D3FBF 0%, #6B5FE8 60%, #8B52D4 100%); padding: 28px 36px; display: flex; align-items: center; gap: 24px; }
+.cs-persona-initials { width: 72px; height: 72px; border-radius: 50%; background: rgba(255,255,255,.18); border: 2px solid rgba(255,255,255,.35); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 26px; color: var(--white); flex-shrink: 0; letter-spacing: -.02em; }
+.cs-persona-header-info .cs-persona-name { font-family: var(--serif); font-size: 24px; letter-spacing: -.025em; color: var(--white); margin-bottom: 4px; }
+.cs-persona-header-info .cs-persona-role { font-size: 14px; color: rgba(255,255,255,.72); margin-bottom: 10px; }
+.cs-persona-meta { display: flex; align-items: center; gap: 20px; }
+.cs-persona-meta-item { font-size: 12px; color: rgba(255,255,255,.6); display: flex; align-items: center; gap: 6px; }
+.cs-persona-meta-sep { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,.3); }
+.cs-persona-body { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+.cs-persona-col { padding: 28px 32px; border-right: 1px solid var(--border); }
+.cs-persona-col:last-child { border-right: none; }
+.cs-persona-section-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.cs-persona-demo-item { font-size: 14px; color: var(--text-2); line-height: 1.6; margin-bottom: 5px; }
+.cs-persona-quote { background: rgba(59,79,216,.06); border-left: 3px solid #3B4FD8; padding: 14px 18px; border-radius: 0 4px 4px 0; font-size: 13px; font-style: italic; color: var(--text-2); line-height: 1.75; margin-top: 20px; }
+.cs-persona-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.cs-persona-list:last-child { margin-bottom: 0; }
+.cs-persona-list li { font-size: 14px; color: var(--text-2); line-height: 1.55; display: flex; align-items: flex-start; gap: 10px; }
+.cs-persona-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.cs-persona-dot.green  { background: #22C55E; }
+.cs-persona-dot.purple { background: #A855F7; }
+.cs-persona-dot.red    { background: #EF4444; }
+.cs-persona-dot.blue   { background: #3B82F6; }
 
 /* CS large inline stat */
 .cs-deliverable-label { font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--white); background: var(--c1); display: inline-block; padding: 4px 12px; border-radius: 100px; margin-bottom: 16px; }
@@ -591,13 +610,14 @@ footer { background: var(--text); }
 .cs-bp-sub-title { font-family: var(--serif); font-size: clamp(20px,2vw,28px); color: var(--text); margin: 0 0 16px; line-height: 1.2; }
 /* ── Five Touchpoints grid ── */
 .cs-5tp-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; margin-top: 32px; }
-.cs-5tp-card { background: #f5f4f0; border-radius: 10px; padding: 20px 16px; display: flex; flex-direction: column; gap: 8px; }
-.cs-5tp-icon { width: 32px; height: 32px; color: var(--text); }
-.cs-5tp-icon svg { width: 32px; height: 32px; display: block; }
+.cs-5tp-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 20px 16px; display: flex; flex-direction: column; gap: 8px; }
+.cs-5tp-header { display:flex; align-items:center; gap:10px; }
+.cs-5tp-icon { width:40px; height:40px; border-radius:8px; background:#FEF0F0; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--c2); }
+.cs-5tp-icon svg { width:20px; height:20px; display:block; }
 .cs-5tp-title { font-family: var(--sans); font-size: 12px; font-weight: 700; color: var(--text); }
 .cs-5tp-desc { font-family: var(--sans); font-size: 12px; color: var(--text-2); line-height: 1.6; }
 @media (max-width: 1024px) { .cs-5tp-grid { grid-template-columns: repeat(3,1fr); } .cs-hmw-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 600px) { .cs-5tp-grid { grid-template-columns: 1fr 1fr; } .cs-hmw-grid { grid-template-columns: 1fr; } .cs-bp-activity-item { padding: 24px; } }
+@media (max-width: 600px) { .cs-5tp-grid { grid-template-columns: 1fr; } .cs-hmw-grid { grid-template-columns: 1fr; } .cs-bp-activity-item { padding: 24px; } }
 .ri-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .ri-card { border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
 .ri-pain { background: #ffeaed; }
@@ -607,6 +627,48 @@ footer { background: var(--text); }
 .ri-badge-pain    { background: #ef4444; color: #fff; }
 .ri-badge-opp     { background: #22c55e; color: #fff; }
 .ri-badge-insight { background: #1a1a1a; color: #fff; }
+
+/* ── Testimonials ─────────────────────────────────────────── */
+.cs-testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; }
+.cs-testimonial { background: var(--fog); border: 1px solid var(--border); border-radius: 2px; padding: 36px 32px; display: flex; flex-direction: column; }
+.cs-testimonial-quote { font-family: var(--sans); font-size: 14px; line-height: 1.75; color: var(--text-2); font-style: italic; margin: 0; flex: 1; }
+.cs-testimonial-divider { height: 1px; background: var(--border); margin: 24px 0 20px; }
+.cs-testimonial-author { font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--text); }
+.cs-testimonial-role { font-family: var(--sans); font-size: 12px; color: var(--text-3); margin-top: 4px; }
+@media (max-width: 768px) { .cs-testimonials { grid-template-columns: 1fr; } }
+
+/* ── Research synthesis blocks ───────────────────────────── */
+.cs-research-block { margin: 48px 0; }
+.cs-research-block-title { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin: 0 0 24px; }
+/* Method cards */
+.cs-research-methods { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.cs-method-card { background: var(--fog); border: 1px solid var(--border); border-radius: 10px; padding: 28px 24px; display: flex; flex-direction: column; gap: 6px; }
+.cs-method-icon { font-size: 22px; color: var(--text-3); margin-bottom: 8px; }
+.cs-method-name { font-family: var(--sans); font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.cs-method-stat { font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--text-2); }
+.cs-method-desc { font-family: var(--sans); font-size: 13px; color: var(--text-3); line-height: 1.6; margin-top: 8px; }
+/* Insight theme cards */
+.cs-insight-themes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.cs-insight-theme { border-radius: 10px; padding: 28px 28px 24px; display: flex; flex-direction: column; gap: 10px; border: 1px solid transparent; }
+.cs-insight-theme--red    { background: #fff4f3; border-color: #ffd5d2; }
+.cs-insight-theme--blue   { background: #f0f5ff; border-color: #c8d8f8; }
+.cs-insight-theme--amber  { background: #fff9ed; border-color: #ffe8b0; }
+.cs-insight-theme--green  { background: #f0faf3; border-color: #b8e8c8; }
+.cs-insight-theme-badge { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: .12em; color: var(--text-3); }
+.cs-insight-theme-title { font-family: var(--sans); font-size: 16px; font-weight: 700; color: var(--text); line-height: 1.3; }
+.cs-insight-theme-body { font-family: var(--sans); font-size: 13px; color: var(--text-2); line-height: 1.65; flex: 1; }
+.cs-insight-theme-impact { font-family: var(--sans); font-size: 12px; color: var(--text-2); line-height: 1.5; border-top: 1px solid rgba(0,0,0,.07); padding-top: 12px; margin-top: 4px; }
+.cs-insight-impact-label { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); margin-right: 6px; }
+/* Pain points grid */
+.cs-pain-points { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.cs-pain-point { background: #fafaf9; border: 1px solid var(--border); padding: 24px 28px; display: flex; align-items: flex-start; gap: 20px; border-radius: 2px; }
+.cs-pain-point-num { font-family: var(--serif); font-size: 28px; color: var(--border); line-height: 1; flex-shrink: 0; padding-top: 2px; }
+.cs-pain-point-text { font-family: var(--sans); font-size: 14px; color: var(--text-2); line-height: 1.65; }
+@media (max-width: 768px) {
+  .cs-research-methods { grid-template-columns: 1fr; }
+  .cs-insight-themes { grid-template-columns: 1fr; }
+  .cs-pain-points { grid-template-columns: 1fr; }
+}
 .ri-card-title { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.4; }
 .ri-card-text  { font-family: var(--sans); font-size: 13px; color: var(--text-2); line-height: 1.6; }
 
@@ -762,8 +824,6 @@ thead .bp-sticky { z-index: 4; }
   .about-left { padding: 64px 32px; }
   .clients { padding: 56px 32px; }
   .clients-grid { grid-template-columns: repeat(4, 1fr); }
-  .client-cell:nth-child(4n) { border-right: none; }
-  .client-cell:nth-child(6n) { border-right: 1px solid var(--border); }
   .testimonials { grid-template-columns: 1fr; }
   .blogs-grid { grid-template-columns: 1fr; }
   .blogs-grid { padding: 0 32px; }
@@ -815,13 +875,24 @@ thead .bp-sticky { z-index: 4; }
   .hero-sub { font-size: 16px; }
   .hero-actions { flex-direction: column; align-items: flex-start; }
   .speculative-grid { grid-template-columns: 1fr; }
-  .stats { grid-template-columns: 1fr 1fr; }
-  .stat:last-child { grid-column: 1/-1; border-right: none; border-top: 1px solid var(--border); }
+  .stats { grid-template-columns: repeat(3, 1fr); }
+  .stat:last-child { grid-column: auto; border-right: none; border-top: none; }
+  .capabilities { grid-template-columns: 1fr 1fr; }
+  .cap-card:nth-child(2n) { border-right: none; }
+  .cap-card:nth-child(n+3) { border-top: 1px solid var(--border); }
+  .cap-card { padding: 36px 32px; }
+  .cap-card:first-child { padding-left: 32px; }
+  .cap-card:last-child { padding-right: 32px; }
   .work-grid { grid-template-columns: 1fr; }
   .work-card:nth-child(3n) { border-right: 1px solid var(--border); }
   .work-card { border-right: none !important; }
   .about { grid-template-columns: 1fr; }
   .about-right { display: block; min-height: 60vw; }
+  .about-img-ph { background: none; min-height: 60vw; }
+  .talk-event { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .talk-techniques { margin-top: 16px; }
+  .tf-submit { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .tf-note { max-width: 100%; }
   .clients-grid { grid-template-columns: repeat(3, 1fr); }
   .cs-insights { grid-template-columns: 1fr; }
   .cs-steps { grid-template-columns: 1fr !important; }
@@ -834,8 +905,9 @@ thead .bp-sticky { z-index: 4; }
   .nav, .cs-nav { padding: 14px 20px; }
   .hero { padding: 100px 20px 60px; }
   .hero-h1 { font-size: 36px; }
-  .stat { padding: 24px 20px; }
-  .stat-val { font-size: 44px; }
+  .stat { padding: 20px 12px; }
+  .stat-val { font-size: 32px; }
+  .stat-label { font-size: 11px; }
   .work-header { padding: 44px 20px 28px; }
   .work-grid { padding: 0 20px; }
   .work-card-body { padding: 24px 16px 28px; }
@@ -843,14 +915,16 @@ thead .bp-sticky { z-index: 4; }
   .blog-card { padding: 36px 16px; }
   .spec-header { padding: 40px 20px 28px; }
   .spec-title { font-size: 19px; }
-  .cap-card { padding: 36px 24px; }
+  .capabilities { grid-template-columns: 1fr; }
+  .cap-card:nth-child(2n) { border-right: 1px solid var(--border); }
+  .cap-card:nth-child(n+2) { border-top: 1px solid var(--border); }
+  .cap-card { padding: 28px 20px; border-right: none; }
   .cap-card:first-child { padding-left: 20px; }
-  .cap-card:last-child { padding-right: 20px; }
+  .cap-card:last-child { padding-right: 20px; border-top: 1px solid var(--border); }
   .about-left { padding: 56px 20px; }
   .clients { padding: 44px 20px; }
-  .clients-grid { grid-template-columns: repeat(2, 1fr); }
-  .client-cell:nth-child(2n) { border-right: none; }
-  .client-cell:nth-child(4n) { border-right: 1px solid var(--border); }
+  .clients-grid { grid-template-columns: 1fr; }
+  .client-cell { padding: 16px 20px; }
   .testimonial { padding: 44px 20px; }
   .contact-left, .contact-right { padding: 52px 20px; }
   .contact-title { font-size: 36px; }
@@ -877,38 +951,48 @@ thead .bp-sticky { z-index: 4; }
   .spec-item { grid-template-columns: 100px 32px 1fr 20px; padding-left: 20px; padding-right: 16px; }
   .spec-thumb { width: 100px; height: 80px; }
   .spec-num { padding: 0 14px; }
+  .speculative-grid { padding: 0 20px; }
+  .capabilities-header { padding: 0 20px !important; }
+  .cs-persona-body { grid-template-columns: 1fr; }
+  .cs-persona-col { border-right: none; border-top: 1px solid var(--border); }
+  .cs-persona-col:first-child { border-top: none; }
+  .cs-persona-header { padding: 24px 20px; gap: 16px; }
+  .cs-persona-initials { width: 56px; height: 56px; font-size: 20px; }
+  .work-card-title { font-size: 22px; }
+  .spec-card-title { font-size: 20px; }
+  .talk-theme-title { font-size: 18px; }
+  .footer-bio { max-width: 100%; }
+  .footer-contact-right { padding: 40px 20px; }
 }
 </style>
 </head>
 <body>
-
 <div class="page-label">Case Study 4 — Bill of Materials Optimisation · Enterprise Engineering · 2022</div>
 
-<nav class="cs-nav">
+<nav class="cs-nav" id="cs4">
   <a href="index.html" class="cs-nav-logo"><img src="suche-logo.svg" alt="SuChe" style="height:26px;width:auto;display:block;"><span>Suganth Chellamuthu</span></a>
   <a href="index.html#work" class="cs-back">← Back to all work</a>
 </nav>
 
-<div id="cs4" class="cs-hero">
+<div class="cs-hero">
   <div class="cs-cats">
-    <span class="cs-cat">B2B SaaS</span><span class="cs-cat-dot"></span>
     <span class="cs-cat">Enterprise</span><span class="cs-cat-dot"></span>
-    <span class="cs-cat">Data Viz</span><span class="cs-cat-dot"></span>
+    <span class="cs-cat">Engineering</span><span class="cs-cat-dot"></span>
     <span class="cs-cat">2022</span>
   </div>
   <h1 class="cs-h1">Leading the Revolution in Materials Optimisation</h1>
-  <p class="cs-subtitle">An engineering organisation needed a smarter way to visualise complex Bill of Materials data and run component analysis. I designed the Product Explorer — a revolutionary tool that transformed how engineers interact with materials data at scale.</p>
+  <p class="cs-subtitle">A major engineering organisation's Bill of Materials data was locked in spreadsheets and opaque ERP modules. I designed a purpose-built Product Explorer that made complex BoM hierarchies navigable, comparable, and actionable.</p>
   <div class="cs-tags">
-    <span class="cs-tag">Data Visualisation</span>
     <span class="cs-tag">Enterprise UX</span>
-    <span class="cs-tag">Interaction Design</span>
+    <span class="cs-tag">Data Visualisation</span>
+    <span class="cs-tag">UX Research</span>
     <span class="cs-tag">Design Systems</span>
   </div>
   <div class="cs-meta-grid" style="margin-top:48px; max-width:540px;">
-    <div class="cs-meta-item"><div class="cs-meta-key">Client</div><div class="cs-meta-val">Enterprise Engineering Org</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-key">Client</div><div class="cs-meta-val">Enterprise Engineering</div></div>
     <div class="cs-meta-item"><div class="cs-meta-key">My role</div><div class="cs-meta-val">Lead Product Designer</div></div>
-    <div class="cs-meta-item"><div class="cs-meta-key">Domain</div><div class="cs-meta-val">B2B SaaS · Materials Science</div></div>
-    <div class="cs-meta-item"><div class="cs-meta-key">Platform</div><div class="cs-meta-val">Web · Desktop App</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-key">Domain</div><div class="cs-meta-val">Manufacturing · Enterprise</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-key">Users</div><div class="cs-meta-val">Materials Analysts · Procurement</div></div>
   </div>
 </div>
 
@@ -932,11 +1016,10 @@ thead .bp-sticky { z-index: 4; }
     <h2 class="cs-section-title">When Spreadsheets Fail Engineers</h2>
     <p class="cs-text">Large engineering organisations manage Bills of Materials with thousands of components, substitution options, compliance requirements, and cost variables. Existing tools were either generic spreadsheets or expensive, opaque legacy ERP modules that required specialist training to operate.</p>
     <p class="cs-text">The goal: design a purpose-built Product Explorer that made complex BoM data navigable, comparable, and actionable — for both engineering analysts and procurement managers.</p>
-    <div class="cs-img cs-img-16-9">[ Product Explorer — overview of the full BoM tree interface ]</div>
   </div>
 
   <div class="cs-section">
-    <h2 class="cs-section-title">Complexity That Defeats Conventional Interface Design</h2>
+    <h2 class="cs-section-title">The Design Challenge</h2>
     <p class="cs-text">The materials data was hierarchical, multi-dimensional, and constantly changing. A single product could have 5,000+ components in a tree structure 12 levels deep. Analysts needed to simultaneously view current state, compare alternatives, apply filters across multiple parameters, and track changes over time.</p>
     <div class="cs-insights">
       <div class="cs-insight"><div class="cs-insight-title">Deep hierarchy navigation</div><div class="cs-insight-text">No existing interface handled 12-level component trees without losing context or overwhelming the user.</div></div>
@@ -947,25 +1030,9 @@ thead .bp-sticky { z-index: 4; }
   </div>
 
   <div class="cs-section">
-    <h2 class="cs-section-title">Two Weeks Inside the Engineering Team</h2>
-    <p class="cs-text">I embedded with the engineering team for two weeks before designing a single screen — learning the domain vocabulary, understanding the mental models of materials analysts, and mapping the decision journeys that led to good and bad outcomes.</p>
-    <div class="cs-steps" style="grid-template-columns: repeat(4,1fr);">
-      <div class="cs-step"><div class="cs-step-num">01</div><div class="cs-step-title">Domain immersion</div><div class="cs-step-text">2-week embed with engineering team, vocabulary and workflow mapping</div></div>
-      <div class="cs-step"><div class="cs-step-num">02</div><div class="cs-step-title">Journey mapping</div><div class="cs-step-text">Mapped 6 core analyst workflows end-to-end</div></div>
-      <div class="cs-step"><div class="cs-step-num">03</div><div class="cs-step-title">Concept testing</div><div class="cs-step-text">3 navigation models tested with 12 analysts</div></div>
-      <div class="cs-step"><div class="cs-step-num">04</div><div class="cs-step-title">Iterative design</div><div class="cs-step-text">8 prototype rounds before final handoff</div></div>
-    </div>
-  </div>
-
-  <div class="cs-section">
     <h2 class="cs-section-title">Making Complexity Navigable</h2>
     <p class="cs-text">The Product Explorer was built around three core interaction paradigms: the Tree View (collapsible hierarchy with colour-coded status), the Compare Panel (side-by-side component analysis with delta highlighting), and the Analysis Dashboard (aggregated metrics, cost modelling, and compliance scoring).</p>
-    <div class="cs-img cs-img-16-9">[ Product Explorer — tree view with compare panel open ]</div>
     <p class="cs-text">A novel breadcrumb-plus-minimap system allowed analysts to navigate deep hierarchies without losing their position in the overall structure. Testing showed this reduced navigation errors by 73% compared to the flat-list legacy interface.</p>
-    <div class="cs-img-2col">
-      <div class="cs-img">[ Analysis dashboard — cost modelling and compliance scoring ]</div>
-      <div class="cs-img">[ Compare panel — side-by-side component analysis ]</div>
-    </div>
   </div>
 
   <div class="cs-section">
@@ -978,6 +1045,29 @@ thead .bp-sticky { z-index: 4; }
     <div class="cs-big-stat">
       <div class="cs-big-stat-val c4">8×</div>
       <p class="cs-big-stat-desc">faster analysis speed for common tasks — with a 4.7/5 user satisfaction score across 85 survey respondents.</p>
+    </div>
+  </div>
+
+  <!-- ── LEADERSHIP TESTIMONIALS ───────────────────────────── -->
+  <div class="cs-section">
+    <h2 class="cs-section-title">Leadership Testimonials</h2>
+    <p class="cs-text">Hear from senior management about the impact and value delivered through this transformational BOM optimisation initiative.</p>
+    <div class="cs-testimonials">
+      <div class="cs-testimonial">
+        <p class="cs-testimonial-quote">"This is magic what you have here! It's powerful and user-friendly."</p>
+        <div class="cs-testimonial-divider"></div>
+        <div class="cs-testimonial-author">Chief Technology Officer</div>
+      </div>
+      <div class="cs-testimonial">
+        <p class="cs-testimonial-quote">"An automated data platform gives visibility, enables complexity to be simplified in a structured way and data-driven decision-making. Say goodbye to the clunky way of working!!"</p>
+        <div class="cs-testimonial-divider"></div>
+        <div class="cs-testimonial-author">Head of Design Engineering</div>
+      </div>
+      <div class="cs-testimonial">
+        <p class="cs-testimonial-quote">"The team have created an innovative product that will help the R&amp;D teams to become more cost-effective and efficient."</p>
+        <div class="cs-testimonial-divider"></div>
+        <div class="cs-testimonial-author">Head of Product Development</div>
+      </div>
     </div>
   </div>
 
@@ -995,72 +1085,5 @@ thead .bp-sticky { z-index: 4; }
 <!-- ════════════════════════════════════════ -->
 <!--  CASE STUDY 5 — Modanisa               -->
 <!-- ════════════════════════════════════════ -->
-
-<footer id="contact">
-  <div class="footer-contact">
-    <div class="footer-contact-left">
-      <h2 class="resume-cta-title">14+ years of design,<br><em>distilled.</em></h2>
-      <p class="resume-cta-sub">Experience across HealthTech, retail, logistics, education, and enterprise — from individual contributor to Head of Design.</p>
-
-      <div class="footer-contact-actions">
-        <a href="resume.html" class="btn-resume">View résumé →</a>
-      </div>
-    </div>
-    <div class="footer-contact-right">
-      <div class="footer-inner-grid">
-        <div>
-          <div class="footer-logo">Suganth Chellamuthu</div>
-          <p class="footer-bio">Focused on making the complex feel effortlessly simple — through great design, clear thinking, and real craft.</p>
-        </div>
-        <div>
-          <p class="footer-heading">Work</p>
-          <ul class="footer-links">
-            <li><a href="cs1.html">AI Cancer Drug Discovery</a></li>
-            <li><a href="cs2.html">Yodel Premium Delivery</a></li>
-            <li><a href="cs3.html">Classroom Management App</a></li>
-            <li><a href="cs4.html">Bill of Materials</a></li>
-            <li><a href="cs5.html">Modanisa Marketplace</a></li>
-            <li><a href="cs6.html">Store Promotions Financial Planning</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-social" style="margin-top: 36px;">
-        <a href="mailto:suganthgct@gmail.com" class="footer-social-link" title="Email">
-          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
-        </a>
-        <a href="tel:+919972457131" class="footer-social-link" title="Phone">
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 4.72 4.18 2 2 0 0 1 6.7 2h3.09a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L10.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        </a>
-        <a href="https://linkedin.com/in/suganthchellamuthu" class="footer-social-link" title="LinkedIn" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://dribbble.com/suganthc" class="footer-social-link" title="Dribbble" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
-        </a>
-        <a href="https://medium.com/@suganthc" class="footer-social-link" title="Medium" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">© 2024 Suganth Chellamuthu. All rights reserved.</span>
-    <span class="footer-copy">Designed with care</span>
-  </div>
-</footer>
-<script>
-(function(){
-  var pool=[{url:"cs1.html",title:"Accelerating Cancer Drug Discovery"},{url:"cs2.html",title:"Designing a Premium Delivery Service Experience"},{url:"cs3.html",title:"Classroom Management App — Boosting Teacher Efficiency by 57%"},{url:"cs5.html",title:"Crafting a Marketplace Experience for Modest Fashion"},{url:"cs6.html",title:"Store Promotions Financial Planning Tool"}];
-  var pick=pool[Math.floor(Math.random()*pool.length)];
-  var link=document.querySelector('.cs-next');
-  if(link){
-    link.href=pick.url;
-    var t=link.querySelector('.cs-next-title');
-    if(t) t.textContent=pick.title;
-    var l=link.querySelector('.cs-next-label');
-    if(l) l.textContent='Up next';
-  }
-})();
-</script>
 </body>
 </html>

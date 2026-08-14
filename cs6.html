@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Store Promotions Financial Planning — Suganth Chellamuthu</title>
+<title>Suganth Chellamuthu — Product Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@
   --c1: #0E52B0; --c2: #E63C2E; --c3: #1A8C49; --c4: #6B2FE8; --c5: #C47020;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body { font-family: var(--sans); background: var(--white); color: var(--text); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
 
 /* ── NAV ── */
@@ -235,20 +235,21 @@ body { font-family: var(--sans); background: var(--white); color: var(--text); f
 
 /* ── CLIENTS ── */
 .clients { padding: 72px 80px; border-bottom: 1px solid var(--border); }
-.clients-label { font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 48px; text-align: center; }
+.clients-label { font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 0; text-align: left; }
 .clients-grid {
-  display: grid; grid-template-columns: repeat(6, 1fr);
-  border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+  display: grid; grid-template-columns: repeat(5, 1fr);
 }
 .client-cell {
-  padding: 28px 20px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  padding: 48px 24px;
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--serif); font-size: 17px; letter-spacing: -.02em; color: var(--text-2);
-  transition: background .2s, color .2s;
+  position: relative;
 }
-.client-cell:hover { background: var(--fog); color: var(--text); }
-.client-cell:nth-child(6n) { border-right: none; }
-.client-cell:nth-last-child(-n+6) { border-bottom: none; }
+.logo-wrap { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; }
+.logo-wrap img { width: 95%; max-height: 120px; object-fit: contain; display: block; transition: opacity .25s ease; }
+.logo-wrap .logo-gray  { opacity: 1; }
+.logo-wrap .logo-color { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); opacity: 0; }
+.client-cell:hover .logo-gray  { opacity: 0; }
+.client-cell:hover .logo-color { opacity: 1; }
 
 /* ── TESTIMONIALS ── */
 .testimonials { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
@@ -380,7 +381,7 @@ textarea.tf-input { resize: vertical; min-height: 110px; line-height: 1.6; }
 
 /* Left sidebar — light */
 .resume-sidebar { background: var(--white); padding: 56px 40px; display: flex; flex-direction: column; gap: 0; border-right: 1px solid var(--border); }
-.resume-sidebar-name { font-family: var(--serif); font-size: clamp(36px, 4vw, 56px); letter-spacing: -.04em; line-height: 1.05; color: var(--text); margin-bottom: 8px; }
+.resume-sidebar-name { font-family: var(--serif); font-size: clamp(26px, 2.6vw, 40px); letter-spacing: -.04em; line-height: 1.1; color: var(--text); margin-bottom: 8px; word-break: break-word; }
 .resume-sidebar-headline { font-size: 13px; color: var(--text-2); margin-bottom: 28px; line-height: 1.5; }
 .resume-sidebar-contact { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; padding-bottom: 36px; border-bottom: 1px solid var(--border); }
 .resume-sidebar-contact a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color .2s; }
@@ -560,11 +561,29 @@ footer { background: var(--text); }
 .cs-quote-text { font-family: var(--serif); font-size: 24px; line-height: 1.5; letter-spacing: -.01em; color: var(--text); font-style: italic; margin-bottom: 20px; }
 .cs-quote-attr { font-size: 14px; color: var(--text-3); }
 
-/* CS Persona */
-.cs-persona { background: var(--fog); border: 1px solid var(--border); border-radius: 4px; padding: 36px; margin: 20px 0; }
-.cs-persona-name { font-family: var(--serif); font-size: 26px; letter-spacing: -.02em; color: var(--text); margin-bottom: 4px; }
-.cs-persona-role { font-size: 13px; color: var(--text-3); margin-bottom: 16px; }
-.cs-persona-text { font-size: 15px; color: var(--text-2); line-height: 1.75; }
+/* CS Persona — rich card */
+.cs-persona-card { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 24px 0; }
+.cs-persona-header { background: linear-gradient(135deg, #2D3FBF 0%, #6B5FE8 60%, #8B52D4 100%); padding: 28px 36px; display: flex; align-items: center; gap: 24px; }
+.cs-persona-initials { width: 72px; height: 72px; border-radius: 50%; background: rgba(255,255,255,.18); border: 2px solid rgba(255,255,255,.35); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 26px; color: var(--white); flex-shrink: 0; letter-spacing: -.02em; }
+.cs-persona-header-info .cs-persona-name { font-family: var(--serif); font-size: 24px; letter-spacing: -.025em; color: var(--white); margin-bottom: 4px; }
+.cs-persona-header-info .cs-persona-role { font-size: 14px; color: rgba(255,255,255,.72); margin-bottom: 10px; }
+.cs-persona-meta { display: flex; align-items: center; gap: 20px; }
+.cs-persona-meta-item { font-size: 12px; color: rgba(255,255,255,.6); display: flex; align-items: center; gap: 6px; }
+.cs-persona-meta-sep { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,.3); }
+.cs-persona-body { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+.cs-persona-col { padding: 28px 32px; border-right: 1px solid var(--border); }
+.cs-persona-col:last-child { border-right: none; }
+.cs-persona-section-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.cs-persona-demo-item { font-size: 14px; color: var(--text-2); line-height: 1.6; margin-bottom: 5px; }
+.cs-persona-quote { background: rgba(59,79,216,.06); border-left: 3px solid #3B4FD8; padding: 14px 18px; border-radius: 0 4px 4px 0; font-size: 13px; font-style: italic; color: var(--text-2); line-height: 1.75; margin-top: 20px; }
+.cs-persona-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.cs-persona-list:last-child { margin-bottom: 0; }
+.cs-persona-list li { font-size: 14px; color: var(--text-2); line-height: 1.55; display: flex; align-items: flex-start; gap: 10px; }
+.cs-persona-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.cs-persona-dot.green  { background: #22C55E; }
+.cs-persona-dot.purple { background: #A855F7; }
+.cs-persona-dot.red    { background: #EF4444; }
+.cs-persona-dot.blue   { background: #3B82F6; }
 
 /* CS large inline stat */
 .cs-deliverable-label { font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--white); background: var(--c1); display: inline-block; padding: 4px 12px; border-radius: 100px; margin-bottom: 16px; }
@@ -591,13 +610,14 @@ footer { background: var(--text); }
 .cs-bp-sub-title { font-family: var(--serif); font-size: clamp(20px,2vw,28px); color: var(--text); margin: 0 0 16px; line-height: 1.2; }
 /* ── Five Touchpoints grid ── */
 .cs-5tp-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; margin-top: 32px; }
-.cs-5tp-card { background: #f5f4f0; border-radius: 10px; padding: 20px 16px; display: flex; flex-direction: column; gap: 8px; }
-.cs-5tp-icon { width: 32px; height: 32px; color: var(--text); }
-.cs-5tp-icon svg { width: 32px; height: 32px; display: block; }
+.cs-5tp-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 20px 16px; display: flex; flex-direction: column; gap: 8px; }
+.cs-5tp-header { display:flex; align-items:center; gap:10px; }
+.cs-5tp-icon { width:40px; height:40px; border-radius:8px; background:#FEF0F0; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--c2); }
+.cs-5tp-icon svg { width:20px; height:20px; display:block; }
 .cs-5tp-title { font-family: var(--sans); font-size: 12px; font-weight: 700; color: var(--text); }
 .cs-5tp-desc { font-family: var(--sans); font-size: 12px; color: var(--text-2); line-height: 1.6; }
 @media (max-width: 1024px) { .cs-5tp-grid { grid-template-columns: repeat(3,1fr); } .cs-hmw-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 600px) { .cs-5tp-grid { grid-template-columns: 1fr 1fr; } .cs-hmw-grid { grid-template-columns: 1fr; } .cs-bp-activity-item { padding: 24px; } }
+@media (max-width: 600px) { .cs-5tp-grid { grid-template-columns: 1fr; } .cs-hmw-grid { grid-template-columns: 1fr; } .cs-bp-activity-item { padding: 24px; } }
 .ri-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .ri-card { border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
 .ri-pain { background: #ffeaed; }
@@ -607,6 +627,48 @@ footer { background: var(--text); }
 .ri-badge-pain    { background: #ef4444; color: #fff; }
 .ri-badge-opp     { background: #22c55e; color: #fff; }
 .ri-badge-insight { background: #1a1a1a; color: #fff; }
+
+/* ── Testimonials ─────────────────────────────────────────── */
+.cs-testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; }
+.cs-testimonial { background: var(--fog); border: 1px solid var(--border); border-radius: 2px; padding: 36px 32px; display: flex; flex-direction: column; }
+.cs-testimonial-quote { font-family: var(--sans); font-size: 14px; line-height: 1.75; color: var(--text-2); font-style: italic; margin: 0; flex: 1; }
+.cs-testimonial-divider { height: 1px; background: var(--border); margin: 24px 0 20px; }
+.cs-testimonial-author { font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--text); }
+.cs-testimonial-role { font-family: var(--sans); font-size: 12px; color: var(--text-3); margin-top: 4px; }
+@media (max-width: 768px) { .cs-testimonials { grid-template-columns: 1fr; } }
+
+/* ── Research synthesis blocks ───────────────────────────── */
+.cs-research-block { margin: 48px 0; }
+.cs-research-block-title { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin: 0 0 24px; }
+/* Method cards */
+.cs-research-methods { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.cs-method-card { background: var(--fog); border: 1px solid var(--border); border-radius: 10px; padding: 28px 24px; display: flex; flex-direction: column; gap: 6px; }
+.cs-method-icon { font-size: 22px; color: var(--text-3); margin-bottom: 8px; }
+.cs-method-name { font-family: var(--sans); font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.cs-method-stat { font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--text-2); }
+.cs-method-desc { font-family: var(--sans); font-size: 13px; color: var(--text-3); line-height: 1.6; margin-top: 8px; }
+/* Insight theme cards */
+.cs-insight-themes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.cs-insight-theme { border-radius: 10px; padding: 28px 28px 24px; display: flex; flex-direction: column; gap: 10px; border: 1px solid transparent; }
+.cs-insight-theme--red    { background: #fff4f3; border-color: #ffd5d2; }
+.cs-insight-theme--blue   { background: #f0f5ff; border-color: #c8d8f8; }
+.cs-insight-theme--amber  { background: #fff9ed; border-color: #ffe8b0; }
+.cs-insight-theme--green  { background: #f0faf3; border-color: #b8e8c8; }
+.cs-insight-theme-badge { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: .12em; color: var(--text-3); }
+.cs-insight-theme-title { font-family: var(--sans); font-size: 16px; font-weight: 700; color: var(--text); line-height: 1.3; }
+.cs-insight-theme-body { font-family: var(--sans); font-size: 13px; color: var(--text-2); line-height: 1.65; flex: 1; }
+.cs-insight-theme-impact { font-family: var(--sans); font-size: 12px; color: var(--text-2); line-height: 1.5; border-top: 1px solid rgba(0,0,0,.07); padding-top: 12px; margin-top: 4px; }
+.cs-insight-impact-label { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); margin-right: 6px; }
+/* Pain points grid */
+.cs-pain-points { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.cs-pain-point { background: #fafaf9; border: 1px solid var(--border); padding: 24px 28px; display: flex; align-items: flex-start; gap: 20px; border-radius: 2px; }
+.cs-pain-point-num { font-family: var(--serif); font-size: 28px; color: var(--border); line-height: 1; flex-shrink: 0; padding-top: 2px; }
+.cs-pain-point-text { font-family: var(--sans); font-size: 14px; color: var(--text-2); line-height: 1.65; }
+@media (max-width: 768px) {
+  .cs-research-methods { grid-template-columns: 1fr; }
+  .cs-insight-themes { grid-template-columns: 1fr; }
+  .cs-pain-points { grid-template-columns: 1fr; }
+}
 .ri-card-title { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.4; }
 .ri-card-text  { font-family: var(--sans); font-size: 13px; color: var(--text-2); line-height: 1.6; }
 
@@ -762,8 +824,6 @@ thead .bp-sticky { z-index: 4; }
   .about-left { padding: 64px 32px; }
   .clients { padding: 56px 32px; }
   .clients-grid { grid-template-columns: repeat(4, 1fr); }
-  .client-cell:nth-child(4n) { border-right: none; }
-  .client-cell:nth-child(6n) { border-right: 1px solid var(--border); }
   .testimonials { grid-template-columns: 1fr; }
   .blogs-grid { grid-template-columns: 1fr; }
   .blogs-grid { padding: 0 32px; }
@@ -815,13 +875,24 @@ thead .bp-sticky { z-index: 4; }
   .hero-sub { font-size: 16px; }
   .hero-actions { flex-direction: column; align-items: flex-start; }
   .speculative-grid { grid-template-columns: 1fr; }
-  .stats { grid-template-columns: 1fr 1fr; }
-  .stat:last-child { grid-column: 1/-1; border-right: none; border-top: 1px solid var(--border); }
+  .stats { grid-template-columns: repeat(3, 1fr); }
+  .stat:last-child { grid-column: auto; border-right: none; border-top: none; }
+  .capabilities { grid-template-columns: 1fr 1fr; }
+  .cap-card:nth-child(2n) { border-right: none; }
+  .cap-card:nth-child(n+3) { border-top: 1px solid var(--border); }
+  .cap-card { padding: 36px 32px; }
+  .cap-card:first-child { padding-left: 32px; }
+  .cap-card:last-child { padding-right: 32px; }
   .work-grid { grid-template-columns: 1fr; }
   .work-card:nth-child(3n) { border-right: 1px solid var(--border); }
   .work-card { border-right: none !important; }
   .about { grid-template-columns: 1fr; }
   .about-right { display: block; min-height: 60vw; }
+  .about-img-ph { background: none; min-height: 60vw; }
+  .talk-event { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .talk-techniques { margin-top: 16px; }
+  .tf-submit { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .tf-note { max-width: 100%; }
   .clients-grid { grid-template-columns: repeat(3, 1fr); }
   .cs-insights { grid-template-columns: 1fr; }
   .cs-steps { grid-template-columns: 1fr !important; }
@@ -834,8 +905,9 @@ thead .bp-sticky { z-index: 4; }
   .nav, .cs-nav { padding: 14px 20px; }
   .hero { padding: 100px 20px 60px; }
   .hero-h1 { font-size: 36px; }
-  .stat { padding: 24px 20px; }
-  .stat-val { font-size: 44px; }
+  .stat { padding: 20px 12px; }
+  .stat-val { font-size: 32px; }
+  .stat-label { font-size: 11px; }
   .work-header { padding: 44px 20px 28px; }
   .work-grid { padding: 0 20px; }
   .work-card-body { padding: 24px 16px 28px; }
@@ -843,14 +915,16 @@ thead .bp-sticky { z-index: 4; }
   .blog-card { padding: 36px 16px; }
   .spec-header { padding: 40px 20px 28px; }
   .spec-title { font-size: 19px; }
-  .cap-card { padding: 36px 24px; }
+  .capabilities { grid-template-columns: 1fr; }
+  .cap-card:nth-child(2n) { border-right: 1px solid var(--border); }
+  .cap-card:nth-child(n+2) { border-top: 1px solid var(--border); }
+  .cap-card { padding: 28px 20px; border-right: none; }
   .cap-card:first-child { padding-left: 20px; }
-  .cap-card:last-child { padding-right: 20px; }
+  .cap-card:last-child { padding-right: 20px; border-top: 1px solid var(--border); }
   .about-left { padding: 56px 20px; }
   .clients { padding: 44px 20px; }
-  .clients-grid { grid-template-columns: repeat(2, 1fr); }
-  .client-cell:nth-child(2n) { border-right: none; }
-  .client-cell:nth-child(4n) { border-right: 1px solid var(--border); }
+  .clients-grid { grid-template-columns: 1fr; }
+  .client-cell { padding: 16px 20px; }
   .testimonial { padding: 44px 20px; }
   .contact-left, .contact-right { padding: 52px 20px; }
   .contact-title { font-size: 36px; }
@@ -877,11 +951,22 @@ thead .bp-sticky { z-index: 4; }
   .spec-item { grid-template-columns: 100px 32px 1fr 20px; padding-left: 20px; padding-right: 16px; }
   .spec-thumb { width: 100px; height: 80px; }
   .spec-num { padding: 0 14px; }
+  .speculative-grid { padding: 0 20px; }
+  .capabilities-header { padding: 0 20px !important; }
+  .cs-persona-body { grid-template-columns: 1fr; }
+  .cs-persona-col { border-right: none; border-top: 1px solid var(--border); }
+  .cs-persona-col:first-child { border-top: none; }
+  .cs-persona-header { padding: 24px 20px; gap: 16px; }
+  .cs-persona-initials { width: 56px; height: 56px; font-size: 20px; }
+  .work-card-title { font-size: 22px; }
+  .spec-card-title { font-size: 20px; }
+  .talk-theme-title { font-size: 18px; }
+  .footer-bio { max-width: 100%; }
+  .footer-contact-right { padding: 40px 20px; }
 }
 </style>
 </head>
 <body>
-
 <div class="page-label">Case Study 6 — Store Promotions Financial Planning Tool · UK Supermarket · 2017</div>
 
 <nav class="cs-nav" id="cs6">
@@ -928,22 +1013,17 @@ thead .bp-sticky { z-index: 4; }
 
   <div class="cs-section">
     <h2 class="cs-section-title">The Problem with Running Promotions on Spreadsheets</h2>
-    <p class="cs-text">At a major UK supermarket, buyers — the employees responsible for procuring and promoting goods — were the engine of the promotional calendar. Their job was to create deals that drove footfall, shifted volume, and supported supplier relationships. To do it, they relied almost entirely on spreadsheets.</p>
-    <p class="cs-text">The spreadsheet process was fragmented by design. Promotional data lived across multiple files, shared via email, manually reconciled against financial targets, and reviewed by compliance teams who had no direct visibility into how decisions were being made. Errors crept in at every handoff. Financial forecasts were inconsistent. Regulatory requirements — governing how promotions were structured and communicated — were checked after the fact rather than built into the workflow.</p>
-    <p class="cs-text">The brief was clear: design a product that enabled buyers to create effective and compliant promotional nominations at one place — standardising and simplifying the entire process from first idea to submitted nomination.</p>
-    <div class="cs-img cs-img-16-9">[ Promotions planning dashboard — My events &amp; promotions overview ]</div>
+    <p class="cs-text">Buyers at a major UK supermarket ran their entire promotional nominations process through spreadsheets — data across multiple files, shared via email, reconciled manually, with compliance checked after the fact. Errors crept in at every handoff. The brief: design a product that let buyers create compliant nominations in one place, from first idea to submission.</p>
   </div>
 
   <div class="cs-section">
-    <h2 class="cs-section-title">Understanding the World of a Supermarket Buyer</h2>
-    <p class="cs-text">Before a single wireframe was drawn, I spent significant time inside the organisation. My research approach combined contextual inquiry — observing buyers at their desks as they worked through real promotional nominations — with participant observation across the wider buying process, including stakeholder meetings with category managers, finance leads, and compliance teams.</p>
-    <p class="cs-text">The goal was not just to understand the task but to understand the motivation. What drives a buyer? What does a good day look like versus a frustrating one? What does success feel like in this role?</p>
+    <h2 class="cs-section-title">The Design North Star</h2>
+    <p class="cs-text">I embedded with buyers, observing real promotional nominations alongside stakeholder sessions with category managers, finance, and compliance. One insight shaped everything that followed:</p>
     <div class="cs-quote">
       <p class="cs-quote-text">"From the analysis, it was very clear that the buyers are motivated by seeing the promotions they had created in the stores."</p>
       <p class="cs-quote-attr">— Research synthesis, Analysis &amp; Insights stage</p>
     </div>
-    <p class="cs-text">That single insight — the pride a buyer feels walking past a shelf and recognising their own promotion — became a design north star. The product wasn't just a compliance tool. It was the instrument through which buyers exercised their professional judgement and saw the results of their work. Designing for that sense of ownership shaped every decision that followed.</p>
-    <div class="cs-img cs-img-16-9">[ Research synthesis — buyer journey map, persona, and design principles ]</div>
+    <p class="cs-text">The product wasn't just a compliance tool. It was the instrument through which buyers exercised professional judgement. Designing for that sense of ownership shaped every decision.</p>
   </div>
 
   <div class="cs-section">
@@ -974,29 +1054,15 @@ thead .bp-sticky { z-index: 4; }
       <div class="cs-step"><div class="cs-step-num">04</div><div class="cs-step-title">Forecast</div><div class="cs-step-text">Live aggregate financial forecast — broken down by week, with total revenue, volume, and margin projections across the full promotional period. Buyers see the financial impact of their choices before committing.</div></div>
       <div class="cs-step"><div class="cs-step-num">05</div><div class="cs-step-title">Submit</div><div class="cs-step-text">Review nomination, validate all details, and submit for approval. Draft status tracking and error flagging ensure nothing is submitted incomplete or non-compliant.</div></div>
     </div>
-    <div class="cs-img cs-img-16-9">[ Five-step promotion creation flow — product selection with live margin data ]</div>
-    <div class="cs-img-2col">
-      <div class="cs-img">[ Financial forecast view — weekly aggregate breakdown by promotion ]</div>
-      <div class="cs-img">[ Location selector — zone and format-level targeting ]</div>
-    </div>
   </div>
 
   <div class="cs-section">
-    <h2 class="cs-section-title">Co-Creation: Buyers as Design Partners</h2>
-    <p class="cs-text">I designed the product iteratively, with buyers who volunteered to participate embedded in the process throughout. This wasn't occasional feedback sessions — it was genuine co-creation, with buyers reviewing and contributing to the design at every stage from concept sketches to interactive prototypes.</p>
-    <p class="cs-text">The most significant design discovery came from this process: when buyers were shown a version of the product that included live margin and sales data alongside the product selection step, their behaviour changed fundamentally. They stopped selecting products based on habit and familiarity, and started calibrating their promotions against financial reality from the first decision point. Promotions became financially tighter. Fewer nominations needed rework at the review stage.</p>
+    <h2 class="cs-section-title">The Key Design Discovery</h2>
+    <p class="cs-text">Buyers were embedded as co-designers throughout — not as occasional feedback sessions, but from concept sketches to interactive prototypes. The most significant finding: when buyers were shown live margin and sales data at the product selection step, their behaviour changed fundamentally. They stopped selecting on habit and started calibrating against financial reality from the start. Promotions became tighter. Rework at review dropped.</p>
     <div class="cs-quote">
       <p class="cs-quote-text">"Giving access to margin and sales data upfront saved them a lot of time. They were also able to tune the promotions better."</p>
       <p class="cs-quote-attr">— Co-creation process finding</p>
     </div>
-    <p class="cs-text">The themed events feature also emerged directly from co-creation. Buyers regularly aligned promotions to seasonal campaign calendars — Barbeque weekends in August, Healthy Living in September — and the ability to select a themed event as the container for a promotion, rather than setting up dates and parameters manually each time, reduced setup friction significantly.</p>
-  </div>
-
-  <div class="cs-section">
-    <h2 class="cs-section-title">Tested at Every Stage</h2>
-    <p class="cs-text">I ran user testing continuously — from the earliest wireframe stage through to the MVP. Rather than treating testing as a gate before launch, I used it as a feedback loop woven into every iteration. Each round of testing with buyers surfaced something that improved the product: a label that confused, a workflow step that broke the mental model, a missing piece of financial data that would have caused a buyer to abandon mid-flow.</p>
-    <p class="cs-text">This iterative approach meant that by the time the MVP was in buyers' hands, the fundamental flows had already been validated multiple times. The MVP launch was not the first time buyers had seen the product — it was the final refinement of something they had already helped me build.</p>
-    <div class="cs-img cs-img-16-9">[ User testing — wireframe review session with buyers ]</div>
   </div>
 
   <div class="cs-section">
@@ -1032,72 +1098,5 @@ thead .bp-sticky { z-index: 4; }
 <!-- ════════════════════════════════════════════════════ -->
 <!--  SPECULATIVE — The Future of Food Retail · 2021    -->
 <!-- ════════════════════════════════════════════════════ -->
-
-<footer id="contact">
-  <div class="footer-contact">
-    <div class="footer-contact-left">
-      <h2 class="resume-cta-title">14+ years of design,<br><em>distilled.</em></h2>
-      <p class="resume-cta-sub">Experience across HealthTech, retail, logistics, education, and enterprise — from individual contributor to Head of Design.</p>
-
-      <div class="footer-contact-actions">
-        <a href="resume.html" class="btn-resume">View résumé →</a>
-      </div>
-    </div>
-    <div class="footer-contact-right">
-      <div class="footer-inner-grid">
-        <div>
-          <div class="footer-logo">Suganth Chellamuthu</div>
-          <p class="footer-bio">Focused on making the complex feel effortlessly simple — through great design, clear thinking, and real craft.</p>
-        </div>
-        <div>
-          <p class="footer-heading">Work</p>
-          <ul class="footer-links">
-            <li><a href="cs1.html">AI Cancer Drug Discovery</a></li>
-            <li><a href="cs2.html">Yodel Premium Delivery</a></li>
-            <li><a href="cs3.html">Classroom Management App</a></li>
-            <li><a href="cs4.html">Bill of Materials</a></li>
-            <li><a href="cs5.html">Modanisa Marketplace</a></li>
-            <li><a href="cs6.html">Store Promotions Financial Planning</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-social" style="margin-top: 36px;">
-        <a href="mailto:suganthgct@gmail.com" class="footer-social-link" title="Email">
-          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
-        </a>
-        <a href="tel:+919972457131" class="footer-social-link" title="Phone">
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 4.72 4.18 2 2 0 0 1 6.7 2h3.09a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L10.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        </a>
-        <a href="https://linkedin.com/in/suganthchellamuthu" class="footer-social-link" title="LinkedIn" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://dribbble.com/suganthc" class="footer-social-link" title="Dribbble" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
-        </a>
-        <a href="https://medium.com/@suganthc" class="footer-social-link" title="Medium" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">© 2024 Suganth Chellamuthu. All rights reserved.</span>
-    <span class="footer-copy">Designed with care</span>
-  </div>
-</footer>
-<script>
-(function(){
-  var pool=[{url:"cs1.html",title:"Accelerating Cancer Drug Discovery"},{url:"cs2.html",title:"Designing a Premium Delivery Service Experience"},{url:"cs3.html",title:"Classroom Management App — Boosting Teacher Efficiency by 57%"},{url:"cs4.html",title:"Optimising Materials and Boosting Analysis Efficiency"},{url:"cs5.html",title:"Crafting a Marketplace Experience for Modest Fashion"}];
-  var pick=pool[Math.floor(Math.random()*pool.length)];
-  var link=document.querySelector('.cs-next');
-  if(link){
-    link.href=pick.url;
-    var t=link.querySelector('.cs-next-title');
-    if(t) t.textContent=pick.title;
-    var l=link.querySelector('.cs-next-label');
-    if(l) l.textContent='Up next';
-  }
-})();
-</script>
 </body>
 </html>

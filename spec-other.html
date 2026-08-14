@@ -235,20 +235,21 @@ body { font-family: var(--sans); background: var(--white); color: var(--text); f
 
 /* ── CLIENTS ── */
 .clients { padding: 72px 80px; border-bottom: 1px solid var(--border); }
-.clients-label { font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 48px; text-align: center; }
+.clients-label { font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 0; text-align: left; }
 .clients-grid {
-  display: grid; grid-template-columns: repeat(6, 1fr);
-  border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+  display: grid; grid-template-columns: repeat(5, 1fr);
 }
 .client-cell {
-  padding: 28px 20px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  padding: 48px 24px;
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--serif); font-size: 17px; letter-spacing: -.02em; color: var(--text-2);
-  transition: background .2s, color .2s;
+  position: relative;
 }
-.client-cell:hover { background: var(--fog); color: var(--text); }
-.client-cell:nth-child(6n) { border-right: none; }
-.client-cell:nth-last-child(-n+6) { border-bottom: none; }
+.logo-wrap { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; }
+.logo-wrap img { width: 95%; max-height: 120px; object-fit: contain; display: block; transition: opacity .25s ease; }
+.logo-wrap .logo-gray  { opacity: 1; }
+.logo-wrap .logo-color { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); opacity: 0; }
+.client-cell:hover .logo-gray  { opacity: 0; }
+.client-cell:hover .logo-color { opacity: 1; }
 
 /* ── TESTIMONIALS ── */
 .testimonials { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
@@ -609,13 +610,14 @@ footer { background: var(--text); }
 .cs-bp-sub-title { font-family: var(--serif); font-size: clamp(20px,2vw,28px); color: var(--text); margin: 0 0 16px; line-height: 1.2; }
 /* ── Five Touchpoints grid ── */
 .cs-5tp-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; margin-top: 32px; }
-.cs-5tp-card { background: #f5f4f0; border-radius: 10px; padding: 20px 16px; display: flex; flex-direction: column; gap: 8px; }
-.cs-5tp-icon { width: 32px; height: 32px; color: var(--text); }
-.cs-5tp-icon svg { width: 32px; height: 32px; display: block; }
+.cs-5tp-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 20px 16px; display: flex; flex-direction: column; gap: 8px; }
+.cs-5tp-header { display:flex; align-items:center; gap:10px; }
+.cs-5tp-icon { width:40px; height:40px; border-radius:8px; background:#FEF0F0; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--c2); }
+.cs-5tp-icon svg { width:20px; height:20px; display:block; }
 .cs-5tp-title { font-family: var(--sans); font-size: 12px; font-weight: 700; color: var(--text); }
 .cs-5tp-desc { font-family: var(--sans); font-size: 12px; color: var(--text-2); line-height: 1.6; }
 @media (max-width: 1024px) { .cs-5tp-grid { grid-template-columns: repeat(3,1fr); } .cs-hmw-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 600px) { .cs-5tp-grid { grid-template-columns: 1fr 1fr; } .cs-hmw-grid { grid-template-columns: 1fr; } .cs-bp-activity-item { padding: 24px; } }
+@media (max-width: 600px) { .cs-5tp-grid { grid-template-columns: 1fr; } .cs-hmw-grid { grid-template-columns: 1fr; } .cs-bp-activity-item { padding: 24px; } }
 .ri-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .ri-card { border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
 .ri-pain { background: #ffeaed; }
@@ -822,8 +824,6 @@ thead .bp-sticky { z-index: 4; }
   .about-left { padding: 64px 32px; }
   .clients { padding: 56px 32px; }
   .clients-grid { grid-template-columns: repeat(4, 1fr); }
-  .client-cell:nth-child(4n) { border-right: none; }
-  .client-cell:nth-child(6n) { border-right: 1px solid var(--border); }
   .testimonials { grid-template-columns: 1fr; }
   .blogs-grid { grid-template-columns: 1fr; }
   .blogs-grid { padding: 0 32px; }
@@ -923,9 +923,8 @@ thead .bp-sticky { z-index: 4; }
   .cap-card:last-child { padding-right: 20px; border-top: 1px solid var(--border); }
   .about-left { padding: 56px 20px; }
   .clients { padding: 44px 20px; }
-  .clients-grid { grid-template-columns: repeat(2, 1fr); }
-  .client-cell:nth-child(2n) { border-right: none; }
-  .client-cell:nth-child(4n) { border-right: 1px solid var(--border); }
+  .clients-grid { grid-template-columns: 1fr; }
+  .client-cell { padding: 16px 20px; }
   .testimonial { padding: 44px 20px; }
   .contact-left, .contact-right { padding: 52px 20px; }
   .contact-title { font-size: 36px; }
@@ -968,9 +967,9 @@ thead .bp-sticky { z-index: 4; }
 </style>
 </head>
 <body>
-<div class="page-label">Speculative Work — The Future of Food Technology · ThoughtWorks · 2021</div>
+<div class="page-label">Speculative Work — Grocery Store of the Future · ThoughtWorks · 2021</div>
 
-<nav class="cs-nav" id="spec-food-retail">
+<nav class="cs-nav" id="spec-grocery-store">
   <a href="index.html" class="cs-nav-logo"><img src="suche-logo.svg" alt="SuChe" style="height:26px;width:auto;display:block;"><span>Suganth Chellamuthu</span></a>
   <a href="index.html#work" class="cs-back">← Back to all work</a>
 </nav>
@@ -978,182 +977,139 @@ thead .bp-sticky { z-index: 4; }
 <div class="cs-hero">
   <div class="cs-cats">
     <span class="cs-cat">Speculative</span><span class="cs-cat-dot"></span>
-    <span class="cs-cat">Futures Research</span><span class="cs-cat-dot"></span>
-    <span class="cs-cat">FoodTech</span><span class="cs-cat-dot"></span>
+    <span class="cs-cat">Retail</span><span class="cs-cat-dot"></span>
+    <span class="cs-cat">Futures Design</span><span class="cs-cat-dot"></span>
     <span class="cs-cat">2021</span>
   </div>
-  <h1 class="cs-h1">The Future of Food Technology</h1>
-  <p class="cs-subtitle">A futurecasting engagement for a major integrated food &amp; beverage company — mapping 22 ideas across six FoodTech lenses, prioritising through future cones, and charting the path from near-term recipe boxes to 2035's food-printed personalised nutrition.</p>
+  <h1 class="cs-h1">The Grocery Store of the Future</h1>
+  <p class="cs-subtitle">A speculative design and futures research project exploring how grocery retail will transform over the next decade — from intelligent stores that know what you need before you do, to in-store vertical farms and configurable layouts that reshape with the season.</p>
   <div class="cs-tags">
-    <span class="cs-tag">Futures Design</span>
-    <span class="cs-tag">Strategic Foresight</span>
+    <span class="cs-tag">Retail Design</span>
+    <span class="cs-tag">Futures Research</span>
+    <span class="cs-tag">Intelligent Stores</span>
+    <span class="cs-tag">Automation</span>
     <span class="cs-tag">Workshop Facilitation</span>
-    <span class="cs-tag">Technology Roadmapping</span>
-    <span class="cs-tag">Moonshot Thinking</span>
   </div>
   <div class="cs-meta-grid" style="margin-top:48px; max-width:600px;">
     <div class="cs-meta-item"><div class="cs-meta-key">Organisation</div><div class="cs-meta-val">ThoughtWorks</div></div>
     <div class="cs-meta-item"><div class="cs-meta-key">My role</div><div class="cs-meta-val">Lead Designer &amp; Facilitator</div></div>
-    <div class="cs-meta-item"><div class="cs-meta-key">Domain</div><div class="cs-meta-val">FoodTech · Futures · Strategy</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-key">Domain</div><div class="cs-meta-val">Grocery Retail · Futures · Automation</div></div>
     <div class="cs-meta-item"><div class="cs-meta-key">Horizon</div><div class="cs-meta-val">2022 → 2030 and beyond</div></div>
   </div>
 </div>
 
 <div class="cs-cover">
-  <div class="cs-cover-fill" style="background: linear-gradient(145deg, #00D4C8 0%, #006B8F 45%, #001825 100%); color:#003040; font-size:72px; letter-spacing:-2px; font-style:italic;">FoodTech</div>
+  <div class="cs-cover-fill" style="background: linear-gradient(145deg, #FCD34D 0%, #C47020 45%, #1C0F00 100%); color:#3d1f00; font-size:64px; letter-spacing:-2px; line-height:1.1;">The Nourishment<br>Center</div>
 </div>
 
 <div class="cs-metrics" style="grid-template-columns: repeat(4, 1fr);">
-  <div class="cs-metric"><div class="cs-metric-val" style="color:#00a99d;">22</div><div class="cs-metric-label">Ideas generated</div></div>
-  <div class="cs-metric"><div class="cs-metric-val" style="color:#00a99d;">6</div><div class="cs-metric-label">FoodTech lenses</div></div>
-  <div class="cs-metric"><div class="cs-metric-val" style="color:#00a99d;">6</div><div class="cs-metric-label">Priority concepts</div></div>
-  <div class="cs-metric"><div class="cs-metric-val" style="color:#00a99d;">2030+</div><div class="cs-metric-label">Roadmap horizon</div></div>
+  <div class="cs-metric"><div class="cs-metric-val" style="color:#C47020;">56</div><div class="cs-metric-label">Ideas generated</div></div>
+  <div class="cs-metric"><div class="cs-metric-val" style="color:#C47020;">4</div><div class="cs-metric-label">Store experience pillars</div></div>
+  <div class="cs-metric"><div class="cs-metric-val" style="color:#C47020;">5</div><div class="cs-metric-label">Retail value chain lenses</div></div>
+  <div class="cs-metric"><div class="cs-metric-val" style="color:#C47020;">2030+</div><div class="cs-metric-label">Roadmap horizon</div></div>
 </div>
 
 <div class="cs-body">
 
   <div class="cs-section">
-    <h2 class="cs-section-title">Post-Covid Eating Had Changed Everything</h2>
-    <p class="cs-text">The pandemic accelerated a decade of change in food behaviour into eighteen months. Ordering from the couch became the default. Consumers developed new anxieties about food waste, supply chain opacity, and the provenance of what they ate. The restaurant industry convulsed. Ghost kitchens appeared. Grocery delivery normalised. And somewhere in the gap between what food companies had built and what consumers now expected, a set of entirely new business opportunities emerged.</p>
-    <p class="cs-text">A major integrated food &amp; beverage company engaged ThoughtWorks to answer a question they were finding difficult to hold in one frame: across all of the disruption, what were the most strategically significant futures we should be designing towards — and what would it take to get there from where we are today?</p>
-    <p class="cs-text">This was not a brief for incremental improvement. It was an invitation to futurecast.</p>
+    <h2 class="cs-section-title">The Store Was Already Changing. Covid Accelerated Everything.</h2>
+    <p class="cs-text">The pandemic rewired how people shop. On-demand ordering from home normalised. Waste anxiety sharpened. Supply chain opacity became a liability rather than a quiet operational fact. And the physical grocery store — a format that had barely changed in fifty years — suddenly looked uncertain about its own future.</p>
+    <p class="cs-text">For ThoughtWorks, this was an invitation to ask a bigger question: not how do we recover the grocery store, but how do we reimagine it? What would a store look like if it were designed today, for a shopper in 2030 — one who is more connected, more health-conscious, more pressed for time, and more demanding of transparency about everything they consume?</p>
+    <p class="cs-text">We ran a futures research and design engagement to answer it. Fifty-six ideas generated. Grouped, coned, and retrocast into a coherent vision: the grocery store of the future isn't a store at all. It's a Nourishment Centre.</p>
+    <div class="cs-img cs-img-16-9">[ Grocery Store of the Future — concept store overview ]</div>
   </div>
 
   <div class="cs-section">
-    <h2 class="cs-section-title">Six Lenses on a Changing Industry</h2>
-    <p class="cs-text">Before generating ideas, we needed a shared framework for what 'FoodTech' actually meant — a term capacious enough to include farming drones and food printer apps without becoming meaningless. We settled on six lenses that mapped the full journey from field to fork, each representing a distinct innovation space:</p>
+    <h2 class="cs-section-title">Five Lenses on the Retail Value Chain</h2>
+    <p class="cs-text">Before ideating, we mapped the grocery retail value chain into five areas most likely to see disruption — giving the team a common vocabulary and preventing ideas from clustering around the visible parts of the store while ignoring the invisible infrastructure underneath.</p>
     <div class="cs-insights">
       <div class="cs-insight">
-        <div class="cs-insight-title">AgTech</div>
-        <div class="cs-insight-text">Technology applied to agriculture — autonomous farming machines, precision irrigation, crop genetics, and the management of farms as data-rich systems rather than weather-dependent gambles.</div>
+        <div class="cs-insight-title">Plan</div>
+        <div class="cs-insight-text">Integrated retail planning — demand forecasting, budgeting, merchandising plans, store space planning, and price and promotion management. AI makes the planning layer predictive rather than reactive, building resilience against market fluctuations with the customer at the centre.</div>
       </div>
       <div class="cs-insight">
-        <div class="cs-insight-title">Food Science</div>
-        <div class="cs-insight-text">The research and creation of new food forms — lab-grown meat, plant-based proteins, nutraceuticals, and the emerging science of designing food for specific health outcomes.</div>
+        <div class="cs-insight-title">Buy</div>
+        <div class="cs-insight-text">Generative AI tools providing recommendations to merchandisers and buyers based on shopping patterns, social media signals, and influencer and celebrity endorsement data — turning assortment decisions from intuition into intelligence.</div>
       </div>
       <div class="cs-insight">
-        <div class="cs-insight-title">Food Service</div>
-        <div class="cs-insight-text">The restaurant and hospitality layer — digitising operations, deriving intelligence from social media and customer behaviour, enabling ghost kitchens, and connecting home chefs to food delivery markets.</div>
+        <div class="cs-insight-title">Move</div>
+        <div class="cs-insight-text">Physical stores continuing to play a critical role in omnichannel distribution — not as destinations in isolation but as nodes in a network that connects online and offline inventory in real time.</div>
       </div>
       <div class="cs-insight">
-        <div class="cs-insight-title">Coaching &amp; Advisory</div>
-        <div class="cs-insight-text">Personalised guidance across the full food cycle — dietary recommendations, nutritional transparency, culinary recipes, and health-data-driven consumption advice.</div>
+        <div class="cs-insight-title">Sell &amp; Fulfil</div>
+        <div class="cs-insight-text">People will keep shopping in stores. But DTC formats gain ground, omnichannel fulfilment becomes the expectation, and personalised premium shipping options reduce both friction and carbon footprint. Checkout friction disappears.</div>
       </div>
       <div class="cs-insight">
-        <div class="cs-insight-title">Delivery</div>
-        <div class="cs-insight-text">Ready-to-eat meals, groceries, and meal kits — and the logistics, last-mile infrastructure, and consumer experience design that determine whether people actually trust the service.</div>
-      </div>
-      <div class="cs-insight">
-        <div class="cs-insight-title">Retail &amp; Food Distribution</div>
-        <div class="cs-insight-text">The supply chain layer — from end-to-end traceability and real-time inventory tracking to intelligent distribution of ingredients and the reimagination of the food retail store itself.</div>
+        <div class="cs-insight-title">Support</div>
+        <div class="cs-insight-text">Customer support increasingly automated — voice-based assistants with seamless Gen AI integration handling everything from inventory queries to post-purchase help, freeing human staff for the interactions that actually require human presence.</div>
       </div>
     </div>
   </div>
 
   <div class="cs-section">
-    <h2 class="cs-section-title">Three Exercises to Generate 22 Ideas</h2>
-    <p class="cs-text">The workshop methodology combined three distinct exercises, each designed to dislodge different kinds of thinking.</p>
-    <div class="cs-steps" style="grid-template-columns: repeat(3,1fr);">
-      <div class="cs-step">
-        <div class="cs-step-num">01</div>
-        <div class="cs-step-title">Future Headlines</div>
-        <div class="cs-step-text">Participants imagined the company in the news in 2040. What had it done to earn that headline? Going for wild ideas — and then asking what had to be true for each headline to exist — is a fast route to plausible innovation territory.</div>
-      </div>
-      <div class="cs-step">
-        <div class="cs-step-num">02</div>
-        <div class="cs-step-title">Past, Future, Present</div>
-        <div class="cs-step-text">Participants came prepared with research on food and FoodTech trends. Reviewing signals from across the timeline — what's fading, what's emerging, what's accelerating — built a shared vocabulary and prevented the workshop from reinventing known territory.</div>
-      </div>
-      <div class="cs-step">
-        <div class="cs-step-num">03</div>
-        <div class="cs-step-title">Moonshot &amp; Retrocast</div>
-        <div class="cs-step-text">We selected priority future ideas and worked backwards — identifying the stepping stones, the enabling technologies, and the market conditions required for each moonshot to become reachable. The retrocast is what turns a vision into a roadmap.</div>
-      </div>
-    </div>
-    <div class="cs-img cs-img-16-9">[ Workshop synthesis — 22 ideas mapped across the FoodTech idea spectrum ]</div>
+    <h2 class="cs-section-title">The Nourishment Centre — Not a Store Anymore</h2>
+    <p class="cs-text">The centrepiece of the vision is a reframe. The grocery store of the future doesn't position itself as a place to buy things — it positions itself as an immersive journey where technology, sustainability, and nourishment coexist. We called it the Nourishment Centre.</p>
+    <p class="cs-text">It changes the way people shop by inspiring healthier choices, fostering culinary creativity, and cultivating a deeper connection with the food consumed. It is not just a retail transaction point — it is a catalyst for community and a visible commitment to the planet. The experience is organised around four distinct pillars, each one designed to make the store feel less like a supermarket and more like a place worth visiting.</p>
+    <div class="cs-img cs-img-16-9">[ Nourishment Centre concept — store as experience space ]</div>
   </div>
 
   <div class="cs-section">
-    <h2 class="cs-section-title">From Possible to Preferable — Sorting 22 Ideas Through Future Cones</h2>
-    <p class="cs-text">Not all futures deserve equal investment. Future cones give a structure for distinguishing between what is merely possible, what is plausible, what is probable, and what is actually preferable — the place where strategic bets should be placed.</p>
+    <h2 class="cs-section-title">Four Pillars of the Future Store</h2>
+
+    <h3 class="cs-section-title" style="font-size:26px; margin-top:48px;">I. The Intelligent Store</h3>
+    <p class="cs-text">On entering, holographic attendants greet shoppers and guide them towards personalised smart carts equipped with advanced AI. The attendants recognise each shopper — pulling dietary preferences, health goals, and purchase history — and begin making real-time recommendations before the first product is picked up.</p>
+    <p class="cs-text">Moving through the aisles, interactive holographic displays hover above each product. A simple gesture surfaces the item's full provenance: origin, sourcing practices, nutritional breakdown, carbon footprint, and recipe suggestions. The information density is high but navigable — designed for the shopper who wants to know everything, and equally usable for the one who just wants to know the price.</p>
+    <p class="cs-text">Checkout is gone. Smart carts tally items in real time as they're placed inside, process payment instantly, and eliminate queues entirely. The friction of traditional checkout — the one moment every shopper dreads — becomes a relic.</p>
+    <div class="cs-img-2col">
+      <div class="cs-img">[ Holographic store assistant — personalised cart recommendations ]</div>
+      <div class="cs-img">[ Smart cart checkout — frictionless payment, no queues ]</div>
+    </div>
+
+    <h3 class="cs-section-title" style="font-size:26px; margin-top:48px;">II. The In-Store Farm</h3>
+    <p class="cs-text">Rows of vibrant vertical farms line the walls. Fresh produce flourishes under precisely controlled environments — hydroponic systems using minimal water and no pesticides, year-round, regardless of the season outside. Shoppers don't buy produce that was harvested three weeks ago and shipped from a distant warehouse. They harvest it themselves, from a farm that is literally inside the store.</p>
+    <p class="cs-text">The farm is both functional and theatrical. It makes the origin of food visible, immediate, and participatory — a direct counter to the opacity that has characterised industrial food supply chains for decades. And it performs the sustainability commitment in a way that a certification label on a packet never could.</p>
+
+    <h3 class="cs-section-title" style="font-size:26px; margin-top:48px;">III. The Taste Lab</h3>
+    <p class="cs-text">At the heart of the store, a Taste Lab draws shoppers in with aromas and activity. Skilled chefs and food scientists work together — experimenting with new ingredients, flavours, and textures — with an open kitchen format that makes the experimentation visible. Customers can watch or join in: cooking workshops, tasting sessions, and demonstrations that turn a shopping trip into a learning experience.</p>
+    <p class="cs-text">The Taste Lab is also a product development engine. New combinations tested here become products stocked in the aisles. Community preferences shape what gets made. The store becomes a place where food culture is actively created, not just consumed.</p>
+
+    <h3 class="cs-section-title" style="font-size:26px; margin-top:48px;">IV. Automated Store Operations</h3>
+    <p class="cs-text">Behind the experience layer, the store's operations are fully automated. Aisles auto-refill based on real-time inventory monitoring — no manual restocking, no out-of-stock gaps. Sourcing and delivery use automated vehicles operating on pre-validated contracts and promotional plans, removing human error and opportunistic mark-ups from the supply chain.</p>
+    <p class="cs-text">The store layout itself is configurable — a push of a button transforms the floor plan for each of the 52 weeks in the year, adapting to seasonal promotions, new product launches, and shifting footfall patterns. Digital rate cards powered by AI drive instant micro-promotions: the right offer surfaces for the right shopper at the right moment, based on purchase history, dietary preferences, and what's trending in the store at that exact time.</p>
+    <div class="cs-img cs-img-16-9">[ Auto-configurable store layout — 52-week transformation plan ]</div>
+  </div>
+
+  <div class="cs-section">
+    <h2 class="cs-section-title">Augmented Fulfilment Beyond the Store</h2>
+    <p class="cs-text">The Nourishment Centre vision extends beyond its four walls into a reimagined fulfilment network — one that treats last-mile delivery not as a logistics problem but as a seamless extension of the in-store experience.</p>
     <div class="cs-insights">
       <div class="cs-insight">
-        <div class="cs-insight-title">Possible</div>
-        <div class="cs-insight-text">Crop-growing machines and super crops, cloud and ghost kitchens, food malls with no human contact. Technically conceivable but dependent on social and regulatory shifts that are not yet underway at scale.</div>
+        <div class="cs-insight-title">Floating Warehouses</div>
+        <div class="cs-insight-text">Aerial warehouses capable of fulfilling orders in minimal time — coordinating in real time with delivery drones to compress the gap between 'order placed' and 'order received' to minutes rather than hours.</div>
       </div>
       <div class="cs-insight">
-        <div class="cs-insight-title">Plausible</div>
-        <div class="cs-insight-text">3D-printed personalised nutrition, spray-on flavours, experience places and cuisines from your living room via AR/VR. The technology exists in prototype form — the question is adoption velocity and cost curves.</div>
+        <div class="cs-insight-title">Dark Refrigerator / Pantry</div>
+        <div class="cs-insight-text">Orders delivered directly inside the customer's refrigerator or pantry by micro-robots — no need to be home, no need to sign for anything. The refrigerator replenishes itself based on consumption patterns.</div>
       </div>
       <div class="cs-insight">
-        <div class="cs-insight-title">Probable</div>
-        <div class="cs-insight-text">Social media and digital restaurant platform data to derive consumer behaviour, real-time inventory tracking, end-to-end restaurant digitisation, community farms. Following current trajectories, these arrive without requiring category-defining breakthroughs.</div>
+        <div class="cs-insight-title">Automated Convenience Stores</div>
+        <div class="cs-insight-text">Mobile convenience stores — autonomous vehicles that bring a curated range of goods to where customers are, rather than requiring customers to travel to where the goods are. A network of these stores provides hyper-local delivery services.</div>
       </div>
       <div class="cs-insight">
-        <div class="cs-insight-title">Preferable</div>
-        <div class="cs-insight-text">The food super app, connecting people who share the same food history, vegan and plant-based delivery, home chef food delivery, end-to-end food traceability. These are futures the company should actively build towards — both commercially attractive and culturally aligned.</div>
+        <div class="cs-insight-title">Lean &amp; Linear Supply</div>
+        <div class="cs-insight-text">Local linear supply chains replacing the hub-and-spoke distribution model — shorter routes, fewer intermediaries, lower waste, and dramatically reduced carbon emissions per unit delivered.</div>
       </div>
     </div>
   </div>
 
   <div class="cs-section">
-    <h2 class="cs-section-title">Six Concepts Worth Building</h2>
-    <p class="cs-text">From 22 ideas, six rose to the top through prioritisation against the axes of impact and feasibility. Each was developed into a detailed concept with a target window and a set of enabling conditions.</p>
-
-    <div class="cs-insights" style="grid-template-columns: 1fr;">
-      <div class="cs-insight">
-        <div class="cs-insight-title">Recipes &amp; Ingredients You Can Cook · 2022–24</div>
-        <div class="cs-insight-text">A recipe box delivery service that sends fresh, portioned ingredients direct to the door — created alongside expert nutritionists for best-in-class combinations. Near-term, proven category with meaningful differentiation opportunity through nutrition expertise and supply chain transparency.</div>
-      </div>
-      <div class="cs-insight">
-        <div class="cs-insight-title">Food Super App · 2022–24</div>
-        <div class="cs-insight-text">A single platform that cuts across AgTech, Food Science, Food Service, Advisory, Delivery, and Retail — bringing multiple brands and services under one roof. The super app model, well established in Southeast Asia, had not yet been applied coherently to food in this market.</div>
-      </div>
-      <div class="cs-insight">
-        <div class="cs-insight-title">Personalised Food Based on Health Data &amp; Genetics · 2030–35</div>
-        <div class="cs-insight-text">Food preferences derived from human cDNA and mRNA profiling — identifying disease genes earlier and recommending diets that guarantee longevity based on individual genetic profiles. Longer horizon, but the underlying genomics infrastructure is accelerating.</div>
-      </div>
-      <div class="cs-insight">
-        <div class="cs-insight-title">3D Printed Personalised Nutrition · 2035–40</div>
-        <div class="cs-insight-text">Food printers using 3D printing technology to produce meals from cloud-stored recipes — enabling consumers to design custom meals that are nutritious, aesthetically considered, and made to order from home. The moonshot concept that the retrocast exercise was built around.</div>
-      </div>
-      <div class="cs-insight">
-        <div class="cs-insight-title">Experience Places &amp; Cuisines from Your Living Room · 2025–26</div>
-        <div class="cs-insight-text">AR/VR experiences that let users savour cuisines from places around the world while inhabiting the ambience and cultural context of those places. Sits at the intersection of entertainment, travel, and food — a category without a clear owner.</div>
-      </div>
-      <div class="cs-insight">
-        <div class="cs-insight-title">Spray-On Flavours · 2035–38</div>
-        <div class="cs-insight-text">Taste fusers that mimic the flavours of other foods known to the palate — making anything taste like anything else. Transformative for dietary compliance, food allergies, and the economics of plant-based nutrition at scale.</div>
-      </div>
-    </div>
-    <div class="cs-img cs-img-16-9">[ Technology timeline — 22 ideas plotted from 2022 to beyond 2030 ]</div>
-  </div>
-
-  <div class="cs-section">
-    <h2 class="cs-section-title">The Retrocast: From Food Printer to Today</h2>
-    <p class="cs-text">The moonshot concept — 3D printed personalised nutrition — was put through the retrocast exercise to build a credible path from the current state to the 2035 horizon.</p>
-    <div class="cs-steps" style="grid-template-columns: repeat(4,1fr);">
-      <div class="cs-step"><div class="cs-step-num">2022</div><div class="cs-step-title">3D printing appliances emerge</div><div class="cs-step-text">Consumers begin experimenting with food printers at home. Food inks become a subscription commodity. Lab-grown meat gains acceptance among environmentally conscious consumers. NASA experiments with printed food normalise the concept.</div></div>
-      <div class="cs-step"><div class="cs-step-num">2024</div><div class="cs-step-title">Tastemakers invent new forms</div><div class="cs-step-text">Food brands launch their own recipe and ink subscriptions. Chefs and nutritionists work together to develop the right recipe mix. Early adopters love cooking and serving printed meals — but 3D printed food fails to get expected mainstream acceptance.</div></div>
-      <div class="cs-step"><div class="cs-step-num">2026</div><div class="cs-step-title">Texture and flavour solved</div><div class="cs-step-text">Tastemakers crack the texture problem — inventing ways to mimic flavours with precision. Food printers become sophisticated enough to produce meals indistinguishable from hand-prepared versions. Consumer confidence shifts.</div></div>
-      <div class="cs-step"><div class="cs-step-num">2029+</div><div class="cs-step-title">Mainstream personalised nutrition</div><div class="cs-step-text">People start consuming 3D-printed personalised nutrition as a daily habit. The concept that seemed speculative in 2022 is now embedded in daily food culture — enabled step-by-step through the retrocast pathway.</div></div>
-    </div>
-  </div>
-
-  <div class="cs-section">
-    <h2 class="cs-section-title">A Framework for Sustained Innovation</h2>
-    <p class="cs-text">The engagement produced a four-stage process that the client could continue to run internally — not a one-time deliverable, but a repeatable muscle for futures thinking.</p>
-    <div class="cs-steps" style="grid-template-columns: repeat(4,1fr);">
-      <div class="cs-step"><div class="cs-step-num">01</div><div class="cs-step-title">Research</div><div class="cs-step-text">Domain understanding, trend analysis, secondary research, SME discussion.</div></div>
-      <div class="cs-step"><div class="cs-step-num">02</div><div class="cs-step-title">Workshop</div><div class="cs-step-text">Visioning exercises, futurecasting facilitation with all stakeholders, idea brainstorming, deep-diving priority ideas, importance vs. feasibility mapping.</div></div>
-      <div class="cs-step"><div class="cs-step-num">03</div><div class="cs-step-title">Synthesis</div><div class="cs-step-text">Moonshot and retrocast, grouping ideas by future cones, idea prioritisation, validation with SMEs.</div></div>
-      <div class="cs-step"><div class="cs-step-num">04</div><div class="cs-step-title">Future Roadmap</div><div class="cs-step-text">Finalising top priority ideas, creating a tentative roadmap with stepping stones, finalising the plan.</div></div>
-    </div>
+    <h2 class="cs-section-title">The Store That Knows What You Need Before You Do</h2>
+    <p class="cs-text">Across all four pillars and the fulfilment network, a single thread runs through the vision: intelligence that anticipates rather than reacts. The intelligent store knows your dietary needs. The smart cart knows what you've bought before. The automated supply chain knows when the shelves are about to empty. The micro-promotion engine knows what you're most likely to want today, given the weather, the day of the week, and your health data.</p>
     <div class="cs-quote">
-      <p class="cs-quote-text">"Go for wild ideas and think all aspects of food — past, future, present. Then work backwards until you can see the first step from where you're standing now."</p>
-      <p class="cs-quote-attr">— Workshop facilitation principle, Future Headlines exercise</p>
+      <p class="cs-quote-text">"It is a beacon of hope and a catalyst for positive change, demonstrating that the future of grocery shopping is not just about convenience — it is about nurturing our bodies, our communities, and our planet."</p>
+      <p class="cs-quote-attr">— Grocery Store of the Future, Nourishment Centre concept</p>
     </div>
-    <p class="cs-text">The most durable outcome of this engagement wasn't any individual concept — it was a shared vocabulary and a shared method. Participants left knowing how to hold a 2035 ambition and a 2023 roadmap in the same conversation. That's the real value of structured futures work: not predicting what will happen, but building the organisational capacity to shape it.</p>
+    <p class="cs-text">The most important design insight from this project: people don't want to be managed by a store. They want to feel like the store was built for them. The difference between surveillance and service is entirely in the design — and designing that boundary is the central challenge of intelligent retail.</p>
   </div>
 
 </div><!-- /cs-body -->
@@ -1167,8 +1123,43 @@ thead .bp-sticky { z-index: 4; }
 </a>
 
 
-<!-- ════════════════════════════════════════════════ -->
-<!--  SPECULATIVE — Food System 2050 · Hosur, India  -->
-<!-- ════════════════════════════════════════════════ -->
+<!-- Shared Footer -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Suganth Chellamuthu</div>
+      <p class="footer-bio">Focused on making the complex feel effortlessly simple — through great design, clear thinking, and real craft.</p>
+    </div>
+    <div>
+      <p class="footer-heading">Work</p>
+      <ul class="footer-links">
+        <li><a href="cs1.html">AI Cancer Drug Discovery</a></li>
+        <li><a href="cs2.html">Yodel Premium Delivery</a></li>
+        <li><a href="cs3.html">Classroom Management App</a></li>
+        <li><a href="cs4.html">Bill of Materials</a></li>
+        <li><a href="cs5.html">Modanisa Marketplace</a></li>
+        <li><a href="cs6.html">Store Promotions Financial Planning</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-heading">Connect</p>
+      <ul class="footer-links">
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">Dribbble</a></li>
+        <li><a href="#">Twitter / X</a></li>
+        <li><a href="#">Medium</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2024 Suganth Chellamuthu. All rights reserved.</span>
+    <span class="footer-copy">Designed with care</span>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════ -->
+<!--  RÉSUMÉ PAGE                  -->
+<!-- ══════════════════════════════ -->
 </body>
 </html>
