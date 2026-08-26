@@ -155,8 +155,8 @@
   <p class="gate-footer">Designed by hand. Built with AI.</p>
 
   <script>
-    // If already authenticated this session, go straight in
-    if (sessionStorage.getItem('sc_auth') === '1') {
+    // If already authenticated, go straight in
+    if (localStorage.getItem('sc_auth') === '1') {
       window.location.replace('home.html');
     }
 
@@ -165,7 +165,7 @@
       var input = document.getElementById('pw');
       var err = document.getElementById('err');
       if (input.value === 'future-human-bliss-sparkle') {
-        sessionStorage.setItem('sc_auth', '1');
+        localStorage.setItem('sc_auth', '1');
         window.location.replace('home.html');
       } else {
         input.classList.add('error');
