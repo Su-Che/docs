@@ -1038,519 +1038,317 @@ thead .bp-sticky { z-index: 4; }
 </style>
 </head>
 <body>
+<div class="page-label">Thought Leadership — Talks &amp; Lectures</div>
 
-<!-- ════════════════════════════════════════ -->
-<!--  HOMEPAGE                               -->
-<!-- ════════════════════════════════════════ -->
-
-<nav class="nav" id="mainNav">
-  <button class="nav-toggle" id="navToggle" aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </button>
-  <a href="#top" class="nav-logo"><img src="suche-logo.svg" alt="SuChe" style="height:26px;width:auto;display:block;"><span>Suganth Chellamuthu</span></a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#about">About</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#thoughts">Thoughts</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <a href="resume.html" class="nav-cta">View résumé</a>
+<nav class="cs-nav">
+  <a href="index.html" class="cs-nav-logo"><img src="suche-logo.svg" alt="SuChe" style="height:26px;width:auto;display:block;"><span>Suganth Chellamuthu</span></a>
+  <a href="index.html" class="cs-back">← Back to portfolio</a>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="hero-content">
-    <p class="hero-eyebrow">Product &amp; Service Design Leader</p>
-    <h1 class="hero-h1">Designing digital<br>products that solve<br><em>real problems</em></h1>
-    <p class="hero-sub">I work across product, service and systems — turning complex problems into useful experiences, aligning teams around a clear direction, and driving business value from zero-to-one concepts through to scaled systems.</p>
-    <div class="hero-actions">
-      <a href="#work" class="btn btn-dark">View case studies</a>
-      <a href="#about" class="btn btn-ghost">About me</a>
-    </div>
-  </div>
-  <div class="hero-visual">
-    <canvas id="hero-blob"></canvas>
-  </div>
-</section>
-
-<script>
-(function () {
-  var canvas = document.getElementById('hero-blob');
-  if (!canvas) return;
-  var ctx = canvas.getContext('2d');
-  var S = 640;
-  canvas.width = S;
-  canvas.height = S;
-
-  /* Blobs: colour, base position (0-1), radius, orbit params */
-  var blobs = [
-    { r:200, g:56,  b:230, bx:0.44, by:0.56, br:150, speed:0.18,  phase:0    },
-    { r:96,  g:96,  b:248, bx:0.50, by:0.44, br:160, speed:-0.13, phase:2.1  },
-    { r:32,  g:208, b:248, bx:0.60, by:0.36, br:140, speed:0.22,  phase:4.2  },
-    { r:160, g:232, b:255, bx:0.56, by:0.41, br:90,  speed:-0.26, phase:1.3  },
-  ];
-
-  var frame = 0;
-  var PERIOD = 900; /* ~15 s at 60 fps */
-
-  function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
-
-  /* 0 = fully undefined/blurry  1 = fully defined/sharp */
-  function definedness(f) {
-    var t = (f % PERIOD) / PERIOD;
-    if (t < 0.30) return ease(t / 0.30);
-    if (t < 0.60) return 1;
-    return ease((1 - t) / 0.40);
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, S, S);
-
-    var def  = definedness(frame);
-    var blur = 14 + (1 - def) * 44;        /* 14 px → 58 px */
-    var scatter = 0.035 + (1 - def) * 0.11; /* orbit spread */
-
-    canvas.style.filter  = 'blur(' + blur.toFixed(1) + 'px)';
-    canvas.style.opacity = (0.82 + def * 0.18).toFixed(3);
-
-    blobs.forEach(function (b, i) {
-      var angle = frame * 0.016 * (i % 2 === 0 ? 1 : -1) + b.phase;
-      var cx = (b.bx + Math.cos(angle) * scatter * 0.9) * S;
-      var cy = (b.by + Math.sin(angle) * scatter * 0.75) * S;
-      var radius = b.br * (1 + (1 - def) * 0.3);
-
-      var g = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
-      g.addColorStop(0,   'rgba('+b.r+','+b.g+','+b.b+',0.88)');
-      g.addColorStop(0.45,'rgba('+b.r+','+b.g+','+b.b+',0.45)');
-      g.addColorStop(1,   'rgba('+b.r+','+b.g+','+b.b+',0)');
-
-      ctx.beginPath();
-      ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-      ctx.fillStyle = g;
-      ctx.fill();
-    });
-
-    frame++;
-    requestAnimationFrame(draw);
-  }
-
-  draw();
-})();
-</script>
-
-<!-- STATS -->
-<div class="stats">
-  <div class="stat">
-    <div class="stat-val">14+</div>
-    <div class="stat-label">Years experience</div>
-  </div>
-  <div class="stat">
-    <div class="stat-val">30+</div>
-    <div class="stat-label">Projects shipped</div>
-  </div>
-  <div class="stat">
-    <div class="stat-val">15+</div>
-    <div class="stat-label">Happy clients</div>
-  </div>
-</div>
-
-<!-- MARQUEE -->
-<div class="marquee">
-  <div class="marquee-inner">
-    <span class="marquee-item">Product Strategy</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">User Research</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">UX Design</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Design Leadership</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Design Systems</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Interaction Design</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Prototyping</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Product Strategy</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">User Research</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">UX Design</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Design Leadership</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Design Systems</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Interaction Design</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Prototyping</span><span class="marquee-item marquee-sep">✦</span>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<div id="about" class="about">
-  <div class="about-left">
-    <p class="about-eyebrow">About</p>
-    <h2 class="about-title">Designing functional, elegant digital products</h2>
-    <p class="about-text">Designing functional, elegant digital products for 14+ years. Applying agile and lean UX methods to craft user-centric solutions. Passionate about solving real problems and creating exceptional experiences.</p>
-    <p class="about-text">Partnering with teams to deliver products that have better problem and market fit. I work across HealthTech, EdTech, logistics, fashion, and enterprise software — bringing the same rigour regardless of domain.</p>
-  </div>
-  <div class="about-right">
-    <div class="about-img-ph">
-      <img src="suganth-photo.jpg" alt="Suganth Chellamuthu">
-    </div>
-  </div>
-</div>
-
-<!-- CAPABILITIES -->
-<div class="capabilities-section">
-  <div class="capabilities-header" style="padding: 0 80px;">
-    <p class="capabilities-eyebrow">What I do</p>
-    <h2 class="capabilities-title">Design, end to end.</h2>
-  </div>
-  <div class="capabilities">
-    <div class="cap-card">
-      <div class="cap-icon">◎</div>
-      <h3 class="cap-title">Product Strategy</h3>
-      <p class="cap-desc">Co-creating strategies, shaping new product ideas and roadmaps that align user needs with business goals.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-icon">🔍</div>
-      <h3 class="cap-title">User Research</h3>
-      <p class="cap-desc">Understanding users through qual and quant methods — their context, needs, and mental models.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-icon">✦</div>
-      <h3 class="cap-title">User Experience</h3>
-      <p class="cap-desc">Crafting the right things with a seamless and enjoyable experience, from flows to pixel-perfect UI.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-icon">△</div>
-      <h3 class="cap-title">Design Leadership</h3>
-      <p class="cap-desc">Fostering a culture of design excellence, creating collaborations, and developing rigorous design processes.</p>
-    </div>
-  </div>
-</div>
-
-<!-- CLIENTS -->
-<div class="clients">
-  <p class="clients-label">Selected Clients</p>
-  <h2 style="font-family:var(--serif); font-size:clamp(28px,3vw,42px); color:var(--text); line-height:1.2; margin:16px 0 16px; letter-spacing:-.02em;">Designing at scale, across industries</h2>
-  <p style="font-family:var(--sans); font-size:16px; color:var(--text-2); line-height:1.6; max-width:600px; margin:0 0 48px;">I have created impactful digital experiences for the world's leading brands by blending AI, design, and technology.</p>
-  <div class="clients-grid">
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-pfizer-gray.png" alt="Pfizer" class="logo-gray"><img src="logo-pfizer-color.png" alt="Pfizer" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-modanisa-gray.png" alt="Modanisa" class="logo-gray"><img src="logo-modanisa-color.png" alt="Modanisa" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-springer-gray.png" alt="Springer" class="logo-gray"><img src="logo-springer-color.png" alt="Springer" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-egonzehnder-gray.png" alt="Egon Zehnder" class="logo-gray"><img src="logo-egonzehnder-color.png" alt="Egon Zehnder" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-lexisnexis-gray.png" alt="LexisNexis" class="logo-gray"><img src="logo-lexisnexis-color.png" alt="LexisNexis" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-dyson-gray.png" alt="Dyson" class="logo-gray"><img src="logo-dyson-color.png" alt="Dyson" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-yodel-gray.png" alt="Yodel" class="logo-gray"><img src="logo-yodel-color.png" alt="Yodel" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-coop-gray.png" alt="Co-op" class="logo-gray"><img src="logo-coop-color.png" alt="Co-op" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-missguided-gray.png" alt="Missguided" class="logo-gray"><img src="logo-missguided-color.png" alt="Missguided" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-kroger-gray.png" alt="Kroger" class="logo-gray"><img src="logo-kroger-color.png" alt="Kroger" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-mckinsey-gray.png" alt="McKinsey &amp; Company" class="logo-gray"><img src="logo-mckinsey-color.png" alt="McKinsey &amp; Company" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-tesco-gray.png" alt="Tesco" class="logo-gray"><img src="logo-tesco-color.png" alt="Tesco" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-cleartrip-gray.png" alt="Cleartrip" class="logo-gray"><img src="logo-cleartrip-color.png" alt="Cleartrip" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-heinemann-gray.png" alt="Heinemann" class="logo-gray"><img src="logo-heinemann-color.png" alt="Heinemann" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-parentpay-gray.png" alt="ParentPay" class="logo-gray"><img src="logo-parentpay-color.png" alt="ParentPay" class="logo-color"></div></div>
-  </div>
-</div>
-
-<!-- TESTIMONIALS -->
-<div class="testimonials">
-  <div class="testimonial">
-    <p class="testimonial-quote">"Suganth has a remarkable ability to synthesize across people, processes, and technology, which is complemented by exceptional designer skills."</p>
-    <div class="testimonial-author">
-      <div class="t-role">Director, AI Innovation &amp; Data Science, Pfizer</div>
-    </div>
-  </div>
-  <div class="testimonial">
-    <p class="testimonial-quote">"Working with Suganth transformed how we think about the delivery experience. He brought clarity to a complex service design challenge and delivered something our customers genuinely love."</p>
-    <div class="testimonial-author">
-      <div class="t-role">Head of Product, Yodel</div>
-    </div>
-  </div>
-</div>
-
-<!-- WORK HEADER -->
-<div id="work" class="work-header">
-  <div>
-    <p class="work-section-label">Selected case studies</p>
-    <h2 class="work-section-title">Impactful solutions for complex problems</h2>
-  </div>
-  <p class="work-intro">Three projects across AI, service design and product transformation — selected to show range, depth and measurable impact.</p>
-</div>
-
-<!-- WORK GRID -->
-<div class="work-grid selected-work-grid">
-
-  <a href="ai-cancer-drug-discovery.html" class="work-card">
-    <div class="work-card-img">
-      <div class="work-card-img-inner" style="background:#060F1F; padding:0;">
-        <img src="cs1-thumb.jpg" alt="Accelerating Cancer Drug Discovery" style="width:100%;height:100%;object-fit:cover;display:block;">
-      </div>
-    </div>
-    <div class="work-card-body">
-      <div class="work-card-meta">
-        <span class="work-tag">HealthTech · AI · Research</span>
-        <span class="work-year">2024</span>
-      </div>
-      <h3 class="work-card-title">Accelerating Cancer Drug Discovery with an AI-Powered Research Assistant</h3>
-      <p class="work-card-desc">Turning dense biomedical research into usable insight through an AI interface and intelligent data visualisation.</p>
-      <span class="work-cta">Read case study →</span>
-    </div>
-  </a>
-
-  <!-- Yodel -->
-  <a href="yodel-premium-delivery.html" class="work-card">
-    <div class="work-card-img">
-      <div class="work-card-img-inner" style="background:#c8322a; padding:0;">
-        <img src="cs2-thumb.jpg" alt="Yodel premium delivery — fleet of branded vans" style="width:100%;height:100%;object-fit:cover;display:block;">
-      </div>
-    </div>
-    <div class="work-card-body">
-      <div class="work-card-meta">
-        <span class="work-tag">Logistics · Service Design</span>
-        <span class="work-year">2017</span>
-      </div>
-      <h3 class="work-card-title">Designing a Premium Delivery Service Experience</h3>
-      <p class="work-card-desc">Crafting a service proposition that elevated the experience from commodity to considered consumer choice.</p>
-      <span class="work-cta">Read case study →</span>
-    </div>
-  </a>
-
-  <!-- Classroom -->
-  <a href="classroom-management-app.html" class="work-card">
-    <div class="work-card-img">
-      <div class="work-card-img-inner" style="background:#04150A; padding:0;">
-        <img src="cs3-thumb.jpg" alt="Classroom Management App" style="width:100%;height:100%;object-fit:cover;display:block;">
-      </div>
-    </div>
-    <div class="work-card-body">
-      <div class="work-card-meta">
-        <span class="work-tag">EdTech · Mobile</span>
-        <span class="work-year">2023</span>
-      </div>
-      <h3 class="work-card-title">Classroom Management App Boosting Teacher Efficiency by 57%</h3>
-      <p class="work-card-desc">A focused app experience that reduced everyday admin and made high-frequency classroom tasks faster.</p>
-      <span class="work-cta">Read case study →</span>
-    </div>
-  </a>
-
-
-</div><!-- /work-grid -->
-
-<!-- MORE WORK -->
-<section class="more-work" aria-labelledby="more-work-title">
-  <div class="more-work-header">
-    <div>
-      <p class="work-section-label">Additional experience</p>
-      <h2 class="more-work-title" id="more-work-title">More work</h2>
-    </div>
-    <p class="more-work-note">These projects are part of my broader body of work. Full case studies will be published as they are ready.</p>
-  </div>
-  <div class="more-work-grid">
-    <div class="more-work-card">
-      <div class="more-work-meta"><span>B2B SaaS · Enterprise</span><span>2024</span></div>
-      <h3>Optimising Materials and Boosting Analysis Efficiency</h3>
-      <p>A Bill of Materials visualisation platform delivering a 25% uplift in operational efficiency and £300K annual savings.</p>
-      <span class="coming-soon">Case study coming soon</span>
-    </div>
-    <div class="more-work-card">
-      <div class="more-work-meta"><span>Fashion · Marketplace</span><span>2023</span></div>
-      <h3>Crafting a Marketplace Experience for a Modest Fashion Retailer</h3>
-      <p>Helping move Modanisa from a retailer model to a global marketplace serving customers across 130+ countries.</p>
-      <span class="coming-soon">Case study coming soon</span>
-    </div>
-    <div class="more-work-card">
-      <div class="more-work-meta"><span>Retail · Financial Planning</span><span>2019</span></div>
-      <h3>Store Promotions Financial Planning Tool</h3>
-      <p>Replacing a fragmented spreadsheet process with an end-to-end promotions planning and forecasting platform.</p>
-      <span class="coming-soon">Case study coming soon</span>
-    </div>
-  </div>
-</section>
-
-<!-- SPECULATIVE WORK -->
-<div class="speculative">
-  <div class="spec-header">
-    <div>
-      <p class="work-section-label">Self-directed initiatives</p>
-      <h2 class="work-section-title">Speculative work</h2>
-    </div>
-  </div>
-  <div class="speculative-grid">
-
-    <!-- 01: Future of Food Retail -->
-    <div class="spec-card">
-      <div class="spec-card-img">
-        <img src="spec-food-retail.jpg" alt="The Future of Food Retail"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
-        <div class="spec-card-img-fill" style="display:none; background: linear-gradient(145deg, #00C8C0 0%, #006B8F 45%, #001825 100%);"></div>
-      </div>
-      <div class="spec-card-body">
-        <div class="spec-card-title">The Future of Food Retail</div>
-        <div class="spec-card-desc">Imagining the future of food retail by combining physical and cultural heritage with cutting-edge technology.</div>
-        <span class="coming-soon">Coming soon</span>
-      </div>
-    </div>
-
-    <!-- 02: Food System 2050 -->
-    <div class="spec-card">
-      <div class="spec-card-img">
-        <img src="spec-food-system-2050.png" alt="Food System 2050">
-      </div>
-      <div class="spec-card-body">
-        <div class="spec-card-title">Food System 2050</div>
-        <div class="spec-card-desc">A report on how future food systems could look, using market and research methods in strategic foresight.</div>
-        <span class="coming-soon">Coming soon</span>
-      </div>
-    </div>
-
-    <!-- 03: Future of a Grocery Store -->
-    <div class="spec-card">
-      <div class="spec-card-img">
-        <img src="spec-grocery-store.png" alt="The Future of a Grocery Store">
-      </div>
-      <div class="spec-card-body">
-        <div class="spec-card-title">The Future of a Grocery Store</div>
-        <div class="spec-card-desc">Imagining stores in the near future, with technology that evolves with customers' changing behaviours and values.</div>
-        <span class="coming-soon">Coming soon</span>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- THOUGHT LEADERSHIP -->
-<div class="talks" id="thoughts">
+<div class="talks" style="border-bottom:none;">
   <div class="talk-header">
     <div class="talk-header-left">
       <p class="talks-eyebrow">Thought Leadership</p>
-      <h2 class="talks-title">Sharing ideas beyond the day-to-day.</h2>
+      <h2 class="talks-title">Talks &amp; Lectures</h2>
     </div>
   </div>
 
-  <div class="tl-intro">
-    <p class="tl-desc">I speak and teach on continuous discovery, systems thinking, futurecasting, product design and the changing role of designers with AI — translating practice into ideas teams can use.</p>
+  <div class="talk-card">
+    <div class="talk-card-left">
+      <div class="talk-event">
+        <span class="talk-event-badge">DTox Design Talks</span>
+        <span class="talk-event-meta">Hosted by Suganth Chellamuthu · 2024</span>
+      </div>
+      <h3 class="talk-name">The Future of <em>Everyday Things</em></h3>
+      <p class="talk-synopsis">A welcome talk for the DTox Design Talks series — exploring how designers can anticipate the future by reading the past. The talk introduced futurecasting as a design practice, then applied it live through two worked examples: the evolution of the shopping mall from prehistoric gathering ground to intelligent Nourishment Centre, and the 5,500-year-old shoe reimagined as a nanobot-powered adaptive garment.</p>
+      <p class="talk-synopsis" style="margin-top:16px;">The central provocation: designing for the future means getting inspired by the past, extrapolating forward, and then bringing those possibilities back to the present — turning speculation into actionable design directions.</p>
+      <div class="talk-techniques">
+        <span class="talk-tech-tag">Futurecasting</span>
+        <span class="talk-tech-tag">Future Headlines</span>
+        <span class="talk-tech-tag">Past · Future · Present</span>
+        <span class="talk-tech-tag">Future Cones</span>
+        <span class="talk-tech-tag">Moonshot &amp; Retrocast</span>
+        <span class="talk-tech-tag">Multi-level Perspective</span>
+        <span class="talk-tech-tag">System Mapping</span>
+      </div>
+    </div>
+    <div class="talk-card-right">
+      <div class="talk-themes">
+        <p class="talk-themes-label">Key themes</p>
+        <div class="talk-theme-item">
+          <div class="talk-theme-title">How change actually happens</div>
+          <div class="talk-theme-desc">Drawing on multi-level perspective theory — large slow-moving forces (social, economic, environmental), established networks bound by norms, and the small informal groups of innovators who challenge them. Understanding this layered structure is how designers identify where and when to intervene.</div>
+        </div>
+        <div class="talk-theme-item">
+          <div class="talk-theme-title">A toolkit for seeing the future</div>
+          <div class="talk-theme-desc">An introduction to practical futurecasting methods: Future Headlines, Past–Future–Present timelines, Future Wheel, Future Cones (Probable, Plausible, Possible, Preferable), System Mapping, and Moonshot &amp; Retrocast — each one a different instrument for examining what's coming.</div>
+        </div>
+        <div class="talk-theme-item">
+          <div class="talk-theme-title">AI as a design collaborator</div>
+          <div class="talk-theme-desc">Generative AI — from GANs in 2014 to 100 million ChatGPT users in 2023 — is not just a tool for efficiency. It is a new paradigm for collaborative design, enabling natural language-based design instructions, AI agent task chains, and generative sneaker design platforms that let customers co-create products.</div>
+        </div>
+      </div>
+      <div class="talk-examples">
+        <p class="talk-examples-label">Worked examples</p>
+        <div class="talk-example">
+          <div class="talk-example-num">01</div>
+          <div class="talk-example-body">
+            <div class="talk-example-title">The Future of a Shopping Mall</div>
+            <div class="talk-example-desc">Tracing the mall from prehistoric gathering fire to ancient market square to today's air-conditioned retail complex — and forward to a personalised, sensor-rich Nourishment Centre. The exercise showed how human needs stay constant while the form they take transforms entirely across epochs.</div>
+          </div>
+        </div>
+        <div class="talk-example">
+          <div class="talk-example-num">02</div>
+          <div class="talk-example-body">
+            <div class="talk-example-title">The Future of a Shoe</div>
+            <div class="talk-example-desc">The 5,500-year-old Areni-1 leather shoe and a 3D-printed RAINS×Zellerfeld boot from Paris Fashion Week 2023 share the same five consumer needs: protect, comfort, performance, style, status. The future shoe transcends those needs — nanobots that transform clothing in an instant, powered by generative AI, electronic textiles, self-healing materials, and brain-computer interfaces.</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="tl-items">
-    <div class="tl-item">
-      <div class="tl-item-meta"><span>DTox Design Talks</span><span>2024</span></div>
-      <h3 class="tl-item-title">The Future of Everyday Things</h3>
-      <p class="tl-item-desc">Using futurecasting to read signals from the past, imagine possible futures and bring those possibilities back into present-day design decisions.</p>
-      <div class="tl-item-tags">
-        <span class="tl-tag">Futurecasting</span>
-        <span class="tl-tag">Systems Thinking</span>
-        <span class="tl-tag">AI &amp; Design</span>
+  <div class="talk-card">
+    <div class="talk-card-left">
+      <div class="talk-event">
+        <span class="talk-event-badge">DOT School of Design</span>
+        <span class="talk-event-meta">Guest Lecture · Aug – Sept 2025</span>
+      </div>
+      <h3 class="talk-name">Systems <em>Design</em></h3>
+      <p class="talk-synopsis">A three-week lecture series for Communication Design and Industrial Design students — introducing Systems Thinking, Futurecasting, and Human-Centred Design as an integrated practice. The course challenged students to move beyond designing individual artefacts and instead engage with the complex, interconnected systems that shape the problems they are solving.</p>
+      <p class="talk-synopsis" style="margin-top:16px;">The central provocation: changing one part of a system changes everything. By developing the ability to see patterns, structures, and mental models, designers can anticipate unintended consequences and create interventions that are durable — not just clever.</p>
+      <div class="talk-techniques">
+        <span class="talk-tech-tag">Systems Thinking</span>
+        <span class="talk-tech-tag">Futurecasting</span>
+        <span class="talk-tech-tag">Human-Centred Design</span>
+        <span class="talk-tech-tag">Pattern Recognition</span>
+        <span class="talk-tech-tag">Connecting the Dots</span>
       </div>
     </div>
-    <div class="tl-item">
-      <div class="tl-item-meta"><span>DOT School of Design</span><span>2025</span></div>
-      <h3 class="tl-item-title">Systems Design</h3>
-      <p class="tl-item-desc">A three-week lecture series connecting systems thinking, futurecasting and human-centred design to help designers work with complexity rather than isolated artefacts.</p>
-      <div class="tl-item-tags">
-        <span class="tl-tag">Systems Thinking</span>
-        <span class="tl-tag">Futurecasting</span>
-        <span class="tl-tag">HCD</span>
+    <div class="talk-card-right">
+      <div class="talk-themes">
+        <p class="talk-themes-label">Key themes</p>
+        <div class="talk-theme-item">
+          <div class="talk-theme-title">What Systems Thinking is — and why it matters now</div>
+          <div class="talk-theme-desc">Systems Thinking is both a perspective and a set of tools for seeing and describing complex, interconnected systems. As the world becomes more interwoven, viewing problems as part of a larger whole — not isolated pain points — is increasingly critical for designers working at scale.</div>
+        </div>
+        <div class="talk-theme-item">
+          <div class="talk-theme-title">Futurecasting as a design practice</div>
+          <div class="talk-theme-desc">Unlike forecasting, which extrapolates from historical data, Futurecasting imagines how the future could be if current trends were disrupted — then works backwards to chart a path there. Students used it to speculate on future visions for their own design contexts.</div>
+        </div>
+        <div class="talk-theme-item">
+          <div class="talk-theme-title">Human-Centred Design as the connective thread</div>
+          <div class="talk-theme-desc">HCD starts with the people being designed for and ends with solutions tailor-made to their needs. The lecture framed it as the bridge between systemic insight and actionable design output — ensuring that futures thinking leads to human outcomes, not just conceptual ones.</div>
+        </div>
       </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-item-meta"><span>RV School of Design</span><span>2025</span></div>
-      <h3 class="tl-item-title">Service Design &amp; Blueprinting</h3>
-      <p class="tl-item-desc">A one-week lecture series introducing students to service design — mapping end-to-end experiences and uncovering the people, processes and systems that make them possible.</p>
-      <div class="tl-item-tags">
-        <span class="tl-tag">Service Design</span>
-        <span class="tl-tag">Service Blueprinting</span>
-        <span class="tl-tag">Customer Journeys</span>
+      <div class="talk-examples">
+        <p class="talk-examples-label">Course structure</p>
+        <div class="talk-example">
+          <div class="talk-example-num">01</div>
+          <div class="talk-example-body">
+            <div class="talk-example-title">Week 1 — What Are Systems</div>
+            <div class="talk-example-desc">Team formation, theme reveal, and an introductory exploration of what systems are — using a warm-up activity to surface how interconnected even simple everyday situations can be.</div>
+          </div>
+        </div>
+        <div class="talk-example">
+          <div class="talk-example-num">02</div>
+          <div class="talk-example-body">
+            <div class="talk-example-title">Week 2 — Futurecasting</div>
+            <div class="talk-example-desc">Students applied futurecasting to their chosen design contexts — using trend analysis, future cones, and speculative scenario building to articulate what their domain could look like in 10–25 years.</div>
+          </div>
+        </div>
+        <div class="talk-example">
+          <div class="talk-example-num">03</div>
+          <div class="talk-example-body">
+            <div class="talk-example-title">Week 3 — Human-Centred Design</div>
+            <div class="talk-example-desc">Grounding the speculative work in empathy — students mapped actors, identified unmet needs, and designed interventions that bridge their future vision with present-day human behaviour.</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="tl-cta-row">
-    <a href="talks.html" class="tl-cta">Explore more →</a>
+</div>
+
+  <div class="talk-card">
+    <div class="talk-card-left">
+      <div class="talk-event">
+        <span class="talk-event-badge">RV School of Design</span>
+        <span class="talk-event-meta">Guest Lecture · 2025</span>
+      </div>
+      <h3 class="talk-name">Service Design <em>&amp; Blueprinting</em></h3>
+      <p class="talk-synopsis">A one-week lecture series introducing design students to the principles of Service Design and Service Blueprinting — moving beyond individual touchpoints to understand how people, processes, technology and organisations come together to deliver an end-to-end experience.</p>
+      <p class="talk-synopsis" style="margin-top:16px;">Through real-world examples and hands-on exercises, students learned to map customer journeys, uncover the frontstage and backstage systems behind them, and use service blueprints to identify gaps, opportunities and interventions for designing better services.</p>
+      <div class="talk-techniques">
+        <span class="talk-tech-tag">Service Design</span>
+        <span class="talk-tech-tag">Service Blueprinting</span>
+        <span class="talk-tech-tag">Customer Journeys</span>
+        <span class="talk-tech-tag">Systems Thinking</span>
+        <span class="talk-tech-tag">Experience Mapping</span>
+      </div>
+    </div>
+    <div class="talk-card-right">
+      <div class="talk-themes">
+        <p class="talk-themes-label">Key themes</p>
+        <div class="talk-theme-item">
+          <div class="talk-theme-title">Seeing the whole service</div>
+          <div class="talk-theme-desc">Understanding a service as an interconnected experience rather than a collection of individual products, interfaces or touchpoints.</div>
+        </div>
+        <div class="talk-theme-item">
+          <div class="talk-theme-title">Frontstage &amp; backstage</div>
+          <div class="talk-theme-desc">Looking beyond what customers see to understand the people, processes, technology, infrastructure and policies required to make an experience possible.</div>
+        </div>
+        <div class="talk-theme-item">
+          <div class="talk-theme-title">Mapping the service ecosystem</div>
+          <div class="talk-theme-desc">Exploring the people, processes, props, places and partners involved in delivering a service and the relationships between them.</div>
+        </div>
+        <div class="talk-theme-item">
+          <div class="talk-theme-title">From journeys to blueprints</div>
+          <div class="talk-theme-desc">Using customer journeys as the starting point and layering the operational ecosystem underneath to create a more complete picture of how a service works.</div>
+        </div>
+        <div class="talk-theme-item">
+          <div class="talk-theme-title">From insight to intervention</div>
+          <div class="talk-theme-desc">Using service blueprints not simply as documentation, but as a way to expose pain points, align teams and identify opportunities for improving or redesigning a service.</div>
+        </div>
+      </div>
+      <div class="talk-examples">
+        <p class="talk-examples-label">Course structure</p>
+        <div class="talk-example">
+          <div class="talk-example-num">01</div>
+          <div class="talk-example-body">
+            <div class="talk-example-title">Understanding services</div>
+            <div class="talk-example-desc">Introduction to Service Design, what makes a service different from a product, and why designing the end-to-end experience requires looking beyond individual interactions.</div>
+          </div>
+        </div>
+        <div class="talk-example">
+          <div class="talk-example-num">02</div>
+          <div class="talk-example-body">
+            <div class="talk-example-title">Understanding customer journeys</div>
+            <div class="talk-example-desc">Mapping experiences over time and identifying the stages, actors, touchpoints and moments that shape the customer's experience.</div>
+          </div>
+        </div>
+        <div class="talk-example">
+          <div class="talk-example-num">03</div>
+          <div class="talk-example-body">
+            <div class="talk-example-title">Anatomy of a service blueprint</div>
+            <div class="talk-example-desc">Breaking services into frontstage and backstage components and exploring the people, processes, systems, technology and physical or digital artefacts that enable the experience.</div>
+          </div>
+        </div>
+        <div class="talk-example">
+          <div class="talk-example-num">04</div>
+          <div class="talk-example-body">
+            <div class="talk-example-title">Blueprinting a service</div>
+            <div class="talk-example-desc">Applying the framework to map how customer actions connect with visible interactions and the operational activities happening behind the scenes.</div>
+          </div>
+        </div>
+        <div class="talk-example">
+          <div class="talk-example-num">05</div>
+          <div class="talk-example-body">
+            <div class="talk-example-title">From blueprint to opportunity</div>
+            <div class="talk-example-desc">Using the completed blueprint to identify gaps, dependencies and opportunities, and translating those observations into ideas for improving the future service experience.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- INVITE TO SPEAK -->
+<div class="talk-cta">
+  <div class="talk-cta-left">
+    <p class="talk-cta-eyebrow">Invite to speak</p>
+    <h2 class="talk-cta-title">Have a topic <em>in mind?</em></h2>
+    <p class="talk-cta-desc">Whether it's a conference keynote, an internal design summit, or a workshop on futures thinking — share the topic and context and I'll get back to you.</p>
+    <div class="talk-cta-formats">
+      <div class="talk-format-item">
+        <div class="talk-format-dot"></div>
+        <div class="talk-format-text"><strong>Keynotes &amp; conference talks</strong> — 30–60 min, full audience, original narrative</div>
+      </div>
+      <div class="talk-format-item">
+        <div class="talk-format-dot"></div>
+        <div class="talk-format-text"><strong>Futures &amp; foresight workshops</strong> — half or full day, hands-on futurecasting with your team</div>
+      </div>
+      <div class="talk-format-item">
+        <div class="talk-format-dot"></div>
+        <div class="talk-format-text"><strong>Design community talks</strong> — practitioner-to-practitioner sessions on UX, product design, AI</div>
+      </div>
+      <div class="talk-format-item">
+        <div class="talk-format-dot"></div>
+        <div class="talk-format-text"><strong>Internal design summits</strong> — team-level talks tailored to your organisation's context</div>
+      </div>
+    </div>
+  </div>
+  <div class="talk-cta-right">
+    <form class="talk-form" id="talkLeadForm" onsubmit="handleTalkSubmit(event)">
+      <div class="tf-row">
+        <div class="tf-field">
+          <label class="tf-label" for="tf-name">Your name</label>
+          <input class="tf-input" id="tf-name" type="text" placeholder="Alex Johnson" required>
+        </div>
+        <div class="tf-field">
+          <label class="tf-label" for="tf-email">Email</label>
+          <input class="tf-input" id="tf-email" type="email" placeholder="alex@company.com" required>
+        </div>
+      </div>
+      <div class="tf-row">
+        <div class="tf-field">
+          <label class="tf-label" for="tf-org">Organisation</label>
+          <input class="tf-input" id="tf-org" type="text" placeholder="Company or event name">
+        </div>
+        <div class="tf-field">
+          <label class="tf-label" for="tf-format">Format</label>
+          <select class="tf-input" id="tf-format">
+            <option value="" disabled selected>Select a format</option>
+            <option>Keynote / Conference talk</option>
+            <option>Futures &amp; foresight workshop</option>
+            <option>Design community talk</option>
+            <option>Internal design summit</option>
+            <option>Panel discussion</option>
+            <option>Other / Not sure yet</option>
+          </select>
+        </div>
+      </div>
+      <div class="tf-field">
+        <label class="tf-label" for="tf-topic">Topic or theme in mind</label>
+        <input class="tf-input" id="tf-topic" type="text" placeholder="e.g. Future of retail, AI in design, Futures thinking for teams…">
+      </div>
+      <div class="tf-field">
+        <label class="tf-label" for="tf-context">Audience &amp; context <span style="font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></label>
+        <textarea class="tf-input" id="tf-context" placeholder="Tell me about the audience, event date if known, and what you'd like people to take away…"></textarea>
+      </div>
+      <div class="tf-submit">
+        <button class="tf-btn" type="submit">Send enquiry →</button>
+        <p class="tf-note">I typically reply within two business days.</p>
+      </div>
+    </form>
+    <div class="tf-success" id="talkSuccess">
+      ✓ Thanks — I've received your enquiry and will be in touch shortly.
+    </div>
   </div>
 </div>
 
-
-<!-- BLOGS -->
-<div id="writing" class="blogs">
-  <div class="blogs-header">
-    <div>
-      <p class="blogs-eyebrow">Writing</p>
-      <h2 class="blogs-title">Latest from Medium</h2>
-    </div>
-    <a href="https://medium.com/@SuChe" target="_blank" rel="noopener" class="blogs-cta-link">All articles on Medium ↗</a>
-  </div>
-  <div class="blogs-grid">
-
-    <a href="https://medium.com/@SuChe/embracing-continuous-discovery-in-your-product-organisation-4853e72f0a2d" target="_blank" rel="noopener" class="blog-card">
-      <h3 class="blog-card-title">Embracing Continuous Discovery in Your Product Organisation</h3>
-      <p class="blog-card-desc">Ways to inculcate a culture of doing continuous discovery and continued innovation.</p>
-      <span class="blog-card-read">Read on Medium</span>
-    </a>
-
-    <a href="https://medium.com/@SuChe/futurecasting-futurespective-and-futures-thinking-7918e2156d78" target="_blank" rel="noopener" class="blog-card">
-      <h3 class="blog-card-title">Futurecasting, Futurespective and Futures Thinking</h3>
-      <p class="blog-card-desc">Exploring the differences between the terms and techniques used in strategic foresight and design.</p>
-      <span class="blog-card-read">Read on Medium</span>
-    </a>
-
-    <a href="https://medium.com/@SuChe/designing-data-products-b65e26cceddc" target="_blank" rel="noopener" class="blog-card">
-      <h3 class="blog-card-title">Designing Data Products</h3>
-      <p class="blog-card-desc">Data is everywhere these days — every second we generate copious amounts of it. These are mere numbers until we make them usable.</p>
-      <span class="blog-card-read">Read on Medium</span>
-    </a>
-
-  </div>
-</div>
-
-<!-- RESUME CTA -->
-<footer id="contact">
-  <div class="footer-contact">
-    <div class="footer-contact-left">
-      <h2 class="resume-cta-title">Let's work on something<br><em>worth solving.</em></h2>
-      <p class="resume-cta-sub">For senior design roles, product and service challenges, collaborations, or speaking enquiries — get in touch.</p>
-
-      <div class="footer-contact-actions">
-        <a href="mailto:suganthgct@gmail.com?subject=Design%20Enquiry" class="btn-resume">Get in touch →</a>
-      </div>
-    </div>
-    <div class="footer-contact-right">
-      <div class="footer-inner-grid">
-        <div>
-          <div class="footer-logo">Suganth Chellamuthu</div>
-          <p class="footer-bio">Experience across Healthtech, retail, logistics, education, and enterprise design — from individual contributor to design leader.</p>
-          <a href="resume.html" class="resume-cta-email" style="display:inline-block; margin-top:16px;">View résumé</a>
-        </div>
-        <div>
-          <p class="footer-heading">Work</p>
-          <ul class="footer-links">
-            <li><a href="ai-cancer-drug-discovery.html">AI Cancer Drug Discovery</a></li>
-            <li><a href="yodel-premium-delivery.html">Yodel Premium Delivery</a></li>
-            <li><a href="classroom-management-app.html">Classroom Management App</a></li>
-            <li><a href="dyson-bill-of-materials.html">Bill of Materials</a></li>
-            <li><a href="modanisa-marketplace.html">Modanisa Marketplace</a></li>
-            <li><a href="store-promotions-planning.html">Store Promotions Financial Planning</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-social" style="margin-top: 36px;">
-        <a href="mailto:suganthgct@gmail.com" class="footer-social-link" title="Email">
-          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
-        </a>
-        <a href="tel:+919972457131" class="footer-social-link" title="Phone">
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 4.72 4.18 2 2 0 0 1 6.7 2h3.09a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L10.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        </a>
-        <a href="https://linkedin.com/in/suganthchellamuthu" class="footer-social-link" title="LinkedIn" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://dribbble.com/suganthc" class="footer-social-link" title="Dribbble" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
-        </a>
-        <a href="https://medium.com/@suganthc" class="footer-social-link" title="Medium" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">© 2024 Suganth Chellamuthu. All rights reserved.</span>
-    <span class="footer-copy">Designed by hand. Built with AI.</span>
-  </div>
-</footer>
+<script>
+function handleTalkSubmit(e) {
+  e.preventDefault();
+  const form = document.getElementById('talkLeadForm');
+  const success = document.getElementById('talkSuccess');
+  const data = {
+    name: document.getElementById('tf-name').value,
+    email: document.getElementById('tf-email').value,
+    org: document.getElementById('tf-org').value,
+    format: document.getElementById('tf-format').value,
+    topic: document.getElementById('tf-topic').value,
+    context: document.getElementById('tf-context').value,
+  };
+  console.log('Talk enquiry:', data);
+  form.style.display = 'none';
+  success.style.display = 'block';
+}
+</script>
 
 
-<!-- ════════════════════════════════════════ -->
-<!--  CASE STUDY 1 — AI Cancer Drug Discovery -->
-<!-- ════════════════════════════════════════ -->
+<!--  RÉSUMÉ PAGE                  -->
+<!-- ══════════════════════════════ -->
 </body>
 </html>

@@ -1038,519 +1038,326 @@ thead .bp-sticky { z-index: 4; }
 </style>
 </head>
 <body>
+<div class="page-label">Case Study 1 — AI Cancer Drug Discovery · Pfizer · 2024</div>
 
-<!-- ════════════════════════════════════════ -->
-<!--  HOMEPAGE                               -->
-<!-- ════════════════════════════════════════ -->
-
-<nav class="nav" id="mainNav">
-  <button class="nav-toggle" id="navToggle" aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </button>
-  <a href="#top" class="nav-logo"><img src="suche-logo.svg" alt="SuChe" style="height:26px;width:auto;display:block;"><span>Suganth Chellamuthu</span></a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#about">About</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#thoughts">Thoughts</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <a href="resume.html" class="nav-cta">View résumé</a>
+<nav class="cs-nav">
+  <a href="index.html" class="cs-nav-logo"><img src="suche-logo.svg" alt="SuChe" style="height:26px;width:auto;display:block;"><span>Suganth Chellamuthu</span></a>
+  <a href="index.html#work" class="cs-back">← Back to all work</a>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="hero-content">
-    <p class="hero-eyebrow">Product &amp; Service Design Leader</p>
-    <h1 class="hero-h1">Designing digital<br>products that solve<br><em>real problems</em></h1>
-    <p class="hero-sub">I work across product, service and systems — turning complex problems into useful experiences, aligning teams around a clear direction, and driving business value from zero-to-one concepts through to scaled systems.</p>
-    <div class="hero-actions">
-      <a href="#work" class="btn btn-dark">View case studies</a>
-      <a href="#about" class="btn btn-ghost">About me</a>
-    </div>
+<div id="cs1" class="cs-hero">
+  <div class="cs-cats">
+    <span class="cs-cat">HealthTech</span><span class="cs-cat-dot"></span>
+    <span class="cs-cat">AI</span><span class="cs-cat-dot"></span>
+    <span class="cs-cat">Research</span><span class="cs-cat-dot"></span>
+    <span class="cs-cat">2024</span>
   </div>
-  <div class="hero-visual">
-    <canvas id="hero-blob"></canvas>
+  <h1 class="cs-h1">Accelerating Cancer Drug Discovery</h1>
+  <p class="cs-subtitle">Pfizer's oncology R&D scientists were drowning in biomedical data. I designed an AI interface that turns complex research queries into instant, visualised insights — fundamentally changing how drug discovery is conducted.</p>
+  <div class="cs-tags">
+    <span class="cs-tag">AI Interface Design</span>
+    <span class="cs-tag">Data Visualisation</span>
+    <span class="cs-tag">User Research</span>
+    <span class="cs-tag">Interaction Design</span>
+    <span class="cs-tag">Prototyping</span>
   </div>
-</section>
-
-<script>
-(function () {
-  var canvas = document.getElementById('hero-blob');
-  if (!canvas) return;
-  var ctx = canvas.getContext('2d');
-  var S = 640;
-  canvas.width = S;
-  canvas.height = S;
-
-  /* Blobs: colour, base position (0-1), radius, orbit params */
-  var blobs = [
-    { r:200, g:56,  b:230, bx:0.44, by:0.56, br:150, speed:0.18,  phase:0    },
-    { r:96,  g:96,  b:248, bx:0.50, by:0.44, br:160, speed:-0.13, phase:2.1  },
-    { r:32,  g:208, b:248, bx:0.60, by:0.36, br:140, speed:0.22,  phase:4.2  },
-    { r:160, g:232, b:255, bx:0.56, by:0.41, br:90,  speed:-0.26, phase:1.3  },
-  ];
-
-  var frame = 0;
-  var PERIOD = 900; /* ~15 s at 60 fps */
-
-  function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
-
-  /* 0 = fully undefined/blurry  1 = fully defined/sharp */
-  function definedness(f) {
-    var t = (f % PERIOD) / PERIOD;
-    if (t < 0.30) return ease(t / 0.30);
-    if (t < 0.60) return 1;
-    return ease((1 - t) / 0.40);
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, S, S);
-
-    var def  = definedness(frame);
-    var blur = 14 + (1 - def) * 44;        /* 14 px → 58 px */
-    var scatter = 0.035 + (1 - def) * 0.11; /* orbit spread */
-
-    canvas.style.filter  = 'blur(' + blur.toFixed(1) + 'px)';
-    canvas.style.opacity = (0.82 + def * 0.18).toFixed(3);
-
-    blobs.forEach(function (b, i) {
-      var angle = frame * 0.016 * (i % 2 === 0 ? 1 : -1) + b.phase;
-      var cx = (b.bx + Math.cos(angle) * scatter * 0.9) * S;
-      var cy = (b.by + Math.sin(angle) * scatter * 0.75) * S;
-      var radius = b.br * (1 + (1 - def) * 0.3);
-
-      var g = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
-      g.addColorStop(0,   'rgba('+b.r+','+b.g+','+b.b+',0.88)');
-      g.addColorStop(0.45,'rgba('+b.r+','+b.g+','+b.b+',0.45)');
-      g.addColorStop(1,   'rgba('+b.r+','+b.g+','+b.b+',0)');
-
-      ctx.beginPath();
-      ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-      ctx.fillStyle = g;
-      ctx.fill();
-    });
-
-    frame++;
-    requestAnimationFrame(draw);
-  }
-
-  draw();
-})();
-</script>
-
-<!-- STATS -->
-<div class="stats">
-  <div class="stat">
-    <div class="stat-val">14+</div>
-    <div class="stat-label">Years experience</div>
-  </div>
-  <div class="stat">
-    <div class="stat-val">30+</div>
-    <div class="stat-label">Projects shipped</div>
-  </div>
-  <div class="stat">
-    <div class="stat-val">15+</div>
-    <div class="stat-label">Happy clients</div>
+  <div class="cs-meta-grid" style="margin-top:48px; max-width:540px;">
+    <div class="cs-meta-item"><div class="cs-meta-key">Client</div><div class="cs-meta-val">Pfizer (R&D)</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-key">My role</div><div class="cs-meta-val">Lead Product Designer</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-key">Domain</div><div class="cs-meta-val">AI · HealthTech · Data Viz</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-key">Platform</div><div class="cs-meta-val">Web Application</div></div>
   </div>
 </div>
 
-<!-- MARQUEE -->
-<div class="marquee">
-  <div class="marquee-inner">
-    <span class="marquee-item">Product Strategy</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">User Research</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">UX Design</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Design Leadership</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Design Systems</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Interaction Design</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Prototyping</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Product Strategy</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">User Research</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">UX Design</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Design Leadership</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Design Systems</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Interaction Design</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Prototyping</span><span class="marquee-item marquee-sep">✦</span>
-  </div>
+<div class="cs-cover cs1-cover" style="background:#f5f6f8; height:auto; max-height:none; padding: 80px 80px 0; display:block;">
+  <img src="cs1-hero.png" alt="Research Assistant — multi-device overview" class="cs1-hero-img" style="width:100%; height:auto; display:block;">
+  <img src="cs1-mobile.png" alt="Research Assistant — mobile screen" class="cs1-mobile-img" style="height:auto; width:100%; display:block; margin-top:24px;">
 </div>
 
-<!-- ABOUT -->
-<div id="about" class="about">
-  <div class="about-left">
-    <p class="about-eyebrow">About</p>
-    <h2 class="about-title">Designing functional, elegant digital products</h2>
-    <p class="about-text">Designing functional, elegant digital products for 14+ years. Applying agile and lean UX methods to craft user-centric solutions. Passionate about solving real problems and creating exceptional experiences.</p>
-    <p class="about-text">Partnering with teams to deliver products that have better problem and market fit. I work across HealthTech, EdTech, logistics, fashion, and enterprise software — bringing the same rigour regardless of domain.</p>
-  </div>
-  <div class="about-right">
-    <div class="about-img-ph">
-      <img src="suganth-photo.jpg" alt="Suganth Chellamuthu">
-    </div>
-  </div>
+<div class="cs-metrics" style="grid-template-columns: repeat(4, 1fr);">
+  <div class="cs-metric"><div class="cs-metric-val c1">80%</div><div class="cs-metric-label">Faster research insights</div></div>
+  <div class="cs-metric"><div class="cs-metric-val c1">64%</div><div class="cs-metric-label">Time saved per query</div></div>
+  <div class="cs-metric"><div class="cs-metric-val c1">92%</div><div class="cs-metric-label">User satisfaction</div></div>
+  <div class="cs-metric"><div class="cs-metric-val c1">3×</div><div class="cs-metric-label">Research throughput</div></div>
 </div>
 
-<!-- CAPABILITIES -->
-<div class="capabilities-section">
-  <div class="capabilities-header" style="padding: 0 80px;">
-    <p class="capabilities-eyebrow">What I do</p>
-    <h2 class="capabilities-title">Design, end to end.</h2>
-  </div>
-  <div class="capabilities">
-    <div class="cap-card">
-      <div class="cap-icon">◎</div>
-      <h3 class="cap-title">Product Strategy</h3>
-      <p class="cap-desc">Co-creating strategies, shaping new product ideas and roadmaps that align user needs with business goals.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-icon">🔍</div>
-      <h3 class="cap-title">User Research</h3>
-      <p class="cap-desc">Understanding users through qual and quant methods — their context, needs, and mental models.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-icon">✦</div>
-      <h3 class="cap-title">User Experience</h3>
-      <p class="cap-desc">Crafting the right things with a seamless and enjoyable experience, from flows to pixel-perfect UI.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-icon">△</div>
-      <h3 class="cap-title">Design Leadership</h3>
-      <p class="cap-desc">Fostering a culture of design excellence, creating collaborations, and developing rigorous design processes.</p>
-    </div>
-  </div>
-</div>
+<div class="cs-body">
 
-<!-- CLIENTS -->
-<div class="clients">
-  <p class="clients-label">Selected Clients</p>
-  <h2 style="font-family:var(--serif); font-size:clamp(28px,3vw,42px); color:var(--text); line-height:1.2; margin:16px 0 16px; letter-spacing:-.02em;">Designing at scale, across industries</h2>
-  <p style="font-family:var(--sans); font-size:16px; color:var(--text-2); line-height:1.6; max-width:600px; margin:0 0 48px;">I have created impactful digital experiences for the world's leading brands by blending AI, design, and technology.</p>
-  <div class="clients-grid">
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-pfizer-gray.png" alt="Pfizer" class="logo-gray"><img src="logo-pfizer-color.png" alt="Pfizer" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-modanisa-gray.png" alt="Modanisa" class="logo-gray"><img src="logo-modanisa-color.png" alt="Modanisa" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-springer-gray.png" alt="Springer" class="logo-gray"><img src="logo-springer-color.png" alt="Springer" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-egonzehnder-gray.png" alt="Egon Zehnder" class="logo-gray"><img src="logo-egonzehnder-color.png" alt="Egon Zehnder" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-lexisnexis-gray.png" alt="LexisNexis" class="logo-gray"><img src="logo-lexisnexis-color.png" alt="LexisNexis" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-dyson-gray.png" alt="Dyson" class="logo-gray"><img src="logo-dyson-color.png" alt="Dyson" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-yodel-gray.png" alt="Yodel" class="logo-gray"><img src="logo-yodel-color.png" alt="Yodel" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-coop-gray.png" alt="Co-op" class="logo-gray"><img src="logo-coop-color.png" alt="Co-op" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-missguided-gray.png" alt="Missguided" class="logo-gray"><img src="logo-missguided-color.png" alt="Missguided" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-kroger-gray.png" alt="Kroger" class="logo-gray"><img src="logo-kroger-color.png" alt="Kroger" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-mckinsey-gray.png" alt="McKinsey &amp; Company" class="logo-gray"><img src="logo-mckinsey-color.png" alt="McKinsey &amp; Company" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-tesco-gray.png" alt="Tesco" class="logo-gray"><img src="logo-tesco-color.png" alt="Tesco" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-cleartrip-gray.png" alt="Cleartrip" class="logo-gray"><img src="logo-cleartrip-color.png" alt="Cleartrip" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-heinemann-gray.png" alt="Heinemann" class="logo-gray"><img src="logo-heinemann-color.png" alt="Heinemann" class="logo-color"></div></div>
-    <div class="client-cell"><div class="logo-wrap"><img src="logo-parentpay-gray.png" alt="ParentPay" class="logo-gray"><img src="logo-parentpay-color.png" alt="ParentPay" class="logo-color"></div></div>
-  </div>
-</div>
-
-<!-- TESTIMONIALS -->
-<div class="testimonials">
-  <div class="testimonial">
-    <p class="testimonial-quote">"Suganth has a remarkable ability to synthesize across people, processes, and technology, which is complemented by exceptional designer skills."</p>
-    <div class="testimonial-author">
-      <div class="t-role">Director, AI Innovation &amp; Data Science, Pfizer</div>
+  <div class="cs-section">
+    <h2 class="cs-section-title">The Problem Worth Solving</h2>
+    <p class="cs-text">Pfizer's oncology researchers were drowning in data they couldn't query intelligently. Cross-referencing 15+ databases manually, spending 40% of their time on retrieval rather than analysis, and waiting days for insights that should take minutes. The opportunity was clear: eliminate the gap between question and discovery.</p>
+    <div style="background: var(--fog); border-left: 3px solid var(--c1); border-radius: 0 6px 6px 0; padding: 24px 28px; margin-top: 24px;">
+      <p style="font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--c1); margin-bottom: 10px;">Project Goal</p>
+      <p style="font-family: var(--serif); font-size: clamp(18px, 1.6vw, 22px); line-height: 1.55; letter-spacing: -.02em; color: var(--text);">Design an AI assistant interface that lets researchers ask complex questions in natural language and receive structured, visualised insights — dramatically compressing the time from question to discovery.</p>
     </div>
   </div>
-  <div class="testimonial">
-    <p class="testimonial-quote">"Working with Suganth transformed how we think about the delivery experience. He brought clarity to a complex service design challenge and delivered something our customers genuinely love."</p>
-    <div class="testimonial-author">
-      <div class="t-role">Head of Product, Yodel</div>
+
+  <div class="cs-section">
+    <h2 class="cs-section-title">Leading the Product Direction</h2>
+    <div class="cs1-direction-grid">
+
+      <div style="background:var(--white); padding:28px 24px;">
+        <div style="width:36px; height:36px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--c1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <p style="font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--c1); margin:0 0 8px;">Product Framing</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.65; margin:0;">Worked with oncology stakeholders to translate complex research workflows into a focused AI product proposition.</p>
+      </div>
+
+      <div style="background:var(--white); padding:28px 24px;">
+        <div style="width:36px; height:36px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--c1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </div>
+        <p style="font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--c1); margin:0 0 8px;">Research &amp; Design Direction</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.65; margin:0;">Led discovery and synthesis across researchers with different levels of technical expertise, turning findings into interaction principles.</p>
+      </div>
+
+      <div style="background:var(--white); padding:28px 24px;">
+        <div style="width:36px; height:36px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--c1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <p style="font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--c1); margin:0 0 8px;">Cross-functional Alignment</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.65; margin:0;">Worked with data/AI and engineering teams to balance what researchers needed with what the underlying models and datasets could reliably support.</p>
+      </div>
+
+      <div style="background:var(--white); padding:28px 24px;">
+        <div style="width:36px; height:36px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--c1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <p style="font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--c1); margin:0 0 8px;">Validation</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.65; margin:0;">Used prototypes and pilot feedback to refine trust, transparency and exploratory interactions before wider adoption.</p>
+      </div>
+
     </div>
   </div>
-</div>
 
-<!-- WORK HEADER -->
-<div id="work" class="work-header">
+  <div class="cs-section">
+    <h2 class="cs-section-title">What the Research Revealed</h2>
+    <div class="cs-quote">
+      <p class="cs-quote-text">"I don't want to learn a new query language. I want to ask the data a question the way I'd ask a colleague."</p>
+      <p class="cs-quote-attr">— Senior Research Scientist, Pfizer Oncology</p>
+    </div>
+    <p class="cs-text">I conducted 24 in-depth interviews with oncology researchers, data scientists, and clinical trial managers across three continents — plus shadowing sessions and a 2-week structured user test with 35 team members. Four themes consistently surfaced:</p>
+    <div class="cs-insight-themes" style="margin-top:32px;">
+      <div class="cs-insight-theme cs-insight-theme--red">
+        <div class="cs-insight-theme-badge">01</div>
+        <div class="cs-insight-theme-title">Discovery Timeline Bottleneck</div>
+        <div class="cs-insight-theme-body">3–6 months consumed in literature review alone — before a single hypothesis is tested.</div>
+        <div class="cs-insight-theme-impact">
+          <span class="cs-insight-impact-label">Impact</span>
+          Delay in life-saving cancer treatments reaching patients.
+        </div>
+      </div>
+      <div class="cs-insight-theme cs-insight-theme--blue">
+        <div class="cs-insight-theme-badge">02</div>
+        <div class="cs-insight-theme-title">Information Fragmentation Crisis</div>
+        <div class="cs-insight-theme-body">Scientists navigating 15+ disconnected databases daily with no unified query layer.</div>
+        <div class="cs-insight-theme-impact">
+          <span class="cs-insight-impact-label">Impact</span>
+          Critical compound-target relationships are routinely missed.
+        </div>
+      </div>
+      <div class="cs-insight-theme cs-insight-theme--amber">
+        <div class="cs-insight-theme-badge">03</div>
+        <div class="cs-insight-theme-title">Research Duplication Issue</div>
+        <div class="cs-insight-theme-body">Teams unknowingly duplicating efforts across siloed labs and institutions.</div>
+        <div class="cs-insight-theme-impact">
+          <span class="cs-insight-impact-label">Impact</span>
+          Wasted resources that could fund entirely new research directions.
+        </div>
+      </div>
+      <div class="cs-insight-theme cs-insight-theme--green">
+        <div class="cs-insight-theme-badge">04</div>
+        <div class="cs-insight-theme-title">Visualisation Gap</div>
+        <div class="cs-insight-theme-body">90% of research presentations require manual chart and diagram creation from scratch.</div>
+        <div class="cs-insight-theme-impact">
+          <span class="cs-insight-impact-label">Impact</span>
+          Automated generation of research visualisations remains entirely absent.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @media(max-width:640px){
+      .cs3-decision-row { flex-direction:column !important; gap:10px !important; }
+      .cs3-decision-num { margin-top:0 !important; }
+      .cs3-decision-cards { flex-direction:column !important; }
+    }
+  </style>
+  <div class="cs-section">
+    <h2 class="cs-section-title">From Concepts to Decisions</h2>
+    <p class="cs-text">Three interaction decisions that shaped the core experience.</p>
+    <div style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-top:28px;">
+
+      <div style="padding:32px 36px; background:var(--white);">
+        <div class="cs3-decision-row" style="display:flex; gap:20px; align-items:flex-start;">
+          <div class="cs3-decision-num" style="flex-shrink:0; width:36px; height:36px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; font-size:16px; margin-top:2px;">01</div>
+          <div>
+            <h3 style="font-size:17px; font-weight:600; color:var(--text); margin:0 0 6px;">Search interface vs structured query builder</h3>
+            <p style="font-size:13px; color:var(--text-2); line-height:1.6; margin:0 0 12px;">Researchers wanted to ask questions using domain language rather than learn another system. Natural language removed the friction of query construction entirely.</p>
+            <div class="cs3-decision-cards" style="display:flex; gap:12px;">
+              <div style="flex:1; background:var(--fog); border-radius:6px; padding:12px 14px; border-left:3px solid #ccc;">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--text-3); margin-bottom:4px;">Explored</div>
+                <div style="font-size:13px; color:var(--text-2);">Filters, query-builder, conversational input</div>
+              </div>
+              <div style="flex:1; background:#EBF2FF; border-radius:6px; padding:12px 14px; border-left:3px solid var(--c1);">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--c1); margin-bottom:4px;">Selected</div>
+                <div style="font-size:13px; color:var(--text-2);">Natural-language input</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:32px 36px; background:var(--white); border-top:1px solid var(--border);">
+        <div class="cs3-decision-row" style="display:flex; gap:20px; align-items:flex-start;">
+          <div class="cs3-decision-num" style="flex-shrink:0; width:36px; height:36px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; font-size:16px; margin-top:2px;">02</div>
+          <div>
+            <h3 style="font-size:17px; font-weight:600; color:var(--text); margin:0 0 6px;">Answer first vs evidence first</h3>
+            <p style="font-size:13px; color:var(--text-2); line-height:1.6; margin:0 0 12px;">Expert users needed to interrogate the reasoning before trusting the result. Surfacing sources, confidence, and queried datasets made the AI's logic visible and auditable.</p>
+            <div class="cs3-decision-cards" style="display:flex; gap:12px;">
+              <div style="flex:1; background:var(--fog); border-radius:6px; padding:12px 14px; border-left:3px solid #ccc;">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--text-3); margin-bottom:4px;">Explored</div>
+                <div style="font-size:13px; color:var(--text-2);">Clean AI-generated answer / answer with expandable evidence</div>
+              </div>
+              <div style="flex:1; background:#EBF2FF; border-radius:6px; padding:12px 14px; border-left:3px solid var(--c1);">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--c1); margin-bottom:4px;">Selected</div>
+                <div style="font-size:13px; color:var(--text-2);">Sources + confidence + queried datasets</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:32px 36px; background:var(--white); border-top:1px solid var(--border);">
+        <div class="cs3-decision-row" style="display:flex; gap:20px; align-items:flex-start;">
+          <div class="cs3-decision-num" style="flex-shrink:0; width:36px; height:36px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; font-size:16px; margin-top:2px;">03</div>
+          <div>
+            <h3 style="font-size:17px; font-weight:600; color:var(--text); margin:0 0 6px;">Static answer vs exploratory result</h3>
+            <p style="font-size:13px; color:var(--text-2); line-height:1.6; margin:0 0 12px;">Researchers rarely stop after the first answer — one finding creates the next question. An exploratory model with interactive visualisations and suggested follow-ups matched how scientists actually think.</p>
+            <div class="cs3-decision-cards" style="display:flex; gap:12px;">
+              <div style="flex:1; background:var(--fog); border-radius:6px; padding:12px 14px; border-left:3px solid #ccc;">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--text-3); margin-bottom:4px;">Explored</div>
+                <div style="font-size:13px; color:var(--text-2);">Generated summary / interactive visualisation + suggested follow-ups</div>
+              </div>
+              <div style="flex:1; background:#EBF2FF; border-radius:6px; padding:12px 14px; border-left:3px solid var(--c1);">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--c1); margin-bottom:4px;">Selected</div>
+                <div style="font-size:13px; color:var(--text-2);">Exploratory model</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <h2 class="cs-section-title">From Question to Insight in Seconds</h2>
+    <p class="cs-text">The core interaction model: researchers type a question in plain English. The AI parses intent, queries the relevant datasets, and returns a visualised insight panel — with source citations, confidence indicators, and suggested follow-up queries.</p>
+    <figure style="margin:40px 0;">
+      <img src="cs1-overview.png" alt="Research Assistant — desktop overview screen" style="width:100%; border-radius:10px; border:1px solid var(--border); display:block;">
+      <figcaption>The home screen — researchers select a focus area and enter a query in natural language.</figcaption>
+    </figure>
+    <figure style="margin:40px 0;">
+      <img src="cs1-interaction.png" alt="Research Assistant — natural language query returning a grouped bar chart for Gefitinib resistance scores" style="width:100%; border-radius:10px; border:1px solid var(--border); display:block;">
+      <figcaption>A researcher queries resistance scores for Gefitinib across alteration types — the AI returns a structured, interactive chart in seconds.</figcaption>
+    </figure>
+    <figure style="margin:40px 0;">
+      <div style="width:100%; aspect-ratio:16/7; background:var(--fog); border-radius:10px; border:1px solid var(--border); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span style="font-size:12px; color:var(--text-3); letter-spacing:.06em; text-transform:uppercase; font-weight:500;">Image placeholder</span>
+      </div>
+      <figcaption>Every result surfaces its source datasets, confidence level, and query — so researchers can interrogate the reasoning, not just the answer.</figcaption>
+    </figure>
+    <p class="cs-text">AI transparency was not a nice-to-have for expert users — it was the product. Every AI response shows its sources, confidence levels, and the datasets it queried. Without interpretable reasoning, the tool would have been rejected regardless of its accuracy.</p>
+  </div>
+
+  <div class="cs-section">
+    <h2 class="cs-section-title">Results That Changed How Pfizer Approaches Research</h2>
+    <p class="cs-text">After a three-month pilot with 40 researchers, the results were significant. The research team responded positively to the introduction of the AI, expressing enthusiasm for its integration into their daily work and reporting measurable gains in productivity within the first month.</p>
+    <div class="cs-insights">
+      <div class="cs-insight"><div class="cs-insight-title">80% faster insights</div><div class="cs-insight-text">Time to retrieve and synthesise research dropped from days to hours in controlled task testing.</div></div>
+      <div class="cs-insight"><div class="cs-insight-title">64% time saving</div><div class="cs-insight-text">Per research query — freeing scientists to focus on interpretation rather than retrieval.</div></div>
+      <div class="cs-insight"><div class="cs-insight-title">92% user satisfaction</div><div class="cs-insight-text">Post-pilot survey. The natural language interface was consistently cited as the standout feature.</div></div>
+      <div class="cs-insight"><div class="cs-insight-title">3× research throughput</div><div class="cs-insight-text">Teams could explore 3× as many drug-target hypotheses per week compared to the legacy workflow.</div></div>
+    </div>
+    <style>.cs1-tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border-radius:10px;overflow:hidden;margin-top:32px;}@media(max-width:768px){.cs1-tgrid{grid-template-columns:1fr;}}</style>
+    <div class="cs1-tgrid">
+      <div style="background:var(--fog); padding:24px 24px 20px; display:flex; flex-direction:column; gap:16px;">
+        <p style="font-family:var(--sans); font-size:13px; line-height:1.7; color:var(--text-2); font-style:italic; margin:0; flex:1;">"The rapid generation of these visualizations is truly remarkable — what previously took two to three weeks of effort now takes under a minute."</p>
+        <span style="font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-3);">Senior Computational Biologist</span>
+      </div>
+      <div style="background:var(--fog); padding:24px 24px 20px; display:flex; flex-direction:column; gap:16px;">
+        <p style="font-family:var(--sans); font-size:13px; line-height:1.7; color:var(--text-2); font-style:italic; margin:0; flex:1;">"Its potential is evident — particularly for team members whose expertise lies in data analysis rather than software development."</p>
+        <span style="font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-3);">Director, Computational Biology</span>
+      </div>
+      <div style="background:var(--fog); padding:24px 24px 20px; display:flex; flex-direction:column; gap:16px;">
+        <p style="font-family:var(--sans); font-size:13px; line-height:1.7; color:var(--text-2); font-style:italic; margin:0; flex:1;">"The speed with which RA generates document summaries significantly accelerates my document creation — materials in minutes that previously required days."</p>
+        <span style="font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-3);">Research Team Lead</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── WHAT I'LL TAKE FORWARD ──────────────────────────── -->
+  <style>
+    .cs1-takeforward-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--border); border-radius:10px; overflow:hidden; margin-top:32px; }
+    @media(max-width:768px){ .cs1-takeforward-grid { grid-template-columns:1fr; } }
+  </style>
+  <div class="cs-section">
+    <h2 class="cs-section-title">Reflections</h2>
+    <div class="cs1-takeforward-grid">
+
+      <div style="background:var(--white); padding:36px 32px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <div style="width:40px; height:40px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c1);">User Diversity</span>
+        </div>
+        <p style="font-size:18px; font-weight:600; color:var(--text); line-height:1.35; margin:0 0 10px;">Expert UX isn't necessarily complex UX.</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.6; margin:0;">Designing for scientists with radically different technical fluency taught me that domain sophistication doesn't mean users want sophisticated interfaces.</p>
+      </div>
+
+      <div style="background:var(--white); padding:36px 32px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <div style="width:40px; height:40px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c1);">AI Trust</span>
+        </div>
+        <p style="font-size:18px; font-weight:600; color:var(--text); line-height:1.35; margin:0 0 10px;">Explainability is part of the interaction model.</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.6; margin:0;">Building trust in AI-generated research outputs showed me that transparency isn't something added after the answer — it's woven into how the answer is given.</p>
+      </div>
+
+      <div style="background:var(--white); padding:36px 32px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <div style="width:40px; height:40px; border-radius:8px; background:#EBF2FF; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c1);">Data Communication</span>
+        </div>
+        <p style="font-size:18px; font-weight:600; color:var(--text); line-height:1.35; margin:0 0 10px;">Visualisation is part of the reasoning.</p>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.6; margin:0;">Turning complex datasets into understandable research outputs showed that the right representation helps researchers interpret relationships, not just consume an answer.</p>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /cs-body -->
+
+<a href="yodel-premium-delivery.html" class="cs-next">
   <div>
-    <p class="work-section-label">Selected case studies</p>
-    <h2 class="work-section-title">Impactful solutions for complex problems</h2>
+    <div class="cs-next-label">Next case study</div>
+    <div class="cs-next-title">Designing a Premium Delivery Service Experience</div>
   </div>
-  <p class="work-intro">Three projects across AI, service design and product transformation — selected to show range, depth and measurable impact.</p>
-</div>
-
-<!-- WORK GRID -->
-<div class="work-grid selected-work-grid">
-
-  <a href="ai-cancer-drug-discovery.html" class="work-card">
-    <div class="work-card-img">
-      <div class="work-card-img-inner" style="background:#060F1F; padding:0;">
-        <img src="cs1-thumb.jpg" alt="Accelerating Cancer Drug Discovery" style="width:100%;height:100%;object-fit:cover;display:block;">
-      </div>
-    </div>
-    <div class="work-card-body">
-      <div class="work-card-meta">
-        <span class="work-tag">HealthTech · AI · Research</span>
-        <span class="work-year">2024</span>
-      </div>
-      <h3 class="work-card-title">Accelerating Cancer Drug Discovery with an AI-Powered Research Assistant</h3>
-      <p class="work-card-desc">Turning dense biomedical research into usable insight through an AI interface and intelligent data visualisation.</p>
-      <span class="work-cta">Read case study →</span>
-    </div>
-  </a>
-
-  <!-- Yodel -->
-  <a href="yodel-premium-delivery.html" class="work-card">
-    <div class="work-card-img">
-      <div class="work-card-img-inner" style="background:#c8322a; padding:0;">
-        <img src="cs2-thumb.jpg" alt="Yodel premium delivery — fleet of branded vans" style="width:100%;height:100%;object-fit:cover;display:block;">
-      </div>
-    </div>
-    <div class="work-card-body">
-      <div class="work-card-meta">
-        <span class="work-tag">Logistics · Service Design</span>
-        <span class="work-year">2017</span>
-      </div>
-      <h3 class="work-card-title">Designing a Premium Delivery Service Experience</h3>
-      <p class="work-card-desc">Crafting a service proposition that elevated the experience from commodity to considered consumer choice.</p>
-      <span class="work-cta">Read case study →</span>
-    </div>
-  </a>
-
-  <!-- Classroom -->
-  <a href="classroom-management-app.html" class="work-card">
-    <div class="work-card-img">
-      <div class="work-card-img-inner" style="background:#04150A; padding:0;">
-        <img src="cs3-thumb.jpg" alt="Classroom Management App" style="width:100%;height:100%;object-fit:cover;display:block;">
-      </div>
-    </div>
-    <div class="work-card-body">
-      <div class="work-card-meta">
-        <span class="work-tag">EdTech · Mobile</span>
-        <span class="work-year">2023</span>
-      </div>
-      <h3 class="work-card-title">Classroom Management App Boosting Teacher Efficiency by 57%</h3>
-      <p class="work-card-desc">A focused app experience that reduced everyday admin and made high-frequency classroom tasks faster.</p>
-      <span class="work-cta">Read case study →</span>
-    </div>
-  </a>
-
-
-</div><!-- /work-grid -->
-
-<!-- MORE WORK -->
-<section class="more-work" aria-labelledby="more-work-title">
-  <div class="more-work-header">
-    <div>
-      <p class="work-section-label">Additional experience</p>
-      <h2 class="more-work-title" id="more-work-title">More work</h2>
-    </div>
-    <p class="more-work-note">These projects are part of my broader body of work. Full case studies will be published as they are ready.</p>
-  </div>
-  <div class="more-work-grid">
-    <div class="more-work-card">
-      <div class="more-work-meta"><span>B2B SaaS · Enterprise</span><span>2024</span></div>
-      <h3>Optimising Materials and Boosting Analysis Efficiency</h3>
-      <p>A Bill of Materials visualisation platform delivering a 25% uplift in operational efficiency and £300K annual savings.</p>
-      <span class="coming-soon">Case study coming soon</span>
-    </div>
-    <div class="more-work-card">
-      <div class="more-work-meta"><span>Fashion · Marketplace</span><span>2023</span></div>
-      <h3>Crafting a Marketplace Experience for a Modest Fashion Retailer</h3>
-      <p>Helping move Modanisa from a retailer model to a global marketplace serving customers across 130+ countries.</p>
-      <span class="coming-soon">Case study coming soon</span>
-    </div>
-    <div class="more-work-card">
-      <div class="more-work-meta"><span>Retail · Financial Planning</span><span>2019</span></div>
-      <h3>Store Promotions Financial Planning Tool</h3>
-      <p>Replacing a fragmented spreadsheet process with an end-to-end promotions planning and forecasting platform.</p>
-      <span class="coming-soon">Case study coming soon</span>
-    </div>
-  </div>
-</section>
-
-<!-- SPECULATIVE WORK -->
-<div class="speculative">
-  <div class="spec-header">
-    <div>
-      <p class="work-section-label">Self-directed initiatives</p>
-      <h2 class="work-section-title">Speculative work</h2>
-    </div>
-  </div>
-  <div class="speculative-grid">
-
-    <!-- 01: Future of Food Retail -->
-    <div class="spec-card">
-      <div class="spec-card-img">
-        <img src="spec-food-retail.jpg" alt="The Future of Food Retail"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
-        <div class="spec-card-img-fill" style="display:none; background: linear-gradient(145deg, #00C8C0 0%, #006B8F 45%, #001825 100%);"></div>
-      </div>
-      <div class="spec-card-body">
-        <div class="spec-card-title">The Future of Food Retail</div>
-        <div class="spec-card-desc">Imagining the future of food retail by combining physical and cultural heritage with cutting-edge technology.</div>
-        <span class="coming-soon">Coming soon</span>
-      </div>
-    </div>
-
-    <!-- 02: Food System 2050 -->
-    <div class="spec-card">
-      <div class="spec-card-img">
-        <img src="spec-food-system-2050.png" alt="Food System 2050">
-      </div>
-      <div class="spec-card-body">
-        <div class="spec-card-title">Food System 2050</div>
-        <div class="spec-card-desc">A report on how future food systems could look, using market and research methods in strategic foresight.</div>
-        <span class="coming-soon">Coming soon</span>
-      </div>
-    </div>
-
-    <!-- 03: Future of a Grocery Store -->
-    <div class="spec-card">
-      <div class="spec-card-img">
-        <img src="spec-grocery-store.png" alt="The Future of a Grocery Store">
-      </div>
-      <div class="spec-card-body">
-        <div class="spec-card-title">The Future of a Grocery Store</div>
-        <div class="spec-card-desc">Imagining stores in the near future, with technology that evolves with customers' changing behaviours and values.</div>
-        <span class="coming-soon">Coming soon</span>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- THOUGHT LEADERSHIP -->
-<div class="talks" id="thoughts">
-  <div class="talk-header">
-    <div class="talk-header-left">
-      <p class="talks-eyebrow">Thought Leadership</p>
-      <h2 class="talks-title">Sharing ideas beyond the day-to-day.</h2>
-    </div>
-  </div>
-
-  <div class="tl-intro">
-    <p class="tl-desc">I speak and teach on continuous discovery, systems thinking, futurecasting, product design and the changing role of designers with AI — translating practice into ideas teams can use.</p>
-  </div>
-
-  <div class="tl-items">
-    <div class="tl-item">
-      <div class="tl-item-meta"><span>DTox Design Talks</span><span>2024</span></div>
-      <h3 class="tl-item-title">The Future of Everyday Things</h3>
-      <p class="tl-item-desc">Using futurecasting to read signals from the past, imagine possible futures and bring those possibilities back into present-day design decisions.</p>
-      <div class="tl-item-tags">
-        <span class="tl-tag">Futurecasting</span>
-        <span class="tl-tag">Systems Thinking</span>
-        <span class="tl-tag">AI &amp; Design</span>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-item-meta"><span>DOT School of Design</span><span>2025</span></div>
-      <h3 class="tl-item-title">Systems Design</h3>
-      <p class="tl-item-desc">A three-week lecture series connecting systems thinking, futurecasting and human-centred design to help designers work with complexity rather than isolated artefacts.</p>
-      <div class="tl-item-tags">
-        <span class="tl-tag">Systems Thinking</span>
-        <span class="tl-tag">Futurecasting</span>
-        <span class="tl-tag">HCD</span>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-item-meta"><span>RV School of Design</span><span>2025</span></div>
-      <h3 class="tl-item-title">Service Design &amp; Blueprinting</h3>
-      <p class="tl-item-desc">A one-week lecture series introducing students to service design — mapping end-to-end experiences and uncovering the people, processes and systems that make them possible.</p>
-      <div class="tl-item-tags">
-        <span class="tl-tag">Service Design</span>
-        <span class="tl-tag">Service Blueprinting</span>
-        <span class="tl-tag">Customer Journeys</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="tl-cta-row">
-    <a href="talks.html" class="tl-cta">Explore more →</a>
-  </div>
-</div>
-
-
-<!-- BLOGS -->
-<div id="writing" class="blogs">
-  <div class="blogs-header">
-    <div>
-      <p class="blogs-eyebrow">Writing</p>
-      <h2 class="blogs-title">Latest from Medium</h2>
-    </div>
-    <a href="https://medium.com/@SuChe" target="_blank" rel="noopener" class="blogs-cta-link">All articles on Medium ↗</a>
-  </div>
-  <div class="blogs-grid">
-
-    <a href="https://medium.com/@SuChe/embracing-continuous-discovery-in-your-product-organisation-4853e72f0a2d" target="_blank" rel="noopener" class="blog-card">
-      <h3 class="blog-card-title">Embracing Continuous Discovery in Your Product Organisation</h3>
-      <p class="blog-card-desc">Ways to inculcate a culture of doing continuous discovery and continued innovation.</p>
-      <span class="blog-card-read">Read on Medium</span>
-    </a>
-
-    <a href="https://medium.com/@SuChe/futurecasting-futurespective-and-futures-thinking-7918e2156d78" target="_blank" rel="noopener" class="blog-card">
-      <h3 class="blog-card-title">Futurecasting, Futurespective and Futures Thinking</h3>
-      <p class="blog-card-desc">Exploring the differences between the terms and techniques used in strategic foresight and design.</p>
-      <span class="blog-card-read">Read on Medium</span>
-    </a>
-
-    <a href="https://medium.com/@SuChe/designing-data-products-b65e26cceddc" target="_blank" rel="noopener" class="blog-card">
-      <h3 class="blog-card-title">Designing Data Products</h3>
-      <p class="blog-card-desc">Data is everywhere these days — every second we generate copious amounts of it. These are mere numbers until we make them usable.</p>
-      <span class="blog-card-read">Read on Medium</span>
-    </a>
-
-  </div>
-</div>
-
-<!-- RESUME CTA -->
-<footer id="contact">
-  <div class="footer-contact">
-    <div class="footer-contact-left">
-      <h2 class="resume-cta-title">Let's work on something<br><em>worth solving.</em></h2>
-      <p class="resume-cta-sub">For senior design roles, product and service challenges, collaborations, or speaking enquiries — get in touch.</p>
-
-      <div class="footer-contact-actions">
-        <a href="mailto:suganthgct@gmail.com?subject=Design%20Enquiry" class="btn-resume">Get in touch →</a>
-      </div>
-    </div>
-    <div class="footer-contact-right">
-      <div class="footer-inner-grid">
-        <div>
-          <div class="footer-logo">Suganth Chellamuthu</div>
-          <p class="footer-bio">Experience across Healthtech, retail, logistics, education, and enterprise design — from individual contributor to design leader.</p>
-          <a href="resume.html" class="resume-cta-email" style="display:inline-block; margin-top:16px;">View résumé</a>
-        </div>
-        <div>
-          <p class="footer-heading">Work</p>
-          <ul class="footer-links">
-            <li><a href="ai-cancer-drug-discovery.html">AI Cancer Drug Discovery</a></li>
-            <li><a href="yodel-premium-delivery.html">Yodel Premium Delivery</a></li>
-            <li><a href="classroom-management-app.html">Classroom Management App</a></li>
-            <li><a href="dyson-bill-of-materials.html">Bill of Materials</a></li>
-            <li><a href="modanisa-marketplace.html">Modanisa Marketplace</a></li>
-            <li><a href="store-promotions-planning.html">Store Promotions Financial Planning</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-social" style="margin-top: 36px;">
-        <a href="mailto:suganthgct@gmail.com" class="footer-social-link" title="Email">
-          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
-        </a>
-        <a href="tel:+919972457131" class="footer-social-link" title="Phone">
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 4.72 4.18 2 2 0 0 1 6.7 2h3.09a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L10.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        </a>
-        <a href="https://linkedin.com/in/suganthchellamuthu" class="footer-social-link" title="LinkedIn" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://dribbble.com/suganthc" class="footer-social-link" title="Dribbble" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
-        </a>
-        <a href="https://medium.com/@suganthc" class="footer-social-link" title="Medium" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">© 2024 Suganth Chellamuthu. All rights reserved.</span>
-    <span class="footer-copy">Designed by hand. Built with AI.</span>
-  </div>
-</footer>
+  <span class="cs-next-arrow">→</span>
+</a>
 
 
 <!-- ════════════════════════════════════════ -->
-<!--  CASE STUDY 1 — AI Cancer Drug Discovery -->
+<!--  CASE STUDY 2 — Yodel Premium Delivery  -->
 <!-- ════════════════════════════════════════ -->
 </body>
 </html>

@@ -121,9 +121,21 @@ body { font-family: var(--sans); background: var(--white); color: var(--text); f
 .work-count { font-family: var(--serif); font-size: 88px; font-style: italic; color: #E4E4E0; letter-spacing: -.04em; line-height: 1; }
 
 .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); padding: 0 80px; }
+.work-intro { max-width:520px; font-size:15px; line-height:1.7; color:var(--text-2); text-align:right; }
+.selected-work-grid { padding-bottom:72px; }
+.more-work { border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.more-work-header { padding:64px 80px 36px; display:flex; align-items:flex-end; justify-content:space-between; gap:40px; }
+.more-work-title { font-family:var(--serif); font-size:clamp(30px,3.2vw,44px); letter-spacing:-.03em; line-height:1.1; }
+.more-work-note { max-width:480px; font-size:14px; line-height:1.7; color:var(--text-3); }
+.more-work-grid { display:grid; grid-template-columns:repeat(3,1fr); padding:0 80px 72px; }
+.more-work-card { padding:32px; min-height:200px; display:flex; flex-direction:column; color:inherit; cursor:default; }
+.more-work-meta { display:flex; justify-content:space-between; gap:16px; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-3); margin-bottom:22px; }
+.more-work-card h3 { font-family:var(--serif); font-size:21px; line-height:1.25; letter-spacing:-.02em; margin-bottom:12px; }
+.more-work-card p { font-size:14px; line-height:1.7; color:var(--text-2); margin-bottom:28px; }
+.coming-soon { margin-top:auto; font-size:12px; font-weight:500; color:var(--text-3); border-top:1px solid var(--border); padding-top:16px; }
 .work-card {
   display: block; text-decoration: none; color: inherit;
-  overflow: hidden; cursor: pointer;
+  overflow: hidden; cursor: pointer; position: relative;
   transition: background .2s;
 }
 .work-card:hover { background: var(--fog); }
@@ -139,6 +151,8 @@ body { font-family: var(--sans); background: var(--white); color: var(--text); f
 .work-card .work-card-img { aspect-ratio: 3/2; }
 
 .work-card-body { padding: 36px 32px 44px; }
+.wip-badge { display:inline-flex; align-items:center; gap:5px; font-size:10px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#92400e; background:#FEF3C7; border:1px solid #FDE68A; border-radius:4px; padding:3px 8px; }
+.wip-badge::before { content:''; width:6px; height:6px; border-radius:50%; background:#D97706; flex-shrink:0; }
 .work-card-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
 .work-tag { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); }
 .work-year { font-size: 12px; color: var(--text-3); }
@@ -188,20 +202,17 @@ body { font-family: var(--sans); background: var(--white); color: var(--text); f
 }
 .spec-card {
   cursor: pointer; transition: background .2s; overflow: hidden; display: block;
-  text-decoration: none; color: inherit;
+  text-decoration: none; color: inherit; position: relative;
 }
-.spec-card:hover { background: var(--fog); }
+.spec-card { cursor: default; }
 .spec-card-img { aspect-ratio: 16/9; overflow: hidden; position: relative; }
-.spec-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
-.spec-card:hover .spec-card-img img { transform: scale(1.04); }
-.spec-card-img-fill { width: 100%; height: 100%; transition: transform .5s ease; }
-.spec-card:hover .spec-card-img-fill { transform: scale(1.04); }
+.spec-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.spec-card-img-fill { width: 100%; height: 100%; }
 .spec-card-body { padding: 28px 24px 36px; }
 .spec-card-num { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); display: block; margin-bottom: 10px; }
-.spec-card-title { font-family: var(--serif); font-size: clamp(18px, 1.5vw, 22px); letter-spacing: -.025em; line-height: 1.2; color: var(--text); margin-bottom: 8px; }
+.spec-card-title { font-family: var(--serif); font-size: 21px; letter-spacing: -.02em; line-height: 1.25; color: var(--text); margin-bottom: 8px; }
 .spec-card-desc { font-size: 13px; color: var(--text-2); line-height: 1.7; margin-bottom: 16px; }
-.spec-card-cta { font-size: 13px; font-weight: 500; color: var(--text-3); display: inline-block; transition: color .2s, transform .2s; }
-.spec-card:hover .spec-card-cta { color: var(--text); transform: translateX(3px); }
+.spec-card-cta { font-size: 13px; font-weight: 500; color: var(--text-3); display: inline-block; }
 
 /* ── CAPABILITIES ── */
 .capabilities-section { }
@@ -280,7 +291,7 @@ body { font-family: var(--sans); background: var(--white); color: var(--text); f
 
 /* ── TALKS ── */
 .talks { border-bottom: 1px solid var(--border); }
-.talk-header { padding: 80px 80px 40px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; }
+.talk-header { padding: 80px 80px 40px; display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; }
 .talk-header-left { }
 .talks-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
 .talks-title { font-family: var(--serif); font-size: clamp(28px, 3.5vw, 44px); letter-spacing: -.03em; color: var(--text); line-height: 1.1; }
@@ -344,6 +355,21 @@ textarea.tf-input { resize: vertical; min-height: 110px; line-height: 1.6; }
 .tf-btn:hover { opacity: .8; }
 .tf-note { font-size: 12px; color: var(--text-3); line-height: 1.5; max-width: 220px; }
 .tf-success { display: none; padding: 20px 24px; background: #f0faf4; border: 1px solid #a3d9b5; border-radius: 8px; font-size: 15px; color: #1a6b38; margin-top: 16px; font-family: var(--sans); }
+
+/* ── THOUGHT LEADERSHIP COMPACT ── */
+.tl-intro { padding: 0 80px 48px; }
+.tl-tagline { font-family: var(--serif); font-size: 22px; letter-spacing: -.02em; color: var(--text); margin-bottom: 16px; }
+.tl-desc { font-size: 15px; line-height: 1.75; color: var(--text-2); max-width: 640px; }
+.tl-items { display: grid; grid-template-columns: repeat(3, 1fr); }
+.tl-item { padding: 48px 80px; }
+.tl-item-meta { display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); margin-bottom: 20px; }
+.tl-item-title { font-family: var(--serif); font-size: 21px; letter-spacing: -.02em; line-height: 1.25; margin-bottom: 12px; }
+.tl-item-desc { font-size: 14px; line-height: 1.7; color: var(--text-2); margin-bottom: 20px; }
+.tl-item-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tl-tag { font-size: 11px; font-weight: 500; letter-spacing: .04em; color: var(--text-3); background: var(--fog); padding: 4px 10px; border-radius: 20px; }
+.tl-cta-row { padding: 32px 80px; }
+.tl-cta { font-size: 14px; font-weight: 500; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: border-color .2s; }
+.tl-cta:hover { border-color: var(--text); }
 
 /* ── RESUME CTA ── */
 .resume-cta-left { padding: 96px 80px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid rgba(255,255,255,.1); }
@@ -483,11 +509,13 @@ footer { background: var(--text); }
 
 /* CS Nav */
 .cs-nav {
-  position: sticky; top: 0; z-index: 100;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   background: rgba(255,255,255,.95); backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   padding: 18px 64px; display: flex; align-items: center; justify-content: space-between;
 }
+.page-label { display: none; }
+.cs-nav + * { margin-top: 65px; }
 .cs-nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .cs-nav-logo span { font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--text); letter-spacing: -.01em; }
 .cs-back { font-size: 13px; color: var(--text-2); text-decoration: none; letter-spacing: .04em; transition: color .2s; }
@@ -502,6 +530,32 @@ footer { background: var(--text); }
 .cs-subtitle { font-size: 19px; color: var(--text-2); line-height: 1.7; max-width: 680px; margin-bottom: 44px; }
 .cs-tags { display: flex; flex-wrap: wrap; gap: 10px; }
 .cs-tag { font-size: 13px; color: var(--text-2); background: var(--fog); padding: 7px 18px; border-radius: 100px; border: 1px solid var(--border); }
+
+/* CS2 Decisions That Defined Premium */
+.cs2-decisions-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--border); border-radius:10px; overflow:hidden; margin-top:28px; }
+@media(max-width:640px){ .cs2-decisions-grid { grid-template-columns:1fr; } }
+
+/* CS2 Blueprint to Delivery flow */
+.cs2-bp-flow { display:flex; gap:0; align-items:stretch; border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+.cs2-bp-outputs { flex:1; display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--border); }
+@media(max-width:768px){
+  .cs2-bp-flow { flex-direction:column; }
+  .cs2-bp-outputs { grid-template-columns:1fr 1fr; }
+}
+@media(max-width:480px){ .cs2-bp-outputs { grid-template-columns:1fr; } }
+
+/* CS1 Leading the Product Direction grid */
+.cs1-direction-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; background:var(--border); border-radius:10px; overflow:hidden; margin-top:28px; }
+@media(max-width:768px){ .cs1-direction-grid { grid-template-columns:1fr 1fr; } }
+@media(max-width:480px){ .cs1-direction-grid { grid-template-columns:1fr; } }
+
+/* CS1 cover images — swap between desktop and mobile */
+.cs1-mobile-img { display: none !important; }
+.cs1-hero-img { display: block !important; }
+@media (max-width: 768px) {
+  .cs1-mobile-img { display: block !important; height: auto; width: 100%; }
+  .cs1-hero-img { display: none !important; }
+}
 
 /* CS Full-bleed visual */
 .cs-cover {
@@ -592,7 +646,8 @@ footer { background: var(--text); }
 /* ── Research Insights ──────────────────────────────────── */
 .ri-wrap { margin: 40px 0; display: flex; flex-direction: column; gap: 40px; }
 .ri-group-title { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); margin: 0 0 16px; }
-.cs-caption-label { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); margin: 0 0 10px; }
+.cs-caption-label { font-family: var(--sans); font-size: 12px; font-weight: 400; letter-spacing: normal; text-transform: none; color: var(--text-3); margin: 12px 0 0; text-align: center; }
+figcaption { font-family: var(--sans); font-size: 12px; color: var(--text-3); margin-top: 12px; text-align: center; }
 /* ── HMW Cards ── */
 .cs-hmw-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 32px; }
 .cs-hmw-card { background: #f5f4f0; border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 10px; }
@@ -811,6 +866,9 @@ thead .bp-sticky { z-index: 4; }
   .stats .stat { padding: 36px 32px; }
   .work-header { padding: 60px 32px 40px; }
   .work-grid { grid-template-columns: 1fr 1fr; padding: 0 32px; }
+  .work-intro { display: none; }
+  .more-work-header { padding: 48px 32px 28px; }
+  .more-work-grid { padding: 0 0 56px; }
   .work-card-body { padding: 28px 24px 36px; }
   .spec-item { grid-template-columns: 160px 40px 1fr 28px; padding-left: 0; padding-right: 24px; }
   .spec-thumb { width: 160px; height: 120px; }
@@ -841,6 +899,10 @@ thead .bp-sticky { z-index: 4; }
   .talk-card-left { border-right: none; border-bottom: 1px solid var(--border); padding: 48px 32px; }
   .talk-card-right { padding: 48px 32px; }
   .talk-header { padding: 48px 32px 32px; }
+  .tl-intro { padding: 0 32px 40px; }
+  .tl-items { grid-template-columns: 1fr; }
+  .tl-item { padding: 32px 32px; }
+  .tl-cta-row { padding: 28px 32px; }
   .talk-cta { grid-template-columns: 1fr; }
   .talk-cta-left { border-right: none; border-bottom: 1px solid var(--border); padding: 56px 32px; }
   .talk-cta-right { padding: 48px 32px; }
@@ -886,6 +948,8 @@ thead .bp-sticky { z-index: 4; }
   .work-grid { grid-template-columns: 1fr; }
   .work-card:nth-child(3n) { border-right: 1px solid var(--border); }
   .work-card { border-right: none !important; }
+  .more-work-grid { grid-template-columns: 1fr; }
+  .more-work-note { display: none; }
   .about { grid-template-columns: 1fr; }
   .about-right { display: block; min-height: 60vw; }
   .about-img-ph { background: none; min-height: 60vw; }
@@ -910,10 +974,18 @@ thead .bp-sticky { z-index: 4; }
   .stat-label { font-size: 11px; }
   .work-header { padding: 44px 20px 28px; }
   .work-grid { padding: 0 20px; }
+  .selected-work-grid { padding-bottom: 48px; }
+  .more-work-header { padding: 40px 20px 24px; }
+  .more-work-grid { padding: 0 0 48px; }
   .work-card-body { padding: 24px 16px 28px; }
+  .tl-intro { padding: 0 20px 32px; }
+  .tl-item { padding: 24px 20px; }
+  .tl-cta-row { padding: 24px 20px; }
   .blogs-grid { padding: 0 20px; }
   .blog-card { padding: 36px 16px; }
   .spec-header { padding: 40px 20px 28px; }
+  .talk-header { padding: 40px 20px 28px; }
+  .blogs-header { padding: 40px 20px 28px; }
   .spec-title { font-size: 19px; }
   .capabilities { grid-template-columns: 1fr; }
   .cap-card:nth-child(2n) { border-right: 1px solid var(--border); }
@@ -959,7 +1031,6 @@ thead .bp-sticky { z-index: 4; }
   .cs-persona-header { padding: 24px 20px; gap: 16px; }
   .cs-persona-initials { width: 56px; height: 56px; font-size: 20px; }
   .work-card-title { font-size: 22px; }
-  .spec-card-title { font-size: 20px; }
   .talk-theme-title { font-size: 18px; }
   .footer-bio { max-width: 100%; }
   .footer-contact-right { padding: 40px 20px; }
@@ -967,7 +1038,7 @@ thead .bp-sticky { z-index: 4; }
 </style>
 </head>
 <body>
-<div class="page-label">Case Study 2 — Premium Delivery Service Experience · Yodel · 2023</div>
+<div class="page-label">Case Study 2 — Premium Delivery Service Experience · Yodel · 2017</div>
 
 <nav class="cs-nav">
   <a href="index.html" class="cs-nav-logo"><img src="suche-logo.svg" alt="SuChe" style="height:26px;width:auto;display:block;"><span>Suganth Chellamuthu</span></a>
@@ -978,7 +1049,7 @@ thead .bp-sticky { z-index: 4; }
   <div class="cs-cats">
     <span class="cs-cat">Logistics</span><span class="cs-cat-dot"></span>
     <span class="cs-cat">Service Design</span><span class="cs-cat-dot"></span>
-    <span class="cs-cat">2023</span>
+    <span class="cs-cat">2017</span>
   </div>
   <h1 class="cs-h1">Designing a Premium Delivery Service Experience</h1>
   <p class="cs-subtitle">Yodel wanted to move beyond commodity delivery and offer a considered, premium tier. I led the end-to-end service design — from proposition definition to customer touchpoint design across digital and physical channels.</p>
@@ -1048,6 +1119,32 @@ thead .bp-sticky { z-index: 4; }
     <p class="cs-text" style="margin-top:32px;">We converged on a single north star for the service.</p>
     <div class="cs-quote-block">
       <p class="cs-quote-text">"An integrated delivery ecosystem that connects customers, delivery personnel, and operations in real-time, creating a seamless and transparent experience."</p>
+    </div>
+  </div>
+
+  <!-- ── DECISIONS THAT DEFINED PREMIUM ───────────────── -->
+  <div class="cs-section">
+    <h2 class="cs-section-title">The Decisions That Defined Premium</h2>
+    <div class="cs2-decisions-grid">
+
+      <div style="background:var(--white); padding:32px 28px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--c2); margin-bottom:16px;">01</div>
+        <h3 style="font-size:17px; font-weight:600; color:var(--text); line-height:1.3; margin:0 0 12px;">Predictability over speed</h3>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.65; margin:0;">Premium became about certainty, not simply faster delivery.</p>
+      </div>
+
+      <div style="background:var(--white); padding:32px 28px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--c2); margin-bottom:16px;">02</div>
+        <h3 style="font-size:17px; font-weight:600; color:var(--text); line-height:1.3; margin:0 0 12px;">Design the doorstep, not just the screen</h3>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.65; margin:0;">Driver behaviour, labels and parcel presentation became part of the experience.</p>
+      </div>
+
+      <div style="background:var(--white); padding:32px 28px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--c2); margin-bottom:16px;">03</div>
+        <h3 style="font-size:17px; font-weight:600; color:var(--text); line-height:1.3; margin:0 0 12px;">Design the system, not isolated touchpoints</h3>
+        <p style="font-size:14px; color:var(--text-2); line-height:1.65; margin:0;">The service blueprint connected customer experience to operations, drivers and supporting systems.</p>
+      </div>
+
     </div>
   </div>
 
@@ -1208,6 +1305,64 @@ thead .bp-sticky { z-index: 4; }
     </div>
   </div>
 
+  <!-- ── FROM BLUEPRINT TO DELIVERY ───────────────────── -->
+  <div class="cs-section">
+    <h2 class="cs-section-title">From Blueprint to Delivery</h2>
+    <p class="cs-text">The blueprint wasn't the end deliverable — it became the shared specification for translating the premium proposition across digital interfaces, operational processes and physical touchpoints. Every subsequent design decision traced back to it.</p>
+
+    <div class="cs2-bp-flow" style="margin-top:40px;">
+
+      <!-- Source -->
+      <div style="background:#0E52B0; color:#fff; padding:28px 32px; display:flex; align-items:center; justify-content:center; min-width:180px; flex-shrink:0;">
+        <div style="text-align:center;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:block; margin:0 auto 10px;"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <p style="font-size:13px; font-weight:600; letter-spacing:.04em; margin:0; line-height:1.4;">Service<br>Blueprint</p>
+        </div>
+      </div>
+
+      <!-- Arrow -->
+      <div style="background:var(--fog); display:flex; align-items:center; justify-content:center; padding:0 20px; flex-shrink:0;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+
+      <!-- Outputs -->
+      <div class="cs2-bp-outputs">
+
+        <div style="background:var(--white); padding:24px 20px; display:flex; flex-direction:column; gap:8px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          <p style="font-size:13px; font-weight:600; color:var(--text); margin:0; line-height:1.4;">Customer experience</p>
+          <p style="font-size:12px; color:var(--text-3); margin:0; line-height:1.5;">App, tracking &amp; notifications</p>
+        </div>
+
+        <div style="background:var(--white); padding:24px 20px; display:flex; flex-direction:column; gap:8px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <p style="font-size:13px; font-weight:600; color:var(--text); margin:0; line-height:1.4;">Retailer tools</p>
+          <p style="font-size:12px; color:var(--text-3); margin:0; line-height:1.5;">Portal &amp; configuration</p>
+        </div>
+
+        <div style="background:var(--white); padding:24px 20px; display:flex; flex-direction:column; gap:8px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/></svg>
+          <p style="font-size:13px; font-weight:600; color:var(--text); margin:0; line-height:1.4;">Driver experience</p>
+          <p style="font-size:12px; color:var(--text-3); margin:0; line-height:1.5;">HHT app &amp; training</p>
+        </div>
+
+        <div style="background:var(--white); padding:24px 20px; display:flex; flex-direction:column; gap:8px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          <p style="font-size:13px; font-weight:600; color:var(--text); margin:0; line-height:1.4;">Operations</p>
+          <p style="font-size:12px; color:var(--text-3); margin:0; line-height:1.5;">Process &amp; service centre</p>
+        </div>
+
+        <div style="background:var(--white); padding:24px 20px; display:flex; flex-direction:column; gap:8px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+          <p style="font-size:13px; font-weight:600; color:var(--text); margin:0; line-height:1.4;">Physical touchpoints</p>
+          <p style="font-size:12px; color:var(--text-3); margin:0; line-height:1.5;">Labels &amp; parcel presentation</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
   <!-- ── FIVE TOUCHPOINTS ───────────────────────────────── -->
   <div class="cs-section">
     <h2 class="cs-section-title">Five Touchpoints, One Connected Experience</h2>
@@ -1250,16 +1405,16 @@ thead .bp-sticky { z-index: 4; }
       </div>
     </div>
     <div class="cs-img-2col" style="margin-top:48px;">
-      <div>
-        <p class="cs-caption-label" style="margin-bottom:10px; margin-top:24px; padding-left:16px;">Customer-facing consumer app</p>
+      <figure style="margin:0;">
         <div class="cs-img" style="background:#fff; display:flex; align-items:center; justify-content:center;"><img src="cs2-yodel-tracking.jpg" alt="Consumer app — live driver tracking with named driver card" style="width:100%;height:100%;object-fit:contain;display:block;"></div>
-      </div>
-      <div>
-        <p class="cs-caption-label" style="margin-bottom:10px; margin-top:24px; padding-left:16px;">Retailer &amp; service centre manager — WISMO portal</p>
+        <figcaption>Customer-facing consumer app</figcaption>
+      </figure>
+      <figure style="margin:0;">
         <div class="cs-img" style="padding:0; background:#fff; overflow:hidden;">
           <img src="cs2-retailer-portal.jpg" alt="Retailer portal — premium tier booking and white-label configuration" style="width:100%;height:100%;object-fit:contain;display:block; padding:16px; box-sizing:border-box;">
         </div>
-      </div>
+        <figcaption>Retailer &amp; service centre manager — WISMO portal</figcaption>
+      </figure>
     </div>
     <p class="cs-text" style="margin-top:32px;">The consumer app redesign introduced 2-hour delivery windows, live driver tracking with a named driver card, and a premium notification system with personalised language based on order value and retailer brand.</p>
   </div>
@@ -1283,16 +1438,16 @@ thead .bp-sticky { z-index: 4; }
     <!-- Before / After split -->
     <div class="cs-split" style="margin-top:32px; align-items:start;">
       <div>
-        <p class="cs-caption-label">Before — Fragmented label landscape</p>
         <div class="cs-img" style="aspect-ratio:4/3; padding:0; background:#f0f0ee; border-radius:8px; overflow:hidden;">
           <img src="cs2-labels-before.jpg" alt="Old green and yellow delivery labels — inconsistent and hard to scan" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
+        <p class="cs-caption-label">Before — Fragmented label landscape</p>
       </div>
       <div>
-        <p class="cs-caption-label">After — Unified label system</p>
         <div class="cs-img" style="aspect-ratio:4/3; padding:0; background:#c8a97e; border-radius:8px; overflow:hidden;">
           <img src="cs2-label-new.jpg" alt="New standardised delivery label — clean, scannable, branded" style="width:100%;height:100%;object-fit:contain;display:block; padding:24px; box-sizing:border-box;">
         </div>
+        <p class="cs-caption-label">After — Unified label system</p>
       </div>
     </div>
 
